@@ -23,7 +23,7 @@ export default function MehndiInvitation() {
             variants={fadeSlideUp}
             lang="ar"
             dir="rtl"
-            className="font-amiri text-[clamp(1.35rem,4.5vw,1.85rem)] font-bold leading-relaxed text-gold"
+            className="font-serif text-[clamp(1.4rem,4.5vw,1.9rem)] font-bold leading-relaxed tracking-wide text-gold"
           >
             {MEHNDI_EVENT.bismillah}
           </motion.p>
@@ -74,7 +74,7 @@ export default function MehndiInvitation() {
             <div className="mt-4">
               <EventCountdown
                 countdownIso={MEHNDI_EVENT.countdownIso}
-                label="Until Rasm-e-Mehndi begins"
+                label="Until Rasm-e-haldi begins"
               />
             </div>
           </motion.div>

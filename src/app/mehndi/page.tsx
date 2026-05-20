@@ -5,9 +5,9 @@ import FloatingAmbience from "@/components/mehndi/FloatingAmbience";
 import MehndiInvitation from "@/components/mehndi/MehndiInvitation";
 
 export const metadata: Metadata = {
-  title: "Rasm-e-Mehndi | Shoaib Faraz Ahmed",
+  title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
   description:
-    "You are cordially invited to Rasm-e-Mehndi of Shoaib Faraz Ahmed.",
+    "You are cordially invited to attend Rasm-e-haldi of Shoaib Faraz Ahmed.",
 };
 
 export default function MehndiPage() {

@@ -17,7 +17,7 @@ export default function HomePage() {
           href="/mehndi"
           className="rounded-full border border-marigold/40 bg-gradient-to-r from-marigold to-saffron px-8 py-3 font-sans text-sm font-semibold uppercase tracking-wider text-cream shadow-gold transition-transform hover:scale-[1.02]"
         >
-          Rasm-e-Mehndi
+          Rasm-e-Haldi
         </Link>
         <a
           href="/index.html"

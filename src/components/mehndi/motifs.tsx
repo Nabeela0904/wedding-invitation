@@ -24,7 +24,25 @@ export function StarCrescentMotif({ className = "" }: { className?: string }) {
   );
 }
 
+function eightPointedStarPath(
+  cx: number,
+  cy: number,
+  outerR: number,
+  innerR: number
+): string {
+  const points: string[] = [];
+  for (let i = 0; i < 16; i++) {
+    const angle = (Math.PI / 8) * i - Math.PI / 2;
+    const r = i % 2 === 0 ? outerR : innerR;
+    const x = cx + r * Math.cos(angle);
+    const y = cy + r * Math.sin(angle);
+    points.push(`${i === 0 ? "M" : "L"}${x.toFixed(2)} ${y.toFixed(2)}`);
+  }
+  return `${points.join(" ")} Z`;
+}
+
 export function IslamicStarSvg({ size }: { size: number }) {
+  const starPath = eightPointedStarPath(16, 16, 14, 6);
   return (
     <svg
       width={size}
@@ -35,12 +53,12 @@ export function IslamicStarSvg({ size }: { size: number }) {
       aria-hidden
     >
       <path
-        d="M16 2 L18.8 11.2 L28 11.2 L20.6 17 L23.4 26.2 L16 20.4 L8.6 26.2 L11.4 17 L4 11.2 L13.2 11.2 Z"
+        d={starPath}
         fill="#D97706"
         stroke="#B45309"
         strokeWidth="0.5"
       />
-      <circle cx="16" cy="16" r="2.5" fill="#F59E0B" />
+      <circle cx="16" cy="16" r="2" fill="#F59E0B" />
     </svg>
   );
 }

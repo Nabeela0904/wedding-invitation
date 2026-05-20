@@ -1,7 +1,7 @@
 export const MEHNDI_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   inviteLine:
-    "You are cordially invited to attend Rasm-e-Mehndi of Shoaib Faraz Ahmed",
+    "You are cordially invited to attend Rasm-e-haldi of Shoaib Faraz Ahmed",
   message:
     "Join us for an evening filled with colours of joy, the rhythm of dhol, and the warmth of love and laughter.",
   dateLabel: "8th July, 2026",
