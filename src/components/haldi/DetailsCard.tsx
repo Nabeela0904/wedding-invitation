@@ -1,8 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { HALDI_EVENT, getGoogleMapsUrl } from "@/lib/haldi-event";
-import { fadeSlideUp } from "@/lib/motion";
+import {
+  cardReveal,
+  fadeSlideUpSoft,
+  staggerSection,
+} from "@/lib/motion";
 import LiveCountdown from "./LiveCountdown";
 import RsvpForm from "./RsvpForm";
 
@@ -12,72 +16,96 @@ export default function DetailsCard() {
   return (
     <motion.section
       className="relative z-10 mx-auto w-full max-w-lg px-4 pb-20 sm:px-6"
-      variants={fadeSlideUp}
+      variants={cardReveal}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true, margin: "-60px", amount: 0.2 }}
     >
-      <div className="rounded-3xl border border-marigold/25 bg-white/20 p-6 shadow-gold-lg backdrop-blur-xl sm:p-8">
-        <h2 className="text-center font-display text-2xl font-semibold text-gold sm:text-3xl">
-          Event Details
-        </h2>
-        <p className="mt-2 text-center font-sans text-sm text-gold/65">
-          We would be honoured by your presence
-        </p>
+      <div className="haldi-glass relative overflow-hidden p-6 sm:p-8">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/40 to-transparent"
+          aria-hidden
+        />
 
-        <dl className="mt-8 space-y-5">
-          <DetailRow label="Date" value={HALDI_EVENT.dateLabel} />
-          <DetailRow label="Time" value={HALDI_EVENT.timeLabel} />
-          <DetailRow
-            label="Venue"
-            value={`${HALDI_EVENT.venueName} — ${HALDI_EVENT.venueDetail}`}
-          />
-        </dl>
+        <motion.div variants={staggerSection} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <motion.div variants={fadeSlideUpSoft}>
+            <h2 className="text-center font-display text-2xl font-semibold text-gold sm:text-3xl">
+              Event Details
+            </h2>
+            <p className="mt-2 text-center font-sans text-sm text-gold/60">
+              We would be honoured by your presence
+            </p>
+          </motion.div>
 
-        <motion.a
-          href={mapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-marigold/35 bg-white/30 px-4 py-3 font-sans text-sm font-medium text-gold will-change-transform"
-          whileHover={{ scale: 1.01 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <MapPinIcon />
-          View on Google Maps
-        </motion.a>
+          <motion.div variants={staggerSection} className="mt-8 space-y-3">
+            <DetailRow variants={fadeSlideUpSoft} label="Date" value={HALDI_EVENT.dateLabel} />
+            <DetailRow variants={fadeSlideUpSoft} label="Time" value={HALDI_EVENT.timeLabel} />
+            <DetailRow
+              variants={fadeSlideUpSoft}
+              label="Venue"
+              value={`${HALDI_EVENT.venueName} — ${HALDI_EVENT.venueDetail}`}
+            />
+          </motion.div>
 
-        <div className="mt-8 border-t border-marigold/20 pt-8">
-          <h3 className="text-center font-display text-xl text-gold">
-            Countdown
-          </h3>
-          <p className="mt-1 text-center font-sans text-xs text-gold/55">
-            Until the Haldi ceremony begins
-          </p>
-          <div className="mt-5">
-            <LiveCountdown />
-          </div>
-        </div>
+          <motion.div variants={fadeSlideUpSoft}>
+            <motion.a
+              href={mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-marigold/30 bg-white/40 px-4 py-3.5 font-sans text-sm font-medium text-gold will-change-transform backdrop-blur-sm"
+              whileHover={{ scale: 1.015, opacity: 1 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 400, damping: 28 }}
+            >
+              <MapPinIcon />
+              View on Google Maps
+            </motion.a>
+          </motion.div>
 
-        <div className="mt-8 border-t border-marigold/20 pt-8">
-          <h3 className="text-center font-display text-xl text-gold">RSVP</h3>
-          <p className="mt-1 mb-5 text-center font-sans text-xs text-gold/55">
-            Kindly confirm your attendance
-          </p>
-          <RsvpForm />
-        </div>
+          <motion.div variants={fadeSlideUpSoft} className="mt-9">
+            <div className="haldi-ornament mb-6" aria-hidden />
+            <h3 className="text-center font-display text-xl text-gold">Countdown</h3>
+            <p className="mt-1 text-center font-sans text-xs tracking-wide text-gold/50">
+              Until the Haldi ceremony begins
+            </p>
+            <div className="mt-5">
+              <LiveCountdown />
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeSlideUpSoft} className="mt-9">
+            <div className="haldi-ornament mb-6" aria-hidden />
+            <h3 className="text-center font-display text-xl text-gold">RSVP</h3>
+            <p className="mt-1 mb-5 text-center font-sans text-xs text-gold/50">
+              Kindly confirm your attendance
+            </p>
+            <RsvpForm />
+          </motion.div>
+        </motion.div>
       </div>
     </motion.section>
   );
 }
 
-function DetailRow({ label, value }: { label: string; value: string }) {
+function DetailRow({
+  label,
+  value,
+  variants,
+}: {
+  label: string;
+  value: string;
+  variants?: Variants;
+}) {
   return (
-    <div className="flex flex-col gap-1 border-b border-marigold/15 pb-5 last:border-0 last:pb-0 sm:flex-row sm:gap-4">
-      <dt className="w-20 shrink-0 font-sans text-xs font-semibold uppercase tracking-wider text-saffron">
+    <motion.div
+      variants={variants}
+      className="flex flex-col gap-1 rounded-xl border border-marigold/10 bg-white/25 px-4 py-3.5 sm:flex-row sm:items-center sm:gap-4"
+    >
+      <span className="w-20 shrink-0 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-saffron">
         {label}
-      </dt>
-      <dd className="font-sans text-sm leading-relaxed text-gold/85">{value}</dd>
-    </div>
+      </span>
+      <span className="font-sans text-sm leading-relaxed text-gold/88">{value}</span>
+    </motion.div>
   );
 }
 

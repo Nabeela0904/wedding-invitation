@@ -23,7 +23,7 @@ const config: Config = {
       boxShadow: {
         gold: "0 0 24px rgba(245, 158, 11, 0.35)",
         "gold-lg": "0 8px 32px rgba(217, 119, 6, 0.28)",
-        "gold-aura": "0 0 32px rgba(245, 158, 11, 0.55), 0 0 64px rgba(234, 88, 12, 0.25)",
+        "gold-aura": "0 0 32px rgba(245, 158, 11, 0.5), 0 0 56px rgba(217, 119, 6, 0.22)",
       },
     },
   },
