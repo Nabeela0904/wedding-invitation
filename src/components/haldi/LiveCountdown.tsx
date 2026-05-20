@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { HALDI_EVENT } from "@/lib/haldi-event";
-import { premiumSpring } from "@/lib/motion";
+import { heroSpring } from "@/lib/motion";
 
 type TimeLeft = {
   days: number;
@@ -15,8 +15,8 @@ type TimeLeft = {
 const UNITS: { key: keyof TimeLeft; label: string }[] = [
   { key: "days", label: "Days" },
   { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Minutes" },
-  { key: "seconds", label: "Seconds" },
+  { key: "minutes", label: "Mins" },
+  { key: "seconds", label: "Secs" },
 ];
 
 function calculateTimeLeft(targetMs: number): TimeLeft | null {
@@ -46,25 +46,25 @@ export default function LiveCountdown() {
   if (!timeLeft) {
     return (
       <p className="text-center font-display text-lg text-marigold">
-        The celebration has begun!
+        The Haldi celebration has begun!
       </p>
     );
   }
 
   return (
-    <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-3">
+    <div className="grid grid-cols-4 gap-2 sm:gap-3">
       {UNITS.map(({ key, label }, index) => (
         <motion.div
           key={key}
-          className="min-w-[4.25rem] flex-1 rounded-xl border-2 border-marigold/35 bg-white/20 px-2 py-3 text-center backdrop-blur-sm sm:min-w-[4.75rem] sm:px-3 sm:py-4"
-          initial={{ opacity: 0, y: 12 }}
+          className="rounded-xl border border-marigold/30 bg-white/25 px-1 py-3 text-center backdrop-blur-sm sm:py-4"
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...premiumSpring, delay: 0.15 * index }}
+          transition={{ ...heroSpring, delay: 0.08 * index }}
         >
-          <span className="block font-display text-2xl font-semibold tabular-nums text-deep-gold sm:text-3xl">
+          <span className="block font-display text-xl font-semibold tabular-nums text-gold sm:text-2xl">
             {String(timeLeft[key]).padStart(2, "0")}
           </span>
-          <span className="mt-1 block font-sans text-[10px] font-medium uppercase tracking-widest text-deep-gold/65">
+          <span className="mt-0.5 block font-sans text-[9px] uppercase tracking-wider text-gold/60 sm:text-[10px]">
             {label}
           </span>
         </motion.div>

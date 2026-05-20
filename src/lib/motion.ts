@@ -1,10 +1,10 @@
 import type { Transition, Variants } from "framer-motion";
 
-/** Premium spring: mass 0.8, damping 18 */
-export const premiumSpring: Transition = {
+/** Hero entrance spring: stiffness 80, damping 15 */
+export const heroSpring: Transition = {
   type: "spring",
-  mass: 0.8,
-  damping: 18,
+  stiffness: 80,
+  damping: 15,
 };
 
 export const staggerContainer: Variants = {
@@ -12,8 +12,8 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.12,
+      staggerChildren: 0.14,
+      delayChildren: 0.18,
     },
   },
 };
@@ -21,11 +21,11 @@ export const staggerContainer: Variants = {
 export const fadeSlideUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 24,
+    y: 28,
   },
   visible: {
     opacity: 1,
     y: 0,
-    transition: premiumSpring,
+    transition: heroSpring,
   },
 };

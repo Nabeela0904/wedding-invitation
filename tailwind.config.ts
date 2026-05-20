@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         cream: "#FFFDF9",
         marigold: "#F59E0B",
-        saffron: "#EA580C",
+        saffron: "#D97706",
         "deep-gold": "#B45309",
         gold: "#B45309",
       },

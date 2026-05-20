@@ -12,7 +12,7 @@ export default function MehndiPage() {
 
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <p className="font-sans text-sm text-deep-gold/60">Opening invitation…</p>
+      <p className="font-sans text-sm text-gold/60">Opening invitation…</p>
     </main>
   );
 }
