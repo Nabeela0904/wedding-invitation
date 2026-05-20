@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { HALDI_EVENT } from "@/lib/haldi-event";
+import { premiumSpring } from "@/lib/motion";
 
 type TimeLeft = {
   days: number;
@@ -11,13 +12,16 @@ type TimeLeft = {
   seconds: number;
 };
 
-function calculateTimeLeft(target: number): TimeLeft | null {
-  const difference = target - Date.now();
+const UNITS: { key: keyof TimeLeft; label: string }[] = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Minutes" },
+  { key: "seconds", label: "Seconds" },
+];
 
-  if (difference <= 0) {
-    return null;
-  }
-
+function calculateTimeLeft(targetMs: number): TimeLeft | null {
+  const difference = targetMs - Date.now();
+  if (difference <= 0) return null;
   return {
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
     hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
@@ -26,26 +30,18 @@ function calculateTimeLeft(target: number): TimeLeft | null {
   };
 }
 
-const UNITS: { key: keyof TimeLeft; label: string }[] = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Mins" },
-  { key: "seconds", label: "Secs" },
-];
-
-export default function CountdownTimer() {
-  const target = new Date(HALDI_EVENT.countdownIso).getTime();
+export default function LiveCountdown() {
+  const targetMs = new Date(HALDI_EVENT.countdownIso).getTime();
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(() =>
-    calculateTimeLeft(target),
+    calculateTimeLeft(targetMs),
   );
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setTimeLeft(calculateTimeLeft(target));
+      setTimeLeft(calculateTimeLeft(targetMs));
     }, 1000);
-
     return () => window.clearInterval(timer);
-  }, [target]);
+  }, [targetMs]);
 
   if (!timeLeft) {
     return (
@@ -56,24 +52,19 @@ export default function CountdownTimer() {
   }
 
   return (
-    <div className="grid grid-cols-4 gap-2 sm:gap-3">
+    <div className="flex flex-row flex-wrap justify-center gap-2 sm:gap-3">
       {UNITS.map(({ key, label }, index) => (
         <motion.div
           key={key}
-          className="rounded-xl border border-white/40 bg-white/30 px-1 py-3 text-center backdrop-blur-sm sm:px-2 sm:py-4"
+          className="min-w-[4.25rem] flex-1 rounded-xl border-2 border-marigold/35 bg-white/20 px-2 py-3 text-center backdrop-blur-sm sm:min-w-[4.75rem] sm:px-3 sm:py-4"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 80,
-            damping: 15,
-            delay: 0.1 * index,
-          }}
+          transition={{ ...premiumSpring, delay: 0.15 * index }}
         >
-          <span className="block font-display text-2xl font-semibold tabular-nums text-gold sm:text-3xl">
+          <span className="block font-display text-2xl font-semibold tabular-nums text-deep-gold sm:text-3xl">
             {String(timeLeft[key]).padStart(2, "0")}
           </span>
-          <span className="mt-1 block font-sans text-[10px] uppercase tracking-wider text-gold/60 sm:text-xs">
+          <span className="mt-1 block font-sans text-[10px] font-medium uppercase tracking-widest text-deep-gold/65">
             {label}
           </span>
         </motion.div>
