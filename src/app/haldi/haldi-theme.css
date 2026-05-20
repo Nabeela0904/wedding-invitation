@@ -18,10 +18,10 @@
 .cinematic-vignette {
   pointer-events: none;
   background: radial-gradient(
-    ellipse 90% 80% at 50% 45%,
-    transparent 35%,
-    rgba(0, 0, 0, 0.55) 75%,
-    rgba(0, 0, 0, 0.92) 100%
+    ellipse 95% 85% at 50% 45%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.35) 72%,
+    rgba(0, 0, 0, 0.75) 100%
   );
 }
 
