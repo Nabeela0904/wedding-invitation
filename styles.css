@@ -24,31 +24,6 @@ body {
   overflow-x: hidden;
 }
 
-body[data-active-event="haldi"] {
-  background: linear-gradient(180deg, #fff0c9 0%, #ffd76a 48%, #f47d3b 100%);
-}
-
-body[data-active-event="haldi"] .background-layer-1 {
-  background-image:
-    radial-gradient(circle at 12% 18%, rgba(229, 43, 117, 0.28), transparent 24%),
-    radial-gradient(circle at 82% 16%, rgba(242, 153, 42, 0.34), transparent 28%),
-    radial-gradient(circle at 68% 86%, rgba(255, 213, 75, 0.36), transparent 34%),
-    radial-gradient(circle at 8% 76%, rgba(53, 122, 54, 0.16), transparent 28%);
-}
-
-body[data-active-event="haldi"] .background-layer-2 {
-  opacity: 0.72;
-  background-image:
-    repeating-linear-gradient(
-      -24deg,
-      rgba(165, 92, 42, 0.08) 0px,
-      rgba(165, 92, 42, 0.08) 1px,
-      transparent 1px,
-      transparent 24px
-    ),
-    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.56), transparent 42%);
-}
-
 .background-layer {
   position: fixed;
   inset: -20%;
@@ -418,165 +393,6 @@ footer {
   color: #ead7bb;
 }
 
-.haldi-content {
-  --haldi-ink: #553c28;
-  --haldi-rose: #b13f50;
-  --haldi-gold: #d99a28;
-  --haldi-border: #c69b7c;
-  position: relative;
-  max-width: 760px;
-  min-height: 680px;
-  margin: 0.75rem auto 1.2rem;
-  overflow: hidden;
-  padding: clamp(7rem, 13vw, 8.8rem) clamp(1.4rem, 6vw, 4.25rem) clamp(8.2rem, 14vw, 10.5rem);
-  color: var(--haldi-ink);
-  border: 0.45rem solid rgba(239, 210, 156, 0.95);
-  border-radius: 1.2rem;
-  background-color: #fff4da;
-  background-image:
-    radial-gradient(circle at 9% 4%, #f45b8a 0 9px, transparent 10px),
-    radial-gradient(circle at 14% 2%, #f5c542 0 10px, transparent 11px),
-    radial-gradient(circle at 20% 5%, #f47d3b 0 8px, transparent 9px),
-    radial-gradient(circle at 28% 2%, #d63378 0 10px, transparent 11px),
-    radial-gradient(circle at 36% 5%, #f2a93b 0 9px, transparent 10px),
-    radial-gradient(circle at 47% 2%, #f05b84 0 11px, transparent 12px),
-    radial-gradient(circle at 58% 5%, #f5c542 0 8px, transparent 9px),
-    radial-gradient(circle at 68% 2%, #ef7d2f 0 11px, transparent 12px),
-    radial-gradient(circle at 78% 5%, #d63378 0 9px, transparent 10px),
-    radial-gradient(circle at 88% 2%, #f5c542 0 10px, transparent 11px),
-    linear-gradient(90deg, rgba(172, 20, 100, 0.95) 0 2.1rem, rgba(245, 185, 55, 0.8) 2.1rem 2.28rem, transparent 2.28rem),
-    radial-gradient(circle at 14% 92%, rgba(233, 59, 97, 0.26), transparent 13%),
-    radial-gradient(circle at 74% 88%, rgba(255, 203, 54, 0.45), transparent 22%),
-    repeating-linear-gradient(135deg, rgba(177, 123, 84, 0.07) 0 2px, transparent 2px 20px),
-    linear-gradient(180deg, #fff8e8 0%, #fde9cf 100%);
-  box-shadow: 0 22px 48px rgba(92, 45, 20, 0.24);
-}
-
-.haldi-content::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 5.7rem 7% 3.5rem;
-  border: 0.42rem solid rgba(194, 145, 112, 0.78);
-  border-radius: 13rem 13rem 1rem 1rem / 10rem 10rem 1rem 1rem;
-  background:
-    radial-gradient(circle at 50% 2%, rgba(255, 255, 255, 0.96), transparent 18%),
-    linear-gradient(180deg, rgba(255, 242, 221, 0.96), rgba(255, 227, 202, 0.96));
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.62),
-    0 12px 28px rgba(106, 63, 31, 0.16);
-}
-
-.haldi-content::after {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  top: -0.65rem;
-  left: -1rem;
-  right: -1rem;
-  height: 6.4rem;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 6% 52%, #e93b78 0 14px, transparent 15px),
-    radial-gradient(circle at 11% 30%, #f6c538 0 12px, transparent 13px),
-    radial-gradient(circle at 17% 62%, #ef7c2d 0 14px, transparent 15px),
-    radial-gradient(circle at 24% 34%, #d93172 0 13px, transparent 14px),
-    radial-gradient(circle at 33% 58%, #f5b334 0 15px, transparent 16px),
-    radial-gradient(circle at 42% 34%, #ec4f83 0 13px, transparent 14px),
-    radial-gradient(circle at 52% 60%, #f2c63d 0 15px, transparent 16px),
-    radial-gradient(circle at 62% 32%, #ef7d2f 0 13px, transparent 14px),
-    radial-gradient(circle at 71% 58%, #d63378 0 14px, transparent 15px),
-    radial-gradient(circle at 82% 34%, #f5c542 0 13px, transparent 14px),
-    radial-gradient(circle at 91% 58%, #ef7d2f 0 14px, transparent 15px),
-    linear-gradient(180deg, rgba(52, 103, 46, 0.55), rgba(52, 103, 46, 0.1) 55%, transparent 70%);
-  filter: drop-shadow(0 6px 8px rgba(97, 51, 22, 0.18));
-}
-
-.haldi-content > * {
-  position: relative;
-  z-index: 1;
-}
-
-.haldi-content .event-arabic {
-  display: inline-block;
-  margin-bottom: 0.75rem;
-  padding: 0.32rem 1rem 0.42rem;
-  color: #332519;
-  background: #efe2bd;
-  border: 1px solid rgba(155, 111, 65, 0.42);
-  border-radius: 0.22rem;
-  box-shadow: 0 5px 12px rgba(86, 54, 24, 0.14);
-}
-
-.haldi-content .event-intro,
-.haldi-content .event-description {
-  color: #654b37;
-}
-
-.haldi-content .event-title {
-  color: #3f2f24;
-  font-size: clamp(2.25rem, 7vw, 4.2rem);
-  line-height: 0.95;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
-}
-
-.haldi-content .event-person {
-  color: var(--haldi-rose);
-  font-weight: 700;
-}
-
-.haldi-content .event-description {
-  max-width: 560px;
-  font-size: 1.03rem;
-}
-
-.haldi-content .event-meta p {
-  color: #4f3826;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.25rem, 3vw, 1.65rem);
-}
-
-.haldi-content .event-meta strong {
-  color: #2f241c;
-}
-
-.haldi-content .event-meta::before,
-.haldi-content .event-meta::after {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-}
-
-.haldi-content .event-meta::before {
-  left: 6%;
-  bottom: 1.4rem;
-  width: clamp(7rem, 23vw, 11rem);
-  height: clamp(7rem, 23vw, 11rem);
-  border-radius: 78% 0 78% 0;
-  background:
-    radial-gradient(circle at 48% 48%, transparent 0 18%, rgba(255, 255, 255, 0.5) 19% 21%, transparent 22%),
-    repeating-radial-gradient(circle at 52% 48%, rgba(255, 255, 255, 0.48) 0 2px, transparent 2px 12px),
-    linear-gradient(135deg, rgba(255, 202, 43, 0.88), rgba(238, 154, 38, 0.72));
-  opacity: 0.78;
-  transform: rotate(-16deg);
-}
-
-.haldi-content .event-meta::after {
-  right: 5%;
-  bottom: 1.8rem;
-  width: clamp(7.2rem, 25vw, 11.5rem);
-  height: clamp(4.4rem, 13vw, 6.4rem);
-  border-radius: 44% / 50%;
-  background:
-    radial-gradient(ellipse at 12% 50%, #f8dcc1 0 20%, #3b241b 21% 31%, transparent 32%),
-    radial-gradient(ellipse at 88% 50%, rgba(255, 230, 198, 0.92) 0 22%, rgba(59, 36, 27, 0.85) 23% 32%, transparent 33%),
-    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 202, 54, 0.9) 18px 24px),
-    linear-gradient(90deg, #5b3527 0%, #8a5a37 48%, #5b3527 100%);
-  border: 3px solid rgba(255, 203, 66, 0.95);
-  box-shadow: 0 9px 18px rgba(91, 53, 39, 0.28);
-  transform: rotate(-12deg);
-}
-
 .valima-intro {
   margin: 0 0 0.55rem;
   color: #ead7bb;
@@ -671,6 +487,312 @@ footer {
   transform: translateY(0);
 }
 
+body.haldi-page {
+  min-height: 100vh;
+  color: #513b2b;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(233, 55, 119, 0.2), transparent 18%),
+    radial-gradient(circle at 82% 10%, rgba(244, 142, 36, 0.22), transparent 20%),
+    linear-gradient(180deg, #fff0c9 0%, #ffd764 48%, #f48b35 100%);
+}
+
+body.haldi-page::before,
+body.haldi-page::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+}
+
+body.haldi-page::before {
+  inset: 0;
+  z-index: 0;
+  background:
+    repeating-linear-gradient(115deg, rgba(123, 74, 38, 0.08) 0 2px, transparent 2px 26px),
+    radial-gradient(circle at 8% 88%, rgba(63, 119, 51, 0.18), transparent 18%),
+    radial-gradient(circle at 90% 84%, rgba(255, 239, 158, 0.38), transparent 22%);
+}
+
+body.haldi-page::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 9rem;
+  background: linear-gradient(0deg, rgba(135, 50, 22, 0.18), transparent);
+}
+
+.haldi-page-shell {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2.2rem 1rem 3rem;
+}
+
+.haldi-back {
+  position: fixed;
+  z-index: 10;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #5e331e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid rgba(123, 74, 38, 0.24);
+  border-radius: 999px;
+  background: rgba(255, 248, 222, 0.84);
+  box-shadow: 0 8px 20px rgba(98, 52, 21, 0.15);
+}
+
+.haldi-page .haldi-invitation-card {
+  position: relative;
+  isolation: isolate;
+  width: min(560px, 96vw);
+  min-height: 920px;
+  margin: 0;
+  overflow: hidden;
+  padding: 7.5rem 1.2rem 2rem;
+  border: 0.55rem solid rgba(255, 225, 128, 0.95);
+  border-radius: 1.25rem;
+  background-color: #fff5df;
+  background-image:
+    linear-gradient(90deg, rgba(181, 24, 114, 0.96) 0 3.1rem, rgba(255, 209, 77, 0.8) 3.1rem 3.28rem, transparent 3.28rem),
+    radial-gradient(circle at 12% 92%, rgba(239, 69, 111, 0.28), transparent 15%),
+    radial-gradient(circle at 82% 92%, rgba(255, 206, 48, 0.42), transparent 24%),
+    repeating-linear-gradient(135deg, rgba(164, 106, 70, 0.08) 0 2px, transparent 2px 19px),
+    linear-gradient(180deg, #fff9ec, #fde8ce 100%);
+  box-shadow: 0 30px 70px rgba(103, 49, 17, 0.34);
+}
+
+.haldi-flower-canopy {
+  position: absolute;
+  z-index: 6;
+  top: -0.8rem;
+  left: -1rem;
+  right: -1rem;
+  height: 7.8rem;
+  background:
+    radial-gradient(circle at 4% 52%, #f2c842 0 15px, transparent 16px),
+    radial-gradient(circle at 10% 30%, #e83d7b 0 14px, transparent 15px),
+    radial-gradient(circle at 16% 60%, #f17f2d 0 16px, transparent 17px),
+    radial-gradient(circle at 23% 35%, #f6d64f 0 13px, transparent 14px),
+    radial-gradient(circle at 30% 58%, #d93678 0 16px, transparent 17px),
+    radial-gradient(circle at 38% 31%, #f2a234 0 14px, transparent 15px),
+    radial-gradient(circle at 47% 58%, #f05e89 0 16px, transparent 17px),
+    radial-gradient(circle at 56% 32%, #f6d64f 0 13px, transparent 14px),
+    radial-gradient(circle at 65% 60%, #ef812f 0 16px, transparent 17px),
+    radial-gradient(circle at 74% 35%, #d93678 0 14px, transparent 15px),
+    radial-gradient(circle at 82% 58%, #f5c842 0 16px, transparent 17px),
+    radial-gradient(circle at 91% 32%, #f05e89 0 14px, transparent 15px),
+    radial-gradient(circle at 97% 62%, #ef812f 0 16px, transparent 17px),
+    linear-gradient(180deg, rgba(48, 103, 45, 0.64) 0%, rgba(48, 103, 45, 0.18) 56%, transparent 78%);
+  filter: drop-shadow(0 7px 8px rgba(93, 48, 19, 0.18));
+}
+
+.haldi-left-drape {
+  position: absolute;
+  z-index: 4;
+  top: 2rem;
+  left: 0.65rem;
+  width: 2.35rem;
+  height: 79%;
+  border-radius: 0 0 1.6rem 1.6rem;
+  background:
+    radial-gradient(circle at 50% 9%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 23%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 37%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 51%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 65%, #ffd351 0 5px, transparent 6px),
+    linear-gradient(90deg, rgba(132, 20, 91, 0.92), rgba(219, 43, 118, 0.95), rgba(132, 20, 91, 0.9));
+  box-shadow: 0 0 0 1px rgba(255, 214, 82, 0.38), 8px 0 16px rgba(91, 34, 28, 0.1);
+}
+
+.haldi-right-garland {
+  position: absolute;
+  z-index: 5;
+  top: 4.8rem;
+  right: 2rem;
+  width: 1.05rem;
+  height: 12rem;
+  background:
+    radial-gradient(circle at 50% 8%, #f07d2f 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 22%, #f6c847 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 36%, #f07d2f 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 50%, #d93678 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 64%, #f6c847 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 78%, #f07d2f 0 6px, transparent 7px),
+    linear-gradient(90deg, transparent 44%, rgba(119, 83, 32, 0.34) 45% 55%, transparent 56%);
+}
+
+.haldi-arch-panel {
+  position: relative;
+  z-index: 3;
+  width: min(420px, 82%);
+  min-height: 590px;
+  margin: 1.75rem auto 0;
+  padding: 4rem 1.3rem 2rem;
+  text-align: center;
+  border: 0.45rem solid rgba(198, 154, 124, 0.88);
+  border-radius: 46% 46% 1rem 1rem / 22% 22% 1rem 1rem;
+  background:
+    radial-gradient(circle at 50% 4%, rgba(255, 255, 255, 0.88), transparent 18%),
+    linear-gradient(180deg, rgba(255, 240, 222, 0.98), rgba(255, 225, 204, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 13px 32px rgba(113, 68, 35, 0.16);
+}
+
+.haldi-bismillah {
+  display: inline-block;
+  margin: -2.65rem auto 1.35rem;
+  padding: 0.35rem 0.9rem 0.42rem;
+  color: #2f241a;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.35rem);
+  font-weight: 700;
+  background: #efe1bb;
+  border: 1px solid rgba(135, 92, 49, 0.34);
+  border-radius: 0.22rem;
+  box-shadow: 0 5px 10px rgba(88, 55, 26, 0.15);
+}
+
+.haldi-kicker {
+  margin: 0 0 0.25rem;
+  color: #654c39;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+}
+
+.haldi-arch-panel h1 {
+  margin: 0.05rem auto 0.6rem;
+  color: #3e2d24;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.9rem, 10vw, 4.6rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.haldi-name {
+  margin: 0 0 1rem;
+  color: #b13f50;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.haldi-message {
+  max-width: 330px;
+  margin: 0 auto 1.25rem;
+  color: #5f4938;
+  font-size: clamp(0.98rem, 3.4vw, 1.08rem);
+  line-height: 1.5;
+}
+
+.haldi-details {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.haldi-details p {
+  margin: 0;
+  color: #463124;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.28rem, 4.6vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.haldi-details span {
+  color: #7b3a22;
+  font-weight: 700;
+}
+
+.haldi-bride-figure {
+  position: absolute;
+  z-index: 5;
+  left: 24%;
+  bottom: 5.9rem;
+  width: 6.2rem;
+  height: 12.2rem;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 50% 11%, #e8b38b 0 12px, transparent 13px),
+    linear-gradient(100deg, transparent 0 33%, #115540 34% 52%, transparent 53%),
+    linear-gradient(80deg, transparent 0 28%, #f0bb1f 29% 65%, transparent 66%),
+    radial-gradient(ellipse at 50% 88%, #dda719 0 44%, transparent 45%);
+  border-radius: 42% 42% 18% 18%;
+  filter: drop-shadow(0 8px 8px rgba(76, 45, 24, 0.22));
+}
+
+.haldi-bride-figure::before {
+  content: "";
+  position: absolute;
+  top: 1.15rem;
+  left: 1.2rem;
+  width: 3.5rem;
+  height: 9.8rem;
+  border-radius: 50% 50% 26% 26%;
+  background: linear-gradient(155deg, #0b4f3d 0 46%, rgba(11, 79, 61, 0.15) 47% 100%);
+  transform: rotate(-10deg);
+}
+
+.haldi-lotus {
+  position: absolute;
+  z-index: 2;
+  right: -1.6rem;
+  bottom: 4rem;
+  width: 14.5rem;
+  height: 14.5rem;
+  border-radius: 74% 0 74% 0;
+  background:
+    radial-gradient(circle at 48% 48%, transparent 0 18%, rgba(255, 255, 255, 0.54) 19% 21%, transparent 22%),
+    repeating-radial-gradient(circle at 52% 48%, rgba(255, 255, 255, 0.42) 0 2px, transparent 2px 12px),
+    linear-gradient(135deg, rgba(255, 211, 59, 0.92), rgba(239, 155, 38, 0.72));
+  opacity: 0.86;
+  transform: rotate(-13deg);
+}
+
+.haldi-dhol {
+  position: absolute;
+  z-index: 6;
+  right: 0.7rem;
+  bottom: 2.25rem;
+  width: 11.4rem;
+  height: 6.4rem;
+  border: 4px solid rgba(255, 207, 70, 0.96);
+  border-radius: 45% / 52%;
+  background:
+    radial-gradient(ellipse at 12% 50%, #f7dec4 0 20%, #3c261d 21% 31%, transparent 32%),
+    radial-gradient(ellipse at 88% 50%, rgba(255, 231, 200, 0.94) 0 22%, rgba(61, 38, 29, 0.88) 23% 33%, transparent 34%),
+    repeating-linear-gradient(90deg, transparent 0 17px, rgba(255, 203, 53, 0.9) 17px 23px),
+    linear-gradient(90deg, #5a3428 0%, #8d5b36 48%, #5a3428 100%);
+  box-shadow: 0 11px 20px rgba(84, 44, 28, 0.3);
+  transform: rotate(-12deg);
+}
+
+.haldi-diya-row {
+  position: absolute;
+  z-index: 5;
+  left: 1.25rem;
+  bottom: 1.45rem;
+  width: 8.5rem;
+  height: 3.5rem;
+  background:
+    radial-gradient(circle at 18% 32%, #ffd561 0 8px, transparent 9px),
+    radial-gradient(circle at 45% 38%, #ff7f35 0 7px, transparent 8px),
+    radial-gradient(circle at 72% 33%, #ffd561 0 8px, transparent 9px),
+    radial-gradient(ellipse at 18% 68%, #8a4a28 0 18px, transparent 19px),
+    radial-gradient(ellipse at 45% 74%, #9d5130 0 17px, transparent 18px),
+    radial-gradient(ellipse at 72% 68%, #8a4a28 0 18px, transparent 19px);
+}
+
 @keyframes glowPulse {
   0% { transform: scale(1) translate(0, 0); }
   50% { transform: scale(1.08) translate(1.5%, -1.5%); }
@@ -723,26 +845,67 @@ footer {
     padding: 1rem 0.6rem;
   }
 
-  .haldi-content {
-    min-height: 620px;
-    padding: 6.8rem 1.1rem 7.4rem;
+  .haldi-page-shell {
+    padding: 3.8rem 0.45rem 1.6rem;
   }
 
-  .haldi-content::before {
-    inset: 5.5rem 5% 2.6rem;
+  .haldi-back {
+    top: 0.7rem;
+    left: 0.7rem;
+    font-size: 0.78rem;
   }
 
-  .haldi-content .event-meta::before {
-    width: 6.2rem;
-    height: 6.2rem;
-    left: 2%;
-    bottom: 0.8rem;
+  .haldi-page .haldi-invitation-card {
+    width: min(420px, 98vw);
+    min-height: 830px;
+    padding: 6.9rem 0.55rem 1.25rem;
+    border-width: 0.35rem;
   }
 
-  .haldi-content .event-meta::after {
-    width: 6.5rem;
-    height: 4rem;
-    right: 2%;
+  .haldi-left-drape {
+    left: 0.35rem;
+    width: 1.8rem;
+  }
+
+  .haldi-right-garland {
+    right: 1rem;
+  }
+
+  .haldi-arch-panel {
+    width: 84%;
+    min-height: 545px;
+    padding: 3.65rem 0.85rem 1.4rem;
+  }
+
+  .haldi-message {
+    max-width: 270px;
+  }
+
+  .haldi-bride-figure {
+    left: 21%;
+    bottom: 5.3rem;
+    width: 4.8rem;
+    height: 9.8rem;
+  }
+
+  .haldi-lotus {
+    right: -2.7rem;
+    bottom: 3.8rem;
+    width: 11.8rem;
+    height: 11.8rem;
+  }
+
+  .haldi-dhol {
+    right: 0.25rem;
+    bottom: 1.6rem;
+    width: 8.8rem;
+    height: 5.1rem;
+  }
+
+  .haldi-diya-row {
+    left: 0.7rem;
     bottom: 1rem;
+    transform: scale(0.84);
+    transform-origin: left bottom;
   }
 }
