@@ -75,7 +75,7 @@ export default function CinematicBackdrop() {
           opacity: [0.65, 0.85, 0.65],
           scale: [1.05, 1.1, 1.05],
         }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{
           background:
             "radial-gradient(ellipse 75% 60% at 50% 30%, rgba(15,61,50,0.55) 0%, transparent 58%), radial-gradient(ellipse 65% 55% at 85% 65%, rgba(212,175,55,0.28) 0%, transparent 52%), radial-gradient(ellipse 55% 45% at 8% 75%, rgba(245,158,11,0.22) 0%, transparent 48%)",
