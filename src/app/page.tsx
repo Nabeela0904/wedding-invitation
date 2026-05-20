@@ -14,10 +14,10 @@ export default function HomePage() {
       </p>
       <div className="mt-10 flex flex-wrap justify-center gap-4">
         <Link
-          href="/haldi"
+          href="/mehndi"
           className="rounded-full border border-marigold/40 bg-gradient-to-r from-marigold to-saffron px-8 py-3 font-sans text-sm font-semibold uppercase tracking-wider text-cream shadow-gold transition-transform hover:scale-[1.02]"
         >
-          Haldi Ceremony
+          Rasm-e-Mehndi
         </Link>
         <a
           href="/index.html"

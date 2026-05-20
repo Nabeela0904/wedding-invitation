@@ -17,6 +17,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        amiri: ["var(--font-amiri)", "Amiri", "Georgia", "serif"],
       },
       boxShadow: {
         gold: "0 0 24px rgba(245, 158, 11, 0.35)",

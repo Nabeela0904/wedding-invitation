@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Amiri, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -14,10 +14,16 @@ const inter = Inter({
   display: "swap",
 });
 
+const amiri = Amiri({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
+  variable: "--font-amiri",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
-  description:
-    "You are cordially invited to the Haldi ceremony of Shoaib Faraz Ahmed.",
+  title: "Wedding Invitation | Shoaib Faraz Ahmed",
+  description: "Wedding celebrations for Shoaib Faraz Ahmed.",
 };
 
 export default function RootLayout({
@@ -26,7 +32,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable} ${amiri.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
