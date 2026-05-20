@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply min-h-screen bg-cream font-sans text-gold antialiased;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(245, 158, 11, 0.08), transparent 42%),
+      radial-gradient(circle at 80% 90%, rgba(217, 119, 6, 0.06), transparent 45%),
+      linear-gradient(180deg, #fffdf9 0%, #fff8ef 50%, #fffdf9 100%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

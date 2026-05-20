@@ -1,0 +1,1439 @@
+:root {
+  --bg-primary: #0b1220;
+  --bg-secondary: #151a2d;
+  --bg-tertiary: #221a2e;
+  --text-main: #f6efe4;
+  --text-soft: #d7c7b0;
+  --accent: #dfb06f;
+  --accent-soft: #f2d7ac;
+  --card-bg: rgba(255, 251, 243, 0.08);
+  --border: rgba(223, 176, 111, 0.34);
+  --dark-mask: rgba(17, 20, 34, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  color: var(--text-main);
+  background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary) 55%, var(--bg-tertiary));
+  overflow-x: hidden;
+}
+
+.background-layer {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: -3;
+  will-change: transform;
+  transition: transform 0.22s linear;
+}
+
+.background-layer-1 {
+  background-image:
+    radial-gradient(circle at 16% 18%, rgba(223, 176, 111, 0.22), transparent 38%),
+    radial-gradient(circle at 84% 22%, rgba(120, 137, 196, 0.26), transparent 42%),
+    radial-gradient(circle at 75% 88%, rgba(176, 124, 218, 0.16), transparent 36%),
+    radial-gradient(circle at 12% 70%, rgba(255, 226, 178, 0.36), transparent 22%),
+    radial-gradient(circle at 88% 68%, rgba(251, 236, 210, 0.22), transparent 24%);
+  background-size: auto, auto, auto, auto, auto;
+  background-position: center, center, center, center, center;
+  transform: scale(1.2);
+  filter: blur(0.1px);
+}
+
+.background-layer-2 {
+  z-index: -2;
+  background-image:
+    repeating-linear-gradient(
+      -18deg,
+      rgba(223, 176, 111, 0.055) 0px,
+      rgba(223, 176, 111, 0.055) 1px,
+      rgba(255, 255, 255, 0) 1px,
+      rgba(255, 255, 255, 0) 26px
+    ),
+    repeating-linear-gradient(
+      18deg,
+      rgba(171, 146, 225, 0.05) 0px,
+      rgba(171, 146, 225, 0.05) 1px,
+      rgba(255, 255, 255, 0) 1px,
+      rgba(255, 255, 255, 0) 32px
+    ),
+    radial-gradient(circle at 50% 45%, rgba(255, 226, 178, 0.2), transparent 50%);
+  background-size: 100% 100%, 100% 100%, auto;
+  opacity: 0.86;
+}
+
+.background-glow {
+  position: fixed;
+  inset: -30%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(223, 176, 111, 0.24), transparent 58%),
+    radial-gradient(circle at 30% 70%, rgba(127, 148, 218, 0.18), transparent 48%);
+  filter: blur(72px);
+  animation: glowPulse 10s ease-in-out infinite;
+}
+
+.invite-wrapper {
+  width: min(940px, 92%);
+  margin: 3rem auto 5rem;
+  position: relative;
+  z-index: 1;
+}
+
+section,
+footer {
+  padding: 1.2rem 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 3.4rem 2.1rem 2.8rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0.65rem;
+  border: 1px solid rgba(223, 176, 111, 0.45);
+  border-radius: 15rem 15rem 1.2rem 1.2rem;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(255, 245, 227, 0.13), rgba(255, 245, 227, 0.03));
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: 50%;
+  width: min(82%, 520px);
+  height: 48%;
+  transform: translateX(-50%);
+  border-top: 1px solid rgba(223, 176, 111, 0.46);
+  border-left: 1px solid rgba(223, 176, 111, 0.3);
+  border-right: 1px solid rgba(223, 176, 111, 0.3);
+  border-radius: 14rem 14rem 0 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.arabic-calligraphy {
+  margin: 0 0 0.5rem;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  color: var(--accent-soft);
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 14px rgba(223, 176, 111, 0.34);
+}
+
+.bismillah,
+.eyebrow {
+  margin: 0.2rem 0;
+  color: var(--text-soft);
+}
+
+.bismillah {
+  margin: 0.2rem auto 0.65rem;
+  max-width: 680px;
+  font-size: 1.03rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.quran-arabic {
+  margin: 0.25rem 0 0.35rem;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #f7e2bf;
+  text-shadow: 0 2px 16px rgba(223, 176, 111, 0.28);
+}
+
+.quran-translation {
+  margin: 0 0 0.9rem;
+  color: #e8d5b8;
+  font-size: 1.15rem;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.hero-divider {
+  width: min(300px, 72%);
+  height: 1px;
+  margin: 0.65rem auto 0.95rem;
+  background: linear-gradient(90deg, transparent, rgba(245, 206, 149, 0.85), transparent);
+}
+
+.eyebrow {
+  font-size: 0.95rem;
+}
+
+.couple-names {
+  margin: 0.8rem 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3rem, 8vw, 5.4rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.couple-names span {
+  color: var(--text-main);
+  font-size: 0.75em;
+}
+
+.corner-motif {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.corner-motif::before {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid rgba(223, 176, 111, 0.7);
+}
+
+.corner-motif::after {
+  content: "✦";
+  position: absolute;
+  font-size: 0.95rem;
+  color: rgba(255, 224, 174, 0.96);
+  text-shadow: 0 0 14px rgba(223, 176, 111, 0.6);
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.corner-motif-left {
+  top: 1.25rem;
+  left: 1.2rem;
+}
+
+.corner-motif-left::before {
+  top: 10px;
+  left: 8px;
+  box-shadow: 12px 0 0 0 var(--dark-mask);
+}
+
+.corner-motif-left::after {
+  top: 0;
+  left: 42px;
+  animation-delay: 0.3s;
+}
+
+.corner-motif-right {
+  top: 1.25rem;
+  right: 1.2rem;
+  transform: scaleX(-1);
+}
+
+.corner-motif-right::before {
+  top: 10px;
+  left: 8px;
+  box-shadow: 12px 0 0 0 var(--dark-mask);
+}
+
+.lantern-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  will-change: transform;
+}
+
+
+.lantern {
+  position: absolute;
+  bottom: -12vh;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.42;
+  background: radial-gradient(circle, rgba(255, 241, 216, 0.98), rgba(223, 176, 111, 0.58) 60%, transparent 72%);
+  box-shadow: 0 0 18px rgba(223, 176, 111, 0.45);
+  animation: lanternFloat 16s linear infinite;
+}
+
+.lantern-1 { left: 5%; animation-duration: 13s; animation-delay: -1.2s; }
+.lantern-2 { left: 14%; animation-duration: 11.5s; animation-delay: -3.6s; }
+.lantern-3 { left: 24%; animation-duration: 15.4s; animation-delay: -2.3s; }
+.lantern-4 { left: 33%; animation-duration: 12.8s; animation-delay: -4.8s; }
+.lantern-5 { left: 42%; animation-duration: 16.2s; animation-delay: -0.7s; }
+.lantern-6 { left: 50%; animation-duration: 12.6s; animation-delay: -5.4s; }
+.lantern-7 { left: 58%; animation-duration: 14.2s; animation-delay: -2.1s; }
+.lantern-8 { left: 67%; animation-duration: 11.9s; animation-delay: -6.1s; }
+.lantern-9 { left: 75%; animation-duration: 15.1s; animation-delay: -1.5s; }
+.lantern-10 { left: 83%; animation-duration: 12.4s; animation-delay: -3.3s; }
+.lantern-11 { left: 91%; animation-duration: 14.8s; animation-delay: -4.2s; }
+.lantern-12 { left: 97%; animation-duration: 16.6s; animation-delay: -2.9s; }
+
+.corner-motif-right::after {
+  top: 3px;
+  left: 44px;
+  animation-delay: 1s;
+}
+
+.weds-line {
+  margin: 1rem auto 2rem;
+  max-width: 540px;
+  color: var(--text-soft);
+}
+
+.event-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.event-button {
+  display: inline-block;
+  min-width: 110px;
+  text-align: center;
+  text-decoration: none;
+  color: #f9edd9;
+  background: linear-gradient(180deg, rgba(255, 228, 183, 0.2), rgba(223, 176, 111, 0.16));
+  border: 1px solid rgba(223, 176, 111, 0.45);
+  padding: 0.72rem 1.25rem;
+  border-radius: 999px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 240, 214, 0.28);
+  backdrop-filter: blur(4px);
+  transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+}
+
+.event-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 206, 149, 0.8);
+  background: linear-gradient(180deg, rgba(255, 231, 192, 0.28), rgba(223, 176, 111, 0.24));
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.32),
+    0 0 18px rgba(223, 176, 111, 0.28);
+}
+
+.event-button.is-active {
+  border-color: rgba(247, 221, 180, 0.92);
+  background: linear-gradient(180deg, rgba(255, 233, 197, 0.34), rgba(223, 176, 111, 0.3));
+}
+
+.is-hidden {
+  display: none;
+}
+
+.event-content {
+  text-align: center;
+  margin-top: 0.25rem;
+  padding: 1.45rem 1rem;
+  border: 1px solid rgba(223, 176, 111, 0.34);
+  border-radius: 1rem;
+  background: rgba(255, 245, 227, 0.07);
+}
+
+.event-arabic {
+  margin: 0 0 0.7rem;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--accent-soft);
+}
+
+.event-intro {
+  margin: 0 0 0.45rem;
+  color: var(--text-soft);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+}
+
+.event-title {
+  margin-bottom: 0.35rem;
+}
+
+.event-person {
+  margin: 0 0 0.8rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  color: #f5d9ae;
+}
+
+.event-description {
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.event-meta p {
+  margin: 0.35rem 0;
+  color: #ead7bb;
+}
+
+.valima-intro {
+  margin: 0 0 0.55rem;
+  color: #ead7bb;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.3rem;
+}
+
+.valima-parents {
+  margin: 0 0 0.35rem;
+}
+
+.valima-line {
+  margin: 0 auto 0.7rem;
+  max-width: 720px;
+  color: var(--text-soft);
+  font-size: 1.08rem;
+}
+
+.valima-couple {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  color: #f1cb93;
+}
+
+.valima-couple span {
+  color: #f5d9ae;
+}
+
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.note {
+  margin-top: 1rem;
+  color: var(--text-soft);
+}
+
+.story p {
+  line-height: 1.85;
+}
+
+.highlights .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.highlights {
+  margin-top: 0.8rem;
+  padding: 1.2rem 0.8rem;
+  border: 1px solid rgba(223, 176, 111, 0.2);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.highlights article {
+  border: 1px solid rgba(223, 176, 111, 0.3);
+  border-radius: 6rem 6rem 0.9rem 0.9rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.highlights h3 {
+  margin-top: 0;
+  font-family: "Cormorant Garamond", serif;
+  color: #f0c88d;
+}
+
+footer {
+  text-align: center;
+}
+
+.footer-names {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 2rem;
+  color: var(--accent);
+  margin: 0;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.95s cubic-bezier(0.2, 0.72, 0.16, 1), transform 0.95s cubic-bezier(0.2, 0.72, 0.16, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.haldi-page {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  color: #f5f5f5;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(45, 35, 25, 0.9), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(60, 45, 30, 0.8), transparent 50%),
+    linear-gradient(135deg, #1a1611 0%, #2c241a 50%, #3d332a 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.haldi-background-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.6), rgba(255, 193, 37, 0.3)),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1), transparent);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+  animation: floatUp 15s infinite linear;
+}
+
+.particle-1 {
+  left: 10%;
+  width: 8px;
+  height: 8px;
+  animation-duration: 12s;
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  left: 20%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 14s;
+  animation-delay: -2s;
+}
+
+.particle-3 {
+  left: 35%;
+  width: 10px;
+  height: 10px;
+  animation-duration: 16s;
+  animation-delay: -4s;
+}
+
+.particle-4 {
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  animation-duration: 13s;
+  animation-delay: -1s;
+}
+
+.particle-5 {
+  left: 65%;
+  width: 9px;
+  height: 9px;
+  animation-duration: 15s;
+  animation-delay: -3s;
+}
+
+.particle-6 {
+  left: 75%;
+  width: 5px;
+  height: 5px;
+  animation-duration: 11s;
+  animation-delay: -5s;
+}
+
+.particle-7 {
+  left: 85%;
+  width: 8px;
+  height: 8px;
+  animation-duration: 17s;
+  animation-delay: -2.5s;
+}
+
+.particle-8 {
+  left: 95%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 14s;
+  animation-delay: -4.5s;
+}
+
+.floating-bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.4), rgba(255, 193, 37, 0.1)),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1), transparent);
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  box-shadow: 
+    0 0 15px rgba(255, 215, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+  animation: bubbleFloat 20s infinite ease-in-out;
+}
+
+.bubble-1 {
+  left: 15%;
+  top: 20%;
+  width: 40px;
+  height: 40px;
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.bubble-2 {
+  right: 20%;
+  top: 30%;
+  width: 30px;
+  height: 30px;
+  animation-duration: 22s;
+  animation-delay: -3s;
+}
+
+.bubble-3 {
+  left: 25%;
+  bottom: 25%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 20s;
+  animation-delay: -6s;
+}
+
+.bubble-4 {
+  right: 15%;
+  bottom: 35%;
+  width: 25px;
+  height: 25px;
+  animation-duration: 24s;
+  animation-delay: -2s;
+}
+
+.bubble-5 {
+  left: 60%;
+  top: 15%;
+  width: 45px;
+  height: 45px;
+  animation-duration: 19s;
+  animation-delay: -4s;
+}
+
+.bubble-6 {
+  left: 5%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  animation-duration: 16s;
+  animation-delay: -1s;
+}
+
+.bubble-7 {
+  right: 5%;
+  top: 60%;
+  width: 35px;
+  height: 35px;
+  animation-duration: 21s;
+  animation-delay: -5s;
+}
+
+.bubble-8 {
+  left: 40%;
+  top: 80%;
+  width: 28px;
+  height: 28px;
+  animation-duration: 17s;
+  animation-delay: -7s;
+}
+
+.bubble-9 {
+  right: 35%;
+  bottom: 10%;
+  width: 32px;
+  height: 32px;
+  animation-duration: 23s;
+  animation-delay: -3.5s;
+}
+
+.bubble-10 {
+  left: 80%;
+  top: 25%;
+  width: 22px;
+  height: 22px;
+  animation-duration: 18s;
+  animation-delay: -6.5s;
+}
+
+.bubble-11 {
+  left: 30%;
+  top: 10%;
+  width: 38px;
+  height: 38px;
+  animation-duration: 20s;
+  animation-delay: -8s;
+}
+
+.bubble-12 {
+  right: 10%;
+  bottom: 20%;
+  width: 26px;
+  height: 26px;
+  animation-duration: 19s;
+  animation-delay: -2.5s;
+}
+
+@keyframes floatUp {
+  0% {
+    bottom: -20px;
+    opacity: 0;
+    transform: translateX(0px) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 100vh;
+    opacity: 0;
+    transform: translateX(20px) rotate(360deg);
+  }
+}
+
+@keyframes bubbleFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(-25px) translateX(15px) scale(1.2) rotate(90deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(-45px) translateX(-10px) scale(0.8) rotate(180deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-20px) scale(1.15) rotate(270deg);
+    opacity: 0.95;
+  }
+}
+
+.haldi-hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.15), transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(255, 193, 37, 0.1), transparent 60%),
+    radial-gradient(circle at 50% 50%, rgba(139, 69, 19, 0.1), transparent 70%),
+    linear-gradient(135deg, rgba(26, 22, 17, 0.95) 0%, rgba(44, 36, 26, 0.9) 50%, rgba(61, 51, 42, 0.85) 100%);
+}
+
+.haldi-hero-frame {
+  position: relative;
+  width: min(520px, 92vw);
+  padding: 1.25rem;
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.35), rgba(218, 165, 32, 0.2));
+  border-radius: 1.5rem;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 215, 0, 0.25);
+}
+
+.haldi-hero-frame::before,
+.haldi-hero-frame::after {
+  content: "";
+  position: absolute;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid rgba(255, 215, 0, 0.75);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.haldi-hero-frame::before {
+  top: 0.65rem;
+  left: 0.65rem;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0.5rem 0 0 0;
+}
+
+.haldi-hero-frame::after {
+  bottom: 0.65rem;
+  right: 0.65rem;
+  border-left: none;
+  border-top: none;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.haldi-frame-garland {
+  position: absolute;
+  top: -0.35rem;
+  left: 8%;
+  right: 8%;
+  height: 2.75rem;
+  border-radius: 999px 999px 0 0;
+  background:
+    radial-gradient(circle at 8% 70%, #f6c538 0 11px, transparent 12px),
+    radial-gradient(circle at 18% 45%, #ef7f2f 0 10px, transparent 11px),
+    radial-gradient(circle at 28% 68%, #e93b78 0 11px, transparent 12px),
+    radial-gradient(circle at 38% 42%, #f6c538 0 10px, transparent 11px),
+    radial-gradient(circle at 50% 72%, #ef7f2f 0 12px, transparent 13px),
+    radial-gradient(circle at 62% 40%, #e93b78 0 10px, transparent 11px),
+    radial-gradient(circle at 72% 66%, #f6c538 0 11px, transparent 12px),
+    radial-gradient(circle at 82% 44%, #ef7f2f 0 10px, transparent 11px),
+    radial-gradient(circle at 92% 68%, #f6c538 0 11px, transparent 12px),
+    linear-gradient(180deg, rgba(52, 103, 46, 0.45), transparent 72%);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+  z-index: 3;
+}
+
+.haldi-frame-arch {
+  position: relative;
+  padding: 4.5rem 2rem 2.75rem;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 248, 220, 0.95), rgba(255, 235, 170, 0.88) 28%, rgba(255, 220, 120, 0.75) 100%);
+  border: 2px solid rgba(180, 120, 40, 0.45);
+  border-radius: 50% 50% 1.25rem 1.25rem / 18% 18% 1.25rem 1.25rem;
+  box-shadow:
+    inset 0 0 40px rgba(255, 255, 255, 0.35),
+    inset 0 -8px 24px rgba(180, 120, 40, 0.12),
+    0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.haldi-frame-arch::before {
+  content: "";
+  position: absolute;
+  inset: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.haldi-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0.5rem 0 0;
+  text-align: center;
+}
+
+.haldi-hero-eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6b4a1f;
+}
+
+.haldi-frame-divider {
+  width: min(200px, 60%);
+  height: 2px;
+  margin: 1.5rem auto 0;
+  background: linear-gradient(90deg, transparent, rgba(180, 120, 40, 0.7), transparent);
+}
+
+.haldi-title {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(3rem, 9vw, 5rem);
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: #5c3d18;
+  line-height: 0.95;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.haldi-ceremony {
+  font-size: clamp(1.1rem, 3vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a5c1a;
+  margin-top: 0.5rem;
+}
+
+.haldi-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(40, 30, 20, 0.3), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(60, 45, 30, 0.2), transparent 50%);
+}
+
+.haldi-blessing {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.haldi-bismillah {
+  font-family: "Amiri", serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #8B4513;
+  margin: 0 0 1rem;
+  text-shadow: 1px 1px 2px rgba(139, 69, 19, 0.1);
+}
+
+.haldi-blessing-text {
+  font-size: 1.1rem;
+  color: #6B4E23;
+  margin: 1rem 0;
+}
+
+.haldi-parents {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: #8B4513;
+  margin: 1rem 0;
+}
+
+.haldi-invite {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+  border-top: 2px solid rgba(184, 134, 11, 0.3);
+  border-bottom: 2px solid rgba(184, 134, 11, 0.3);
+}
+
+.haldi-invite-title {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #8B4513;
+  margin: 0 0 1rem;
+}
+
+.haldi-invite-text {
+  font-size: 1.1rem;
+  color: #6B4E23;
+  margin: 1rem 0 2rem;
+}
+
+.haldi-groom-name {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  color: #8B4513;
+  margin: 2rem 0;
+}
+
+.haldi-message {
+  font-size: 1.1rem;
+  color: #6B4E23;
+  max-width: 600px;
+  margin: 2rem auto 0;
+  font-style: italic;
+}
+
+.haldi-details {
+  margin-bottom: 4rem;
+}
+
+.haldi-details h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: #8B4513;
+  text-align: center;
+  margin: 0 0 2rem;
+}
+
+.haldi-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+}
+
+.haldi-detail-item:last-child {
+  border-bottom: none;
+}
+
+.haldi-detail-label {
+  font-weight: 600;
+  color: #8B4513;
+  font-size: 1.1rem;
+}
+
+.haldi-detail-value {
+  color: #6B4E23;
+  font-size: 1rem;
+  text-align: right;
+  max-width: 60%;
+}
+
+.haldi-note {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background: rgba(255, 215, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(184, 134, 11, 0.2);
+}
+
+.haldi-note p {
+  font-size: 1.1rem;
+  color: #6B4E23;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.haldi-footer {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(184, 134, 11, 0.2);
+}
+
+.haldi-back-link a {
+  color: #8B4513;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.haldi-back-link a:hover {
+  color: #B8860B;
+}
+
+@media (max-width: 768px) {
+  .haldi-main {
+    padding: 3rem 1.5rem;
+  }
+  
+  .haldi-detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .haldi-detail-value {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .haldi-hero-frame {
+    padding: 1rem;
+  }
+
+  .haldi-frame-arch {
+    padding: 4rem 1.25rem 2.25rem;
+  }
+
+  .haldi-hero-content {
+    padding: 0;
+  }
+}
+
+
+.haldi-page .haldi-invitation-card {
+  position: relative;
+  isolation: isolate;
+  width: min(560px, 96vw);
+  min-height: 920px;
+  margin: 0;
+  overflow: hidden;
+  padding: 7.5rem 1.2rem 2rem;
+  border: 0.55rem solid rgba(255, 225, 128, 0.95);
+  border-radius: 1.25rem;
+  background-color: #fff5df;
+  background-image:
+    linear-gradient(90deg, rgba(181, 24, 114, 0.96) 0 3.1rem, rgba(255, 209, 77, 0.8) 3.1rem 3.28rem, transparent 3.28rem),
+    radial-gradient(circle at 12% 92%, rgba(239, 69, 111, 0.28), transparent 15%),
+    radial-gradient(circle at 82% 92%, rgba(255, 206, 48, 0.42), transparent 24%),
+    repeating-linear-gradient(135deg, rgba(164, 106, 70, 0.08) 0 2px, transparent 2px 19px),
+    linear-gradient(180deg, #fff9ec, #fde8ce 100%);
+  box-shadow: 0 30px 70px rgba(103, 49, 17, 0.34);
+}
+
+.haldi-flower-canopy {
+  position: absolute;
+  z-index: 6;
+  top: -0.8rem;
+  left: -1rem;
+  right: -1rem;
+  height: 7.8rem;
+  background:
+    radial-gradient(circle at 4% 52%, #f2c842 0 15px, transparent 16px),
+    radial-gradient(circle at 10% 30%, #e83d7b 0 14px, transparent 15px),
+    radial-gradient(circle at 16% 60%, #f17f2d 0 16px, transparent 17px),
+    radial-gradient(circle at 23% 35%, #f6d64f 0 13px, transparent 14px),
+    radial-gradient(circle at 30% 58%, #d93678 0 16px, transparent 17px),
+    radial-gradient(circle at 38% 31%, #f2a234 0 14px, transparent 15px),
+    radial-gradient(circle at 47% 58%, #f05e89 0 16px, transparent 17px),
+    radial-gradient(circle at 56% 32%, #f6d64f 0 13px, transparent 14px),
+    radial-gradient(circle at 65% 60%, #ef812f 0 16px, transparent 17px),
+    radial-gradient(circle at 74% 35%, #d93678 0 14px, transparent 15px),
+    radial-gradient(circle at 82% 58%, #f5c842 0 16px, transparent 17px),
+    radial-gradient(circle at 91% 32%, #f05e89 0 14px, transparent 15px),
+    radial-gradient(circle at 97% 62%, #ef812f 0 16px, transparent 17px),
+    linear-gradient(180deg, rgba(48, 103, 45, 0.64) 0%, rgba(48, 103, 45, 0.18) 56%, transparent 78%);
+  filter: drop-shadow(0 7px 8px rgba(93, 48, 19, 0.18));
+}
+
+.haldi-left-drape {
+  position: absolute;
+  z-index: 4;
+  top: 2rem;
+  left: 0.65rem;
+  width: 2.35rem;
+  height: 79%;
+  border-radius: 0 0 1.6rem 1.6rem;
+  background:
+    radial-gradient(circle at 50% 9%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 23%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 37%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 51%, #ffd351 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 65%, #ffd351 0 5px, transparent 6px),
+    linear-gradient(90deg, rgba(132, 20, 91, 0.92), rgba(219, 43, 118, 0.95), rgba(132, 20, 91, 0.9));
+  box-shadow: 0 0 0 1px rgba(255, 214, 82, 0.38), 8px 0 16px rgba(91, 34, 28, 0.1);
+}
+
+.haldi-right-garland {
+  position: absolute;
+  z-index: 5;
+  top: 4.8rem;
+  right: 2rem;
+  width: 1.05rem;
+  height: 12rem;
+  background:
+    radial-gradient(circle at 50% 8%, #f07d2f 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 22%, #f6c847 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 36%, #f07d2f 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 50%, #d93678 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 64%, #f6c847 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 78%, #f07d2f 0 6px, transparent 7px),
+    linear-gradient(90deg, transparent 44%, rgba(119, 83, 32, 0.34) 45% 55%, transparent 56%);
+}
+
+.haldi-arch-panel {
+  position: relative;
+  z-index: 3;
+  width: min(420px, 82%);
+  min-height: 590px;
+  margin: 1.75rem auto 0;
+  padding: 4rem 1.3rem 2rem;
+  text-align: center;
+  border: 0.45rem solid rgba(198, 154, 124, 0.88);
+  border-radius: 46% 46% 1rem 1rem / 22% 22% 1rem 1rem;
+  background:
+    radial-gradient(circle at 50% 4%, rgba(255, 255, 255, 0.88), transparent 18%),
+    linear-gradient(180deg, rgba(255, 240, 222, 0.98), rgba(255, 225, 204, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 13px 32px rgba(113, 68, 35, 0.16);
+}
+
+.haldi-bismillah {
+  display: inline-block;
+  margin: -2.65rem auto 1.35rem;
+  padding: 0.35rem 0.9rem 0.42rem;
+  color: #2f241a;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.35rem);
+  font-weight: 700;
+  background: #efe1bb;
+  border: 1px solid rgba(135, 92, 49, 0.34);
+  border-radius: 0.22rem;
+  box-shadow: 0 5px 10px rgba(88, 55, 26, 0.15);
+}
+
+.haldi-kicker {
+  margin: 0 0 0.25rem;
+  color: #654c39;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.2rem, 3.8vw, 1.5rem);
+}
+
+.haldi-arch-panel h1 {
+  margin: 0.05rem auto 0.6rem;
+  color: #3e2d24;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.9rem, 10vw, 4.6rem);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+}
+
+.haldi-name {
+  margin: 0 0 1rem;
+  color: #b13f50;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.haldi-message {
+  max-width: 330px;
+  margin: 0 auto 1.25rem;
+  color: #5f4938;
+  font-size: clamp(0.98rem, 3.4vw, 1.08rem);
+  line-height: 1.5;
+}
+
+.haldi-details {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.haldi-details p {
+  margin: 0;
+  color: #463124;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.28rem, 4.6vw, 1.65rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.haldi-details span {
+  color: #7b3a22;
+  font-weight: 700;
+}
+
+.haldi-bride-figure {
+  position: absolute;
+  z-index: 5;
+  left: 24%;
+  bottom: 5.9rem;
+  width: 6.2rem;
+  height: 12.2rem;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 50% 11%, #e8b38b 0 12px, transparent 13px),
+    linear-gradient(100deg, transparent 0 33%, #115540 34% 52%, transparent 53%),
+    linear-gradient(80deg, transparent 0 28%, #f0bb1f 29% 65%, transparent 66%),
+    radial-gradient(ellipse at 50% 88%, #dda719 0 44%, transparent 45%);
+  border-radius: 42% 42% 18% 18%;
+  filter: drop-shadow(0 8px 8px rgba(76, 45, 24, 0.22));
+}
+
+.haldi-bride-figure::before {
+  content: "";
+  position: absolute;
+  top: 1.15rem;
+  left: 1.2rem;
+  width: 3.5rem;
+  height: 9.8rem;
+  border-radius: 50% 50% 26% 26%;
+  background: linear-gradient(155deg, #0b4f3d 0 46%, rgba(11, 79, 61, 0.15) 47% 100%);
+  transform: rotate(-10deg);
+}
+
+.haldi-lotus {
+  position: absolute;
+  z-index: 2;
+  right: -1.6rem;
+  bottom: 4rem;
+  width: 14.5rem;
+  height: 14.5rem;
+  border-radius: 74% 0 74% 0;
+  background:
+    radial-gradient(circle at 48% 48%, transparent 0 18%, rgba(255, 255, 255, 0.54) 19% 21%, transparent 22%),
+    repeating-radial-gradient(circle at 52% 48%, rgba(255, 255, 255, 0.42) 0 2px, transparent 2px 12px),
+    linear-gradient(135deg, rgba(255, 211, 59, 0.92), rgba(239, 155, 38, 0.72));
+  opacity: 0.86;
+  transform: rotate(-13deg);
+}
+
+.haldi-dhol {
+  position: absolute;
+  z-index: 6;
+  right: 0.7rem;
+  bottom: 2.25rem;
+  width: 11.4rem;
+  height: 6.4rem;
+  border: 4px solid rgba(255, 207, 70, 0.96);
+  border-radius: 45% / 52%;
+  background:
+    radial-gradient(ellipse at 12% 50%, #f7dec4 0 20%, #3c261d 21% 31%, transparent 32%),
+    radial-gradient(ellipse at 88% 50%, rgba(255, 231, 200, 0.94) 0 22%, rgba(61, 38, 29, 0.88) 23% 33%, transparent 34%),
+    repeating-linear-gradient(90deg, transparent 0 17px, rgba(255, 203, 53, 0.9) 17px 23px),
+    linear-gradient(90deg, #5a3428 0%, #8d5b36 48%, #5a3428 100%);
+  box-shadow: 0 11px 20px rgba(84, 44, 28, 0.3);
+  transform: rotate(-12deg);
+}
+
+.haldi-diya-row {
+  position: absolute;
+  z-index: 5;
+  left: 1.25rem;
+  bottom: 1.45rem;
+  width: 8.5rem;
+  height: 3.5rem;
+  background:
+    radial-gradient(circle at 18% 32%, #ffd561 0 8px, transparent 9px),
+    radial-gradient(circle at 45% 38%, #ff7f35 0 7px, transparent 8px),
+    radial-gradient(circle at 72% 33%, #ffd561 0 8px, transparent 9px),
+    radial-gradient(ellipse at 18% 68%, #8a4a28 0 18px, transparent 19px),
+    radial-gradient(ellipse at 45% 74%, #9d5130 0 17px, transparent 18px),
+    radial-gradient(ellipse at 72% 68%, #8a4a28 0 18px, transparent 19px);
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.08) translate(1.5%, -1.5%); }
+  100% { transform: scale(1) translate(0, 0); }
+}
+
+@keyframes starTwinkle {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: translate(-50%, -50%) scale(0.9) rotate(0deg);
+    text-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.8),
+      0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+    text-shadow: 
+      0 0 20px rgba(255, 215, 0, 1),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      0 0 60px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes lanternFloat {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.36;
+  }
+  50% {
+    transform: translate3d(8px, -120px, 0) scale(1);
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.22;
+  }
+  100% {
+    transform: translate3d(-10px, -125vh, 0) scale(0.92);
+    opacity: 0;
+  }
+}
+
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 2.4rem 1.2rem;
+  }
+
+  .corner-motif {
+    width: 56px;
+    height: 56px;
+  }
+
+  section,
+  footer {
+    padding: 1rem 0.3rem;
+  }
+
+  .highlights {
+    padding: 1rem 0.6rem;
+  }
+
+  .haldi-page-shell {
+    padding: 3.8rem 0.45rem 1.6rem;
+  }
+
+  .haldi-back {
+    top: 0.7rem;
+    left: 0.7rem;
+    font-size: 0.78rem;
+  }
+
+  .haldi-page .haldi-invitation-card {
+    width: min(420px, 98vw);
+    min-height: 830px;
+    padding: 6.9rem 0.55rem 1.25rem;
+    border-width: 0.35rem;
+  }
+
+  .haldi-left-drape {
+    left: 0.35rem;
+    width: 1.8rem;
+  }
+
+  .haldi-right-garland {
+    right: 1rem;
+  }
+
+  .haldi-arch-panel {
+    width: 84%;
+    min-height: 545px;
+    padding: 3.65rem 0.85rem 1.4rem;
+  }
+
+  .haldi-message {
+    max-width: 270px;
+  }
+
+  .haldi-bride-figure {
+    left: 21%;
+    bottom: 5.3rem;
+    width: 4.8rem;
+    height: 9.8rem;
+  }
+
+  .haldi-lotus {
+    right: -2.7rem;
+    bottom: 3.8rem;
+    width: 11.8rem;
+    height: 11.8rem;
+  }
+
+  .haldi-dhol {
+    right: 0.25rem;
+    bottom: 1.6rem;
+    width: 8.8rem;
+    height: 5.1rem;
+  }
+
+  .haldi-diya-row {
+    left: 0.7rem;
+    bottom: 1rem;
+    transform: scale(0.84);
+    transform-origin: left bottom;
+  }
+}
