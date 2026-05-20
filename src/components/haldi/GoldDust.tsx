@@ -15,21 +15,21 @@ type DustConfig = {
 };
 
 const ITEMS: DustConfig[] = [
-  { id: 1, left: "6%", top: "12%", size: 22, delay: 0, duration: 7, driftY: -14, rotateStart: 0, type: "star" },
-  { id: 2, left: "16%", top: "58%", size: 14, delay: 1.2, duration: 8, driftY: -12, rotateStart: 45, type: "dust" },
-  { id: 3, left: "26%", top: "28%", size: 20, delay: 0.5, duration: 6.5, driftY: -16, rotateStart: 90, type: "star" },
-  { id: 4, left: "40%", top: "6%", size: 16, delay: 2, duration: 7.5, driftY: -13, rotateStart: 180, type: "dust" },
-  { id: 5, left: "52%", top: "72%", size: 24, delay: 0.8, duration: 8.2, driftY: -15, rotateStart: 30, type: "star" },
-  { id: 6, left: "66%", top: "20%", size: 15, delay: 1.6, duration: 6.8, driftY: -11, rotateStart: 120, type: "dust" },
-  { id: 7, left: "76%", top: "44%", size: 19, delay: 0.3, duration: 7.8, driftY: -14, rotateStart: 200, type: "star" },
-  { id: 8, left: "86%", top: "64%", size: 13, delay: 2.4, duration: 6.2, driftY: -12, rotateStart: 60, type: "dust" },
-  { id: 9, left: "90%", top: "14%", size: 18, delay: 1.1, duration: 8.5, driftY: -13, rotateStart: 150, type: "star" },
-  { id: 10, left: "4%", top: "82%", size: 16, delay: 2.8, duration: 7.2, driftY: -10, rotateStart: 270, type: "dust" },
-  { id: 11, left: "46%", top: "38%", size: 12, delay: 1.9, duration: 6.6, driftY: -9, rotateStart: 320, type: "dust" },
-  { id: 12, left: "60%", top: "86%", size: 21, delay: 0.6, duration: 7.4, driftY: -12, rotateStart: 40, type: "star" },
-  { id: 13, left: "32%", top: "78%", size: 17, delay: 1.4, duration: 7, driftY: -11, rotateStart: 95, type: "star" },
-  { id: 14, left: "72%", top: "8%", size: 14, delay: 2.1, duration: 8, driftY: -10, rotateStart: 210, type: "dust" },
-  { id: 15, left: "22%", top: "48%", size: 26, delay: 0.2, duration: 9, driftY: -15, rotateStart: 15, type: "star" },
+  { id: 1, left: "6%", top: "12%", size: 22, delay: 0, duration: 3.8, driftY: -14, rotateStart: 0, type: "star" },
+  { id: 2, left: "16%", top: "58%", size: 14, delay: 0.6, duration: 4.2, driftY: -12, rotateStart: 45, type: "dust" },
+  { id: 3, left: "26%", top: "28%", size: 20, delay: 0.25, duration: 3.5, driftY: -16, rotateStart: 90, type: "star" },
+  { id: 4, left: "40%", top: "6%", size: 16, delay: 1, duration: 4, driftY: -13, rotateStart: 180, type: "dust" },
+  { id: 5, left: "52%", top: "72%", size: 24, delay: 0.4, duration: 4.4, driftY: -15, rotateStart: 30, type: "star" },
+  { id: 6, left: "66%", top: "20%", size: 15, delay: 0.8, duration: 3.6, driftY: -11, rotateStart: 120, type: "dust" },
+  { id: 7, left: "76%", top: "44%", size: 19, delay: 0.15, duration: 4.1, driftY: -14, rotateStart: 200, type: "star" },
+  { id: 8, left: "86%", top: "64%", size: 13, delay: 1.2, duration: 3.4, driftY: -12, rotateStart: 60, type: "dust" },
+  { id: 9, left: "90%", top: "14%", size: 18, delay: 0.55, duration: 4.5, driftY: -13, rotateStart: 150, type: "star" },
+  { id: 10, left: "4%", top: "82%", size: 16, delay: 1.4, duration: 3.9, driftY: -10, rotateStart: 270, type: "dust" },
+  { id: 11, left: "46%", top: "38%", size: 12, delay: 0.95, duration: 3.5, driftY: -9, rotateStart: 320, type: "dust" },
+  { id: 12, left: "60%", top: "86%", size: 21, delay: 0.3, duration: 4, driftY: -12, rotateStart: 40, type: "star" },
+  { id: 13, left: "32%", top: "78%", size: 17, delay: 0.7, duration: 3.8, driftY: -11, rotateStart: 95, type: "star" },
+  { id: 14, left: "72%", top: "8%", size: 14, delay: 1.05, duration: 4.2, driftY: -10, rotateStart: 210, type: "dust" },
+  { id: 15, left: "22%", top: "48%", size: 26, delay: 0.1, duration: 4.8, driftY: -15, rotateStart: 15, type: "star" },
 ];
 
 function EightPointStar({ size }: { size: number }) {
