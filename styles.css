@@ -766,32 +766,77 @@ body.haldi-page {
   min-height: 500px;
   padding: 4rem 3rem;
   background: 
-    radial-gradient(circle at 30% 30%, rgba(40, 30, 20, 0.95), rgba(30, 22, 15, 0.9)),
-    radial-gradient(circle at 70% 70%, rgba(50, 40, 30, 0.8), transparent),
-    linear-gradient(135deg, rgba(25, 20, 15, 0.98) 0%, rgba(35, 28, 20, 0.95) 50%, rgba(45, 38, 30, 0.92) 100%);
-  border: 2px solid rgba(255, 215, 0, 0.3);
-  border-radius: 25px;
+    radial-gradient(circle at 30% 30%, rgba(70, 55, 35, 0.95), rgba(50, 40, 25, 0.9)),
+    radial-gradient(circle at 70% 70%, rgba(90, 70, 45, 0.8), rgba(60, 45, 30, 0.6)),
+    radial-gradient(circle at 50% 10%, rgba(255, 215, 0, 0.1), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255, 193, 37, 0.08), transparent 40%),
+    linear-gradient(135deg, rgba(45, 35, 25, 0.98) 0%, rgba(65, 50, 35, 0.95) 50%, rgba(85, 65, 45, 0.92) 100%);
+  border: 3px solid transparent;
+  border-radius: 30px;
+  background-clip: padding-box;
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    0 10px 30px rgba(255, 215, 0, 0.1),
-    inset 0 1px 0 rgba(255, 215, 0, 0.2),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+    0 30px 60px rgba(0, 0, 0, 0.3),
+    0 15px 35px rgba(255, 215, 0, 0.15),
+    inset 0 2px 0 rgba(255, 215, 0, 0.3),
+    inset 0 -2px 0 rgba(255, 193, 37, 0.2),
+    inset 2px 0 0 rgba(255, 215, 0, 0.15),
+    inset -2px 0 0 rgba(255, 215, 0, 0.15);
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+}
+
+.haldi-premium-frame::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(255, 215, 0, 0.6) 0%, 
+    rgba(255, 193, 37, 0.4) 25%, 
+    rgba(255, 165, 0, 0.6) 50%, 
+    rgba(255, 193, 37, 0.4) 75%, 
+    rgba(255, 215, 0, 0.6) 100%);
+  border-radius: 32px;
+  z-index: -1;
+  animation: goldenBorderPulse 4s ease-in-out infinite;
+}
+
+.haldi-premium-frame::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.1), transparent 30%),
+    radial-gradient(circle at 75% 75%, rgba(255, 193, 37, 0.08), transparent 30%),
+    radial-gradient(circle at 75% 25%, rgba(255, 215, 0, 0.06), transparent 25%),
+    radial-gradient(circle at 25% 75%, rgba(255, 193, 37, 0.06), transparent 25%);
+  border-radius: 25px;
+  pointer-events: none;
+  z-index: 0;
+  animation: innerGlow 6s ease-in-out infinite alternate;
 }
 
 .frame-corner {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   background: 
-    radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.8), rgba(184, 134, 11, 0.6)),
-    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1), transparent);
-  border: 2px solid rgba(255, 215, 0, 0.6);
+    radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.95), rgba(255, 193, 37, 0.8)),
+    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.3), transparent 60%);
+  border: 3px solid rgba(255, 215, 0, 0.8);
   border-radius: 50%;
   box-shadow: 
-    0 0 20px rgba(255, 215, 0, 0.4),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2);
-  z-index: 2;
+    0 0 25px rgba(255, 215, 0, 0.6),
+    0 8px 16px rgba(255, 215, 0, 0.2),
+    inset 0 3px 6px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(255, 165, 0, 0.3);
+  z-index: 3;
+  animation: cornerPulse 3s ease-in-out infinite alternate;
 }
 
 .frame-corner::after {
@@ -800,30 +845,33 @@ body.haldi-page {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #FFD700;
-  font-size: 1.2rem;
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-  animation: starTwinkle 3s ease-in-out infinite;
+  color: #FFF8DC;
+  font-size: 1.4rem;
+  text-shadow: 
+    0 0 15px rgba(255, 215, 0, 1),
+    0 0 30px rgba(255, 215, 0, 0.5),
+    2px 2px 4px rgba(139, 69, 19, 0.8);
+  animation: starTwinkle 2s ease-in-out infinite;
 }
 
 .frame-top-left {
-  top: -30px;
-  left: -30px;
+  top: -35px;
+  left: -35px;
 }
 
 .frame-top-right {
-  top: -30px;
-  right: -30px;
+  top: -35px;
+  right: -35px;
 }
 
 .frame-bottom-left {
-  bottom: -30px;
-  left: -30px;
+  bottom: -35px;
+  left: -35px;
 }
 
 .frame-bottom-right {
-  bottom: -30px;
-  right: -30px;
+  bottom: -35px;
+  right: -35px;
 }
 
 .frame-top-border {
@@ -1398,8 +1446,58 @@ body.haldi-page {
 }
 
 @keyframes starTwinkle {
-  0%, 100% { opacity: 0.38; transform: scale(0.9) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.08) rotate(8deg); }
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: translate(-50%, -50%) scale(0.9) rotate(0deg);
+    text-shadow: 
+      0 0 15px rgba(255, 215, 0, 0.8),
+      0 0 30px rgba(255, 215, 0, 0.3);
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+    text-shadow: 
+      0 0 20px rgba(255, 215, 0, 1),
+      0 0 40px rgba(255, 215, 0, 0.6),
+      0 0 60px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes goldenBorderPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes innerGlow {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes cornerPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 25px rgba(255, 215, 0, 0.6),
+      0 8px 16px rgba(255, 215, 0, 0.2),
+      inset 0 3px 6px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 35px rgba(255, 215, 0, 0.8),
+      0 12px 24px rgba(255, 215, 0, 0.3),
+      inset 0 4px 8px rgba(255, 255, 255, 0.5);
+  }
 }
 
 @keyframes lanternFloat {
