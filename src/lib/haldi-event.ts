@@ -1,4 +1,6 @@
 export const HALDI_EVENT = {
+  bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
+  seriesLabel: "A Wedding Celebration",
   ceremonyPrefix: "Rasm - e - Haldi of",
   guestOfHonor: "Shoaib Faraz Ahmed",
   tagline:

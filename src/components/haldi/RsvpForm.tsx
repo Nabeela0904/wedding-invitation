@@ -32,14 +32,16 @@ export default function RsvpForm() {
   if (submitted) {
     return (
       <motion.div
-        className="rounded-xl border border-marigold/25 bg-white/35 px-4 py-6 text-center backdrop-blur-sm"
+        className="rounded-lg border border-luxe-gold/25 bg-black/35 px-4 py-6 text-center"
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={heroSpring}
         role="status"
       >
-        <p className="font-display text-lg text-gold">Thank you, {form.name}!</p>
-        <p className="mt-2 font-sans text-sm text-gold/70">
+        <p className="font-display text-lg text-luxe-gold">
+          Thank you, {form.name}!
+        </p>
+        <p className="mt-2 font-sans text-sm text-luxe-cream/65">
           Your RSVP has been received. We cannot wait to celebrate with you.
         </p>
       </motion.div>
@@ -58,7 +60,7 @@ export default function RsvpForm() {
       <motion.div variants={fadeSlideUpSoft}>
         <label
           htmlFor="rsvp-name"
-          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.15em] text-gold/65"
+          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.2em] text-luxe-cream/55"
         >
           Name
         </label>
@@ -70,14 +72,14 @@ export default function RsvpForm() {
           value={form.name}
           onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
           placeholder="Your full name"
-          className="haldi-input"
+          className="cinematic-input"
         />
       </motion.div>
 
       <motion.div variants={fadeSlideUpSoft}>
         <label
           htmlFor="rsvp-attending"
-          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.15em] text-gold/65"
+          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.2em] text-luxe-cream/55"
         >
           Attending Status
         </label>
@@ -91,7 +93,7 @@ export default function RsvpForm() {
               attending: e.target.value as AttendingStatus,
             }))
           }
-          className="haldi-input"
+          className="cinematic-input"
         >
           <option value="" disabled>
             Select status
@@ -105,7 +107,7 @@ export default function RsvpForm() {
       <motion.div variants={fadeSlideUpSoft}>
         <label
           htmlFor="rsvp-food"
-          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.15em] text-gold/65"
+          className="mb-1.5 block font-sans text-xs font-medium uppercase tracking-[0.2em] text-luxe-cream/55"
         >
           Food Preference
         </label>
@@ -119,7 +121,7 @@ export default function RsvpForm() {
               food: e.target.value as FoodPreference,
             }))
           }
-          className="haldi-input"
+          className="cinematic-input"
         >
           <option value="" disabled>
             Select preference
@@ -133,11 +135,11 @@ export default function RsvpForm() {
       <motion.button
         type="submit"
         variants={fadeSlideUpSoft}
-        className="w-full rounded-xl border border-marigold/35 bg-gradient-to-r from-marigold via-[#E89B0C] to-saffron px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-[0.2em] text-cream will-change-transform"
+        className="w-full rounded-lg border border-luxe-gold/40 bg-gradient-to-r from-islamic-emerald via-[#1a5c4a] to-islamic-emerald px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-[0.2em] text-luxe-cream will-change-transform"
         whileHover={{
           scale: 1.02,
           boxShadow:
-            "0 0 32px rgba(245, 158, 11, 0.5), 0 12px 28px rgba(217, 119, 6, 0.2)",
+            "0 0 36px rgba(212, 175, 55, 0.4), 0 0 60px rgba(15, 61, 50, 0.5)",
         }}
         whileTap={{ scale: 0.96 }}
         transition={{ type: "spring", stiffness: 380, damping: 26 }}

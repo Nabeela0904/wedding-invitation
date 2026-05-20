@@ -1,0 +1,91 @@
+/* Cinematic Islamic luxury — scoped to Haldi microsite */
+.haldi-cinematic {
+  --haldi-midnight: #050508;
+  --haldi-noir: #0c0e14;
+  --haldi-gold: #d4af37;
+  --haldi-gold-soft: #e8d5a3;
+  --haldi-emerald: #0f3d32;
+  --haldi-amber: #f59e0b;
+  color: var(--haldi-gold-soft);
+  background-color: var(--haldi-midnight);
+}
+
+.haldi-cinematic::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: #fff;
+}
+
+.cinematic-vignette {
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 45%,
+    transparent 35%,
+    rgba(0, 0, 0, 0.55) 75%,
+    rgba(0, 0, 0, 0.92) 100%
+  );
+}
+
+.cinematic-grain {
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.cinematic-glass {
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 64px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(212, 175, 55, 0.06);
+  backdrop-filter: blur(20px);
+}
+
+.cinematic-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--haldi-gold-soft);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cinematic-input::placeholder {
+  color: rgba(232, 213, 163, 0.35);
+}
+
+.cinematic-input:focus {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+}
+
+.cinematic-input option {
+  background: #0c0e14;
+  color: #e8d5a3;
+}
+
+.cinematic-ornament {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.55) 20%,
+    rgba(245, 158, 11, 0.4) 50%,
+    rgba(212, 175, 55, 0.55) 80%,
+    transparent
+  );
+}
+
+.cinematic-title-glow {
+  text-shadow:
+    0 0 40px rgba(212, 175, 55, 0.35),
+    0 0 80px rgba(245, 158, 11, 0.15);
+}

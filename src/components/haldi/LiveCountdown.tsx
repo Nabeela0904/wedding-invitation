@@ -36,7 +36,7 @@ function CountdownDigit({ value }: { value: string }) {
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={value}
-          className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold tabular-nums text-gold sm:text-2xl"
+          className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold tabular-nums text-luxe-gold sm:text-2xl"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
@@ -62,14 +62,14 @@ function CountdownUnit({
 
   return (
     <motion.div
-      className="rounded-xl border border-marigold/25 bg-white/30 px-1 py-3 text-center backdrop-blur-md sm:py-4"
+      className="rounded-lg border border-luxe-gold/20 bg-black/40 px-1 py-3 text-center backdrop-blur-sm sm:py-4"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ ...heroSpring, delay: 0.06 * index }}
-      style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)" }}
+      style={{ boxShadow: "inset 0 1px 0 rgba(212,175,55,0.12)" }}
     >
       <CountdownDigit value={padded} />
-      <span className="mt-1 block font-sans text-[9px] uppercase tracking-[0.2em] text-gold/55 sm:text-[10px]">
+      <span className="mt-1 block font-sans text-[9px] uppercase tracking-[0.2em] text-luxe-cream/45 sm:text-[10px]">
         {label}
       </span>
     </motion.div>
@@ -92,7 +92,7 @@ export default function LiveCountdown() {
   if (!timeLeft) {
     return (
       <motion.p
-        className="text-center font-display text-lg text-marigold"
+        className="text-center font-display text-lg text-luxe-gold"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: smoothEase }}

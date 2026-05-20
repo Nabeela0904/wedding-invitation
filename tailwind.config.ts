@@ -14,6 +14,11 @@ const config: Config = {
         saffron: "#D97706",
         "deep-gold": "#B45309",
         gold: "#B45309",
+        midnight: "#050508",
+        noir: "#0c0e14",
+        "luxe-gold": "#D4AF37",
+        "luxe-cream": "#E8D5A3",
+        "islamic-emerald": "#0f3d32",
       },
       fontFamily: {
         display: ["var(--font-playfair)", "Georgia", "serif"],

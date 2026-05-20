@@ -6,14 +6,17 @@ import { fadeSlideUpSoft } from "@/lib/motion";
 export default function HaldiFooter() {
   return (
     <motion.footer
-      className="relative z-10 pb-12 pt-2 text-center"
+      className="relative z-10 border-t border-luxe-gold/10 px-6 py-14 text-center"
       variants={fadeSlideUpSoft}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <div className="haldi-ornament mx-auto mb-4 max-w-[120px]" aria-hidden />
-      <p className="font-sans text-xs tracking-wide text-gold/45">
+      <div className="cinematic-ornament mx-auto mb-6 max-w-[160px]" aria-hidden />
+      <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-luxe-cream/35">
+        End of Invitation
+      </p>
+      <p className="mt-3 font-display text-sm text-luxe-cream/55">
         With love &amp; gratitude — Shoaib Faraz Ahmed
       </p>
     </motion.footer>
