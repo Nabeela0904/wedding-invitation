@@ -491,13 +491,175 @@ body.haldi-page {
   margin: 0;
   min-height: 100vh;
   color: #4a3520;
-  background: #f8e57c;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(255, 223, 95, 0.4), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255, 193, 37, 0.3), transparent 35%),
+    linear-gradient(135deg, #f9e784 0%, #f5d962 50%, #f0c641 100%);
+  overflow-x: hidden;
 }
 
-
 .haldi-page-shell {
+  position: relative;
   min-height: 100vh;
   padding: 0;
+}
+
+.haldi-decorative-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.haldi-content-area {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.haldi-pattern {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.6) 0%, transparent 70%);
+  filter: blur(1px);
+}
+
+.haldi-pattern-1 {
+  top: 15%;
+  left: 10%;
+  width: 150px;
+  height: 150px;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 30%, rgba(184, 134, 11, 0.3) 31% 35%, transparent 36%),
+    radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.4) 0% 20%, transparent 21%);
+  animation: haldiFloat 8s ease-in-out infinite;
+}
+
+.haldi-pattern-2 {
+  top: 60%;
+  right: 15%;
+  width: 120px;
+  height: 120px;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 25%, rgba(184, 134, 11, 0.25) 26% 30%, transparent 31%),
+    radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.35) 0% 15%, transparent 16%);
+  animation: haldiFloat 10s ease-in-out infinite reverse;
+  animation-delay: -2s;
+}
+
+.haldi-pattern-3 {
+  bottom: 20%;
+  left: 20%;
+  width: 100px;
+  height: 100px;
+  background: 
+    radial-gradient(circle at 50% 50%, transparent 20%, rgba(184, 134, 11, 0.2) 21% 25%, transparent 26%),
+    radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.3) 0% 12%, transparent 13%);
+  animation: haldiFloat 12s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.haldi-floral {
+  position: absolute;
+  opacity: 0.12;
+  filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.15));
+}
+
+.haldi-floral-1 {
+  top: 25%;
+  right: 20%;
+  width: 80px;
+  height: 80px;
+  background: 
+    radial-gradient(circle at 30% 30%, #d4af37 0 8px, transparent 9px),
+    radial-gradient(circle at 70% 30%, #d4af37 0 8px, transparent 9px),
+    radial-gradient(circle at 50% 60%, #d4af37 0 8px, transparent 9px),
+    radial-gradient(circle at 30% 70%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 70% 70%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 50%, #e6c547 0 15px, transparent 16px);
+  border-radius: 50%;
+  animation: haldiSpin 15s linear infinite;
+}
+
+.haldi-floral-2 {
+  bottom: 35%;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+  background: 
+    radial-gradient(circle at 25% 25%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 75% 25%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 25% 75%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 75% 75%, #d4af37 0 6px, transparent 7px),
+    radial-gradient(circle at 50% 50%, #e6c547 0 12px, transparent 13px);
+  border-radius: 50%;
+  animation: haldiSpin 20s linear infinite reverse;
+  animation-delay: -3s;
+}
+
+.haldi-floral-3 {
+  top: 45%;
+  left: 15%;
+  width: 70px;
+  height: 70px;
+  background: 
+    radial-gradient(circle at 50% 20%, #d4af37 0 5px, transparent 6px),
+    radial-gradient(circle at 20% 50%, #d4af37 0 5px, transparent 6px),
+    radial-gradient(circle at 80% 50%, #d4af37 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 80%, #d4af37 0 5px, transparent 6px),
+    radial-gradient(circle at 50% 50%, #e6c547 0 10px, transparent 11px);
+  border-radius: 50%;
+  animation: haldiSpin 18s linear infinite;
+  animation-delay: -6s;
+}
+
+.haldi-dots {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255, 215, 0, 0.15) 0 3px, transparent 4px),
+    radial-gradient(circle at 25% 15%, rgba(255, 215, 0, 0.1) 0 2px, transparent 3px),
+    radial-gradient(circle at 38% 12%, rgba(255, 215, 0, 0.12) 0 3px, transparent 4px),
+    radial-gradient(circle at 52% 18%, rgba(255, 215, 0, 0.08) 0 2px, transparent 3px),
+    radial-gradient(circle at 68% 8%, rgba(255, 215, 0, 0.14) 0 3px, transparent 4px),
+    radial-gradient(circle at 82% 15%, rgba(255, 215, 0, 0.1) 0 2px, transparent 3px),
+    radial-gradient(circle at 15% 85%, rgba(255, 215, 0, 0.12) 0 3px, transparent 4px),
+    radial-gradient(circle at 28% 92%, rgba(255, 215, 0, 0.09) 0 2px, transparent 3px),
+    radial-gradient(circle at 45% 88%, rgba(255, 215, 0, 0.13) 0 3px, transparent 4px),
+    radial-gradient(circle at 62% 85%, rgba(255, 215, 0, 0.11) 0 2px, transparent 3px),
+    radial-gradient(circle at 78% 92%, rgba(255, 215, 0, 0.1) 0 3px, transparent 4px),
+    radial-gradient(circle at 92% 88%, rgba(255, 215, 0, 0.08) 0 2px, transparent 3px);
+  animation: haldiFade 6s ease-in-out infinite alternate;
+}
+
+@keyframes haldiFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
+}
+
+@keyframes haldiSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes haldiFade {
+  0% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0.6;
+  }
 }
 
 
