@@ -346,13 +346,51 @@ footer {
   display: none;
 }
 
-.valima-content {
+.event-content {
   text-align: center;
   margin-top: 0.25rem;
   padding: 1.45rem 1rem;
   border: 1px solid rgba(223, 176, 111, 0.34);
   border-radius: 1rem;
   background: rgba(255, 245, 227, 0.07);
+}
+
+.event-arabic {
+  margin: 0 0 0.7rem;
+  font-family: "Amiri", "Noto Nastaliq Urdu", serif;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--accent-soft);
+}
+
+.event-intro {
+  margin: 0 0 0.45rem;
+  color: var(--text-soft);
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.25rem;
+}
+
+.event-title {
+  margin-bottom: 0.35rem;
+}
+
+.event-person {
+  margin: 0 0 0.8rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  color: #f5d9ae;
+}
+
+.event-description {
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.event-meta p {
+  margin: 0.35rem 0;
+  color: #ead7bb;
 }
 
 .valima-intro {

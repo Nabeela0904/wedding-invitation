@@ -7,7 +7,10 @@ const layers = {
 
 const revealItems = document.querySelectorAll(".reveal");
 const eventButtons = document.querySelectorAll(".event-button");
-const valimaContent = document.querySelector("#valima-content");
+const eventContentSections = {
+  haldi: document.querySelector("#haldi-content"),
+  valima: document.querySelector("#valima-content"),
+};
 let targetMouseX = 0;
 let targetMouseY = 0;
 let targetScrollY = 0;
@@ -69,27 +72,35 @@ const observer = new IntersectionObserver(
 
 revealItems.forEach((item) => observer.observe(item));
 
+function hideEventContent() {
+  Object.values(eventContentSections).forEach((section) => {
+    if (!section) {
+      return;
+    }
+
+    section.classList.add("is-hidden");
+    section.classList.remove("visible");
+  });
+}
+
 eventButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const eventType = button.dataset.event;
+    const eventContent = eventContentSections[eventType];
 
     eventButtons.forEach((btn) => btn.classList.remove("is-active"));
     button.classList.add("is-active");
 
-    if (eventType === "valima") {
+    if (eventContent) {
       event.preventDefault();
-      if (valimaContent) {
-        valimaContent.classList.remove("is-hidden");
-        valimaContent.classList.add("visible");
-        valimaContent.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      hideEventContent();
+      eventContent.classList.remove("is-hidden");
+      eventContent.classList.add("visible");
+      eventContent.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
 
-    if (valimaContent) {
-      valimaContent.classList.add("is-hidden");
-      valimaContent.classList.remove("visible");
-    }
+    hideEventContent();
   });
 });
 
