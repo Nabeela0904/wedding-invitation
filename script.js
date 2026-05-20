@@ -73,6 +73,8 @@ const observer = new IntersectionObserver(
 revealItems.forEach((item) => observer.observe(item));
 
 function hideEventContent() {
+  document.body.removeAttribute("data-active-event");
+
   Object.values(eventContentSections).forEach((section) => {
     if (!section) {
       return;
@@ -94,6 +96,7 @@ eventButtons.forEach((button) => {
     if (eventContent) {
       event.preventDefault();
       hideEventContent();
+      document.body.dataset.activeEvent = eventType;
       eventContent.classList.remove("is-hidden");
       eventContent.classList.add("visible");
       eventContent.scrollIntoView({ behavior: "smooth", block: "start" });
