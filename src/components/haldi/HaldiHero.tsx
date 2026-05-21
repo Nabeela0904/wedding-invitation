@@ -21,12 +21,32 @@ export default function HaldiHero() {
         aria-hidden
       />
 
-      <motion.h1
+      <motion.div
         variants={fadeSlideUp}
-        className="relative bg-gradient-to-b from-gold via-saffron to-deep-gold bg-clip-text font-display text-[clamp(1.75rem,6.5vw,3.25rem)] font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_2px_24px_rgba(255,253,249,0.85)]"
+        className="relative w-full max-w-xl px-2 sm:px-4"
       >
-        {HALDI_EVENT.heroTitle}
-      </motion.h1>
+        <h1 className="sr-only">
+          {HALDI_EVENT.heroTitle} {HALDI_EVENT.heroConnector} {HALDI_EVENT.heroName}
+        </h1>
+        <p
+          aria-hidden
+          className="bg-gradient-to-b from-gold via-saffron to-deep-gold bg-clip-text text-right font-display text-[clamp(2rem,7vw,3.5rem)] font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_2px_24px_rgba(255,253,249,0.85)]"
+        >
+          {HALDI_EVENT.heroTitle}
+        </p>
+        <p
+          aria-hidden
+          className="my-1 text-center font-display text-[clamp(1.1rem,3.5vw,1.5rem)] font-medium italic tracking-[0.2em] text-gold/90 drop-shadow-[0_1px_12px_rgba(255,253,249,0.9)]"
+        >
+          {HALDI_EVENT.heroConnector}
+        </p>
+        <p
+          aria-hidden
+          className="text-left font-display text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-tight tracking-wide text-gold drop-shadow-[0_1px_12px_rgba(255,253,249,0.9)]"
+        >
+          {HALDI_EVENT.heroName}
+        </p>
+      </motion.div>
 
       <motion.div
         variants={fadeSlideUp}

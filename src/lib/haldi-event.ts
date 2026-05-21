@@ -1,5 +1,7 @@
 export const HALDI_EVENT = {
-  heroTitle: "Rasm-e-Haldi of Shoaib Faraz Ahmed",
+  heroTitle: "Rasm-e-Haldi",
+  heroConnector: "of",
+  heroName: "Shoaib Faraz Ahmed",
   tagline:
     "Join us for an evening filled with colours of joy, the rhythm of dhol, and the warmth of love and laughter.",
   dateLabel: "8th July, 2026",
