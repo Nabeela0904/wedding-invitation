@@ -16,6 +16,13 @@ export const NIKAH_EVENT = {
   dinnerLabel: "Dinner: 7:00 PM onwards",
   venueTitle: "VENUE & LOCATION",
   venueSubtext: "Noorunisa Enclave at Meerani's residence",
+  venueName: "Noorunisa Enclave",
+  venueDetail: "Meerani's residence",
+  locationPageTitle: "Find Your Way to the Nikah",
+  locationPageSubtitle: "We cannot wait to welcome you with open hearts",
+  parkingNote: "Ample parking is available at the venue for guests.",
+  directionsNote:
+    "For the smoothest journey, use Google Maps for live directions. Scan the QR code or tap the button below.",
   closingLine:
     "YOUR PRESENCE AND BLESSINGS WILL MAKE THIS OCCASION EVEN MORE SPECIAL",
   countdownIso: "2026-07-09T17:00:00+05:30",

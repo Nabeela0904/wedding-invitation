@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { NIKAH_EVENT } from "@/lib/nikah-event";
 import { cardReveal, fadeSlideUp } from "@/lib/motion";
@@ -49,10 +50,19 @@ export default function NikahVenueModule() {
           href={NIKAH_EVENT.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center justify-center rounded-full border border-metallic-gold/50 bg-gradient-to-r from-emerald to-emerald-deep px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
+          className="mt-6 inline-flex items-center justify-center rounded-full border border-metallic-gold/50 bg-gradient-to-r from-emerald to-emerald-deep px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
         >
           Open in Google Maps
         </motion.a>
+
+        <motion.div variants={fadeSlideUp}>
+          <Link
+            href="/nikah/location"
+            className="mt-4 inline-flex items-center justify-center rounded-full border border-emerald/25 bg-white/70 px-8 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald transition-[transform,background-color] duration-300 hover:scale-[1.02] hover:bg-white active:scale-[0.98]"
+          >
+            View Full Location Page
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   );
