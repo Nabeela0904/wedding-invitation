@@ -15,18 +15,18 @@ export default function GeometricAccent() {
           <polygon
             points="60,8 112,60 60,112 8,60"
             fill="none"
-            stroke="#D4AF37"
+            stroke="#064E3B"
             strokeWidth="0.75"
-            opacity="0.55"
+            opacity="0.45"
           />
           <polygon
             points="60,22 98,60 60,98 22,60"
             fill="none"
             stroke="#D4AF37"
             strokeWidth="0.5"
-            opacity="0.35"
+            opacity="0.55"
           />
-          <circle cx="60" cy="60" r="6" fill="#D4AF37" opacity="0.7" />
+          <circle cx="60" cy="60" r="6" fill="#D4AF37" opacity="0.75" />
         </svg>
       </motion.div>
       <span className="relative z-10 font-display text-3xl font-light text-metallic-gold sm:text-4xl">

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import NikahLoader from "@/components/nikah/NikahLoader";
+import dynamic from "next/dynamic";
+import CinematicNikahScene from "@/components/nikah/CinematicNikahScene";
 import NikahHeroSlide from "@/components/nikah/NikahHeroSlide";
 import NikahTimelineSection from "@/components/nikah/NikahTimelineSection";
 import NikahVenueModule from "@/components/nikah/NikahVenueModule";
 import NikahClosingFooter from "@/components/nikah/NikahClosingFooter";
+
+const NikahPetals = dynamic(() => import("@/components/nikah/NikahPetals"), {
+  ssr: false,
+});
 
 export const metadata: Metadata = {
   title: "Nikah Ceremony | Shoaib & Zeenath",
@@ -13,20 +18,24 @@ export const metadata: Metadata = {
 
 export default function NikahPage() {
   return (
-    <NikahLoader>
-      <main className="relative overflow-x-hidden bg-warm-ivory text-charcoal">
-        <NikahHeroSlide />
-        <NikahTimelineSection />
-        <NikahVenueModule />
-        <NikahClosingFooter />
+    <main className="relative min-h-screen overflow-x-hidden bg-ivory text-emerald">
+      <NikahPetals />
 
-        <a
-          href="/index.html"
-          className="fixed left-4 top-4 z-50 rounded-none border border-metallic-gold/40 bg-warm-ivory/90 px-4 py-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-charcoal backdrop-blur-sm transition-[transform,background-color] duration-300 hover:scale-[1.02] hover:bg-warm-ivory sm:left-6 sm:top-6"
-        >
-          ← Main Invitation
-        </a>
-      </main>
-    </NikahLoader>
+      <section className="relative min-h-[100svh]">
+        <CinematicNikahScene />
+        <NikahHeroSlide />
+      </section>
+
+      <NikahTimelineSection />
+      <NikahVenueModule />
+      <NikahClosingFooter />
+
+      <a
+        href="/index.html"
+        className="fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
+      >
+        ← Main Invitation
+      </a>
+    </main>
   );
 }

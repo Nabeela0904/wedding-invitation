@@ -7,14 +7,14 @@ import ParallaxLayer from "./ParallaxLayer";
 
 export default function NikahClosingFooter() {
   return (
-    <footer className="relative bg-deep-indigo px-5 py-28 text-center sm:px-8 sm:py-36">
+    <footer className="relative bg-emerald-deep px-5 py-28 text-center sm:px-8 sm:py-36">
       <ParallaxLayer offset={20}>
         <motion.p
           variants={fadeSlideUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mx-auto max-w-2xl font-sans text-[11px] font-medium uppercase leading-[2] tracking-[0.22em] text-warm-ivory/75 sm:text-xs"
+          className="mx-auto max-w-2xl font-sans text-[11px] font-medium uppercase leading-[2] tracking-[0.22em] text-ivory/80 sm:text-xs"
         >
           {NIKAH_EVENT.closingLine}
         </motion.p>

@@ -17,7 +17,7 @@ export default function NikahTimelineSection() {
   const { timeLeft, mounted } = useCountdown(NIKAH_EVENT.countdownIso);
 
   return (
-    <section className="relative bg-charcoal px-5 py-24 text-warm-ivory sm:px-8 sm:py-32">
+    <section className="relative bg-emerald px-5 py-24 text-ivory sm:px-8 sm:py-32">
       <motion.div
         className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
         variants={cardReveal}
@@ -35,7 +35,7 @@ export default function NikahTimelineSection() {
             </motion.p>
             <motion.p
               variants={fadeSlideUp}
-              className="mt-6 font-display text-[clamp(1.35rem,3.5vw,1.85rem)] leading-snug tracking-wide text-warm-ivory"
+              className="mt-6 font-display text-[clamp(1.35rem,3.5vw,1.85rem)] leading-snug tracking-wide text-ivory"
             >
               {NIKAH_EVENT.dateLabel}
               <span className="mx-3 text-metallic-gold/60">|</span>
@@ -75,7 +75,7 @@ export default function NikahTimelineSection() {
                       ? formatCountdownUnit(timeLeft[key])
                       : "--"}
                   </span>
-                  <span className="mt-1 block font-sans text-[8px] uppercase tracking-[0.2em] text-warm-ivory/45 sm:text-[9px]">
+                  <span className="mt-1 block font-sans text-[8px] uppercase tracking-[0.2em] text-ivory/45 sm:text-[9px]">
                     {label}
                   </span>
                 </motion.div>

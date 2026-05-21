@@ -4,82 +4,69 @@ import { motion } from "framer-motion";
 import { NIKAH_EVENT } from "@/lib/nikah-event";
 import { fadeSlideUp, staggerContainer } from "@/lib/motion";
 import GeometricAccent from "./GeometricAccent";
-import ParallaxLayer from "./ParallaxLayer";
 
 export default function NikahHeroSlide() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-warm-ivory px-5 py-28 sm:px-8">
+    <motion.header
+      className="relative z-10 flex min-h-[100svh] flex-col items-center justify-start px-4 pb-16 pt-24 text-center sm:px-6 sm:pt-28"
+      variants={staggerContainer}
+      initial="hidden"
+      animate="visible"
+    >
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[48%]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`
-            <svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'>
-              <path d='M30 0 L60 30 L30 60 L0 30 Z' fill='none' stroke='%231C1C22' stroke-width='0.5'/>
-            </svg>
-          `)}")`,
-          backgroundSize: "60px 60px",
+          background:
+            "linear-gradient(180deg, rgba(253,251,247,0.94) 0%, rgba(253,251,247,0.6) 55%, transparent 100%)",
         }}
         aria-hidden
       />
 
-      <motion.div
-        className="relative z-10 w-full max-w-6xl text-center"
-        variants={staggerContainer}
-        initial="hidden"
-        animate="visible"
+      <motion.p
+        variants={fadeSlideUp}
+        lang="ar"
+        dir="rtl"
+        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] leading-relaxed text-metallic-gold drop-shadow-[0_2px_16px_rgba(253,251,247,0.9)]"
       >
-        <ParallaxLayer offset={24}>
-          <motion.p
-            variants={fadeSlideUp}
-            lang="ar"
-            dir="rtl"
-            className="font-amiri text-[clamp(2rem,7vw,3.25rem)] leading-relaxed text-metallic-gold"
-          >
-            {NIKAH_EVENT.bismillah}
-          </motion.p>
-        </ParallaxLayer>
+        {NIKAH_EVENT.bismillah}
+      </motion.p>
 
-        <motion.div
-          variants={fadeSlideUp}
-          className="mx-auto mt-8 h-px w-20 bg-metallic-gold/60"
-          aria-hidden
-        />
+      <motion.div
+        variants={fadeSlideUp}
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-metallic-gold/70 to-transparent"
+        aria-hidden
+      />
 
-        <motion.p
-          variants={fadeSlideUp}
-          className="mx-auto mt-10 max-w-2xl font-sans text-[10px] font-medium uppercase tracking-[0.28em] text-charcoal/60 sm:text-[11px]"
-        >
-          {NIKAH_EVENT.inviteLine}
-        </motion.p>
+      <motion.p
+        variants={fadeSlideUp}
+        className="relative mx-auto mt-8 max-w-2xl font-sans text-[10px] font-medium uppercase tracking-[0.24em] text-emerald/80 drop-shadow-[0_1px_10px_rgba(253,251,247,0.85)] sm:text-[11px]"
+      >
+        {NIKAH_EVENT.inviteLine}
+      </motion.p>
 
-        <div className="mt-16 grid grid-cols-1 items-center gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
-          <ParallaxLayer offset={32} className="lg:text-right">
-            <motion.div variants={fadeSlideUp}>
-              <h1 className="font-display text-[clamp(1.5rem,4.5vw,2.35rem)] font-medium uppercase leading-tight tracking-[0.12em] text-charcoal">
-                {NIKAH_EVENT.groom.name}
-              </h1>
-              <p className="mt-4 font-sans text-xs uppercase tracking-[0.18em] text-charcoal/50">
-                {NIKAH_EVENT.groom.parents}
-              </p>
-            </motion.div>
-          </ParallaxLayer>
+      <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
+        <motion.div variants={fadeSlideUp} className="lg:text-right">
+          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_12px_rgba(253,251,247,0.85)]">
+            {NIKAH_EVENT.groom.name}
+          </h1>
+          <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-emerald/60">
+            {NIKAH_EVENT.groom.parents}
+          </p>
+        </motion.div>
 
-          <motion.div variants={fadeSlideUp}>
-            <GeometricAccent />
-          </motion.div>
+        <motion.div variants={fadeSlideUp}>
+          <GeometricAccent />
+        </motion.div>
 
-          <ParallaxLayer offset={32} className="lg:text-left">
-            <motion.div variants={fadeSlideUp}>
-              <h1 className="font-display text-[clamp(1.5rem,4.5vw,2.35rem)] font-medium uppercase leading-tight tracking-[0.12em] text-charcoal">
-                {NIKAH_EVENT.bride.name}
-              </h1>
-              <p className="mt-4 font-sans text-xs uppercase tracking-[0.18em] text-charcoal/50">
-                {NIKAH_EVENT.bride.parents}
-              </p>
-            </motion.div>
-          </ParallaxLayer>
-        </div>
-      </motion.div>
-    </section>
+        <motion.div variants={fadeSlideUp} className="lg:text-left">
+          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_12px_rgba(253,251,247,0.85)]">
+            {NIKAH_EVENT.bride.name}
+          </h1>
+          <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-emerald/60">
+            {NIKAH_EVENT.bride.parents}
+          </p>
+        </motion.div>
+      </div>
+    </motion.header>
   );
 }
