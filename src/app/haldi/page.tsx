@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
 import MarigoldPetals from "@/components/haldi/MarigoldPetals";
 import HaldiHero from "@/components/haldi/HaldiHero";
 import DetailsCard from "@/components/haldi/DetailsCard";
@@ -14,7 +15,12 @@ export default function HaldiPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-cream">
       <MarigoldPetals />
-      <HaldiHero />
+
+      <section className="relative min-h-[100svh]">
+        <CinematicHaldiScene />
+        <HaldiHero />
+      </section>
+
       <DetailsCard />
 
       <Link
