@@ -1,95 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { HALDI_EVENT } from "@/lib/haldi-event";
+import { formatCountdownUnit, useCountdown } from "@/lib/useCountdown";
 import { heroSpring, smoothEase } from "@/lib/motion";
 
-type TimeLeft = {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
+type LiveCountdownProps = {
+  countdownIso: string;
+  startedMessage?: string;
 };
 
-const UNITS: { key: keyof TimeLeft; label: string }[] = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Mins" },
-  { key: "seconds", label: "Secs" },
+const UNITS = [
+  { key: "days" as const, label: "Days" },
+  { key: "hours" as const, label: "Hours" },
+  { key: "minutes" as const, label: "Mins" },
+  { key: "seconds" as const, label: "Secs" },
 ];
 
-function calculateTimeLeft(targetMs: number): TimeLeft | null {
-  const difference = targetMs - Date.now();
-  if (difference <= 0) return null;
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-}
+export default function LiveCountdown({
+  countdownIso,
+  startedMessage = "The Haldi celebration has begun!",
+}: LiveCountdownProps) {
+  const { timeLeft, mounted } = useCountdown(countdownIso);
+  const eventStarted = mounted && !timeLeft;
 
-function CountdownDigit({ value }: { value: string }) {
-  return (
-    <span className="relative block h-[1.75rem] overflow-hidden sm:h-[2rem]">
-      <AnimatePresence mode="popLayout" initial={false}>
-        <motion.span
-          key={value}
-          className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold tabular-nums text-luxe-gold sm:text-2xl"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.35, ease: smoothEase }}
-        >
-          {value}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
-
-function CountdownUnit({
-  value,
-  label,
-  index,
-}: {
-  value: number;
-  label: string;
-  index: number;
-}) {
-  const padded = String(value).padStart(2, "0");
-
-  return (
-    <motion.div
-      className="rounded-lg border border-luxe-gold/20 bg-black/40 px-1 py-3 text-center backdrop-blur-sm sm:py-4"
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ ...heroSpring, delay: 0.06 * index }}
-      style={{ boxShadow: "inset 0 1px 0 rgba(212,175,55,0.12)" }}
-    >
-      <CountdownDigit value={padded} />
-      <span className="mt-1 block font-sans text-[9px] uppercase tracking-[0.2em] text-luxe-cream/45 sm:text-[10px]">
-        {label}
-      </span>
-    </motion.div>
-  );
-}
-
-export default function LiveCountdown() {
-  const targetMs = new Date(HALDI_EVENT.countdownIso).getTime();
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(() =>
-    calculateTimeLeft(targetMs),
-  );
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setTimeLeft(calculateTimeLeft(targetMs));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, [targetMs]);
-
-  if (!timeLeft) {
+  if (eventStarted) {
     return (
       <motion.p
         className="text-center font-display text-lg text-luxe-gold"
@@ -97,7 +31,7 @@ export default function LiveCountdown() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: smoothEase }}
       >
-        The Haldi celebration has begun!
+        {startedMessage}
       </motion.p>
     );
   }
@@ -107,11 +41,52 @@ export default function LiveCountdown() {
       {UNITS.map(({ key, label }, index) => (
         <CountdownUnit
           key={key}
-          value={timeLeft[key]}
+          display={formatCountdownUnit(timeLeft?.[key])}
           label={label}
           index={index}
+          mounted={mounted}
         />
       ))}
     </div>
+  );
+}
+
+function CountdownUnit({
+  display,
+  label,
+  index,
+  mounted,
+}: {
+  display: string;
+  label: string;
+  index: number;
+  mounted: boolean;
+}) {
+  return (
+    <motion.div
+      className="rounded-lg border border-luxe-gold/20 bg-black/40 px-1 py-3 text-center backdrop-blur-sm sm:py-4"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...heroSpring, delay: 0.06 * index }}
+      style={{ boxShadow: "inset 0 1px 0 rgba(212,175,55,0.12)" }}
+    >
+      <span className="relative block h-[1.75rem] overflow-hidden sm:h-[2rem]">
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.span
+            key={mounted ? display : "placeholder"}
+            className="absolute inset-0 flex items-center justify-center font-display text-xl font-semibold tabular-nums text-luxe-gold sm:text-2xl"
+            initial={mounted ? { opacity: 0, y: 8 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.35, ease: smoothEase }}
+          >
+            {display}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+      <span className="mt-1 block font-sans text-[9px] uppercase tracking-[0.2em] text-luxe-cream/45 sm:text-[10px]">
+        {label}
+      </span>
+    </motion.div>
   );
 }

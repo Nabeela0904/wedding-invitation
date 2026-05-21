@@ -1,31 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { formatCountdownUnit, useCountdown } from "@/lib/useCountdown";
 
-type TimeLeft = {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-};
-
-function calculateTimeLeft(target: number): TimeLeft | null {
-  const difference = target - Date.now();
-  if (difference <= 0) return null;
-  return {
-    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((difference / 1000 / 60) % 60),
-    seconds: Math.floor((difference / 1000) % 60),
-  };
-}
-
-const UNITS: { key: keyof TimeLeft; label: string }[] = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Mins" },
-  { key: "seconds", label: "Secs" },
+const UNITS = [
+  { key: "days" as const, label: "Days" },
+  { key: "hours" as const, label: "Hours" },
+  { key: "minutes" as const, label: "Mins" },
+  { key: "seconds" as const, label: "Secs" },
 ];
 
 type EventCountdownProps = {
@@ -37,19 +19,10 @@ export default function EventCountdown({
   countdownIso,
   label = "Until the celebration begins",
 }: EventCountdownProps) {
-  const target = new Date(countdownIso).getTime();
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(() =>
-    calculateTimeLeft(target),
-  );
+  const { timeLeft, mounted } = useCountdown(countdownIso);
+  const eventStarted = mounted && !timeLeft;
 
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setTimeLeft(calculateTimeLeft(target));
-    }, 1000);
-    return () => window.clearInterval(timer);
-  }, [target]);
-
-  if (!timeLeft) {
+  if (eventStarted) {
     return (
       <p className="text-center font-display text-lg text-marigold">
         The celebration has begun!
@@ -75,7 +48,7 @@ export default function EventCountdown({
             }}
           >
             <span className="block font-display text-xl font-semibold tabular-nums text-gold sm:text-2xl">
-              {String(timeLeft[key]).padStart(2, "0")}
+              {formatCountdownUnit(timeLeft?.[key])}
             </span>
             <span className="mt-0.5 block font-sans text-[9px] uppercase tracking-wider text-gold/55">
               {unitLabel}
