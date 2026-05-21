@@ -1,6 +1,5 @@
 export const HALDI_EVENT = {
-  ceremonyTitle: "The Haldi Ceremony of",
-  coupleNames: "Shoaib & Zeenath",
+  heroTitle: "Rasm-e-Haldi of Shoaib Faraz Ahmed",
   tagline:
     "Join us for an evening filled with colours of joy, the rhythm of dhol, and the warmth of love and laughter.",
   dateLabel: "8th July, 2026",

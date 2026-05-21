@@ -21,18 +21,11 @@ export default function HaldiHero() {
         aria-hidden
       />
 
-      <motion.p
-        variants={fadeSlideUp}
-        className="relative font-display text-[clamp(1.25rem,4vw,1.75rem)] font-medium tracking-wide text-gold drop-shadow-[0_1px_12px_rgba(255,253,249,0.9)]"
-      >
-        {HALDI_EVENT.ceremonyTitle}
-      </motion.p>
-
       <motion.h1
         variants={fadeSlideUp}
-        className="relative mt-3 bg-gradient-to-b from-gold via-saffron to-deep-gold bg-clip-text font-display text-[clamp(2.5rem,9vw,4.25rem)] font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_2px_24px_rgba(255,253,249,0.85)]"
+        className="relative bg-gradient-to-b from-gold via-saffron to-deep-gold bg-clip-text font-display text-[clamp(1.75rem,6.5vw,3.25rem)] font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_2px_24px_rgba(255,253,249,0.85)]"
       >
-        {HALDI_EVENT.coupleNames}
+        {HALDI_EVENT.heroTitle}
       </motion.h1>
 
       <motion.div
@@ -43,7 +36,7 @@ export default function HaldiHero() {
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 max-w-md text-balance font-sans text-sm leading-relaxed text-gold/80 drop-shadow-[0_1px_10px_rgba(255,253,249,0.85)] sm:text-base"
+        className="relative mx-auto mt-6 max-w-md text-balance font-sans text-sm font-medium leading-relaxed text-gold/85 drop-shadow-[0_1px_10px_rgba(255,253,249,0.85)] sm:text-base"
       >
         {HALDI_EVENT.tagline}
       </motion.p>

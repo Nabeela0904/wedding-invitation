@@ -6,9 +6,9 @@ import HaldiHero from "@/components/haldi/HaldiHero";
 import DetailsCard from "@/components/haldi/DetailsCard";
 
 export const metadata: Metadata = {
-  title: "Rasm-e-Haldi | Shoaib & Zeenath",
+  title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
   description:
-    "You are cordially invited to the Haldi ceremony of Shoaib & Zeenath — 8th July, 2026.",
+    "You are cordially invited to Rasm-e-Haldi of Shoaib Faraz Ahmed — 8th July, 2026.",
 };
 
 export default function HaldiPage() {
