@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
 import HaldiHero from "@/components/haldi/HaldiHero";
 
@@ -30,12 +29,12 @@ export default function HaldiPage() {
 
       <DetailsCard />
 
-      <Link
-        href="/"
+      <a
+        href="/index.html"
         className="fixed left-4 top-4 z-50 rounded-full border border-marigold/30 bg-white/50 px-4 py-2 font-sans text-xs font-medium text-gold backdrop-blur-sm transition-colors hover:bg-white/70 sm:left-6 sm:top-6 sm:text-sm"
       >
-        ← Wedding Home
-      </Link>
+        ← Main Invitation
+      </a>
 
       <footer className="relative z-10 pb-10 text-center">
         <p className="font-sans text-xs text-gold/50">
