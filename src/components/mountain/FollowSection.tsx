@@ -31,7 +31,7 @@ export default function FollowSection() {
           href={HALDI_EVENT.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 inline-flex items-center justify-center rounded-full border border-mountain-accent/30 bg-white/70 px-8 py-3 font-sans text-sm font-medium text-mountain-ink transition-colors hover:border-mountain-accent/50 hover:bg-white"
+          className="mt-6 inline-flex items-center justify-center rounded-full border border-marigold/30 bg-white/50 px-8 py-3 font-sans text-sm font-medium text-gold transition-colors hover:bg-white/70"
         >
           Open Instagram
         </motion.a>

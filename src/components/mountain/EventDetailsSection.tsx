@@ -29,7 +29,7 @@ export default function EventDetailsSection() {
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-full border border-mountain-accent/25 bg-white/80 px-5 py-3 font-sans text-sm font-medium text-mountain-ink transition-colors hover:border-mountain-accent/45 hover:bg-white"
+          className="mt-6 flex w-full items-center justify-center gap-2 rounded-full border border-marigold/30 bg-white/50 px-5 py-3 font-sans text-sm font-medium text-gold transition-colors hover:bg-white/70"
         >
           View on Google Maps
         </motion.a>
@@ -40,8 +40,8 @@ export default function EventDetailsSection() {
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
-    <motion.div variants={fadeSlideUpSoft} className="border-b border-mountain-accent/10 pb-4 last:border-0">
-      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-mountain-accent">
+    <motion.div variants={fadeSlideUpSoft} className="border-b border-marigold/15 pb-4 last:border-0">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-saffron">
         {label}
       </p>
       <p className="mt-1 font-sans text-sm text-mountain-ink">{value}</p>

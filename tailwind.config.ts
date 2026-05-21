@@ -19,9 +19,9 @@ const config: Config = {
         "luxe-gold": "#D4AF37",
         "luxe-cream": "#E8D5A3",
         "islamic-emerald": "#0f3d32",
-        "mountain-ink": "#2a2238",
-        "mountain-muted": "#5c5068",
-        "mountain-accent": "#7d5a8c",
+        "mountain-ink": "#B45309",
+        "mountain-muted": "#92670a",
+        "mountain-accent": "#D97706",
       },
       fontFamily: {
         display: ["var(--font-playfair)", "Georgia", "serif"],

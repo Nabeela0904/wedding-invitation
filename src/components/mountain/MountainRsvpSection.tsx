@@ -138,7 +138,7 @@ export default function MountainRsvpSection() {
             </div>
             <motion.button
               type="submit"
-              className="w-full rounded-full bg-mountain-accent px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-widest text-white will-change-transform"
+              className="mountain-btn-primary will-change-transform"
               whileHover={{
                 scale: 1.02,
                 boxShadow: "0 8px 28px rgba(125,90,140,0.35)",

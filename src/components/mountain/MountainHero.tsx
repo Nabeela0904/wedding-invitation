@@ -50,7 +50,7 @@ export default function MountainHero() {
         aria-hidden
       >
         <motion.div
-          className="h-10 w-px bg-mountain-ink/30"
+          className="h-10 w-px bg-gold/30"
           animate={{ scaleY: [0.5, 1, 0.5], opacity: [0.35, 0.8, 0.35] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />

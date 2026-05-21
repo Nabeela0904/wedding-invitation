@@ -78,7 +78,7 @@ export default function MountainCountdownSection() {
             {UNITS.map(({ key, label }) => (
               <div
                 key={key}
-                className="rounded-xl border border-mountain-accent/15 bg-white/60 py-3"
+                className="rounded-xl border border-marigold/20 bg-white/60 py-3"
               >
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.span
