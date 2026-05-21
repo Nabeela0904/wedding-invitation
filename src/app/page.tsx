@@ -2,7 +2,14 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <>
+      <link
+        rel="prefetch"
+        as="image"
+        href="/haldi-cinematic-bg.webp"
+        type="image/webp"
+      />
+      <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
       <p className="font-sans text-sm uppercase tracking-[0.3em] text-saffron">
         Shoaib &amp; Zeenath
       </p>
@@ -27,5 +34,6 @@ export default function HomePage() {
         </a>
       </div>
     </main>
+    </>
   );
 }

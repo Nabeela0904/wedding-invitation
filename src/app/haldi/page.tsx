@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
-import MarigoldPetals from "@/components/haldi/MarigoldPetals";
 import HaldiHero from "@/components/haldi/HaldiHero";
-import DetailsCard from "@/components/haldi/DetailsCard";
+
+const MarigoldPetals = dynamic(() => import("@/components/haldi/MarigoldPetals"), {
+  ssr: false,
+});
+
+const DetailsCard = dynamic(() => import("@/components/haldi/DetailsCard"), {
+  loading: () => <div className="relative z-10 mx-auto h-40 max-w-lg" aria-hidden />,
+});
 
 export const metadata: Metadata = {
   title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
