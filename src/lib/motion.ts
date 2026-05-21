@@ -1,10 +1,10 @@
 import type { Transition, Variants } from "framer-motion";
 
-/** Silky spring — premium settle with minimal bounce */
+/** Hero entrance spring: stiffness 80, damping 15 */
 export const heroSpring: Transition = {
   type: "spring",
-  stiffness: 60,
-  damping: 22,
+  stiffness: 80,
+  damping: 15,
 };
 
 export const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -14,8 +14,8 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15,
+      staggerChildren: 0.14,
+      delayChildren: 0.18,
     },
   },
 };
@@ -23,7 +23,7 @@ export const staggerContainer: Variants = {
 export const fadeSlideUp: Variants = {
   hidden: {
     opacity: 0,
-    y: 22,
+    y: 28,
   },
   visible: {
     opacity: 1,
@@ -32,36 +32,11 @@ export const fadeSlideUp: Variants = {
   },
 };
 
-export const fadeSlideUpSoft: Variants = {
-  hidden: { opacity: 0, y: 14 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.75, ease: smoothEase },
-  },
-};
-
 export const cardReveal: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 32,
-    scale: 0.97,
-  },
+  hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.85,
-      ease: smoothEase,
-    },
-  },
-};
-
-export const staggerSection: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.25 },
+    transition: heroSpring,
   },
 };

@@ -1,33 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import MountainHero from "@/components/mountain/MountainHero";
-import BlessingsSection from "@/components/mountain/BlessingsSection";
-import InviteSection from "@/components/mountain/InviteSection";
-import MountainRsvpSection from "@/components/mountain/MountainRsvpSection";
-import EventDetailsSection from "@/components/mountain/EventDetailsSection";
-import ThingsToKnow from "@/components/mountain/ThingsToKnow";
-import FollowSection from "@/components/mountain/FollowSection";
-import MountainCountdownSection from "@/components/mountain/MountainCountdownSection";
-import MountainFooter from "@/components/mountain/MountainFooter";
+import MarigoldPetals from "@/components/haldi/MarigoldPetals";
+import HaldiHero from "@/components/haldi/HaldiHero";
+import DetailsCard from "@/components/haldi/DetailsCard";
 
 export const metadata: Metadata = {
   title: "Rasm-e-Haldi | Shoaib & Zeenath",
   description:
-    "You are cordially invited to the Haldi ceremony of Shoaib Faraz Ahmed — 8th July, 2026.",
+    "You are cordially invited to the Haldi ceremony of Shoaib & Zeenath — 8th July, 2026.",
 };
 
 export default function HaldiPage() {
   return (
-    <main className="mountain-page relative min-h-screen overflow-x-hidden">
-      <MountainHero />
-      <BlessingsSection />
-      <InviteSection />
-      <MountainRsvpSection />
-      <EventDetailsSection />
-      <ThingsToKnow />
-      <FollowSection />
-      <MountainCountdownSection />
-      <MountainFooter />
+    <main className="relative min-h-screen overflow-x-hidden bg-cream">
+      <MarigoldPetals />
+      <HaldiHero />
+      <DetailsCard />
 
       <Link
         href="/"
@@ -35,6 +23,12 @@ export default function HaldiPage() {
       >
         ← Wedding Home
       </Link>
+
+      <footer className="relative z-10 pb-10 text-center">
+        <p className="font-sans text-xs text-gold/50">
+          With love &amp; gratitude — Shoaib &amp; Zeenath
+        </p>
+      </footer>
     </main>
   );
 }
