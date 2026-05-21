@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import IslamicLatticeBg from "@/components/nikah/IslamicLatticeBg";
-import NikahHero from "@/components/nikah/NikahHero";
-import NikahEventDetails from "@/components/nikah/NikahEventDetails";
-import NikahVenueSection from "@/components/nikah/NikahVenueSection";
+import NikahLoader from "@/components/nikah/NikahLoader";
+import NikahHeroSlide from "@/components/nikah/NikahHeroSlide";
+import NikahTimelineSection from "@/components/nikah/NikahTimelineSection";
+import NikahVenueModule from "@/components/nikah/NikahVenueModule";
+import NikahClosingFooter from "@/components/nikah/NikahClosingFooter";
 
 export const metadata: Metadata = {
   title: "Nikah Ceremony | Shoaib & Zeenath",
@@ -12,24 +13,20 @@ export const metadata: Metadata = {
 
 export default function NikahPage() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-ivory text-emerald">
-      <IslamicLatticeBg />
-      <NikahHero />
-      <NikahEventDetails />
-      <NikahVenueSection />
+    <NikahLoader>
+      <main className="relative overflow-x-hidden bg-warm-ivory text-charcoal">
+        <NikahHeroSlide />
+        <NikahTimelineSection />
+        <NikahVenueModule />
+        <NikahClosingFooter />
 
-      <a
-        href="/index.html"
-        className="fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/60 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/80 sm:left-6 sm:top-6 sm:text-sm"
-      >
-        ← Main Invitation
-      </a>
-
-      <footer className="relative z-10 pb-10 text-center">
-        <p className="font-sans text-xs text-emerald/45">
-          With love &amp; gratitude — Shoaib &amp; Zeenath
-        </p>
-      </footer>
-    </main>
+        <a
+          href="/index.html"
+          className="fixed left-4 top-4 z-50 rounded-none border border-metallic-gold/40 bg-warm-ivory/90 px-4 py-2 font-sans text-[10px] font-medium uppercase tracking-[0.2em] text-charcoal backdrop-blur-sm transition-[transform,background-color] duration-300 hover:scale-[1.02] hover:bg-warm-ivory sm:left-6 sm:top-6"
+        >
+          ← Main Invitation
+        </a>
+      </main>
+    </NikahLoader>
   );
 }

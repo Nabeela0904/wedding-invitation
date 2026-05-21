@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         cream: "#FFFDF9",
         ivory: "#FDFBF7",
+        "warm-ivory": "#F7F3EB",
+        charcoal: "#1C1C22",
+        "deep-indigo": "#1E1B3A",
         emerald: "#064E3B",
         "emerald-deep": "#043028",
         "metallic-gold": "#D4AF37",
@@ -37,6 +40,7 @@ const config: Config = {
         "gold-lg": "0 8px 32px rgba(217, 119, 6, 0.28)",
         "gold-aura": "0 0 32px rgba(245, 158, 11, 0.5), 0 0 56px rgba(217, 119, 6, 0.22)",
         "nikah-gold": "0 0 28px rgba(212, 175, 55, 0.35), 0 8px 32px rgba(6, 78, 59, 0.12)",
+        "raabta-glow": "0 0 32px rgba(212, 175, 55, 0.45), 0 0 0 1px rgba(212, 175, 55, 0.2)",
       },
     },
   },
