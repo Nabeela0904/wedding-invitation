@@ -4,29 +4,32 @@ import MountainScene from "@/components/mountain/MountainScene";
 import MountainHero from "@/components/mountain/MountainHero";
 import BlessingsSection from "@/components/mountain/BlessingsSection";
 import InviteSection from "@/components/mountain/InviteSection";
+import MountainRsvpSection from "@/components/mountain/MountainRsvpSection";
 import EventDetailsSection from "@/components/mountain/EventDetailsSection";
 import ThingsToKnow from "@/components/mountain/ThingsToKnow";
-import MountainRsvpSection from "@/components/mountain/MountainRsvpSection";
+import FollowSection from "@/components/mountain/FollowSection";
 import MountainCountdownSection from "@/components/mountain/MountainCountdownSection";
 import MountainFooter from "@/components/mountain/MountainFooter";
 
 export const metadata: Metadata = {
-  title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
+  title: "Rasm-e-Haldi | Shoaib & Zeenath",
   description:
     "You are cordially invited to the Haldi ceremony of Shoaib Faraz Ahmed — 8th July, 2026.",
 };
 
+/** Section order mirrors Missing Piece Mountain demo */
 export default function HaldiPage() {
   return (
-    <main className="mountain-page relative min-h-screen overflow-x-hidden">
+    <main className="mountain-page relative min-h-screen overflow-x-hidden bg-[#f7f0ea]">
       <MountainScene />
 
       <MountainHero />
       <BlessingsSection />
       <InviteSection />
+      <MountainRsvpSection />
       <EventDetailsSection />
       <ThingsToKnow />
-      <MountainRsvpSection />
+      <FollowSection />
       <MountainCountdownSection />
       <MountainFooter />
 

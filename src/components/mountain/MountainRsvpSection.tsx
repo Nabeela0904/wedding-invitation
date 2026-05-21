@@ -2,7 +2,13 @@
 
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { cardReveal, fadeSlideUpSoft, heroSpring, staggerSection } from "@/lib/motion";
+import { HALDI_EVENT } from "@/lib/haldi-event";
+import {
+  cardReveal,
+  fadeSlideUpSoft,
+  heroSpring,
+  staggerSection,
+} from "@/lib/motion";
 
 type AttendingStatus = "yes" | "no" | "maybe";
 type FoodPreference = "vegetarian" | "non-vegetarian" | "no-preference";
@@ -13,10 +19,8 @@ type FormState = {
   food: FoodPreference | "";
 };
 
-const INITIAL: FormState = { name: "", attending: "", food: "" };
-
 export default function MountainRsvpSection() {
-  const [form, setForm] = useState<FormState>(INITIAL);
+  const [form, setForm] = useState<FormState>({ name: "", attending: "", food: "" });
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -26,33 +30,24 @@ export default function MountainRsvpSection() {
   }
 
   return (
-    <section className="mountain-section">
+    <section className="mountain-section mountain-section--compact">
       <motion.div
-        className="mountain-card w-full max-w-md"
-        variants={cardReveal}
+        className="w-full max-w-md text-center"
+        variants={staggerSection}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        <motion.p variants={fadeSlideUpSoft} className="mountain-label">
-          RSVP
-        </motion.p>
-        <motion.h2
-          variants={fadeSlideUpSoft}
-          className="mt-3 font-display text-2xl text-mountain-ink"
-        >
-          Click to confirm
-        </motion.h2>
         <motion.p
           variants={fadeSlideUpSoft}
-          className="mt-2 font-sans text-sm text-mountain-muted"
+          className="font-display text-lg text-mountain-muted sm:text-xl"
         >
-          Kindly let us know if you will be joining us
+          {HALDI_EVENT.rsvpPrompt}
         </motion.p>
 
         {submitted ? (
           <motion.div
-            className="mt-6 rounded-xl bg-white/70 px-4 py-6"
+            className="mountain-card mt-8 text-center"
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={heroSpring}
@@ -62,20 +57,20 @@ export default function MountainRsvpSection() {
               Thank you, {form.name}!
             </p>
             <p className="mt-2 text-sm text-mountain-muted">
-              Your RSVP has been received with love.
+              Your RSVP has been received.
             </p>
           </motion.div>
         ) : (
           <motion.form
             onSubmit={handleSubmit}
-            className="mt-6 space-y-4 text-left"
-            variants={staggerSection}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            className="mountain-card mt-8 space-y-4 text-left"
+            variants={cardReveal}
           >
-            <motion.div variants={fadeSlideUpSoft}>
-              <label htmlFor="mtn-name" className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted">
+            <div>
+              <label
+                htmlFor="mtn-name"
+                className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted"
+              >
                 Name
               </label>
               <input
@@ -86,9 +81,12 @@ export default function MountainRsvpSection() {
                 className="mountain-input"
                 placeholder="Your full name"
               />
-            </motion.div>
-            <motion.div variants={fadeSlideUpSoft}>
-              <label htmlFor="mtn-attending" className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted">
+            </div>
+            <div>
+              <label
+                htmlFor="mtn-attending"
+                className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted"
+              >
                 Attending
               </label>
               <select
@@ -96,18 +94,26 @@ export default function MountainRsvpSection() {
                 required
                 value={form.attending}
                 onChange={(e) =>
-                  setForm((p) => ({ ...p, attending: e.target.value as AttendingStatus }))
+                  setForm((p) => ({
+                    ...p,
+                    attending: e.target.value as AttendingStatus,
+                  }))
                 }
                 className="mountain-input"
               >
-                <option value="" disabled>Select status</option>
+                <option value="" disabled>
+                  Select status
+                </option>
                 <option value="yes">Joyfully attending</option>
                 <option value="maybe">Will try my best</option>
                 <option value="no">Unable to attend</option>
               </select>
-            </motion.div>
-            <motion.div variants={fadeSlideUpSoft}>
-              <label htmlFor="mtn-food" className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted">
+            </div>
+            <div>
+              <label
+                htmlFor="mtn-food"
+                className="mb-1 block text-xs font-medium uppercase tracking-wider text-mountain-muted"
+              >
                 Food Preference
               </label>
               <select
@@ -115,21 +121,28 @@ export default function MountainRsvpSection() {
                 required
                 value={form.food}
                 onChange={(e) =>
-                  setForm((p) => ({ ...p, food: e.target.value as FoodPreference }))
+                  setForm((p) => ({
+                    ...p,
+                    food: e.target.value as FoodPreference,
+                  }))
                 }
                 className="mountain-input"
               >
-                <option value="" disabled>Select preference</option>
+                <option value="" disabled>
+                  Select preference
+                </option>
                 <option value="vegetarian">Vegetarian</option>
                 <option value="non-vegetarian">Non-vegetarian</option>
                 <option value="no-preference">No preference</option>
               </select>
-            </motion.div>
+            </div>
             <motion.button
               type="submit"
-              variants={fadeSlideUpSoft}
               className="w-full rounded-full bg-mountain-accent px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-widest text-white will-change-transform"
-              whileHover={{ scale: 1.02, boxShadow: "0 8px 28px rgba(125,90,140,0.35)" }}
+              whileHover={{
+                scale: 1.02,
+                boxShadow: "0 8px 28px rgba(125,90,140,0.35)",
+              }}
               whileTap={{ scale: 0.96 }}
             >
               Submit RSVP

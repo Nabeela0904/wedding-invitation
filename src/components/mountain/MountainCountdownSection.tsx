@@ -104,8 +104,7 @@ export default function MountainCountdownSection() {
           variants={fadeSlideUpSoft}
           className="mt-8 font-sans text-sm leading-relaxed text-mountain-muted"
         >
-          We are excited that you are able to join us in celebrating what we
-          hope will be one of the happiest evenings of our lives.
+          {HALDI_EVENT.countdownClosing}
         </motion.p>
       </motion.div>
     </section>

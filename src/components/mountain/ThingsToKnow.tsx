@@ -6,7 +6,7 @@ import { cardReveal, fadeSlideUpSoft, staggerSection } from "@/lib/motion";
 
 export default function ThingsToKnow() {
   return (
-    <section className="mountain-section py-24">
+    <section className="mountain-section mountain-section--stacked">
       <motion.div
         className="w-full max-w-2xl"
         variants={staggerSection}
@@ -14,34 +14,30 @@ export default function ThingsToKnow() {
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
       >
-        <motion.p variants={fadeSlideUpSoft} className="mountain-label">
-          Things to know
-        </motion.p>
         <motion.h2
           variants={fadeSlideUpSoft}
-          className="mt-3 font-display text-2xl text-mountain-ink sm:text-3xl"
+          className="font-display text-[clamp(1.75rem,5vw,2.5rem)] text-mountain-ink"
         >
-          To help you feel at ease
+          Things to know
         </motion.h2>
         <motion.p
           variants={fadeSlideUpSoft}
-          className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-mountain-muted"
+          className="mx-auto mt-5 max-w-lg font-sans text-sm leading-relaxed text-mountain-muted sm:text-base"
         >
-          We&apos;ve gathered a few thoughtful details we&apos;d love for you to
-          know before the Haldi ceremony.
+          {HALDI_EVENT.thingsToKnowIntro}
         </motion.p>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-12 space-y-10">
           {HALDI_EVENT.thingsToKnow.map((item) => (
             <motion.div
               key={item.title}
               variants={cardReveal}
-              className="mountain-card text-left"
+              className="mountain-know-item text-left"
             >
-              <h3 className="font-display text-lg text-mountain-accent">
+              <h3 className="font-display text-2xl text-mountain-accent sm:text-3xl">
                 {item.title}
               </h3>
-              <p className="mt-2 font-sans text-sm leading-relaxed text-mountain-muted">
+              <p className="mt-3 font-sans text-sm leading-relaxed text-mountain-muted sm:text-base">
                 {item.description}
               </p>
             </motion.div>
