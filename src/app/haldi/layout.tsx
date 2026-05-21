@@ -1,4 +1,4 @@
-import "./haldi-theme.css";
+import "./mountain-theme.css";
 
 export default function HaldiLayout({
   children,
