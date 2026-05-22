@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
 import HaldiHero from "@/components/haldi/HaldiHero";
+import { SITE_FOOTER } from "@/lib/site-copy";
 
 const MarigoldPetals = dynamic(() => import("@/components/haldi/MarigoldPetals"), {
   ssr: false,
@@ -38,7 +39,7 @@ export default function HaldiPage() {
 
       <footer className="relative z-10 pb-10 text-center">
         <p className="font-sans text-xs text-gold/50">
-          With love &amp; gratitude — Shoaib &amp; Zeenath
+          {SITE_FOOTER}
         </p>
       </footer>
     </main>

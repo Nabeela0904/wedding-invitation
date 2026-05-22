@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { SITE_FOOTER } from "@/lib/site-copy";
 import ParallaxLayer from "./ParallaxLayer";
 
 export default function NikahClosingFooter() {
@@ -13,7 +14,7 @@ export default function NikahClosingFooter() {
           viewport={{ once: true }}
           className="font-sans text-xs text-ivory/45"
         >
-          With love &amp; gratitude — Shoaib &amp; Zeenath
+          {SITE_FOOTER}
         </motion.p>
       </ParallaxLayer>
     </footer>

@@ -5,6 +5,7 @@ import CinematicWalimaScene from "@/components/walima/CinematicWalimaScene";
 import WalimaHeroSlide from "@/components/walima/WalimaHeroSlide";
 import WalimaTimelineSection from "@/components/walima/WalimaTimelineSection";
 import WalimaVenueModule from "@/components/walima/WalimaVenueModule";
+import { SITE_FOOTER } from "@/lib/site-copy";
 
 const WalimaPetals = dynamic(() => import("@/components/walima/WalimaPetals"), {
   ssr: false,
@@ -32,7 +33,7 @@ export default function WalimaPage() {
 
         <footer className="border-t border-wine/10 bg-wine-deep py-10 text-center">
           <p className="font-sans text-xs text-cream/45">
-            With love &amp; gratitude — Shoaib &amp; Zeenath
+            {SITE_FOOTER}
           </p>
         </footer>
 
