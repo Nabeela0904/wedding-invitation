@@ -17,7 +17,7 @@ export default function WalimaTimelineSection() {
   const { timeLeft, mounted } = useCountdown(WALIMA_EVENT.countdownIso);
 
   return (
-    <section className="relative bg-emerald px-5 py-24 text-champagne-light sm:px-8 sm:py-32">
+    <section className="relative bg-wine px-5 py-24 text-cream sm:px-8 sm:py-32">
       <motion.div
         className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16"
         variants={cardReveal}
@@ -35,7 +35,7 @@ export default function WalimaTimelineSection() {
             </motion.p>
             <motion.p
               variants={fadeSlideUp}
-              className="mt-6 font-display text-[clamp(1.5rem,4vw,2.25rem)] leading-snug tracking-wide text-champagne-light"
+              className="mt-6 font-display text-[clamp(1.5rem,4vw,2.25rem)] leading-snug tracking-wide text-cream"
             >
               {WALIMA_EVENT.dateLabel}
             </motion.p>
@@ -62,7 +62,7 @@ export default function WalimaTimelineSection() {
                       ? formatCountdownUnit(timeLeft[key])
                       : "--"}
                   </span>
-                  <span className="mt-1 block font-sans text-[8px] uppercase tracking-[0.2em] text-champagne-light/45 sm:text-[9px]">
+                  <span className="mt-1 block font-sans text-[8px] uppercase tracking-[0.2em] text-cream/45 sm:text-[9px]">
                     {label}
                   </span>
                 </motion.div>

@@ -7,7 +7,7 @@ import ParallaxLayer from "@/components/nikah/ParallaxLayer";
 
 export default function WalimaVenueModule() {
   return (
-    <section className="relative bg-champagne-light px-5 py-24 sm:px-8 sm:py-32">
+    <section className="relative bg-cream px-5 py-24 sm:px-8 sm:py-32">
       <motion.div
         className="walima-glass mx-auto max-w-lg p-6 text-center sm:p-8"
         variants={cardReveal}
@@ -18,13 +18,13 @@ export default function WalimaVenueModule() {
         <ParallaxLayer offset={24}>
           <motion.h2
             variants={fadeSlideUp}
-            className="font-display text-[clamp(1.5rem,4vw,2rem)] uppercase tracking-[0.18em] text-emerald"
+            className="font-display text-[clamp(1.5rem,4vw,2rem)] uppercase tracking-[0.18em] text-wine"
           >
             {WALIMA_EVENT.venueTitle}
           </motion.h2>
           <motion.p
             variants={fadeSlideUp}
-            className="mt-3 font-sans text-[10px] uppercase tracking-[0.28em] text-emerald/55"
+            className="mt-3 font-sans text-[10px] uppercase tracking-[0.28em] text-wine/55"
           >
             Travel &amp; navigate with ease
           </motion.p>
@@ -32,9 +32,9 @@ export default function WalimaVenueModule() {
 
         <motion.div
           variants={fadeSlideUp}
-          className="relative mx-auto mt-10 inline-block overflow-hidden rounded-2xl border-2 border-metallic-gold/55 bg-white/70 p-3 shadow-raabta-glow"
+          className="relative mx-auto mt-10 inline-block overflow-hidden rounded-2xl border-2 border-wine/30 bg-white/75 p-3 shadow-wine-glow"
         >
-          <div className="absolute inset-2 rounded-xl border border-emerald/15" aria-hidden />
+          <div className="absolute inset-2 rounded-xl border border-metallic-gold/25" aria-hidden />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={WALIMA_EVENT.qrImage}
@@ -50,7 +50,7 @@ export default function WalimaVenueModule() {
           href={WALIMA_EVENT.mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center justify-center rounded-full border border-metallic-gold/50 bg-gradient-to-r from-emerald to-emerald-deep px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-champagne-light shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
+          className="mt-8 inline-flex items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-wine to-wine-deep px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-wine-glow transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
         >
           Open Location in Google Maps
         </motion.a>
