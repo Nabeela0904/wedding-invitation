@@ -434,6 +434,66 @@ h2 {
   color: var(--text-soft);
 }
 
+.nikah-invite {
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 1.6rem 1.2rem 1.4rem;
+  border: 1px solid rgba(223, 176, 111, 0.34);
+  border-radius: 1rem;
+  background: rgba(255, 245, 227, 0.07);
+}
+
+.nikah-bismillah {
+  margin: 0 0 1.1rem;
+  font-family: "Noto Nastaliq Urdu", "Amiri", serif;
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  line-height: 1.9;
+  color: var(--accent-soft);
+}
+
+.nikah-verse {
+  margin: 0 auto 1.5rem;
+  padding: 1rem 0.5rem;
+  max-width: 680px;
+  border: none;
+  border-top: 1px solid rgba(223, 176, 111, 0.22);
+  border-bottom: 1px solid rgba(223, 176, 111, 0.22);
+}
+
+.nikah-verse p {
+  margin: 0.15rem 0;
+  font-family: "Noto Nastaliq Urdu", "Amiri", serif;
+  font-size: clamp(1.15rem, 2.8vw, 1.55rem);
+  line-height: 2;
+  color: #f1cb93;
+}
+
+.nikah-invite-body {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.nikah-invite-body p {
+  margin: 0 0 0.85rem;
+  color: var(--text-soft);
+  line-height: 1.85;
+  font-size: 1.02rem;
+}
+
+.nikah-groom-name {
+  margin: 0.35rem 0 0.85rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 4.5vw, 2.85rem);
+  font-weight: 600;
+  color: #f5d9ae;
+  letter-spacing: 0.02em;
+}
+
+.nikah-closing {
+  margin-top: 1rem !important;
+  color: #ead7bb !important;
+}
+
 .celebrations {
   text-align: center;
   padding: 1.4rem 0.8rem;
