@@ -98,4 +98,57 @@ if (mainRsvpForm && mainRsvpSuccess) {
   });
 }
 
+const bgMusic = document.querySelector("#bg-music");
+const musicToggle = document.querySelector("#music-toggle");
+const MUSIC_STORAGE_KEY = "wedding-music-playing";
+
+function setMusicUi(isPlaying) {
+  if (!musicToggle) return;
+  musicToggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+  musicToggle.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+  musicToggle.querySelector(".music-toggle-icon").textContent = isPlaying ? "❚❚" : "♪";
+  musicToggle.querySelector(".music-toggle-label").textContent = isPlaying ? "Music on" : "Play music";
+}
+
+async function playBackgroundMusic() {
+  if (!bgMusic) return false;
+  try {
+    await bgMusic.play();
+    sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+    setMusicUi(true);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function pauseBackgroundMusic() {
+  if (!bgMusic) return;
+  bgMusic.pause();
+  sessionStorage.setItem(MUSIC_STORAGE_KEY, "0");
+  setMusicUi(false);
+}
+
+if (bgMusic && musicToggle) {
+  bgMusic.volume = 0.35;
+
+  musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      void playBackgroundMusic();
+      return;
+    }
+    pauseBackgroundMusic();
+  });
+
+  const resumeIfEnabled = () => {
+    if (sessionStorage.getItem(MUSIC_STORAGE_KEY) === "1") {
+      void playBackgroundMusic();
+    }
+  };
+
+  resumeIfEnabled();
+  document.addEventListener("click", resumeIfEnabled, { once: true });
+  document.addEventListener("touchstart", resumeIfEnabled, { once: true });
+}
+
 animateBackground();

@@ -689,6 +689,44 @@ h2 {
   line-height: 1.6;
 }
 
+.music-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.62rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(223, 176, 111, 0.45);
+  background: linear-gradient(180deg, rgba(255, 228, 183, 0.22), rgba(223, 176, 111, 0.18));
+  color: #f9edd9;
+  font: inherit;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.music-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245, 206, 149, 0.85);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+}
+
+.music-toggle-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.music-toggle[aria-pressed="true"] {
+  border-color: rgba(247, 221, 180, 0.92);
+  background: linear-gradient(180deg, rgba(255, 233, 197, 0.3), rgba(223, 176, 111, 0.24));
+}
+
 .story p {
   line-height: 1.85;
 }

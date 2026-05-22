@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Amiri, Inter, Playfair_Display } from "next/font/google";
+import BackgroundMusic from "@/components/BackgroundMusic";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -36,7 +37,10 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${inter.variable} ${amiri.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <BackgroundMusic />
+        {children}
+      </body>
     </html>
   );
 }
