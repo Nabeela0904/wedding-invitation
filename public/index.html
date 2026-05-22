@@ -47,11 +47,38 @@
       </div>
     </section>
 
-    <section id="details" class="details reveal">
-      <h2>Wedding Celebration</h2>
-      <p><strong>Date:</strong> Sunday, 21st July 2026</p>
-      <p><strong>Time:</strong> 6:00 PM onwards</p>
-      <p><strong>Venue:</strong> Royal Palace Banquet, Hyderabad</p>
+    <section id="celebrations" class="celebrations reveal">
+      <h2>Our Celebrations</h2>
+      <p class="celebrations-intro">
+        We are honoured to invite you to join us across three cherished ceremonies.
+        Your presence and blessings will make our wedding truly special.
+      </p>
+      <div class="celebration-grid">
+        <article class="celebration-card">
+          <p class="celebration-label">Rasm-e-Haldi</p>
+          <h3>Haldi</h3>
+          <p><strong>Date:</strong> 8th July, 2026</p>
+          <p><strong>Time:</strong> 5pm till late</p>
+          <p><strong>Venue:</strong> Noorunisa Enclave at Meerani's residence</p>
+          <a class="celebration-link" href="/haldi">View Invitation</a>
+        </article>
+        <article class="celebration-card">
+          <p class="celebration-label">Nikah Ceremony</p>
+          <h3>Nikah</h3>
+          <p><strong>Date:</strong> Thursday, 9th July, 2026</p>
+          <p><strong>Time:</strong> After Asar Namaz · Dinner 7:00 PM onwards</p>
+          <p><strong>Venue:</strong> Noorunisa Enclave at Meerani's residence</p>
+          <a class="celebration-link" href="/nikah">View Invitation</a>
+        </article>
+        <article class="celebration-card">
+          <p class="celebration-label">Walima Ceremony</p>
+          <h3>Valima</h3>
+          <p><strong>Date:</strong> Sunday, 11th July, 2026</p>
+          <p><strong>Time:</strong> Evening</p>
+          <p><strong>Venue:</strong> Noorunisa Enclave at Meerani's residence</p>
+          <a class="celebration-link" href="/walima">View Invitation</a>
+        </article>
+      </div>
       <p class="note">Your blessings, prayers, and presence will make our day truly special.</p>
     </section>
 
@@ -80,8 +107,57 @@
         </article>
         <article>
           <h3>RSVP</h3>
-          <p>Please confirm your presence with the family.</p>
+          <p>Kindly confirm your attendance using the form below.</p>
         </article>
+      </div>
+    </section>
+
+    <section id="rsvp" class="rsvp-section reveal">
+      <h2>RSVP</h2>
+      <p class="rsvp-intro">We would be honoured by your presence. Please share your response below.</p>
+      <form id="main-rsvp-form" class="rsvp-form" novalidate>
+        <div class="rsvp-field">
+          <label for="main-rsvp-name">Name</label>
+          <input id="main-rsvp-name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
+        </div>
+        <div class="rsvp-field">
+          <label for="main-rsvp-attending">Attending Status</label>
+          <select id="main-rsvp-attending" name="attending" required>
+            <option value="" disabled selected>Select status</option>
+            <option value="yes">Joyfully attending</option>
+            <option value="maybe">Will try my best</option>
+            <option value="no">Unable to attend</option>
+          </select>
+        </div>
+        <fieldset class="rsvp-field rsvp-events">
+          <legend>Ceremonies Attending</legend>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="haldi">
+            <span>Haldi — 8th July</span>
+          </label>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="nikah">
+            <span>Nikah — 9th July</span>
+          </label>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="walima">
+            <span>Valima — 11th July</span>
+          </label>
+        </fieldset>
+        <div class="rsvp-field">
+          <label for="main-rsvp-food">Food Preference</label>
+          <select id="main-rsvp-food" name="food" required>
+            <option value="" disabled selected>Select preference</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="non-vegetarian">Non-vegetarian</option>
+            <option value="no-preference">No preference</option>
+          </select>
+        </div>
+        <button type="submit" class="rsvp-submit">Submit RSVP</button>
+      </form>
+      <div id="main-rsvp-success" class="rsvp-success is-hidden" role="status" aria-live="polite">
+        <p class="rsvp-success-title">Thank you!</p>
+        <p class="rsvp-success-text">Your RSVP has been received. We cannot wait to celebrate with you.</p>
       </div>
     </section>
 

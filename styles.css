@@ -434,6 +434,201 @@ h2 {
   color: var(--text-soft);
 }
 
+.celebrations {
+  text-align: center;
+  padding: 1.4rem 0.8rem;
+}
+
+.celebrations-intro {
+  max-width: 640px;
+  margin: 0 auto 1.4rem;
+  color: var(--text-soft);
+  line-height: 1.75;
+}
+
+.celebration-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.celebration-card {
+  text-align: left;
+  border: 1px solid rgba(223, 176, 111, 0.34);
+  border-radius: 1rem;
+  padding: 1.1rem 1rem 1.2rem;
+  background: rgba(255, 245, 227, 0.07);
+}
+
+.celebration-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #e8c992;
+}
+
+.celebration-card h3 {
+  margin: 0 0 0.65rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.65rem;
+  color: #f1cb93;
+}
+
+.celebration-card p {
+  margin: 0.35rem 0;
+  color: var(--text-soft);
+  line-height: 1.55;
+  font-size: 0.95rem;
+}
+
+.celebration-link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(223, 176, 111, 0.45);
+  color: #f9edd9;
+  text-decoration: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease;
+}
+
+.celebration-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(245, 206, 149, 0.8);
+  background: rgba(255, 231, 192, 0.12);
+}
+
+.rsvp-section {
+  margin-top: 0.8rem;
+  padding: 1.4rem 1rem 1.6rem;
+  border: 1px solid rgba(223, 176, 111, 0.28);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.rsvp-intro {
+  max-width: 520px;
+  margin: 0 auto 1.2rem;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.rsvp-form {
+  max-width: 460px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.rsvp-field {
+  margin-bottom: 1rem;
+}
+
+.rsvp-field label,
+.rsvp-field legend {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #e8c992;
+}
+
+.rsvp-field input[type="text"],
+.rsvp-field select {
+  width: 100%;
+  padding: 0.72rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(223, 176, 111, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font: inherit;
+}
+
+.rsvp-field input[type="text"]::placeholder {
+  color: rgba(246, 239, 228, 0.45);
+}
+
+.rsvp-field input[type="text"]:focus,
+.rsvp-field select:focus {
+  outline: none;
+  border-color: rgba(245, 206, 149, 0.75);
+  box-shadow: 0 0 0 2px rgba(223, 176, 111, 0.18);
+}
+
+.rsvp-events {
+  border: 1px solid rgba(223, 176, 111, 0.22);
+  border-radius: 0.75rem;
+  padding: 0.85rem 0.9rem 0.65rem;
+  margin: 0 0 1rem;
+}
+
+.rsvp-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.45rem;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.rsvp-checkbox input {
+  accent-color: #dfb06f;
+}
+
+.rsvp-submit {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.82rem 1rem;
+  border: 1px solid rgba(223, 176, 111, 0.5);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 228, 183, 0.24), rgba(223, 176, 111, 0.2));
+  color: #f9edd9;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.24s ease, box-shadow 0.24s ease;
+}
+
+.rsvp-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.rsvp-success {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(223, 176, 111, 0.35);
+  background: rgba(255, 245, 227, 0.08);
+}
+
+.rsvp-success-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  color: #f1cb93;
+}
+
+.rsvp-success-text {
+  margin: 0.45rem 0 0;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
 .story p {
   line-height: 1.85;
 }

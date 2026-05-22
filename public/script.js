@@ -75,4 +75,27 @@ eventButtons.forEach((button) => {
   });
 });
 
+const mainRsvpForm = document.querySelector("#main-rsvp-form");
+const mainRsvpSuccess = document.querySelector("#main-rsvp-success");
+
+if (mainRsvpForm && mainRsvpSuccess) {
+  mainRsvpForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = mainRsvpForm.querySelector("#main-rsvp-name");
+    const attending = mainRsvpForm.querySelector("#main-rsvp-attending");
+    const food = mainRsvpForm.querySelector("#main-rsvp-food");
+
+    if (!name.value.trim() || !attending.value || !food.value) {
+      mainRsvpForm.reportValidity();
+      return;
+    }
+
+    const guestName = name.value.trim();
+    mainRsvpForm.classList.add("is-hidden");
+    mainRsvpSuccess.classList.remove("is-hidden");
+    mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = `Thank you, ${guestName}!`;
+  });
+}
+
 animateBackground();
