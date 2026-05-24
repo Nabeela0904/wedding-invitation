@@ -370,6 +370,68 @@ footer {
   flex-wrap: wrap;
 }
 
+.wedding-intro {
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 1.6rem 1.2rem 1.5rem;
+  border: 1px solid rgba(223, 176, 111, 0.34);
+  border-radius: 1rem;
+  background: rgba(255, 245, 227, 0.07);
+}
+
+.wedding-intro .quran-arabic {
+  margin-top: 0;
+}
+
+.wedding-intro .quran-translation {
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.intro-couple-names {
+  margin: 0.75rem 0 1rem;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.intro-couple-names span {
+  color: var(--text-main);
+  font-size: 0.72em;
+}
+
+.intro-lead,
+.intro-events-line,
+.intro-closing {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-soft);
+  line-height: 1.8;
+  font-size: clamp(0.98rem, 2.2vw, 1.1rem);
+}
+
+.intro-lead {
+  margin-bottom: 0.85rem;
+}
+
+.intro-events-line {
+  margin-bottom: 1.25rem;
+  color: #ead7bb;
+}
+
+.wedding-intro .event-buttons {
+  margin: 0.25rem 0 1.25rem;
+}
+
+.intro-closing {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+  color: #e8d5b8;
+}
+
 .event-button {
   display: inline-block;
   min-width: 110px;
