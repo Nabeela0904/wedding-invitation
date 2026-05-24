@@ -5,6 +5,46 @@ const layers = {
   lanternOverlay: document.querySelector(".lantern-overlay"),
 };
 
+const royalDoorOverlay = document.getElementById("royal-door-overlay");
+const royalDoorOpenBtn = document.getElementById("royal-door-open");
+const ROYAL_DOOR_OPEN_MS = 1900;
+
+function finishRoyalDoorEntrance() {
+  document.body.classList.remove("royal-door-locked");
+  if (!royalDoorOverlay) return;
+  royalDoorOverlay.classList.add("is-hidden");
+  royalDoorOverlay.setAttribute("aria-hidden", "true");
+  window.setTimeout(() => royalDoorOverlay.remove(), 700);
+}
+
+function openRoyalDoor() {
+  if (!royalDoorOverlay || royalDoorOverlay.classList.contains("is-open")) {
+    return;
+  }
+
+  if (royalDoorOpenBtn) {
+    royalDoorOpenBtn.disabled = true;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion) {
+    finishRoyalDoorEntrance();
+    return;
+  }
+
+  royalDoorOverlay.classList.add("is-opening");
+  window.requestAnimationFrame(() => {
+    royalDoorOverlay.classList.add("is-open");
+  });
+
+  window.setTimeout(finishRoyalDoorEntrance, ROYAL_DOOR_OPEN_MS);
+}
+
+if (royalDoorOverlay && royalDoorOpenBtn) {
+  royalDoorOpenBtn.addEventListener("click", openRoyalDoor);
+}
+
 const revealItems = document.querySelectorAll(".reveal");
 const eventButtons = document.querySelectorAll(".event-button");
 let targetMouseX = 0;

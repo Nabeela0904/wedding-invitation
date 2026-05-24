@@ -9,7 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="royal-door-locked">
+  <div id="royal-door-overlay" class="royal-door-overlay" role="dialog" aria-modal="true" aria-label="Wedding invitation entrance">
+    <div class="royal-door-scene">
+      <div class="royal-door-glow" aria-hidden="true"></div>
+      <div class="royal-door-arch" aria-hidden="true"></div>
+      <div class="royal-door royal-door-left" aria-hidden="true">
+        <div class="royal-door-panel"></div>
+        <div class="royal-door-knob"></div>
+      </div>
+      <div class="royal-door royal-door-right" aria-hidden="true">
+        <div class="royal-door-panel"></div>
+        <div class="royal-door-knob"></div>
+      </div>
+      <div class="royal-door-seam" aria-hidden="true"></div>
+    </div>
+    <button type="button" id="royal-door-open" class="royal-door-cta">
+      <span class="royal-door-cta-eyebrow">Shoaib &amp; Zeenath</span>
+      <span class="royal-door-cta-text">Click here to open the invitation</span>
+    </button>
+  </div>
+
   <div class="background-layer background-layer-1"></div>
   <div class="background-layer background-layer-2"></div>
   <div class="background-glow"></div>
