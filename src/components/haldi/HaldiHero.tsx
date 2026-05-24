@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import { HALDI_EVENT } from "@/lib/haldi-event";
 import { fadeSlideUp, staggerContainer } from "@/lib/motion";
 
+const heroText =
+  "text-[#FF6500] drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]";
+
 export default function HaldiHero() {
   return (
     <motion.header
@@ -25,14 +28,14 @@ export default function HaldiHero() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#EA580C] drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]"
+        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed ${heroText}`}
       >
         {HALDI_EVENT.bismillah}
       </motion.p>
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-marigold/70 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#FF6500]/70 to-transparent"
         aria-hidden
       />
 
@@ -45,19 +48,19 @@ export default function HaldiHero() {
         </h1>
         <p
           aria-hidden
-          className="font-display text-[clamp(2rem,7vw,3.5rem)] font-bold leading-tight tracking-tight text-[#F97316] drop-shadow-[0_2px_10px_rgba(255,255,255,0.95)]"
+          className={`font-display text-[clamp(2rem,7vw,3.5rem)] font-bold leading-tight tracking-tight ${heroText}`}
         >
           {HALDI_EVENT.heroTitle}
         </p>
         <p
           aria-hidden
-          className="my-2 font-display text-[clamp(1.1rem,3.5vw,1.5rem)] font-semibold italic tracking-[0.2em] text-[#FB923C] drop-shadow-[0_1px_8px_rgba(255,255,255,0.9)]"
+          className={`my-2 font-display text-[clamp(1.1rem,3.5vw,1.5rem)] font-semibold italic tracking-[0.2em] ${heroText}`}
         >
           {HALDI_EVENT.heroConnector}
         </p>
         <p
           aria-hidden
-          className="font-display text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-tight tracking-wide text-[#EA580C] drop-shadow-[0_1px_10px_rgba(255,255,255,0.92)]"
+          className={`font-display text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-tight tracking-wide ${heroText}`}
         >
           {HALDI_EVENT.heroName}
         </p>
@@ -65,13 +68,13 @@ export default function HaldiHero() {
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-marigold/70 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#FF6500]/70 to-transparent"
         aria-hidden
       />
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 max-w-md text-balance font-sans text-sm font-semibold leading-relaxed text-[#C2410C] drop-shadow-[0_1px_8px_rgba(255,255,255,0.88)] sm:text-base"
+        className={`relative mx-auto mt-6 max-w-md text-balance font-sans text-sm font-semibold leading-relaxed sm:text-base ${heroText}`}
       >
         {HALDI_EVENT.tagline}
       </motion.p>
