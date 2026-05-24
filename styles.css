@@ -138,15 +138,15 @@ footer {
   font-family: "Amiri", "Noto Nastaliq Urdu", serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
-  color: var(--accent-soft);
+  color: #ffe8b8;
   letter-spacing: 0.02em;
-  text-shadow: 0 2px 14px rgba(223, 176, 111, 0.34);
+  text-shadow: 0 2px 16px rgba(223, 176, 111, 0.55);
 }
 
 .bismillah,
 .eyebrow {
   margin: 0.2rem 0;
-  color: var(--text-soft);
+  color: #f5e6d3;
 }
 
 .bismillah {
@@ -154,8 +154,9 @@ footer {
   max-width: 680px;
   font-size: 1.03rem;
   letter-spacing: 0.02em;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Cormorant Garamond", serif;
+  color: #fff0d4;
 }
 
 .quran-arabic {
@@ -193,13 +194,13 @@ footer {
   font-size: clamp(1.75rem, 3.8vw, 2.45rem);
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #f1cb93;
+  color: #ffe4a8;
 }
 
 .hero-invite-line {
   margin: 0 auto 1rem;
   max-width: 560px;
-  color: var(--text-soft);
+  color: #f3e2c4;
   font-size: clamp(0.98rem, 2.2vw, 1.12rem);
   line-height: 1.75;
 }
@@ -211,8 +212,9 @@ footer {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--accent);
+  color: #f5d073;
   line-height: 1.15;
+  text-shadow: 0 2px 14px rgba(223, 176, 111, 0.35);
 }
 
 .hero-bride-name {

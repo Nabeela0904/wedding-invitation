@@ -45,19 +45,19 @@ export default function HaldiHero() {
         </h1>
         <p
           aria-hidden
-          className="bg-gradient-to-b from-gold via-saffron to-deep-gold bg-clip-text font-display text-[clamp(2rem,7vw,3.5rem)] font-semibold leading-tight tracking-tight text-transparent drop-shadow-[0_2px_24px_rgba(255,253,249,0.85)]"
+          className="font-display text-[clamp(2rem,7vw,3.5rem)] font-bold leading-tight tracking-tight text-[#EA580C] drop-shadow-[0_2px_10px_rgba(255,255,255,0.95)]"
         >
           {HALDI_EVENT.heroTitle}
         </p>
         <p
           aria-hidden
-          className="my-2 font-display text-[clamp(1.1rem,3.5vw,1.5rem)] font-medium italic tracking-[0.2em] text-gold/90 drop-shadow-[0_1px_12px_rgba(255,253,249,0.9)]"
+          className="my-2 font-display text-[clamp(1.1rem,3.5vw,1.5rem)] font-semibold italic tracking-[0.2em] text-[#D97706] drop-shadow-[0_1px_8px_rgba(255,255,255,0.9)]"
         >
           {HALDI_EVENT.heroConnector}
         </p>
         <p
           aria-hidden
-          className="font-display text-[clamp(1.5rem,5vw,2.5rem)] font-semibold leading-tight tracking-wide text-gold drop-shadow-[0_1px_12px_rgba(255,253,249,0.9)]"
+          className="font-display text-[clamp(1.5rem,5vw,2.5rem)] font-bold leading-tight tracking-wide text-[#C2410C] drop-shadow-[0_1px_10px_rgba(255,255,255,0.92)]"
         >
           {HALDI_EVENT.heroName}
         </p>
@@ -71,7 +71,7 @@ export default function HaldiHero() {
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 max-w-md text-balance font-sans text-sm font-medium leading-relaxed text-gold/85 drop-shadow-[0_1px_10px_rgba(255,253,249,0.85)] sm:text-base"
+        className="relative mx-auto mt-6 max-w-md text-balance font-sans text-sm font-semibold leading-relaxed text-[#9A3412] drop-shadow-[0_1px_8px_rgba(255,255,255,0.88)] sm:text-base"
       >
         {HALDI_EVENT.tagline}
       </motion.p>
