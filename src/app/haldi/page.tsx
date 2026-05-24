@@ -12,6 +12,10 @@ const DetailsCard = dynamic(() => import("@/components/haldi/DetailsCard"), {
   loading: () => <div className="relative z-10 mx-auto h-40 max-w-lg" aria-hidden />,
 });
 
+const HaldiVenueModule = dynamic(() => import("@/components/haldi/HaldiVenueModule"), {
+  loading: () => <div className="relative z-10 mx-auto h-40 max-w-lg" aria-hidden />,
+});
+
 export const metadata: Metadata = {
   title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
   description:
@@ -29,6 +33,7 @@ export default function HaldiPage() {
       </section>
 
       <DetailsCard />
+      <HaldiVenueModule />
 
       <a
         href="/index.html"

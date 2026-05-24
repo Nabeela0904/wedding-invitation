@@ -9,6 +9,9 @@ export const HALDI_EVENT = {
   venueName: "Noorunisa Enclave",
   venueDetail: "Madanapalle",
   venueFull: "Meerani's residence, Noorunisa Enclave Madanapalle",
+  venueTitle: "VENUE & LOCATION",
+  venueSubtext: "Scan to open directions on Google Maps",
+  qrImage: "/haldi-venue-qr.jpg",
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery: "Noorunisa Enclave Madanapalle Meerani residence",
 } as const;
@@ -17,4 +20,8 @@ export type HaldiEvent = typeof HALDI_EVENT;
 
 export function getGoogleMapsUrl(query: string): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
+export function getHaldiMapsUrl(): string {
+  return getGoogleMapsUrl(HALDI_EVENT.mapsQuery);
 }
