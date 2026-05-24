@@ -761,6 +761,32 @@ h2 {
   font: inherit;
 }
 
+.rsvp-field select {
+  appearance: none;
+  cursor: pointer;
+  border-color: rgba(223, 176, 111, 0.55);
+  background-color: rgba(255, 245, 227, 0.94);
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8b6914 50%),
+    linear-gradient(135deg, #8b6914 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.25rem) calc(50% + 0.15rem),
+    calc(100% - 0.85rem) calc(50% + 0.15rem);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  color: #3d2a14;
+  font-weight: 500;
+}
+
+.rsvp-field select option {
+  background: #fff9f0;
+  color: #3d2a14;
+}
+
+.rsvp-field select option:disabled {
+  color: #8b7355;
+}
+
 .rsvp-field input[type="text"]::placeholder {
   color: rgba(246, 239, 228, 0.45);
 }
@@ -770,6 +796,12 @@ h2 {
   outline: none;
   border-color: rgba(245, 206, 149, 0.75);
   box-shadow: 0 0 0 2px rgba(223, 176, 111, 0.18);
+}
+
+.rsvp-field select:focus {
+  background-color: #fffdf9;
+  border-color: rgba(217, 119, 6, 0.55);
+  box-shadow: 0 0 0 2px rgba(223, 176, 111, 0.28);
 }
 
 .rsvp-events {
