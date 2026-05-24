@@ -83,15 +83,21 @@ const mainRsvpForm = document.querySelector("#main-rsvp-form");
 const mainRsvpSuccess = document.querySelector("#main-rsvp-success");
 const mainRsvpError = document.querySelector("#main-rsvp-error");
 const mainRsvpSubmit = document.querySelector("#main-rsvp-submit");
-const rsvpNextUrl = document.querySelector("#rsvp-next-url");
 
-function showRsvpSuccess(guestName) {
+function showRsvpSuccess(guestName, options = {}) {
   if (!mainRsvpForm || !mainRsvpSuccess) return;
   mainRsvpForm.classList.add("is-hidden");
   mainRsvpSuccess.classList.remove("is-hidden");
   mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = guestName
     ? `Thank you, ${guestName}!`
     : "Thank you!";
+
+  const textEl = mainRsvpSuccess.querySelector(".rsvp-success-text");
+  if (textEl) {
+    textEl.textContent = options.viaMailto
+      ? "Your email app should open with your RSVP details — please tap Send to complete your response."
+      : "Your RSVP has been received. We cannot wait to celebrate with you.";
+  }
 }
 
 function setRsvpError(message) {
@@ -123,21 +129,6 @@ function getRsvpPayload() {
   };
 }
 
-function syncRsvpHiddenFields(payload) {
-  const attendingStatusField = mainRsvpForm.querySelector("#main-rsvp-attending-label-field");
-  const ceremoniesField = mainRsvpForm.querySelector("#main-rsvp-ceremonies-field");
-
-  if (attendingStatusField) {
-    attendingStatusField.value = payload.attendingLabel;
-  }
-  if (ceremoniesField) {
-    ceremoniesField.value = payload.ceremonies;
-  }
-  if (rsvpNextUrl) {
-    rsvpNextUrl.value = `${window.location.origin}${window.location.pathname}?rsvp=success#rsvp`;
-  }
-}
-
 async function submitRsvpViaWeb3Forms(accessKey, payload) {
   const response = await fetch(WEB3FORMS_ENDPOINT, {
     method: "POST",
@@ -162,18 +153,41 @@ async function submitRsvpViaWeb3Forms(accessKey, payload) {
   }
 }
 
-function submitRsvpViaFormSubmit() {
-  syncRsvpHiddenFields(getRsvpPayload());
-  mainRsvpForm.submit();
+function openRsvpMailto(payload) {
+  const subject = encodeURIComponent("Wedding RSVP — Main Invitation");
+  const body = encodeURIComponent(
+    [
+      "Wedding RSVP",
+      "",
+      `Name: ${payload.name}`,
+      `Attending: ${payload.attendingLabel}`,
+      `Ceremonies: ${payload.ceremonies}`,
+    ].join("\n")
+  );
+
+  window.location.href = `mailto:${RSVP_EMAIL}?subject=${subject}&body=${body}`;
+}
+
+async function submitRsvp(payload) {
+  const accessKey = RSVP_CONFIG.web3formsAccessKey?.trim();
+
+  if (accessKey) {
+    try {
+      await submitRsvpViaWeb3Forms(accessKey, payload);
+      showRsvpSuccess(payload.name);
+      return;
+    } catch (error) {
+      console.warn("Web3Forms RSVP failed, using email fallback:", error);
+    }
+  }
+
+  openRsvpMailto(payload);
+  showRsvpSuccess(payload.name, { viaMailto: true });
 }
 
 if (mainRsvpForm && mainRsvpSuccess) {
   if (new URLSearchParams(window.location.search).get("rsvp") === "success") {
     showRsvpSuccess();
-  }
-
-  if (rsvpNextUrl) {
-    rsvpNextUrl.value = `${window.location.origin}${window.location.pathname}?rsvp=success#rsvp`;
   }
 
   document.querySelectorAll("[data-rsvp-select]").forEach((selectRoot) => {
@@ -249,7 +263,6 @@ if (mainRsvpForm && mainRsvpSuccess) {
     }
 
     const payload = getRsvpPayload();
-    const accessKey = RSVP_CONFIG.web3formsAccessKey?.trim();
     clearRsvpError();
 
     if (mainRsvpSubmit) {
@@ -258,19 +271,13 @@ if (mainRsvpForm && mainRsvpSuccess) {
     }
 
     try {
-      if (accessKey) {
-        await submitRsvpViaWeb3Forms(accessKey, payload);
-        showRsvpSuccess(payload.name);
-        return;
-      }
-
-      submitRsvpViaFormSubmit();
+      await submitRsvp(payload);
     } catch {
       setRsvpError(
-        "We could not send your RSVP right now. Please try again, or email meeranisare8@gmail.com directly."
+        `We could not send your RSVP right now. Please email ${RSVP_EMAIL} directly with your name and attending status.`
       );
     } finally {
-      if (mainRsvpSubmit && accessKey) {
+      if (mainRsvpSubmit) {
         mainRsvpSubmit.disabled = false;
         mainRsvpSubmit.textContent = "Submit RSVP";
       }
