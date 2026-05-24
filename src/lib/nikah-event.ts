@@ -14,7 +14,7 @@ export const NIKAH_EVENT = {
     "5:00 PM, After Nawias- e - Asar",
     "At Big Mosque, Melvisharam",
   ] as const,
-  dinnerLabel: "Dinner 7:00pm onwards",
+  dinnerLabel: "Dinner: 7.00pm onwards",
   dinnerVenue: "Venue: VJR Mahal chennai to Bnglr Bypass road Arcot.",
   venueTitle: "VENUE & LOCATION",
   venueSubtext: "Big Mosque, Melvisharam",
