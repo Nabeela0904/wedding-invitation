@@ -26,7 +26,7 @@ export default function NikahHeroSlide() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] leading-relaxed text-metallic-gold drop-shadow-[0_2px_16px_rgba(253,251,247,0.9)]"
+        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-semibold leading-relaxed text-[#E5C04A] drop-shadow-[0_1px_3px_rgba(0,0,0,0.15),0_2px_16px_rgba(253,251,247,0.95)]"
       >
         {NIKAH_EVENT.bismillah}
       </motion.p>
@@ -39,17 +39,17 @@ export default function NikahHeroSlide() {
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mx-auto mt-8 max-w-2xl font-sans text-[10px] font-medium uppercase tracking-[0.24em] text-emerald/80 drop-shadow-[0_1px_10px_rgba(253,251,247,0.85)] sm:text-[11px]"
+        className="relative mx-auto mt-8 max-w-2xl font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-emerald drop-shadow-[0_1px_10px_rgba(253,251,247,0.85)] sm:text-[11px]"
       >
         {NIKAH_EVENT.inviteLine}
       </motion.p>
 
       <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
         <motion.div variants={fadeSlideUp} className="lg:text-right">
-          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_12px_rgba(253,251,247,0.85)]">
+          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_12px_rgba(253,251,247,0.9)]">
             {NIKAH_EVENT.groom.name}
           </h1>
-          <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-emerald/60">
+          <p className="mt-3 font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-emerald/90">
             {NIKAH_EVENT.groom.parents}
           </p>
         </motion.div>
@@ -59,10 +59,10 @@ export default function NikahHeroSlide() {
         </motion.div>
 
         <motion.div variants={fadeSlideUp} className="lg:text-left">
-          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_12px_rgba(253,251,247,0.85)]">
+          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-emerald drop-shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_12px_rgba(253,251,247,0.9)]">
             {NIKAH_EVENT.bride.name}
           </h1>
-          <p className="mt-3 font-sans text-[11px] uppercase tracking-[0.16em] text-emerald/60">
+          <p className="mt-3 font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-emerald/90">
             {NIKAH_EVENT.bride.parents}
           </p>
         </motion.div>

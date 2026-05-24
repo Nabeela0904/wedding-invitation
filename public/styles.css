@@ -114,7 +114,7 @@ footer {
   border-radius: 15rem 15rem 1.2rem 1.2rem;
   pointer-events: none;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 245, 227, 0.13), rgba(255, 245, 227, 0.03));
+  background: linear-gradient(180deg, rgba(255, 245, 227, 0.2), rgba(255, 245, 227, 0.06));
 }
 
 .hero::after {
@@ -138,15 +138,15 @@ footer {
   font-family: "Amiri", "Noto Nastaliq Urdu", serif;
   font-size: clamp(1.5rem, 3vw, 2.1rem);
   font-weight: 700;
-  color: var(--accent-soft);
+  color: #fff4d6;
   letter-spacing: 0.02em;
-  text-shadow: 0 2px 14px rgba(223, 176, 111, 0.34);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.32), 0 2px 20px rgba(255, 220, 150, 0.65);
 }
 
 .bismillah,
 .eyebrow {
   margin: 0.2rem 0;
-  color: var(--text-soft);
+  color: #fff8ea;
 }
 
 .bismillah {
@@ -154,8 +154,9 @@ footer {
   max-width: 680px;
   font-size: 1.03rem;
   letter-spacing: 0.02em;
-  font-weight: 500;
+  font-weight: 600;
   font-family: "Cormorant Garamond", serif;
+  color: #fffaf0;
 }
 
 .quran-arabic {
@@ -193,15 +194,17 @@ footer {
   font-size: clamp(1.75rem, 3.8vw, 2.45rem);
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: #f1cb93;
+  color: #ffedb8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 18px rgba(255, 210, 120, 0.48);
 }
 
 .hero-invite-line {
   margin: 0 auto 1rem;
   max-width: 560px;
-  color: var(--text-soft);
+  color: #fff5e8;
   font-size: clamp(0.98rem, 2.2vw, 1.12rem);
   line-height: 1.75;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .hero-groom-name,
@@ -211,8 +214,9 @@ footer {
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--accent);
+  color: #ffe08a;
   line-height: 1.15;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35), 0 2px 20px rgba(255, 200, 100, 0.52);
 }
 
 .hero-bride-name {
@@ -221,26 +225,29 @@ footer {
 
 .hero-lineage {
   margin: 0 0 1rem;
-  color: #f2ddb8;
+  color: #faebd0;
   font-size: clamp(0.92rem, 2vw, 1.05rem);
   line-height: 1.65;
   font-style: italic;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
 }
 
 .hero-with {
   margin: 0.35rem 0 0.65rem;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(1.2rem, 2.8vw, 1.55rem);
-  color: #ffe8b0;
+  color: #fff2c4;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .hero-bride-parents {
   margin: 0 0 0.25rem;
-  color: #f0dfc8;
+  color: #f8ead8;
   font-size: clamp(0.95rem, 2.1vw, 1.08rem);
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
 }
 
 .eyebrow {
