@@ -764,8 +764,9 @@ h2 {
 .rsvp-field select {
   appearance: none;
   cursor: pointer;
+  color-scheme: light;
   border-color: rgba(223, 176, 111, 0.55);
-  background-color: rgba(255, 245, 227, 0.94);
+  background-color: #fff4e0;
   background-image:
     linear-gradient(45deg, transparent 50%, #8b6914 50%),
     linear-gradient(135deg, #8b6914 50%, transparent 50%);
@@ -774,13 +775,80 @@ h2 {
     calc(100% - 0.85rem) calc(50% + 0.15rem);
   background-size: 6px 6px, 6px 6px;
   background-repeat: no-repeat;
-  color: #3d2a14;
+  color: #2a1d0e;
   font-weight: 500;
+}
+
+.rsvp-custom-select {
+  position: relative;
+}
+
+.rsvp-select-trigger {
+  width: 100%;
+  padding: 0.72rem 2.2rem 0.72rem 0.85rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(217, 119, 6, 0.45);
+  background-color: #fff4e0;
+  color: #2a1d0e;
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #8b6914 50%),
+    linear-gradient(135deg, #8b6914 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.25rem) calc(50% + 0.15rem),
+    calc(100% - 0.85rem) calc(50% + 0.15rem);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rsvp-select-trigger:hover,
+.rsvp-select-trigger:focus {
+  outline: none;
+  border-color: rgba(217, 119, 6, 0.7);
+  box-shadow: 0 0 0 2px rgba(223, 176, 111, 0.28);
+}
+
+.rsvp-select-value.is-placeholder {
+  color: #8b6914;
+}
+
+.rsvp-select-menu {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(217, 119, 6, 0.45);
+  background: #fff9f0;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.rsvp-select-option {
+  padding: 0.72rem 0.85rem;
+  border-radius: 0.45rem;
+  color: #2a1d0e;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.rsvp-select-option:hover,
+.rsvp-select-option.is-selected {
+  background: linear-gradient(180deg, #f5d9ae, #e8c992);
+  color: #1a1208;
 }
 
 .rsvp-field select option {
   background: #fff9f0;
-  color: #3d2a14;
+  color: #2a1d0e;
 }
 
 .rsvp-field select option:disabled {

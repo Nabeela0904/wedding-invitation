@@ -96,12 +96,17 @@
           <input id="main-rsvp-name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
         </div>
         <div class="rsvp-field">
-          <label for="main-rsvp-attending">Attending Status</label>
-          <select id="main-rsvp-attending" name="attending" required>
-            <option value="" disabled selected>Select status</option>
-            <option value="yes">Joyfully attending</option>
-            <option value="no">Unable to attend</option>
-          </select>
+          <label id="main-rsvp-attending-label" for="main-rsvp-attending">Attending Status</label>
+          <div class="rsvp-custom-select" data-rsvp-select>
+            <input type="hidden" id="main-rsvp-attending" name="attending" value="" required>
+            <button type="button" class="rsvp-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="main-rsvp-attending-label">
+              <span class="rsvp-select-value is-placeholder">Select status</span>
+            </button>
+            <ul class="rsvp-select-menu" role="listbox" aria-label="Attending status" hidden>
+              <li class="rsvp-select-option" role="option" data-value="yes" tabindex="-1">Joyfully attending</li>
+              <li class="rsvp-select-option" role="option" data-value="no" tabindex="-1">Unable to attend</li>
+            </ul>
+          </div>
         </div>
         <fieldset class="rsvp-field rsvp-events">
           <legend>Ceremonies Attending</legend>

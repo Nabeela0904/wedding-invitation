@@ -79,6 +79,58 @@ const mainRsvpForm = document.querySelector("#main-rsvp-form");
 const mainRsvpSuccess = document.querySelector("#main-rsvp-success");
 
 if (mainRsvpForm && mainRsvpSuccess) {
+  document.querySelectorAll("[data-rsvp-select]").forEach((selectRoot) => {
+    const hiddenInput = selectRoot.querySelector('input[type="hidden"]');
+    const trigger = selectRoot.querySelector(".rsvp-select-trigger");
+    const valueEl = selectRoot.querySelector(".rsvp-select-value");
+    const menu = selectRoot.querySelector(".rsvp-select-menu");
+    const options = selectRoot.querySelectorAll(".rsvp-select-option");
+
+    if (!hiddenInput || !trigger || !valueEl || !menu) {
+      return;
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      trigger.setAttribute("aria-expanded", "false");
+    }
+
+    function openMenu() {
+      menu.hidden = false;
+      trigger.setAttribute("aria-expanded", "true");
+    }
+
+    function selectOption(option) {
+      const value = option.dataset.value || "";
+      const label = option.textContent?.trim() || "";
+
+      hiddenInput.value = value;
+      valueEl.textContent = label;
+      valueEl.classList.remove("is-placeholder");
+
+      options.forEach((item) => item.classList.toggle("is-selected", item === option));
+      closeMenu();
+    }
+
+    trigger.addEventListener("click", () => {
+      if (menu.hidden) {
+        openMenu();
+        return;
+      }
+      closeMenu();
+    });
+
+    options.forEach((option) => {
+      option.addEventListener("click", () => selectOption(option));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!selectRoot.contains(event.target)) {
+        closeMenu();
+      }
+    });
+  });
+
   mainRsvpForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -86,7 +138,11 @@ if (mainRsvpForm && mainRsvpSuccess) {
     const attending = mainRsvpForm.querySelector("#main-rsvp-attending");
 
     if (!name.value.trim() || !attending.value) {
-      mainRsvpForm.reportValidity();
+      if (!attending.value) {
+        attending.reportValidity();
+      } else {
+        mainRsvpForm.reportValidity();
+      }
       return;
     }
 
