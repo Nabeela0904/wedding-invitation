@@ -13,6 +13,7 @@ export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
+  const userPausedRef = useRef(false);
 
   const syncPlaying = useCallback((isPlaying: boolean) => {
     setPlaying(isPlaying);
@@ -23,7 +24,7 @@ export default function BackgroundMusic() {
     (force = false) => {
       const audio = audioRef.current;
       if (!audio) return false;
-      if (!force && !shouldAutoPlayMusic()) return false;
+      if (!force && (!shouldAutoPlayMusic() || userPausedRef.current)) return false;
 
       audio.src = getWeddingMusicSrc();
       audio.volume = 0.35;
@@ -43,6 +44,7 @@ export default function BackgroundMusic() {
   const pauseMusic = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    userPausedRef.current = true;
     audio.pause();
     syncPlaying(false);
   }, [syncPlaying]);
@@ -52,6 +54,7 @@ export default function BackgroundMusic() {
       pauseMusic();
       return;
     }
+    userPausedRef.current = false;
     playMusic(true);
   }, [pauseMusic, playMusic, playing]);
 
@@ -60,44 +63,55 @@ export default function BackgroundMusic() {
     if (!audio) return;
 
     audio.src = getWeddingMusicSrc();
+    audio.autoplay = true;
     audio.load();
 
     const onCanPlay = () => {
       audio.volume = 0.35;
       setReady(true);
-      if (shouldAutoPlayMusic()) {
-        playMusic(true);
-      }
+      playMusic(true);
     };
     const onPlay = () => syncPlaying(true);
-    const onPause = () => syncPlaying(false);
+    const onPause = () => {
+      if (userPausedRef.current) {
+        syncPlaying(false);
+      }
+    };
     const onEnded = () => syncPlaying(false);
     const onError = () => syncPlaying(false);
 
+    const tryAutoPlay = () => playMusic(true);
+
     audio.addEventListener("canplaythrough", onCanPlay);
+    audio.addEventListener("loadeddata", tryAutoPlay);
+    audio.addEventListener("canplay", tryAutoPlay);
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("error", onError);
 
-    const startFromGesture = () => playMusic(true);
+    tryAutoPlay();
+    window.addEventListener("load", tryAutoPlay);
 
-    document.addEventListener("click", startFromGesture, { once: true });
-    document.addEventListener("touchstart", startFromGesture, { once: true });
-    document.addEventListener("keydown", startFromGesture, { once: true });
+    document.addEventListener("click", tryAutoPlay, { once: true });
+    document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
+    document.addEventListener("keydown", tryAutoPlay, { once: true });
 
     return () => {
       audio.removeEventListener("canplaythrough", onCanPlay);
+      audio.removeEventListener("loadeddata", tryAutoPlay);
+      audio.removeEventListener("canplay", tryAutoPlay);
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("error", onError);
+      window.removeEventListener("load", tryAutoPlay);
     };
   }, [playMusic, syncPlaying]);
 
   return (
     <>
-      <audio ref={audioRef} loop preload="auto" aria-hidden />
+      <audio ref={audioRef} loop preload="auto" autoPlay aria-hidden />
       <button
         type="button"
         className="music-toggle"

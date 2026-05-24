@@ -420,14 +420,30 @@ function pauseBackgroundMusic() {
   setMusicUi(false);
 }
 
-if (bgMusic && musicToggle) {
+function bootBackgroundMusic() {
+  if (!bgMusic || !musicToggle) return;
+
   ensureMusicSource();
+  bgMusic.volume = 0.35;
 
   bgMusic.addEventListener("error", () => {
     setMusicUi(false);
   });
 
-  musicToggle.addEventListener("click", () => {
+  bgMusic.addEventListener("play", () => {
+    sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+    setMusicUi(true);
+  });
+
+  bgMusic.addEventListener("pause", () => {
+    if (bgMusic.ended) return;
+    if (sessionStorage.getItem(MUSIC_STORAGE_KEY) === "0") {
+      setMusicUi(false);
+    }
+  });
+
+  musicToggle.addEventListener("click", (event) => {
+    event.stopPropagation();
     if (bgMusic.paused) {
       startMusicFromUserGesture(true);
       return;
@@ -435,11 +451,29 @@ if (bgMusic && musicToggle) {
     pauseBackgroundMusic();
   });
 
-  const autoStartMusic = () => startMusicFromUserGesture(true);
+  const tryAutoPlay = () => {
+    if (!shouldAutoPlayMusic()) return;
+    startMusicFromUserGesture(true);
+  };
 
-  document.addEventListener("click", autoStartMusic, { once: true });
-  document.addEventListener("touchstart", autoStartMusic, { once: true });
-  document.addEventListener("keydown", autoStartMusic, { once: true });
+  tryAutoPlay();
+  bgMusic.addEventListener("loadeddata", tryAutoPlay);
+  bgMusic.addEventListener("canplay", tryAutoPlay);
+  bgMusic.addEventListener("canplaythrough", tryAutoPlay);
+  window.addEventListener("load", tryAutoPlay);
+
+  if (envelopeOverlay) {
+    envelopeOverlay.addEventListener("pointerdown", tryAutoPlay, { passive: true });
+    envelopeOverlay.addEventListener("click", tryAutoPlay);
+  }
+
+  document.addEventListener("click", tryAutoPlay, { once: true });
+  document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
+  document.addEventListener("keydown", tryAutoPlay, { once: true });
+}
+
+if (bgMusic && musicToggle) {
+  bootBackgroundMusic();
 }
 
 animateBackground();
