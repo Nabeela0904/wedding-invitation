@@ -5,6 +5,9 @@ import { WALIMA_EVENT } from "@/lib/walima-event";
 import { fadeSlideUp, staggerContainer } from "@/lib/motion";
 import WalimaGeometricAccent from "./WalimaGeometricAccent";
 
+const heroTextShadow =
+  "drop-shadow-[0_1px_2px_rgba(255,255,255,0.98)] drop-shadow-[0_2px_12px_rgba(255,255,255,0.92)]";
+
 export default function WalimaHeroSlide() {
   return (
     <motion.header
@@ -14,10 +17,10 @@ export default function WalimaHeroSlide() {
       animate="visible"
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[50%]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
         style={{
           background:
-            "linear-gradient(180deg, rgba(255,253,249,0.95) 0%, rgba(255,253,249,0.62) 55%, transparent 100%)",
+            "linear-gradient(180deg, rgba(255,253,249,0.98) 0%, rgba(255,248,235,0.88) 48%, rgba(255,253,249,0.45) 100%)",
         }}
         aria-hidden
       />
@@ -26,34 +29,36 @@ export default function WalimaHeroSlide() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-semibold leading-relaxed text-[#E5C04A] drop-shadow-[0_1px_3px_rgba(0,0,0,0.15),0_2px_16px_rgba(255,253,249,0.95)]"
+        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#D97706] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.bismillah}
       </motion.p>
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-wine/50 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#BE123C]/70 to-transparent"
         aria-hidden
       />
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mt-8 font-display text-[clamp(1rem,3.2vw,1.45rem)] font-semibold uppercase tracking-[0.14em] text-wine drop-shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_12px_rgba(255,253,249,0.9)]"
+        className={`relative mt-8 font-display text-[clamp(1rem,3.2vw,1.45rem)] font-bold uppercase tracking-[0.14em] text-[#BE123C] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.hosts}
       </motion.p>
 
       <motion.p
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 max-w-2xl font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-wine drop-shadow-[0_1px_8px_rgba(255,253,249,0.85)] sm:text-[11px]"
+        className={`relative mx-auto mt-6 max-w-2xl font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-[#9F1239] sm:text-[11px] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.inviteLine}
       </motion.p>
 
       <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
         <motion.div variants={fadeSlideUp} className="lg:text-right">
-          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-wine drop-shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_12px_rgba(255,253,249,0.9)]">
+          <h1
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#9F1239] ${heroTextShadow}`}
+          >
             {WALIMA_EVENT.groom.name}
           </h1>
         </motion.div>
@@ -63,10 +68,14 @@ export default function WalimaHeroSlide() {
         </motion.div>
 
         <motion.div variants={fadeSlideUp} className="lg:text-left">
-          <h1 className="font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-semibold uppercase leading-tight tracking-[0.1em] text-wine drop-shadow-[0_1px_3px_rgba(0,0,0,0.12),0_1px_12px_rgba(255,253,249,0.9)]">
+          <h1
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#9F1239] ${heroTextShadow}`}
+          >
             {WALIMA_EVENT.bride.name}
           </h1>
-          <p className="mt-3 font-sans text-[11px] font-medium uppercase tracking-[0.16em] text-wine/90">
+          <p
+            className={`mt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#BE123C] ${heroTextShadow}`}
+          >
             {WALIMA_EVENT.bride.parents}
           </p>
         </motion.div>
