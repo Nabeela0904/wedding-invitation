@@ -25,6 +25,7 @@ const config: Config = {
         marigold: "#F59E0B",
         saffron: "#D97706",
         "deep-gold": "#B45309",
+        "haldi-deep": "#78350F",
         gold: "#B45309",
         midnight: "#050508",
         noir: "#0c0e14",

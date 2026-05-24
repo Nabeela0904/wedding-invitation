@@ -1,4 +1,5 @@
 export const HALDI_EVENT = {
+  bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   heroTitle: "Rasm-e-Haldi",
   heroConnector: "of",
   heroName: "Shoaib Faraz Ahmed",

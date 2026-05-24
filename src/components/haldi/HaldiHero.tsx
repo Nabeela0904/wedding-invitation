@@ -21,6 +21,21 @@ export default function HaldiHero() {
         aria-hidden
       />
 
+      <motion.p
+        variants={fadeSlideUp}
+        lang="ar"
+        dir="rtl"
+        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] leading-relaxed text-metallic-gold drop-shadow-[0_2px_16px_rgba(255,253,249,0.9)]"
+      >
+        {HALDI_EVENT.bismillah}
+      </motion.p>
+
+      <motion.div
+        variants={fadeSlideUp}
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-marigold/70 to-transparent"
+        aria-hidden
+      />
+
       <motion.div
         variants={fadeSlideUp}
         className="relative w-full max-w-xl px-2 text-center sm:px-4"
