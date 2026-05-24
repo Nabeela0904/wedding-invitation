@@ -10,33 +10,43 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="invite-entrance-locked">
-  <div id="envelope-overlay" class="envelope-overlay" role="dialog" aria-modal="true" aria-label="Wedding invitation envelope">
-    <div class="envelope-stage">
-      <div class="envelope-glow" aria-hidden="true"></div>
-      <div class="envelope-royal-frame" aria-hidden="true"></div>
-      <div class="envelope" aria-hidden="true">
-        <div class="envelope-back"></div>
-        <div class="envelope-lining" aria-hidden="true"></div>
-        <div class="envelope-card">
-          <div class="envelope-card-border" aria-hidden="true"></div>
-          <span class="envelope-card-crest" aria-hidden="true">✦</span>
-          <span class="envelope-card-eyebrow">Shoaib &amp; Zeenath</span>
-          <span class="envelope-card-divider" aria-hidden="true"></span>
-          <span class="envelope-card-title">Wedding Invitation</span>
-          <span class="envelope-card-sub">A Royal Celebration of Love</span>
+  <div id="royal-entrance-overlay" class="royal-entrance-overlay" role="dialog" aria-modal="true" aria-label="Royal wedding invitation entrance">
+    <div class="royal-entrance-scene">
+      <div class="royal-entrance-cinematic" aria-hidden="true">
+        <picture class="royal-entrance-cinematic-media">
+          <source srcset="/nikah-cinematic-bg.webp" type="image/webp">
+          <img src="/nikah-cinematic-bg.png" alt="" fetchpriority="high" decoding="async">
+        </picture>
+        <div class="royal-entrance-cinematic-tint"></div>
+        <div class="royal-entrance-cinematic-shine"></div>
+        <div class="royal-entrance-curtain royal-entrance-curtain-left"></div>
+        <div class="royal-entrance-curtain royal-entrance-curtain-right"></div>
+      </div>
+
+      <div class="royal-entrance-vignette" aria-hidden="true"></div>
+      <div class="royal-entrance-glow" aria-hidden="true"></div>
+      <div class="royal-entrance-arch" aria-hidden="true"></div>
+
+      <div class="royal-door-frame" aria-hidden="true">
+        <div class="royal-door royal-door-left">
+          <div class="royal-door-panel">
+            <div class="royal-door-inlay"></div>
+          </div>
+          <div class="royal-door-knob"></div>
         </div>
-        <div class="envelope-pocket"></div>
-        <div class="envelope-flap">
-          <div class="envelope-flap-inner" aria-hidden="true"></div>
-        </div>
-        <div class="envelope-seal" aria-hidden="true">
-          <span class="envelope-seal-ring" aria-hidden="true"></span>
-          <span>S&amp;Z</span>
+        <div class="royal-entrance-seam"></div>
+        <div class="royal-door royal-door-right">
+          <div class="royal-door-panel">
+            <div class="royal-door-inlay"></div>
+          </div>
+          <div class="royal-door-knob"></div>
         </div>
       </div>
     </div>
-    <button type="button" id="envelope-open" class="envelope-cta">
-      <span class="envelope-cta-text">Click here to open the invitation</span>
+
+    <button type="button" id="royal-entrance-open" class="royal-entrance-cta">
+      <span class="royal-entrance-cta-eyebrow">Shoaib &amp; Zeenath</span>
+      <span class="royal-entrance-cta-text">Click here to open the invitation</span>
     </button>
   </div>
 

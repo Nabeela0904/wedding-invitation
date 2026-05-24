@@ -5,44 +5,44 @@ const layers = {
   lanternOverlay: document.querySelector(".lantern-overlay"),
 };
 
-const envelopeOverlay = document.getElementById("envelope-overlay");
-const envelopeOpenBtn = document.getElementById("envelope-open");
-const ENVELOPE_OPEN_MS = 2100;
+const royalEntranceOverlay = document.getElementById("royal-entrance-overlay");
+const royalEntranceOpenBtn = document.getElementById("royal-entrance-open");
+const ROYAL_ENTRANCE_OPEN_MS = 2200;
 
-function finishEnvelopeEntrance() {
+function finishRoyalEntrance() {
   document.body.classList.remove("invite-entrance-locked");
-  if (!envelopeOverlay) return;
-  envelopeOverlay.classList.add("is-hidden");
-  envelopeOverlay.setAttribute("aria-hidden", "true");
-  window.setTimeout(() => envelopeOverlay.remove(), 700);
+  if (!royalEntranceOverlay) return;
+  royalEntranceOverlay.classList.add("is-hidden");
+  royalEntranceOverlay.setAttribute("aria-hidden", "true");
+  window.setTimeout(() => royalEntranceOverlay.remove(), 750);
 }
 
-function openEnvelope() {
-  if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open")) {
+function openRoyalEntrance() {
+  if (!royalEntranceOverlay || royalEntranceOverlay.classList.contains("is-open")) {
     return;
   }
 
-  if (envelopeOpenBtn) {
-    envelopeOpenBtn.disabled = true;
+  if (royalEntranceOpenBtn) {
+    royalEntranceOpenBtn.disabled = true;
   }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (prefersReducedMotion) {
-    finishEnvelopeEntrance();
+    finishRoyalEntrance();
     return;
   }
 
-  envelopeOverlay.classList.add("is-opening");
+  royalEntranceOverlay.classList.add("is-opening");
   window.requestAnimationFrame(() => {
-    envelopeOverlay.classList.add("is-open");
+    royalEntranceOverlay.classList.add("is-open");
   });
 
-  window.setTimeout(finishEnvelopeEntrance, ENVELOPE_OPEN_MS);
+  window.setTimeout(finishRoyalEntrance, ROYAL_ENTRANCE_OPEN_MS);
 }
 
-if (envelopeOverlay && envelopeOpenBtn) {
-  envelopeOpenBtn.addEventListener("click", openEnvelope);
+if (royalEntranceOverlay && royalEntranceOpenBtn) {
+  royalEntranceOpenBtn.addEventListener("click", openRoyalEntrance);
 }
 
 const revealItems = document.querySelectorAll(".reveal");

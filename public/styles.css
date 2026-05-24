@@ -2012,426 +2012,439 @@ body.haldi-page {
   }
 }
 
-/* Envelope entrance overlay — royal luxury */
+/* Royal cinematic door entrance */
 body.invite-entrance-locked {
   overflow: hidden;
 }
 
-.envelope-overlay {
+.royal-entrance-overlay {
   position: fixed;
   inset: 0;
   z-index: 200;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: clamp(1.75rem, 4vh, 2.75rem);
-  background:
-    radial-gradient(ellipse 80% 55% at 50% 32%, rgba(223, 176, 111, 0.22), transparent 58%),
-    radial-gradient(circle at 18% 82%, rgba(139, 38, 53, 0.12), transparent 38%),
-    radial-gradient(circle at 82% 78%, rgba(120, 137, 196, 0.1), transparent 36%),
-    linear-gradient(180deg, #050810 0%, #0f1424 42%, #120e1a 100%);
+  justify-content: flex-end;
+  padding: clamp(1.25rem, 4vh, 2.5rem);
+  background: #050810;
   transition: opacity 0.75s ease, visibility 0.75s ease;
 }
 
-.envelope-overlay.is-hidden {
+.royal-entrance-overlay.is-hidden {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-.envelope-stage {
-  position: relative;
-  perspective: 1600px;
-  width: min(92vw, 480px);
-  height: min(62vw, 320px);
-  animation: envelopeFloat 5s ease-in-out infinite;
-}
-
-@keyframes envelopeFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-.envelope-glow {
-  position: absolute;
-  inset: -18% -12%;
-  background: radial-gradient(circle, rgba(255, 220, 150, 0.28) 0%, rgba(223, 176, 111, 0.08) 42%, transparent 72%);
-  filter: blur(22px);
-  pointer-events: none;
-  transition: opacity 1s ease, transform 1.2s ease;
-}
-
-.envelope-overlay.is-open .envelope-glow {
-  opacity: 1.4;
-  transform: scale(1.25);
-}
-
-.envelope-royal-frame {
-  position: absolute;
-  inset: -0.65rem -0.85rem;
-  border: 1px solid rgba(223, 176, 111, 0.45);
-  border-radius: 0.5rem;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 240, 200, 0.1),
-    0 0 48px rgba(223, 176, 111, 0.14);
-  pointer-events: none;
-}
-
-.envelope-royal-frame::before,
-.envelope-royal-frame::after {
-  content: "";
-  position: absolute;
-  width: 1.4rem;
-  height: 1.4rem;
-  border: 2px solid rgba(223, 176, 111, 0.65);
-}
-
-.envelope-royal-frame::before {
-  top: 0.45rem;
-  left: 0.45rem;
-  border-right: none;
-  border-bottom: none;
-}
-
-.envelope-royal-frame::after {
-  bottom: 0.45rem;
-  right: 0.45rem;
-  border-left: none;
-  border-top: none;
-}
-
-.envelope {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease;
-  filter: drop-shadow(0 28px 56px rgba(0, 0, 0, 0.45));
-}
-
-.envelope-back {
+.royal-entrance-scene {
   position: absolute;
   inset: 0;
-  border-radius: 0.4rem;
+  overflow: hidden;
+}
+
+.royal-entrance-cinematic {
+  position: absolute;
+  inset: -8%;
+  overflow: hidden;
+}
+
+.royal-entrance-cinematic-media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  animation: royalCinematicPan 18s ease-in-out infinite;
+}
+
+.royal-entrance-cinematic-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes royalCinematicPan {
+  0%,
+  100% {
+    transform: scale(1.1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.16) translate(-1.5%, -1%);
+  }
+}
+
+.royal-entrance-cinematic-tint {
+  position: absolute;
+  inset: 0;
   background:
-    linear-gradient(135deg, rgba(255, 220, 150, 0.08) 0%, transparent 42%),
-    repeating-linear-gradient(
-      -12deg,
-      rgba(255, 255, 255, 0.025) 0px,
-      rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px,
-      transparent 9px
-    ),
-    linear-gradient(165deg, #4a1520 0%, #6b2433 38%, #3d121c 72%, #2a0e14 100%);
-  border: 1px solid rgba(223, 176, 111, 0.5);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 220, 170, 0.15),
-    inset 0 -12px 28px rgba(0, 0, 0, 0.28);
+    linear-gradient(135deg, rgba(6, 78, 59, 0.42) 0%, rgba(74, 21, 32, 0.28) 45%, rgba(212, 175, 55, 0.14) 100%);
+  animation: royalTintPulse 7s ease-in-out infinite;
 }
 
-.envelope-lining {
+@keyframes royalTintPulse {
+  0%,
+  100% {
+    opacity: 0.88;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.royal-entrance-cinematic-shine {
   position: absolute;
-  inset: 0.55rem;
-  border-radius: 0.28rem;
-  border: 1px solid rgba(223, 176, 111, 0.22);
+  inset: 0;
+  background: linear-gradient(105deg, rgba(212, 175, 55, 0.22) 0%, transparent 52%);
+  animation: royalShineSweep 8s ease-in-out infinite;
+}
+
+@keyframes royalShineSweep {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.65;
+    transform: translateX(3%);
+  }
+}
+
+.royal-entrance-curtain {
+  position: absolute;
+  top: 0;
+  width: min(22vw, 160px);
+  height: 100%;
   pointer-events: none;
-  z-index: 0;
+  background: linear-gradient(90deg, rgba(253, 251, 247, 0.14), rgba(212, 175, 55, 0.08), transparent);
+  animation: royalCurtainDrift 6s ease-in-out infinite;
 }
 
-.envelope-card {
+.royal-entrance-curtain-left {
+  left: 0;
+}
+
+.royal-entrance-curtain-right {
+  right: 0;
+  transform: scaleX(-1);
+  animation-delay: -2s;
+}
+
+@keyframes royalCurtainDrift {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 0.72;
+    transform: translateX(8px);
+  }
+}
+
+.royal-entrance-curtain-right {
+  animation-name: royalCurtainDriftRight;
+}
+
+@keyframes royalCurtainDriftRight {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scaleX(-1) translateX(0);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scaleX(-1) translateX(8px);
+  }
+}
+
+.royal-entrance-vignette {
   position: absolute;
-  left: 7%;
-  right: 7%;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 45%, transparent 0%, rgba(5, 8, 16, 0.35) 68%, rgba(5, 8, 16, 0.82) 100%);
+  pointer-events: none;
+}
+
+.royal-entrance-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(38vw, 280px);
+  height: min(68vh, 560px);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 232, 170, 0.5) 0%, rgba(223, 176, 111, 0.16) 42%, transparent 72%);
+  filter: blur(20px);
+  opacity: 0.65;
+  transition: opacity 1.2s ease, transform 1.4s ease;
+  pointer-events: none;
+}
+
+.royal-entrance-overlay.is-opening .royal-entrance-glow,
+.royal-entrance-overlay.is-open .royal-entrance-glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.royal-entrance-arch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(94vw, 760px);
+  height: min(90vh, 820px);
+  transform: translate(-50%, -50%);
+  border: 2px solid rgba(223, 176, 111, 0.58);
+  border-radius: 50% 50% 0.85rem 0.85rem / 16% 16% 0.85rem 0.85rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 240, 200, 0.12),
+    0 0 52px rgba(223, 176, 111, 0.16);
+  pointer-events: none;
+}
+
+.royal-door-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: min(92vw, 720px);
+  height: min(86vh, 760px);
+  transform: translate(-50%, -50%);
+  perspective: 1800px;
+  filter: drop-shadow(0 32px 64px rgba(0, 0, 0, 0.5));
+}
+
+.royal-door {
+  position: relative;
+  flex: 1;
+  transform-style: preserve-3d;
+  transition: transform 1.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.royal-door-left {
+  transform-origin: left center;
+}
+
+.royal-door-right {
+  transform-origin: right center;
+}
+
+.royal-door-panel {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(223, 176, 111, 0.48);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.32), transparent 20%, transparent 80%, rgba(0, 0, 0, 0.28)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(223, 176, 111, 0.06) 0px,
+      rgba(223, 176, 111, 0.06) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    linear-gradient(165deg, #4a1520 0%, #6b2433 32%, #3d121c 68%, #1a0a10 100%);
+  box-shadow: inset 0 0 52px rgba(0, 0, 0, 0.38);
+}
+
+.royal-door-left .royal-door-panel {
+  border-right: 2px solid rgba(223, 176, 111, 0.55);
+  border-radius: 0.35rem 0 0 0.35rem;
+}
+
+.royal-door-right .royal-door-panel {
+  border-left: 2px solid rgba(223, 176, 111, 0.55);
+  border-radius: 0 0.35rem 0.35rem 0;
+}
+
+.royal-door-inlay {
+  position: absolute;
+  top: 8%;
+  width: min(34vw, 220px);
+  height: calc(100% - 12%);
+  border: 2px solid rgba(223, 176, 111, 0.45);
+  border-radius: 50% 50% 0.45rem 0.45rem / 12% 12% 0.45rem 0.45rem;
+  box-shadow:
+    inset 0 0 28px rgba(255, 220, 150, 0.08),
+    0 0 18px rgba(223, 176, 111, 0.08);
+}
+
+.royal-door-left .royal-door-inlay {
+  right: 10%;
+}
+
+.royal-door-right .royal-door-inlay {
+  left: 10%;
+}
+
+.royal-door-inlay::after {
+  content: "✦";
+  position: absolute;
   top: 12%;
-  height: 74%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: rgba(255, 232, 170, 0.75);
+  text-shadow: 0 0 14px rgba(223, 176, 111, 0.55);
+}
+
+.royal-door-knob {
+  position: absolute;
+  top: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.625rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff2c8, #dfb06f 45%, #8b6914 100%);
+  box-shadow:
+    0 0 14px rgba(223, 176, 111, 0.65),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.royal-door-left .royal-door-knob {
+  right: 1.15rem;
+}
+
+.royal-door-right .royal-door-knob {
+  left: 1.15rem;
+}
+
+.royal-entrance-seam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(255, 232, 170, 0.12), rgba(223, 176, 111, 0.85), rgba(255, 232, 170, 0.12));
+  box-shadow: 0 0 22px rgba(223, 176, 111, 0.55);
+  transition: opacity 0.45s ease 0.15s;
+  z-index: 3;
+}
+
+.royal-entrance-overlay.is-opening .royal-entrance-seam,
+.royal-entrance-overlay.is-open .royal-entrance-seam {
+  opacity: 0;
+}
+
+.royal-entrance-overlay.is-open .royal-door-left {
+  transform: rotateY(-82deg);
+}
+
+.royal-entrance-overlay.is-open .royal-door-right {
+  transform: rotateY(82deg);
+}
+
+.royal-entrance-cta {
+  position: relative;
+  z-index: 210;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 1rem 0.75rem;
-  border-radius: 0.2rem;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255, 248, 235, 0.95), transparent 55%),
-    linear-gradient(180deg, #fffdf8 0%, #f9f0df 55%, #f3e6cf 100%);
-  box-shadow:
-    0 10px 28px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  transform: translateY(20%);
-  transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1) 0.38s, opacity 0.55s ease 0.85s;
-  z-index: 1;
-}
-
-.envelope-card-border {
-  position: absolute;
-  inset: 0.45rem;
-  border: 1px solid rgba(223, 176, 111, 0.42);
-  border-radius: 0.12rem;
-  pointer-events: none;
-}
-
-.envelope-card-border::before {
-  content: "";
-  position: absolute;
-  inset: 0.28rem;
-  border: 1px solid rgba(223, 176, 111, 0.18);
-  border-radius: 0.08rem;
-}
-
-.envelope-card-crest {
-  font-size: 0.85rem;
-  color: #c9a227;
-  text-shadow: 0 0 12px rgba(223, 176, 111, 0.45);
-  margin-bottom: 0.15rem;
-}
-
-.envelope-card-eyebrow {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.95rem, 2.6vw, 1.2rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #8b6914;
-}
-
-.envelope-card-divider {
-  width: min(140px, 42%);
-  height: 1px;
-  margin: 0.25rem 0 0.15rem;
-  background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.85), transparent);
-}
-
-.envelope-card-title {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.25rem, 3.8vw, 1.85rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #4a1520;
-}
-
-.envelope-card-sub {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(0.82rem, 2.2vw, 0.98rem);
-  font-style: italic;
-  letter-spacing: 0.04em;
-  color: #7a5c2e;
-  margin-top: 0.15rem;
-}
-
-.envelope-pocket {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: transparent;
-  pointer-events: none;
-}
-
-.envelope-pocket::before,
-.envelope-pocket::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  width: 50.5%;
-  height: 64%;
-  background:
-    linear-gradient(180deg, rgba(255, 220, 160, 0.06) 0%, transparent 35%),
-    linear-gradient(180deg, #5c2230 0%, #421820 100%);
-  border: 1px solid rgba(223, 176, 111, 0.28);
-  box-shadow: inset 0 10px 18px rgba(255, 255, 255, 0.04);
-}
-
-.envelope-pocket::before {
-  left: 0;
-  clip-path: polygon(0 0, 100% 100%, 0 100%);
-}
-
-.envelope-pocket::after {
-  right: 0;
-  clip-path: polygon(100% 0, 0 100%, 100% 100%);
-}
-
-.envelope-flap {
-  position: absolute;
-  inset: 0 0 auto;
-  height: 58%;
-  z-index: 4;
-  transform-origin: top center;
-  transform: rotateX(0deg);
-  transition: transform 1.15s cubic-bezier(0.645, 0.045, 0.355, 1) 0.18s, opacity 0.45s ease 0.75s;
-  background:
-    linear-gradient(180deg, rgba(255, 220, 160, 0.1) 0%, transparent 40%),
-    linear-gradient(180deg, #6b2a3a 0%, #4a1520 100%);
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  border-top: 1px solid rgba(223, 176, 111, 0.55);
-  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.22));
-}
-
-.envelope-flap-inner {
-  position: absolute;
-  inset: 0;
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  background: linear-gradient(180deg, #f5e6c8 0%, #e8d5a8 55%, transparent 100%);
-  opacity: 0.55;
-}
-
-.envelope-seal {
-  position: absolute;
-  left: 50%;
-  top: 47%;
-  z-index: 5;
-  width: 4rem;
-  height: 4rem;
-  display: grid;
-  place-items: center;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 32% 28%, #c9a227 0%, #8b6914 18%, transparent 19%),
-    radial-gradient(circle at 50% 55%, #7a1828 0%, #4a0e16 55%, #2a0810 100%);
-  border: 2px solid rgba(255, 220, 160, 0.45);
-  box-shadow:
-    0 0 0 4px rgba(201, 162, 39, 0.22),
-    0 0 0 7px rgba(74, 21, 32, 0.35),
-    0 10px 24px rgba(0, 0, 0, 0.38),
-    inset 0 2px 6px rgba(255, 220, 160, 0.25),
-    inset 0 -4px 10px rgba(0, 0, 0, 0.35);
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.envelope-seal-ring {
-  position: absolute;
-  inset: 0.35rem;
-  border: 1px solid rgba(255, 232, 170, 0.35);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.envelope-seal > span:last-child {
-  position: relative;
-  z-index: 1;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #ffecc8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-}
-
-.envelope-overlay.is-opening .envelope-seal {
-  transform: translate(-50%, -50%) scale(0.5);
-  opacity: 0;
-}
-
-.envelope-overlay.is-open .envelope-flap {
-  transform: rotateX(180deg);
-  opacity: 0.12;
-}
-
-.envelope-overlay.is-open .envelope-card {
-  transform: translateY(-42%) scale(1.02);
-}
-
-.envelope-overlay.is-open .envelope {
-  transform: translateY(-16px) scale(1.04);
-  opacity: 0;
-}
-
-.envelope-overlay.is-opening .envelope-stage,
-.envelope-overlay.is-open .envelope-stage {
-  animation: none;
-}
-
-.envelope-cta {
-  position: relative;
-  z-index: 210;
+  gap: 0.5rem;
   padding: 1rem 1.85rem;
   border: 1px solid rgba(223, 176, 111, 0.65);
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, rgba(74, 21, 32, 0.88) 0%, rgba(42, 14, 20, 0.92) 100%);
+  background: linear-gradient(180deg, rgba(74, 21, 32, 0.9) 0%, rgba(26, 10, 16, 0.94) 100%);
   color: #fff4d6;
   cursor: pointer;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   box-shadow:
     0 0 0 1px rgba(255, 240, 200, 0.1) inset,
-    0 14px 40px rgba(0, 0, 0, 0.4),
-    0 0 32px rgba(223, 176, 111, 0.2);
+    0 16px 44px rgba(0, 0, 0, 0.45),
+    0 0 36px rgba(223, 176, 111, 0.22);
   transition: transform 0.28s ease, box-shadow 0.28s ease, opacity 0.35s ease, visibility 0.35s ease;
-  animation: envelopePulse 2.8s ease-in-out infinite;
+  animation: royalEntrancePulse 2.8s ease-in-out infinite;
 }
 
-.envelope-cta::before {
+.royal-entrance-cta::before {
   content: "";
   position: absolute;
   inset: 3px;
   border-radius: inherit;
-  border: 1px solid rgba(223, 176, 111, 0.22);
+  border: 1px solid rgba(223, 176, 111, 0.24);
   pointer-events: none;
 }
 
-.envelope-cta:hover,
-.envelope-cta:focus-visible {
+.royal-entrance-cta:hover,
+.royal-entrance-cta:focus-visible {
   transform: translateY(-2px) scale(1.02);
   box-shadow:
     0 0 0 1px rgba(255, 240, 200, 0.16) inset,
-    0 18px 44px rgba(0, 0, 0, 0.42),
-    0 0 42px rgba(223, 176, 111, 0.32);
+    0 20px 48px rgba(0, 0, 0, 0.48),
+    0 0 44px rgba(223, 176, 111, 0.34);
   outline: none;
 }
 
-.envelope-cta-text {
+.royal-entrance-cta-eyebrow {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.05rem, 3.2vw, 1.5rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: #f2d7ac;
 }
 
-.envelope-overlay.is-opening .envelope-cta,
-.envelope-overlay.is-open .envelope-cta {
+.royal-entrance-cta-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.05rem, 3.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.royal-entrance-overlay.is-opening .royal-entrance-cta,
+.royal-entrance-overlay.is-open .royal-entrance-cta {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   animation: none;
 }
 
-@keyframes envelopePulse {
+@keyframes royalEntrancePulse {
   0%,
   100% {
     box-shadow:
       0 0 0 1px rgba(255, 240, 200, 0.1) inset,
-      0 14px 40px rgba(0, 0, 0, 0.4),
-      0 0 28px rgba(223, 176, 111, 0.18);
+      0 16px 44px rgba(0, 0, 0, 0.45),
+      0 0 30px rgba(223, 176, 111, 0.18);
   }
   50% {
     box-shadow:
       0 0 0 1px rgba(255, 240, 200, 0.14) inset,
-      0 14px 40px rgba(0, 0, 0, 0.4),
-      0 0 40px rgba(223, 176, 111, 0.32);
+      0 16px 44px rgba(0, 0, 0, 0.45),
+      0 0 42px rgba(223, 176, 111, 0.32);
+  }
+}
+
+@media (max-width: 640px) {
+  .royal-door-frame {
+    width: min(96vw, 640px);
+    height: min(78vh, 620px);
+  }
+
+  .royal-entrance-arch {
+    width: min(98vw, 640px);
+    height: min(82vh, 680px);
+  }
+
+  .royal-door-inlay {
+    width: min(40vw, 150px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .envelope-stage {
+  .royal-entrance-cinematic-media,
+  .royal-entrance-cinematic-tint,
+  .royal-entrance-cinematic-shine,
+  .royal-entrance-curtain {
     animation: none;
   }
 
-  .envelope,
-  .envelope-flap,
-  .envelope-card,
-  .envelope-seal,
-  .envelope-cta,
-  .envelope-overlay {
+  .royal-door,
+  .royal-entrance-cta,
+  .royal-entrance-overlay {
     transition: none;
     animation: none;
   }
 
-  .envelope-overlay.is-open .envelope {
+  .royal-entrance-overlay.is-open .royal-door-left,
+  .royal-entrance-overlay.is-open .royal-door-right {
+    transform: none;
     opacity: 0;
   }
 }
