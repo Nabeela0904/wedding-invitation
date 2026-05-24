@@ -91,6 +91,7 @@
       <h2>RSVP</h2>
       <p class="rsvp-intro">We would be honoured by your presence. Please share your response below.</p>
       <form id="main-rsvp-form" class="rsvp-form" novalidate>
+        <input type="text" name="_honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="rsvp-field">
           <label for="main-rsvp-name">Name</label>
           <input id="main-rsvp-name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
@@ -123,7 +124,8 @@
             <span>Valima — 11th July</span>
           </label>
         </fieldset>
-        <button type="submit" class="rsvp-submit">Submit RSVP</button>
+        <button type="submit" class="rsvp-submit" id="main-rsvp-submit">Submit RSVP</button>
+        <p id="main-rsvp-error" class="rsvp-error is-hidden" role="alert"></p>
       </form>
       <div id="main-rsvp-success" class="rsvp-success is-hidden" role="status" aria-live="polite">
         <p class="rsvp-success-title">Thank you!</p>

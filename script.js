@@ -75,8 +75,13 @@ eventButtons.forEach((button) => {
   });
 });
 
+const RSVP_EMAIL = "meeranisare8@gmail.com";
+const RSVP_FORM_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(RSVP_EMAIL)}`;
+
 const mainRsvpForm = document.querySelector("#main-rsvp-form");
 const mainRsvpSuccess = document.querySelector("#main-rsvp-success");
+const mainRsvpError = document.querySelector("#main-rsvp-error");
+const mainRsvpSubmit = document.querySelector("#main-rsvp-submit");
 
 if (mainRsvpForm && mainRsvpSuccess) {
   document.querySelectorAll("[data-rsvp-select]").forEach((selectRoot) => {
@@ -131,11 +136,16 @@ if (mainRsvpForm && mainRsvpSuccess) {
     });
   });
 
-  mainRsvpForm.addEventListener("submit", (event) => {
+  mainRsvpForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const name = mainRsvpForm.querySelector("#main-rsvp-name");
     const attending = mainRsvpForm.querySelector("#main-rsvp-attending");
+    const honey = mainRsvpForm.querySelector('input[name="_honey"]');
+
+    if (honey && honey.value.trim()) {
+      return;
+    }
 
     if (!name.value.trim() || !attending.value) {
       if (!attending.value) {
@@ -147,9 +157,58 @@ if (mainRsvpForm && mainRsvpSuccess) {
     }
 
     const guestName = name.value.trim();
-    mainRsvpForm.classList.add("is-hidden");
-    mainRsvpSuccess.classList.remove("is-hidden");
-    mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = `Thank you, ${guestName}!`;
+    const attendingLabel =
+      mainRsvpForm.querySelector(".rsvp-select-value")?.textContent?.trim() || attending.value;
+    const ceremonies = [...mainRsvpForm.querySelectorAll('input[name="events"]:checked')]
+      .map((input) => input.nextElementSibling?.textContent?.trim() || input.value)
+      .join(", ");
+
+    if (mainRsvpError) {
+      mainRsvpError.classList.add("is-hidden");
+      mainRsvpError.textContent = "";
+    }
+
+    if (mainRsvpSubmit) {
+      mainRsvpSubmit.disabled = true;
+      mainRsvpSubmit.textContent = "Sending…";
+    }
+
+    try {
+      const response = await fetch(RSVP_FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: guestName,
+          attending: attendingLabel,
+          ceremonies: ceremonies || "None selected",
+          _subject: "Wedding RSVP — Main Invitation",
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("RSVP request failed");
+      }
+
+      mainRsvpForm.classList.add("is-hidden");
+      mainRsvpSuccess.classList.remove("is-hidden");
+      mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = `Thank you, ${guestName}!`;
+    } catch {
+      if (mainRsvpError) {
+        mainRsvpError.textContent =
+          "We could not send your RSVP right now. Please try again in a moment.";
+        mainRsvpError.classList.remove("is-hidden");
+      }
+    } finally {
+      if (mainRsvpSubmit) {
+        mainRsvpSubmit.disabled = false;
+        mainRsvpSubmit.textContent = "Submit RSVP";
+      }
+    }
   });
 }
 
