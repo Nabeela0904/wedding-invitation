@@ -37,6 +37,15 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${inter.variable} ${amiri.variable}`}
     >
+      <head>
+        <link
+          rel="preload"
+          href="/music/gehra-hua-instrumental.mp3"
+          as="fetch"
+          type="audio/mpeg"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body>
         <BackgroundMusic />
         {children}

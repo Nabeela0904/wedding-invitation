@@ -26,6 +26,8 @@ function openEnvelope() {
     envelopeOpenBtn.disabled = true;
   }
 
+  tryAutoStartMusic();
+
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (prefersReducedMotion) {
@@ -331,6 +333,10 @@ const bgMusic = document.querySelector("#bg-music");
 const musicToggle = document.querySelector("#music-toggle");
 const MUSIC_STORAGE_KEY = "wedding-music-playing";
 
+function shouldAutoPlayMusic() {
+  return sessionStorage.getItem(MUSIC_STORAGE_KEY) !== "0";
+}
+
 function setMusicUi(isPlaying) {
   if (!musicToggle) return;
   musicToggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
@@ -358,6 +364,12 @@ function pauseBackgroundMusic() {
   setMusicUi(false);
 }
 
+async function tryAutoStartMusic() {
+  if (shouldAutoPlayMusic()) {
+    await playBackgroundMusic();
+  }
+}
+
 if (bgMusic && musicToggle) {
   bgMusic.volume = 0.35;
 
@@ -369,15 +381,10 @@ if (bgMusic && musicToggle) {
     pauseBackgroundMusic();
   });
 
-  const resumeIfEnabled = () => {
-    if (sessionStorage.getItem(MUSIC_STORAGE_KEY) === "1") {
-      void playBackgroundMusic();
-    }
-  };
-
-  resumeIfEnabled();
-  document.addEventListener("click", resumeIfEnabled, { once: true });
-  document.addEventListener("touchstart", resumeIfEnabled, { once: true });
+  void tryAutoStartMusic();
+  document.addEventListener("click", () => void tryAutoStartMusic(), { once: true });
+  document.addEventListener("touchstart", () => void tryAutoStartMusic(), { once: true });
+  document.addEventListener("keydown", () => void tryAutoStartMusic(), { once: true });
 }
 
 animateBackground();

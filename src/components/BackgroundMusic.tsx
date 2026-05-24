@@ -5,6 +5,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const MUSIC_SRC = "/music/gehra-hua-instrumental.mp3";
 const STORAGE_KEY = "wedding-music-playing";
 
+function shouldAutoPlayMusic() {
+  return sessionStorage.getItem(STORAGE_KEY) !== "0";
+}
+
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
@@ -56,15 +60,16 @@ export default function BackgroundMusic() {
     audio.addEventListener("canplaythrough", onCanPlay);
     audio.addEventListener("ended", onEnded);
 
-    const resumeIfEnabled = () => {
-      if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+    const autoStartMusic = () => {
+      if (shouldAutoPlayMusic()) {
         void playMusic();
       }
     };
 
-    resumeIfEnabled();
-    document.addEventListener("click", resumeIfEnabled, { once: true });
-    document.addEventListener("touchstart", resumeIfEnabled, { once: true });
+    autoStartMusic();
+    document.addEventListener("click", autoStartMusic, { once: true });
+    document.addEventListener("touchstart", autoStartMusic, { once: true });
+    document.addEventListener("keydown", autoStartMusic, { once: true });
 
     return () => {
       audio.removeEventListener("canplaythrough", onCanPlay);
