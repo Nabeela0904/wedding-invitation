@@ -39,6 +39,12 @@ export default function WalimaTimelineSection() {
             >
               {WALIMA_EVENT.dateLabel}
             </motion.p>
+            <motion.p
+              variants={fadeSlideUp}
+              className="mt-4 font-display text-[clamp(1.05rem,2.8vw,1.45rem)] leading-relaxed tracking-wide text-cream/95"
+            >
+              {WALIMA_EVENT.timeVenueLabel}
+            </motion.p>
           </div>
         </ParallaxLayer>
 

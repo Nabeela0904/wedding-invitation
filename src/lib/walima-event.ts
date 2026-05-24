@@ -10,9 +10,10 @@ export const WALIMA_EVENT = {
   },
   blessedPhrase: "In Sha Allah On",
   dateLabel: "Sunday 11th July, 2026",
+  timeVenueLabel: "6:00PM, At R convention centre, Madanapalle",
   venueTitle: "VENUE & LOCATION",
-  countdownIso: "2026-07-11T19:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=Noorunisa+Enclave",
+  countdownIso: "2026-07-11T18:00:00+05:30",
+  mapsUrl: "https://maps.google.com/?q=R+Convention+Centre+Madanapalle",
   qrImage: "/walima-qr.jpg",
 } as const;
 
