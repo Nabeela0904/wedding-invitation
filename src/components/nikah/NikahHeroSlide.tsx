@@ -54,11 +54,6 @@ export default function NikahHeroSlide() {
           >
             {NIKAH_EVENT.groom.name}
           </h1>
-          <p
-            className={`mt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#059669] ${heroTextShadow}`}
-          >
-            {NIKAH_EVENT.groom.parents}
-          </p>
         </motion.div>
 
         <motion.div variants={fadeSlideUp}>
@@ -71,11 +66,6 @@ export default function NikahHeroSlide() {
           >
             {NIKAH_EVENT.bride.name}
           </h1>
-          <p
-            className={`mt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#059669] ${heroTextShadow}`}
-          >
-            {NIKAH_EVENT.bride.parents}
-          </p>
         </motion.div>
       </div>
     </motion.header>

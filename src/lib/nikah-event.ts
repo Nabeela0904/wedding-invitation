@@ -1,14 +1,12 @@
 export const NIKAH_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   inviteLine:
-    "WITH THE BLESSINGS OF ALLAH, WE JOYFULLY INVITE YOU TO THE NIKAH CEREMONY OF",
+    "WITH THE BLESSINGS OF ALLAH, WE GRACIOUSLY INVITE YOU TO THE NIKAH CEREMONY OF",
   groom: {
     name: "SHOAIB FARAZ AHMED",
-    parents: "S/O Mr & Mrs Meer Ahmed",
   },
   bride: {
     name: "ZEENATH BANU",
-    parents: "D/O Mr & Mrs R. Vahid Khan",
   },
   eventTitle: "NIKAH CEREMONY",
   dateLabel: "Thursday, 09-07-2026",
