@@ -2076,7 +2076,7 @@ body.invite-entrance-locked .invite-wrapper {
   width: min(72vw, 420px);
   height: min(48vw, 260px);
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(255, 232, 170, 0.34) 0%, rgba(223, 176, 111, 0.12) 42%, transparent 72%);
+  background: radial-gradient(circle, rgba(220, 226, 234, 0.38) 0%, rgba(148, 156, 168, 0.14) 42%, transparent 72%);
   filter: blur(22px);
   opacity: 0.72;
   transition: opacity 1.1s ease, transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -2096,11 +2096,11 @@ body.invite-entrance-locked .invite-wrapper {
   width: calc(100% + 2.4rem);
   height: calc(100% + 2.4rem);
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(223, 176, 111, 0.32);
+  border: 1px solid rgba(192, 200, 212, 0.42);
   border-radius: 0.65rem;
   box-shadow:
-    inset 0 0 0 1px rgba(255, 240, 200, 0.08),
-    0 0 48px rgba(223, 176, 111, 0.1);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 48px rgba(120, 128, 140, 0.16);
   pointer-events: none;
 }
 
@@ -2108,7 +2108,7 @@ body.invite-entrance-locked .invite-wrapper {
   content: "";
   position: absolute;
   inset: 0.55rem;
-  border: 1px solid rgba(223, 176, 111, 0.16);
+  border: 1px solid rgba(192, 200, 212, 0.22);
   border-radius: 0.45rem;
   pointer-events: none;
 }
@@ -2142,12 +2142,12 @@ body.invite-entrance-locked .invite-wrapper {
   inset: 0;
   border-radius: 0.4rem;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 42%),
-    linear-gradient(180deg, #f9edd4 0%, #e8cf9f 52%, #d4b075 100%);
-  border: 1px solid rgba(223, 176, 111, 0.62);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, transparent 42%),
+    linear-gradient(180deg, #e3e7ed 0%, #c8ced8 52%, #a8b0bc 100%);
+  border: 1px solid rgba(176, 184, 196, 0.72);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    inset 0 -12px 24px rgba(140, 90, 30, 0.08);
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -12px 24px rgba(60, 66, 76, 0.12);
 }
 
 .envelope-lining {
@@ -2155,8 +2155,8 @@ body.invite-entrance-locked .invite-wrapper {
   inset: 0.35rem;
   border-radius: 0.3rem;
   background:
-    linear-gradient(180deg, rgba(74, 21, 32, 0.92) 0%, rgba(45, 12, 20, 0.96) 100%);
-  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.35);
+    linear-gradient(180deg, rgba(44, 48, 56, 0.94) 0%, rgba(28, 31, 38, 0.98) 100%);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.4);
   z-index: 0;
 }
 
@@ -2174,12 +2174,12 @@ body.invite-entrance-locked .invite-wrapper {
   padding: 0.75rem 0.5rem;
   border-radius: 0.3rem;
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.55) 0%, transparent 38%),
-    linear-gradient(180deg, #fffdf8 0%, #f8eedb 58%, #f0e0c4 100%);
-  border: 1px solid rgba(223, 176, 111, 0.42);
+    linear-gradient(160deg, rgba(255, 255, 255, 0.62) 0%, transparent 38%),
+    linear-gradient(180deg, #f4f6f9 0%, #e4e8ee 58%, #d2d8e2 100%);
+  border: 1px solid rgba(176, 184, 196, 0.55);
   box-shadow:
-    0 8px 22px rgba(0, 0, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+    0 8px 22px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
   transform: translateY(20%) translateZ(-2px);
   transition:
     transform 1.65s cubic-bezier(0.22, 1, 0.36, 1) 0.85s,
@@ -2191,15 +2191,15 @@ body.invite-entrance-locked .invite-wrapper {
 .envelope-card-border {
   position: absolute;
   inset: 0.45rem;
-  border: 1px solid rgba(223, 176, 111, 0.28);
+  border: 1px solid rgba(160, 170, 184, 0.38);
   border-radius: 0.2rem;
   pointer-events: none;
 }
 
 .envelope-card-crest {
   font-size: 0.85rem;
-  color: rgba(154, 107, 34, 0.85);
-  text-shadow: 0 0 12px rgba(223, 176, 111, 0.35);
+  color: rgba(92, 100, 112, 0.9);
+  text-shadow: 0 0 12px rgba(192, 200, 212, 0.45);
   margin-bottom: 0.15rem;
 }
 
@@ -2208,13 +2208,13 @@ body.invite-entrance-locked .invite-wrapper {
   font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: #9a6b22;
+  color: #5c6470;
 }
 
 .envelope-card-divider {
   width: 2.75rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(223, 176, 111, 0.75), transparent);
+  background: linear-gradient(90deg, transparent, rgba(160, 170, 184, 0.85), transparent);
   margin: 0.15rem 0 0.2rem;
 }
 
@@ -2223,7 +2223,7 @@ body.invite-entrance-locked .invite-wrapper {
   font-size: clamp(1.25rem, 3.8vw, 1.75rem);
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #5c3d18;
+  color: #343a44;
 }
 
 .envelope-card-sub {
@@ -2231,7 +2231,7 @@ body.invite-entrance-locked .invite-wrapper {
   font-size: clamp(0.82rem, 2.2vw, 0.98rem);
   font-style: italic;
   letter-spacing: 0.06em;
-  color: rgba(92, 61, 24, 0.72);
+  color: rgba(68, 74, 84, 0.78);
   margin-top: 0.1rem;
 }
 
@@ -2251,10 +2251,10 @@ body.invite-entrance-locked .invite-wrapper {
   width: 50.5%;
   height: 64%;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, transparent 28%),
-    linear-gradient(180deg, #ecd39f 0%, #d4b075 100%);
-  border: 1px solid rgba(180, 120, 40, 0.38);
-  box-shadow: inset 0 10px 18px rgba(255, 255, 255, 0.14);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, transparent 28%),
+    linear-gradient(180deg, #d0d6df 0%, #aab2be 100%);
+  border: 1px solid rgba(120, 128, 140, 0.42);
+  box-shadow: inset 0 10px 18px rgba(255, 255, 255, 0.18);
 }
 
 .envelope-pocket::before {
@@ -2280,17 +2280,17 @@ body.invite-entrance-locked .invite-wrapper {
     transform 1.45s cubic-bezier(0.34, 1.15, 0.64, 1) 0.42s,
     opacity 0.55s ease 1.15s;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, transparent 35%),
-    linear-gradient(180deg, #f5e6c4 0%, #e2c992 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, transparent 35%),
+    linear-gradient(180deg, #dce1e8 0%, #b8c0cc 100%);
   clip-path: polygon(0 0, 50% 100%, 100% 0);
-  border-top: 1px solid rgba(223, 176, 111, 0.62);
-  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.14));
+  border-top: 1px solid rgba(176, 184, 196, 0.72);
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.16));
 }
 
 .envelope-flap-inner {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(74, 21, 32, 0.08) 0%, rgba(212, 175, 55, 0.06) 100%);
+  background: linear-gradient(180deg, rgba(44, 48, 56, 0.1) 0%, rgba(160, 170, 184, 0.08) 100%);
   clip-path: polygon(0 0, 50% 100%, 100% 0);
 }
 
@@ -2306,12 +2306,12 @@ body.invite-entrance-locked .invite-wrapper {
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background:
-    radial-gradient(circle at 32% 28%, #a83245 0%, #6b1a28 48%, #4a1018 100%);
-  border: 2px solid rgba(255, 220, 180, 0.42);
+    radial-gradient(circle at 32% 28%, #5a6270 0%, #3a404a 48%, #242830 100%);
+  border: 2px solid rgba(220, 226, 234, 0.55);
   box-shadow:
-    0 0 0 3px rgba(139, 38, 53, 0.22),
-    0 10px 22px rgba(0, 0, 0, 0.32),
-    inset 0 2px 6px rgba(255, 200, 160, 0.18);
+    0 0 0 3px rgba(68, 74, 84, 0.28),
+    0 10px 22px rgba(0, 0, 0, 0.34),
+    inset 0 2px 6px rgba(255, 255, 255, 0.16);
   transition:
     transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
     opacity 0.45s ease 0.08s,
@@ -2321,7 +2321,7 @@ body.invite-entrance-locked .invite-wrapper {
 .envelope-seal-ring {
   position: absolute;
   inset: 0.35rem;
-  border: 1px solid rgba(255, 220, 180, 0.28);
+  border: 1px solid rgba(220, 226, 234, 0.38);
   border-radius: 50%;
 }
 
@@ -2332,8 +2332,8 @@ body.invite-entrance-locked .invite-wrapper {
   font-size: 1.02rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #ffe8c8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  color: #eef1f5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
 }
 
 .envelope-open-shine {
@@ -2341,7 +2341,7 @@ body.invite-entrance-locked .invite-wrapper {
   inset: 0;
   pointer-events: none;
   opacity: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(255, 240, 200, 0.42) 0%, transparent 58%);
+  background: radial-gradient(circle at 50% 45%, rgba(228, 232, 238, 0.48) 0%, transparent 58%);
   transition: opacity 0.8s ease 0.9s;
 }
 
@@ -2386,16 +2386,16 @@ body.invite-entrance-locked .invite-wrapper {
   align-items: center;
   gap: 0.45rem;
   padding: 1rem 1.85rem;
-  border: 1px solid rgba(223, 176, 111, 0.62);
+  border: 1px solid rgba(192, 200, 212, 0.58);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(74, 21, 32, 0.88) 0%, rgba(18, 12, 22, 0.92) 100%);
-  color: #fff4d6;
+  background: linear-gradient(180deg, rgba(68, 74, 84, 0.92) 0%, rgba(36, 40, 48, 0.96) 100%);
+  color: #eef1f5;
   cursor: pointer;
   backdrop-filter: blur(12px);
   box-shadow:
-    0 0 0 1px rgba(255, 240, 200, 0.1) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
     0 14px 40px rgba(0, 0, 0, 0.42),
-    0 0 32px rgba(223, 176, 111, 0.2);
+    0 0 32px rgba(120, 128, 140, 0.22);
   transition:
     transform 0.32s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.32s ease,
@@ -2409,7 +2409,7 @@ body.invite-entrance-locked .invite-wrapper {
   position: absolute;
   inset: 3px;
   border-radius: inherit;
-  border: 1px solid rgba(223, 176, 111, 0.22);
+  border: 1px solid rgba(192, 200, 212, 0.24);
   pointer-events: none;
 }
 
@@ -2417,9 +2417,9 @@ body.invite-entrance-locked .invite-wrapper {
 .envelope-cta:focus-visible {
   transform: translateY(-3px) scale(1.02);
   box-shadow:
-    0 0 0 1px rgba(255, 240, 200, 0.15) inset,
+    0 0 0 1px rgba(255, 255, 255, 0.14) inset,
     0 18px 44px rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(223, 176, 111, 0.32);
+    0 0 40px rgba(160, 170, 184, 0.34);
   outline: none;
 }
 
@@ -2428,7 +2428,7 @@ body.invite-entrance-locked .invite-wrapper {
   font-size: clamp(0.82rem, 2.2vw, 0.98rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #f2d7ac;
+  color: #d2d8e2;
 }
 
 .envelope-cta-text {
@@ -2451,15 +2451,15 @@ body.invite-entrance-locked .invite-wrapper {
   0%,
   100% {
     box-shadow:
-      0 0 0 1px rgba(255, 240, 200, 0.1) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.1) inset,
       0 14px 40px rgba(0, 0, 0, 0.42),
-      0 0 28px rgba(223, 176, 111, 0.18);
+      0 0 28px rgba(120, 128, 140, 0.2);
   }
   50% {
     box-shadow:
-      0 0 0 1px rgba(255, 240, 200, 0.14) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.14) inset,
       0 14px 40px rgba(0, 0, 0, 0.42),
-      0 0 38px rgba(223, 176, 111, 0.3);
+      0 0 38px rgba(160, 170, 184, 0.32);
   }
 }
 
