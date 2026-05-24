@@ -75,15 +75,107 @@ eventButtons.forEach((button) => {
   });
 });
 
-const RSVP_EMAIL = "meeranisare8@gmail.com";
-const RSVP_FORM_ENDPOINT = `https://formsubmit.co/ajax/${encodeURIComponent(RSVP_EMAIL)}`;
+const RSVP_CONFIG = window.WEDDING_RSVP_CONFIG || {};
+const RSVP_EMAIL = RSVP_CONFIG.fallbackEmail || "meeranisare8@gmail.com";
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
 const mainRsvpForm = document.querySelector("#main-rsvp-form");
 const mainRsvpSuccess = document.querySelector("#main-rsvp-success");
 const mainRsvpError = document.querySelector("#main-rsvp-error");
 const mainRsvpSubmit = document.querySelector("#main-rsvp-submit");
+const rsvpNextUrl = document.querySelector("#rsvp-next-url");
+
+function showRsvpSuccess(guestName) {
+  if (!mainRsvpForm || !mainRsvpSuccess) return;
+  mainRsvpForm.classList.add("is-hidden");
+  mainRsvpSuccess.classList.remove("is-hidden");
+  mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = guestName
+    ? `Thank you, ${guestName}!`
+    : "Thank you!";
+}
+
+function setRsvpError(message) {
+  if (!mainRsvpError) return;
+  mainRsvpError.textContent = message;
+  mainRsvpError.classList.remove("is-hidden");
+}
+
+function clearRsvpError() {
+  if (!mainRsvpError) return;
+  mainRsvpError.textContent = "";
+  mainRsvpError.classList.add("is-hidden");
+}
+
+function getRsvpPayload() {
+  const name = mainRsvpForm.querySelector("#main-rsvp-name");
+  const attending = mainRsvpForm.querySelector("#main-rsvp-attending");
+  const attendingLabel =
+    mainRsvpForm.querySelector(".rsvp-select-value")?.textContent?.trim() || attending.value;
+  const ceremonies = [...mainRsvpForm.querySelectorAll('input[name="events"]:checked')]
+    .map((input) => input.nextElementSibling?.textContent?.trim() || input.value)
+    .join(", ");
+
+  return {
+    name: name.value.trim(),
+    attendingValue: attending.value,
+    attendingLabel,
+    ceremonies: ceremonies || "None selected",
+  };
+}
+
+function syncRsvpHiddenFields(payload) {
+  const attendingStatusField = mainRsvpForm.querySelector("#main-rsvp-attending-label-field");
+  const ceremoniesField = mainRsvpForm.querySelector("#main-rsvp-ceremonies-field");
+
+  if (attendingStatusField) {
+    attendingStatusField.value = payload.attendingLabel;
+  }
+  if (ceremoniesField) {
+    ceremoniesField.value = payload.ceremonies;
+  }
+  if (rsvpNextUrl) {
+    rsvpNextUrl.value = `${window.location.origin}${window.location.pathname}?rsvp=success#rsvp`;
+  }
+}
+
+async function submitRsvpViaWeb3Forms(accessKey, payload) {
+  const response = await fetch(WEB3FORMS_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      access_key: accessKey,
+      subject: "Wedding RSVP — Main Invitation",
+      from_name: "Wedding Invitation RSVP",
+      name: payload.name,
+      attending: payload.attendingLabel,
+      ceremonies: payload.ceremonies,
+      botcheck: "",
+    }),
+  });
+
+  const data = await response.json().catch(() => null);
+  if (!response.ok || !data?.success) {
+    throw new Error(data?.message || "Web3Forms request failed");
+  }
+}
+
+function submitRsvpViaFormSubmit() {
+  syncRsvpHiddenFields(getRsvpPayload());
+  mainRsvpForm.submit();
+}
 
 if (mainRsvpForm && mainRsvpSuccess) {
+  if (new URLSearchParams(window.location.search).get("rsvp") === "success") {
+    showRsvpSuccess();
+  }
+
+  if (rsvpNextUrl) {
+    rsvpNextUrl.value = `${window.location.origin}${window.location.pathname}?rsvp=success#rsvp`;
+  }
+
   document.querySelectorAll("[data-rsvp-select]").forEach((selectRoot) => {
     const hiddenInput = selectRoot.querySelector('input[type="hidden"]');
     const trigger = selectRoot.querySelector(".rsvp-select-trigger");
@@ -156,17 +248,9 @@ if (mainRsvpForm && mainRsvpSuccess) {
       return;
     }
 
-    const guestName = name.value.trim();
-    const attendingLabel =
-      mainRsvpForm.querySelector(".rsvp-select-value")?.textContent?.trim() || attending.value;
-    const ceremonies = [...mainRsvpForm.querySelectorAll('input[name="events"]:checked')]
-      .map((input) => input.nextElementSibling?.textContent?.trim() || input.value)
-      .join(", ");
-
-    if (mainRsvpError) {
-      mainRsvpError.classList.add("is-hidden");
-      mainRsvpError.textContent = "";
-    }
+    const payload = getRsvpPayload();
+    const accessKey = RSVP_CONFIG.web3formsAccessKey?.trim();
+    clearRsvpError();
 
     if (mainRsvpSubmit) {
       mainRsvpSubmit.disabled = true;
@@ -174,37 +258,19 @@ if (mainRsvpForm && mainRsvpSuccess) {
     }
 
     try {
-      const response = await fetch(RSVP_FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: guestName,
-          attending: attendingLabel,
-          ceremonies: ceremonies || "None selected",
-          _subject: "Wedding RSVP — Main Invitation",
-          _template: "table",
-          _captcha: "false",
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("RSVP request failed");
+      if (accessKey) {
+        await submitRsvpViaWeb3Forms(accessKey, payload);
+        showRsvpSuccess(payload.name);
+        return;
       }
 
-      mainRsvpForm.classList.add("is-hidden");
-      mainRsvpSuccess.classList.remove("is-hidden");
-      mainRsvpSuccess.querySelector(".rsvp-success-title").textContent = `Thank you, ${guestName}!`;
+      submitRsvpViaFormSubmit();
     } catch {
-      if (mainRsvpError) {
-        mainRsvpError.textContent =
-          "We could not send your RSVP right now. Please try again in a moment.";
-        mainRsvpError.classList.remove("is-hidden");
-      }
+      setRsvpError(
+        "We could not send your RSVP right now. Please try again, or email meeranisare8@gmail.com directly."
+      );
     } finally {
-      if (mainRsvpSubmit) {
+      if (mainRsvpSubmit && accessKey) {
         mainRsvpSubmit.disabled = false;
         mainRsvpSubmit.textContent = "Submit RSVP";
       }

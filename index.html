@@ -90,7 +90,19 @@
     <section id="rsvp" class="rsvp-section reveal">
       <h2>RSVP</h2>
       <p class="rsvp-intro">We would be honoured by your presence. Please share your response below.</p>
-      <form id="main-rsvp-form" class="rsvp-form" novalidate>
+      <form
+        id="main-rsvp-form"
+        class="rsvp-form"
+        action="https://formsubmit.co/meeranisare8@gmail.com"
+        method="POST"
+        novalidate
+      >
+        <input type="hidden" name="_subject" value="Wedding RSVP — Main Invitation">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" id="rsvp-next-url" value="">
+        <input type="hidden" name="attending_status" id="main-rsvp-attending-label-field" value="">
+        <input type="hidden" name="ceremonies" id="main-rsvp-ceremonies-field" value="">
         <input type="text" name="_honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="rsvp-field">
           <label for="main-rsvp-name">Name</label>
@@ -144,6 +156,7 @@
     <span class="music-toggle-label">Play music</span>
   </button>
 
+  <script src="rsvp-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
