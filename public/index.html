@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="wedding-base-path" content="/">
   <title>Shoaib & Zeenath | Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="preload" href="/music/gehra-hua-instrumental.mp3" as="fetch" type="audio/mpeg" crossorigin>
 </head>
 <body class="invite-entrance-locked">
   <div id="envelope-overlay" class="envelope-overlay" role="dialog" aria-modal="true" aria-label="Wedding invitation envelope">
@@ -177,12 +177,13 @@
     </footer>
   </main>
 
-  <audio id="bg-music" src="/music/gehra-hua-instrumental.mp3" loop preload="auto" aria-hidden="true"></audio>
+  <audio id="bg-music" loop preload="auto" aria-hidden="true"></audio>
   <button type="button" id="music-toggle" class="music-toggle" aria-label="Play background music" aria-pressed="false" title="Gehra Hua — instrumental">
     <span class="music-toggle-icon" aria-hidden="true">♪</span>
     <span class="music-toggle-label">Play music</span>
   </button>
 
+  <script src="wedding-assets.js"></script>
   <script src="rsvp-config.js"></script>
   <script src="script.js"></script>
 </body>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { getWeddingMusicSrc } from "@/lib/wedding-asset-path";
 
-const MUSIC_SRC = "/music/gehra-hua-instrumental.mp3";
 const STORAGE_KEY = "wedding-music-playing";
 
 function shouldAutoPlayMusic() {
@@ -19,18 +19,26 @@ export default function BackgroundMusic() {
     sessionStorage.setItem(STORAGE_KEY, isPlaying ? "1" : "0");
   }, []);
 
-  const playMusic = useCallback(async () => {
-    const audio = audioRef.current;
-    if (!audio) return false;
+  const playMusic = useCallback(
+    (force = false) => {
+      const audio = audioRef.current;
+      if (!audio) return false;
+      if (!force && !shouldAutoPlayMusic()) return false;
 
-    try {
-      await audio.play();
-      syncPlaying(true);
+      audio.src = getWeddingMusicSrc();
+      audio.volume = 0.35;
+
+      const playPromise = audio.play();
+      if (!playPromise) return false;
+
+      playPromise
+        .then(() => syncPlaying(true))
+        .catch(() => syncPlaying(false));
+
       return true;
-    } catch {
-      return false;
-    }
-  }, [syncPlaying]);
+    },
+    [syncPlaying],
+  );
 
   const pauseMusic = useCallback(() => {
     const audio = audioRef.current;
@@ -39,51 +47,52 @@ export default function BackgroundMusic() {
     syncPlaying(false);
   }, [syncPlaying]);
 
-  const toggleMusic = useCallback(async () => {
+  const toggleMusic = useCallback(() => {
     if (playing) {
       pauseMusic();
       return;
     }
-    await playMusic();
+    playMusic(true);
   }, [pauseMusic, playMusic, playing]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
+    audio.src = getWeddingMusicSrc();
+    audio.load();
+
     const onCanPlay = () => {
       audio.volume = 0.35;
       setReady(true);
     };
     const onEnded = () => syncPlaying(false);
+    const onError = () => syncPlaying(false);
 
     audio.addEventListener("canplaythrough", onCanPlay);
     audio.addEventListener("ended", onEnded);
+    audio.addEventListener("error", onError);
 
-    const autoStartMusic = () => {
-      if (shouldAutoPlayMusic()) {
-        void playMusic();
-      }
-    };
+    const startFromGesture = () => playMusic(true);
 
-    autoStartMusic();
-    document.addEventListener("click", autoStartMusic, { once: true });
-    document.addEventListener("touchstart", autoStartMusic, { once: true });
-    document.addEventListener("keydown", autoStartMusic, { once: true });
+    document.addEventListener("click", startFromGesture, { once: true });
+    document.addEventListener("touchstart", startFromGesture, { once: true });
+    document.addEventListener("keydown", startFromGesture, { once: true });
 
     return () => {
       audio.removeEventListener("canplaythrough", onCanPlay);
       audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("error", onError);
     };
   }, [playMusic, syncPlaying]);
 
   return (
     <>
-      <audio ref={audioRef} src={MUSIC_SRC} loop preload="auto" aria-hidden />
+      <audio ref={audioRef} loop preload="auto" aria-hidden />
       <button
         type="button"
         className="music-toggle"
-        onClick={() => void toggleMusic()}
+        onClick={toggleMusic}
         aria-label={playing ? "Pause background music" : "Play background music"}
         aria-pressed={playing}
         title={ready ? "Gehra Hua — instrumental" : "Loading music…"}

@@ -26,7 +26,7 @@ function openEnvelope() {
     envelopeOpenBtn.disabled = true;
   }
 
-  tryAutoStartMusic();
+  startMusicFromUserGesture(true);
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -337,6 +337,35 @@ function shouldAutoPlayMusic() {
   return sessionStorage.getItem(MUSIC_STORAGE_KEY) !== "0";
 }
 
+function getMusicSrc() {
+  if (window.WEDDING_MUSIC_SRC) {
+    return window.WEDDING_MUSIC_SRC;
+  }
+
+  var meta = document.querySelector('meta[name="wedding-base-path"]');
+  var base = "/";
+  if (meta && meta.getAttribute("content")) {
+    var value = meta.getAttribute("content").trim();
+    base = value.endsWith("/") ? value : value + "/";
+  } else {
+    var segments = window.location.pathname.split("/").filter(Boolean);
+    if (segments.length > 0 && segments[0] === "wedding-invitation") {
+      base = "/wedding-invitation/";
+    }
+  }
+
+  return new URL("music/gehra-hua-instrumental.mp3", window.location.origin + base).href;
+}
+
+function ensureMusicSource() {
+  if (!bgMusic) return;
+  const src = getMusicSrc();
+  if (bgMusic.getAttribute("src") !== src) {
+    bgMusic.setAttribute("src", src);
+    bgMusic.load();
+  }
+}
+
 function setMusicUi(isPlaying) {
   if (!musicToggle) return;
   musicToggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
@@ -345,16 +374,42 @@ function setMusicUi(isPlaying) {
   musicToggle.querySelector(".music-toggle-label").textContent = isPlaying ? "Music on" : "Play music";
 }
 
-async function playBackgroundMusic() {
+async function playBackgroundMusic(force = false) {
   if (!bgMusic) return false;
+  if (!force && !shouldAutoPlayMusic()) return false;
+
+  ensureMusicSource();
+  bgMusic.volume = 0.35;
+
   try {
     await bgMusic.play();
     sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
     setMusicUi(true);
     return true;
   } catch {
+    setMusicUi(false);
     return false;
   }
+}
+
+function startMusicFromUserGesture(force = false) {
+  if (!bgMusic) return;
+  if (!force && !shouldAutoPlayMusic()) return;
+
+  ensureMusicSource();
+  bgMusic.volume = 0.35;
+
+  const playPromise = bgMusic.play();
+  if (!playPromise) return;
+
+  playPromise
+    .then(() => {
+      sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+      setMusicUi(true);
+    })
+    .catch(() => {
+      setMusicUi(false);
+    });
 }
 
 function pauseBackgroundMusic() {
@@ -364,27 +419,26 @@ function pauseBackgroundMusic() {
   setMusicUi(false);
 }
 
-async function tryAutoStartMusic() {
-  if (shouldAutoPlayMusic()) {
-    await playBackgroundMusic();
-  }
-}
-
 if (bgMusic && musicToggle) {
-  bgMusic.volume = 0.35;
+  ensureMusicSource();
+
+  bgMusic.addEventListener("error", () => {
+    setMusicUi(false);
+  });
 
   musicToggle.addEventListener("click", () => {
     if (bgMusic.paused) {
-      void playBackgroundMusic();
+      startMusicFromUserGesture(true);
       return;
     }
     pauseBackgroundMusic();
   });
 
-  void tryAutoStartMusic();
-  document.addEventListener("click", () => void tryAutoStartMusic(), { once: true });
-  document.addEventListener("touchstart", () => void tryAutoStartMusic(), { once: true });
-  document.addEventListener("keydown", () => void tryAutoStartMusic(), { once: true });
+  const autoStartMusic = () => startMusicFromUserGesture(true);
+
+  document.addEventListener("click", autoStartMusic, { once: true });
+  document.addEventListener("touchstart", autoStartMusic, { once: true });
+  document.addEventListener("keydown", autoStartMusic, { once: true });
 }
 
 animateBackground();
