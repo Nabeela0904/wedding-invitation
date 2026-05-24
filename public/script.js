@@ -7,14 +7,14 @@ const layers = {
 
 const envelopeOverlay = document.getElementById("envelope-overlay");
 const envelopeOpenBtn = document.getElementById("envelope-open");
-const ENVELOPE_OPEN_MS = 2100;
+const ENVELOPE_OPEN_MS = 3200;
 
 function finishEnvelopeEntrance() {
   document.body.classList.remove("invite-entrance-locked");
   if (!envelopeOverlay) return;
   envelopeOverlay.classList.add("is-hidden");
   envelopeOverlay.setAttribute("aria-hidden", "true");
-  window.setTimeout(() => envelopeOverlay.remove(), 700);
+  window.setTimeout(() => envelopeOverlay.remove(), 900);
 }
 
 function openEnvelope() {
@@ -35,7 +35,9 @@ function openEnvelope() {
 
   envelopeOverlay.classList.add("is-opening");
   window.requestAnimationFrame(() => {
-    envelopeOverlay.classList.add("is-open");
+    window.requestAnimationFrame(() => {
+      envelopeOverlay.classList.add("is-open");
+    });
   });
 
   window.setTimeout(finishEnvelopeEntrance, ENVELOPE_OPEN_MS);
