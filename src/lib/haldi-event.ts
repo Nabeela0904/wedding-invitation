@@ -7,10 +7,10 @@ export const HALDI_EVENT = {
   dateLabel: "8th July, 2026",
   timeLabel: "5pm till late",
   venueName: "Noorunisa Enclave",
-  venueDetail: "Meerani's residence",
-  venueFull: "Noorunisa Enclave at Meerani's residence",
+  venueDetail: "Madanapalle",
+  venueFull: "Meerani's residence, Noorunisa Enclave Madanapalle",
   countdownIso: "2026-07-08T17:00:00+05:30",
-  mapsQuery: "Noorunisa Enclave Meerani residence",
+  mapsQuery: "Noorunisa Enclave Madanapalle Meerani residence",
 } as const;
 
 export type HaldiEvent = typeof HALDI_EVENT;

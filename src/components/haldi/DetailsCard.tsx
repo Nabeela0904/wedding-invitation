@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { HALDI_EVENT, getGoogleMapsUrl } from "@/lib/haldi-event";
 import { cardReveal, fadeSlideUp } from "@/lib/motion";
 import LiveCountdown from "./LiveCountdown";
-import RsvpForm from "./RsvpForm";
 
 export default function DetailsCard() {
   const mapsUrl = getGoogleMapsUrl(HALDI_EVENT.mapsQuery);
@@ -51,14 +50,6 @@ export default function DetailsCard() {
           <div className="mt-5">
             <LiveCountdown />
           </div>
-        </div>
-
-        <div className="mt-8 border-t border-marigold/20 pt-8">
-          <h3 className="text-center font-display text-xl text-gold">RSVP</h3>
-          <p className="mt-1 mb-5 text-center font-sans text-xs text-gold/55">
-            Kindly confirm your attendance
-          </p>
-          <RsvpForm />
         </div>
       </div>
     </motion.section>
