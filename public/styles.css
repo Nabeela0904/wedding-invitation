@@ -2017,6 +2017,27 @@ body.invite-entrance-locked {
   overflow: hidden;
 }
 
+body.invite-entrance-locked .background-layer-1 {
+  z-index: 100;
+}
+
+body.invite-entrance-locked .background-layer-2 {
+  z-index: 101;
+}
+
+body.invite-entrance-locked .background-glow {
+  z-index: 102;
+}
+
+body.invite-entrance-locked .lantern-overlay {
+  z-index: 103;
+}
+
+body.invite-entrance-locked .invite-wrapper {
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .envelope-overlay {
   position: fixed;
   inset: 0;
@@ -2026,10 +2047,7 @@ body.invite-entrance-locked {
   align-items: center;
   justify-content: center;
   gap: clamp(1.75rem, 4.5vh, 2.75rem);
-  background:
-    radial-gradient(circle at 50% 32%, rgba(223, 176, 111, 0.18), transparent 48%),
-    radial-gradient(circle at 20% 80%, rgba(74, 21, 32, 0.12), transparent 40%),
-    linear-gradient(180deg, #050810 0%, #10182c 46%, #080c18 100%);
+  background: transparent;
   transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.9s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -2040,23 +2058,7 @@ body.invite-entrance-locked {
 }
 
 .envelope-ambient {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(255, 232, 170, 0.07) 0%, transparent 38%),
-    radial-gradient(circle at 50% 100%, rgba(212, 175, 55, 0.06) 0%, transparent 32%);
-  animation: envelopeAmbientPulse 5s ease-in-out infinite;
-}
-
-@keyframes envelopeAmbientPulse {
-  0%,
-  100% {
-    opacity: 0.75;
-  }
-  50% {
-    opacity: 1;
-  }
+  display: none;
 }
 
 .envelope-stage {
@@ -2474,7 +2476,6 @@ body.invite-entrance-locked {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .envelope-ambient,
   .envelope {
     animation: none;
   }
