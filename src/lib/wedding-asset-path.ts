@@ -29,7 +29,7 @@ export function weddingAssetPath(relativePath: string): string {
   return new URL(clean, `${window.location.origin}${base}`).href;
 }
 
-export const WEDDING_MUSIC_FILE = "music/gehra-hua-instrumental.mp3";
+export const WEDDING_MUSIC_FILE = "music/whatsapp-audio.mp3";
 
 export function getWeddingMusicSrc(): string {
   return weddingAssetPath(WEDDING_MUSIC_FILE);

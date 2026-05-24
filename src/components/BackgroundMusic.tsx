@@ -65,11 +65,18 @@ export default function BackgroundMusic() {
     const onCanPlay = () => {
       audio.volume = 0.35;
       setReady(true);
+      if (shouldAutoPlayMusic()) {
+        playMusic(true);
+      }
     };
+    const onPlay = () => syncPlaying(true);
+    const onPause = () => syncPlaying(false);
     const onEnded = () => syncPlaying(false);
     const onError = () => syncPlaying(false);
 
     audio.addEventListener("canplaythrough", onCanPlay);
+    audio.addEventListener("play", onPlay);
+    audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("error", onError);
 
@@ -81,6 +88,8 @@ export default function BackgroundMusic() {
 
     return () => {
       audio.removeEventListener("canplaythrough", onCanPlay);
+      audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("error", onError);
     };
@@ -95,12 +104,12 @@ export default function BackgroundMusic() {
         onClick={toggleMusic}
         aria-label={playing ? "Pause background music" : "Play background music"}
         aria-pressed={playing}
-        title={ready ? "Gehra Hua — instrumental" : "Loading music…"}
+        title={ready ? "Wedding background music" : "Loading music…"}
       >
         <span className="music-toggle-icon" aria-hidden>
           {playing ? "❚❚" : "♪"}
         </span>
-        <span className="music-toggle-label">{playing ? "Music on" : "Play music"}</span>
+        <span className="music-toggle-label">{playing ? "Pause music" : "Play music"}</span>
       </button>
     </>
   );

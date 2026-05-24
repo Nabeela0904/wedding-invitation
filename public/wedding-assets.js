@@ -19,5 +19,5 @@
     return new URL(clean, window.location.origin + getDeployBase()).href;
   }
 
-  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/gehra-hua-instrumental.mp3");
+  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
 })();

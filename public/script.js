@@ -354,7 +354,7 @@ function getMusicSrc() {
     }
   }
 
-  return new URL("music/gehra-hua-instrumental.mp3", window.location.origin + base).href;
+  return new URL("music/whatsapp-audio.mp3", window.location.origin + base).href;
 }
 
 function ensureMusicSource() {
@@ -370,8 +370,9 @@ function setMusicUi(isPlaying) {
   if (!musicToggle) return;
   musicToggle.setAttribute("aria-pressed", isPlaying ? "true" : "false");
   musicToggle.setAttribute("aria-label", isPlaying ? "Pause background music" : "Play background music");
+  musicToggle.setAttribute("title", isPlaying ? "Pause wedding music" : "Play wedding music");
   musicToggle.querySelector(".music-toggle-icon").textContent = isPlaying ? "❚❚" : "♪";
-  musicToggle.querySelector(".music-toggle-label").textContent = isPlaying ? "Music on" : "Play music";
+  musicToggle.querySelector(".music-toggle-label").textContent = isPlaying ? "Pause music" : "Play music";
 }
 
 async function playBackgroundMusic(force = false) {
