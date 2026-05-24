@@ -221,7 +221,7 @@ footer {
 
 .hero-lineage {
   margin: 0 0 1rem;
-  color: #e8d5b8;
+  color: #f2ddb8;
   font-size: clamp(0.92rem, 2vw, 1.05rem);
   line-height: 1.65;
   font-style: italic;
@@ -231,14 +231,14 @@ footer {
   margin: 0.35rem 0 0.65rem;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(1.2rem, 2.8vw, 1.55rem);
-  color: #f5d9ae;
+  color: #ffe8b0;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .hero-bride-parents {
   margin: 0 0 0.25rem;
-  color: var(--text-soft);
+  color: #f0dfc8;
   font-size: clamp(0.95rem, 2.1vw, 1.08rem);
   letter-spacing: 0.02em;
 }

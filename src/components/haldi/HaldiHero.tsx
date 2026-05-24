@@ -13,10 +13,10 @@ export default function HaldiHero() {
       animate="visible"
     >
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[42%]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[52%]"
         style={{
           background:
-            "linear-gradient(180deg, rgba(255,253,249,0.92) 0%, rgba(255,253,249,0.55) 55%, transparent 100%)",
+            "linear-gradient(180deg, rgba(255,253,249,0.97) 0%, rgba(255,248,235,0.78) 50%, rgba(255,253,249,0.35) 100%)",
         }}
         aria-hidden
       />
@@ -25,7 +25,7 @@ export default function HaldiHero() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] leading-relaxed text-metallic-gold drop-shadow-[0_2px_16px_rgba(255,253,249,0.9)]"
+        className="relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#C2410C] drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]"
       >
         {HALDI_EVENT.bismillah}
       </motion.p>
