@@ -46,11 +46,11 @@ export default function NikahTimelineSection() {
               variants={fadeSlideUp}
               className="mt-10 inline-block border border-metallic-gold/30 px-6 py-4"
             >
-              <p className="font-sans text-[10px] uppercase tracking-[0.3em] text-metallic-gold/80">
-                Dinner
+              <p className="font-display text-lg tracking-wide text-ivory">
+                {NIKAH_EVENT.dinnerLabel}
               </p>
-              <p className="mt-2 font-display text-lg tracking-wide">
-                {NIKAH_EVENT.dinnerLabel.replace("Dinner: ", "")}
+              <p className="mt-3 font-display text-[clamp(0.95rem,2.4vw,1.15rem)] leading-relaxed tracking-wide text-ivory/90">
+                {NIKAH_EVENT.dinnerVenue}
               </p>
             </motion.div>
           </div>
