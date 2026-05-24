@@ -17,12 +17,26 @@ export const NIKAH_EVENT = {
   dinnerLabel: "Dinner: 7.00pm onwards",
   dinnerVenue: "Venue: VJR Mahal chennai to Bnglr Bypass road Arcot.",
   venueTitle: "VENUE & LOCATION",
-  venueSubtext: "Big Mosque, Melvisharam",
+  venues: [
+    {
+      label: "Nikah Ceremony",
+      subtext: "Big Mosque, Melvisharam",
+      mapsUrl: "https://maps.google.com/?q=Big+Mosque+Melvisharam",
+      qrImage: "/nikah-ceremony-qr.png",
+      qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
+    },
+    {
+      label: "Dinner Reception",
+      subtext: "VJR Mahal, Chennai to Bangalore Bypass road, Arcot",
+      mapsUrl:
+        "https://maps.google.com/?q=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
+      qrImage: "/nikah-dinner-qr.png",
+      qrAlt: "QR code for Nikah dinner at VJR Mahal, Arcot",
+    },
+  ] as const,
   closingLine:
     "YOUR PRESENCE AND BLESSINGS WILL MAKE THIS OCCASION EVEN MORE SPECIAL",
   countdownIso: "2026-07-09T17:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=Big+Mosque+Melvisharam",
-  qrImage: "/nikah-venue-qr.png",
 } as const;
 
 export type NikahEvent = typeof NIKAH_EVENT;
