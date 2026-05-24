@@ -84,9 +84,8 @@ if (mainRsvpForm && mainRsvpSuccess) {
 
     const name = mainRsvpForm.querySelector("#main-rsvp-name");
     const attending = mainRsvpForm.querySelector("#main-rsvp-attending");
-    const food = mainRsvpForm.querySelector("#main-rsvp-food");
 
-    if (!name.value.trim() || !attending.value || !food.value) {
+    if (!name.value.trim() || !attending.value) {
       mainRsvpForm.reportValidity();
       return;
     }

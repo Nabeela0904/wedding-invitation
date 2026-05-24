@@ -557,6 +557,34 @@ h2 {
   color: var(--text-soft);
 }
 
+.nikah-sher {
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 1.4rem 1.2rem 1.3rem;
+  border: 1px solid rgba(223, 176, 111, 0.28);
+  border-radius: 1rem;
+  background: rgba(255, 245, 227, 0.05);
+}
+
+.nikah-sher .nikah-verse {
+  margin-bottom: 1.1rem;
+}
+
+.nikah-sher-roman {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.nikah-sher-roman p {
+  margin: 0.2rem 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.05rem, 2.4vw, 1.28rem);
+  font-style: italic;
+  line-height: 1.75;
+  color: #d7c7b0;
+  letter-spacing: 0.02em;
+}
+
 .nikah-invite {
   text-align: center;
   margin-top: 0.5rem;
