@@ -8,16 +8,19 @@ export const NIKAH_EVENT = {
   bride: {
     name: "ZEENATH BANU",
   },
-  eventTitle: "NIKAH CEREMONY",
-  dateLabel: "Thursday, 09-07-2026",
-  timeLabel: "After Asar Namaz",
+  ceremonyDetails: [
+    "Insh Allah,",
+    "On Thursday the 09th of July 2026",
+    "5:00 PM, After Nawias- e - Asar",
+    "At Big Mosque, Melvisharam",
+  ] as const,
   dinnerLabel: "Dinner: 7:00 PM onwards",
   venueTitle: "VENUE & LOCATION",
-  venueSubtext: "Noorunisa Enclave at Meerani's residence",
+  venueSubtext: "Big Mosque, Melvisharam",
   closingLine:
     "YOUR PRESENCE AND BLESSINGS WILL MAKE THIS OCCASION EVEN MORE SPECIAL",
   countdownIso: "2026-07-09T17:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=Noorunisa+Enclave",
+  mapsUrl: "https://maps.google.com/?q=Big+Mosque+Melvisharam",
   qrImage: "/nikah-venue-qr.png",
 } as const;
 

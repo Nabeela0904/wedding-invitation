@@ -27,20 +27,21 @@ export default function NikahTimelineSection() {
       >
         <ParallaxLayer offset={28}>
           <div className="border-l border-metallic-gold/40 pl-8 sm:pl-10">
-            <motion.p
-              variants={fadeSlideUp}
-              className="font-sans text-[10px] uppercase tracking-[0.35em] text-metallic-gold"
-            >
-              {NIKAH_EVENT.eventTitle}
-            </motion.p>
-            <motion.p
-              variants={fadeSlideUp}
-              className="mt-6 font-display text-[clamp(1.35rem,3.5vw,1.85rem)] leading-snug tracking-wide text-ivory"
-            >
-              {NIKAH_EVENT.dateLabel}
-              <span className="mx-3 text-metallic-gold/60">|</span>
-              {NIKAH_EVENT.timeLabel}
-            </motion.p>
+            <div className="space-y-3">
+              {NIKAH_EVENT.ceremonyDetails.map((line, index) => (
+                <motion.p
+                  key={line}
+                  variants={fadeSlideUp}
+                  className={`font-display leading-snug tracking-wide text-ivory ${
+                    index === 0
+                      ? "text-[clamp(1.1rem,2.8vw,1.35rem)] italic text-metallic-gold"
+                      : "text-[clamp(1.15rem,3vw,1.65rem)]"
+                  }`}
+                >
+                  {line}
+                </motion.p>
+              ))}
+            </div>
             <motion.div
               variants={fadeSlideUp}
               className="mt-10 inline-block border border-metallic-gold/30 px-6 py-4"
