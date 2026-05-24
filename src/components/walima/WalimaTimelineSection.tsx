@@ -45,6 +45,17 @@ export default function WalimaTimelineSection() {
             >
               {WALIMA_EVENT.timeVenueLabel}
             </motion.p>
+            <motion.div
+              variants={fadeSlideUp}
+              className="mt-10 inline-block border border-metallic-gold/30 px-6 py-4"
+            >
+              <p className="font-display text-lg tracking-wide text-cream">
+                {WALIMA_EVENT.dinnerLabel}
+              </p>
+              <p className="mt-3 font-display text-[clamp(0.95rem,2.4vw,1.15rem)] leading-relaxed tracking-wide text-cream/90">
+                {WALIMA_EVENT.dinnerVenue}
+              </p>
+            </motion.div>
           </div>
         </ParallaxLayer>
 
