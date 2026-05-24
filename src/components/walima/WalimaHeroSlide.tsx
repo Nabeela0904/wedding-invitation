@@ -42,14 +42,7 @@ export default function WalimaHeroSlide() {
 
       <motion.p
         variants={fadeSlideUp}
-        className={`relative mt-8 font-display text-[clamp(1rem,3.2vw,1.45rem)] font-bold uppercase tracking-[0.14em] text-[#BE123C] ${heroTextShadow}`}
-      >
-        {WALIMA_EVENT.hosts}
-      </motion.p>
-
-      <motion.p
-        variants={fadeSlideUp}
-        className={`relative mx-auto mt-6 max-w-2xl font-sans text-[10px] font-bold uppercase tracking-[0.22em] text-[#9F1239] sm:text-[11px] ${heroTextShadow}`}
+        className={`relative mx-auto mt-8 max-w-2xl font-display text-[clamp(1rem,3vw,1.35rem)] font-semibold normal-case leading-relaxed tracking-wide text-[#9F1239] sm:text-[1.15rem] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.inviteLine}
       </motion.p>
@@ -73,11 +66,6 @@ export default function WalimaHeroSlide() {
           >
             {WALIMA_EVENT.bride.name}
           </h1>
-          <p
-            className={`mt-3 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[#BE123C] ${heroTextShadow}`}
-          >
-            {WALIMA_EVENT.bride.parents}
-          </p>
         </motion.div>
       </div>
     </motion.header>
