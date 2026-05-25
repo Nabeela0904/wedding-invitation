@@ -54,13 +54,13 @@ This repo now includes **`wrangler.jsonc`** pointing to the **`out/`** folder.
 | Setting | Value |
 |---------|--------|
 | Build command | `npm run build` |
-| Deploy command | `npx wrangler deploy` |
+| Deploy command | `npx wrangler versions upload --assets=./out` |
 
-Or use only:
+The `--assets=./out` flag is required so Wrangler publishes your static site (the build already creates `out/`).
 
-| Deploy command | `npx wrangler versions upload` |
+You can also use: `npm run deploy:cloudflare` as the deploy command (after build completes).
 
-Both work once `wrangler.jsonc` is in the repo (pushed to `main`).
+The repo also includes `wrangler.jsonc` pointing to `./out` for local deploys.
 
 ### Alternative: Cloudflare Pages (no Wrangler)
 
