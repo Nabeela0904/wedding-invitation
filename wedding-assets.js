@@ -82,6 +82,14 @@
     });
   }
 
+  function markMusicForEventPage(currentTime) {
+    saveMusicState({
+      playing: true,
+      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
+      userPaused: false,
+    });
+  }
+
   function applySavedMusicTime(audio) {
     var saved = getSavedMusicTime();
     if (!audio || saved <= 0) return;
@@ -109,6 +117,7 @@
     saveMusicState: saveMusicState,
     markUserPlaying: markUserPlaying,
     markUserPaused: markUserPaused,
+    markMusicForEventPage: markMusicForEventPage,
     applySavedMusicTime: applySavedMusicTime,
   };
 })();

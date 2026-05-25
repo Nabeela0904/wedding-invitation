@@ -2,6 +2,14 @@ export const MUSIC_PLAYING_KEY = "wedding-music-playing";
 export const MUSIC_TIME_KEY = "wedding-music-time";
 export const MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
 
+export const EVENT_PAGES = ["/haldi", "/nikah", "/walima"] as const;
+
+export function isEventPagePath(pathname: string): boolean {
+  return EVENT_PAGES.some(
+    (page) => pathname === page || pathname.endsWith(page),
+  );
+}
+
 export function shouldAutoPlayMusic(): boolean {
   return !wasUserPaused();
 }
@@ -78,6 +86,14 @@ export function markUserPaused(currentTime = 0): void {
     playing: false,
     currentTime,
     userPaused: true,
+  });
+}
+
+export function markMusicForEventPage(currentTime = getSavedMusicTime()): void {
+  saveMusicState({
+    playing: true,
+    currentTime,
+    userPaused: false,
   });
 }
 

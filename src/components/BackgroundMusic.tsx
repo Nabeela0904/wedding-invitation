@@ -1,9 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { getWeddingMusicSrc } from "@/lib/wedding-asset-path";
 import {
   applySavedMusicTime,
+  getSavedMusicTime,
+  isEventPagePath,
+  markMusicForEventPage,
   markUserPaused,
   markUserPlaying,
   musicSrcMatches,
@@ -13,6 +17,8 @@ import {
 } from "@/lib/wedding-music-state";
 
 export default function BackgroundMusic() {
+  const pathname = usePathname();
+  const isEventPage = isEventPagePath(pathname);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [ready, setReady] = useState(false);
@@ -70,6 +76,13 @@ export default function BackgroundMusic() {
   }, [pauseMusic, playMusic, playing]);
 
   useEffect(() => {
+    if (!isEventPage) return;
+
+    userPausedRef.current = false;
+    markMusicForEventPage(getSavedMusicTime());
+  }, [isEventPage]);
+
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
@@ -122,9 +135,17 @@ export default function BackgroundMusic() {
     };
 
     const tryAutoPlay = () => {
-      if (userPausedRef.current) return;
+      if (!isEventPage && userPausedRef.current) return;
       if (!audio.paused) return;
       playMusic(true);
+    };
+
+    const tryAutoPlayFromInteraction = () => {
+      if (isEventPage) {
+        userPausedRef.current = false;
+        markMusicForEventPage(audio.currentTime);
+      }
+      tryAutoPlay();
     };
 
     audio.addEventListener("canplaythrough", onCanPlay);
@@ -138,9 +159,15 @@ export default function BackgroundMusic() {
 
     tryAutoPlay();
 
-    document.addEventListener("click", tryAutoPlay, { once: true });
-    document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
-    document.addEventListener("keydown", tryAutoPlay, { once: true });
+    if (isEventPage) {
+      document.addEventListener("click", tryAutoPlayFromInteraction);
+      document.addEventListener("touchstart", tryAutoPlayFromInteraction, { passive: true });
+      document.addEventListener("keydown", tryAutoPlayFromInteraction);
+    } else {
+      document.addEventListener("click", tryAutoPlay, { once: true });
+      document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
+      document.addEventListener("keydown", tryAutoPlay, { once: true });
+    }
 
     return () => {
       audio.removeEventListener("canplaythrough", onCanPlay);
@@ -151,11 +178,14 @@ export default function BackgroundMusic() {
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("timeupdate", onTimeUpdate);
       window.removeEventListener("pagehide", persistBeforeLeave);
+      document.removeEventListener("click", tryAutoPlayFromInteraction);
+      document.removeEventListener("touchstart", tryAutoPlayFromInteraction);
+      document.removeEventListener("keydown", tryAutoPlayFromInteraction);
       document.removeEventListener("click", tryAutoPlay);
       document.removeEventListener("touchstart", tryAutoPlay);
       document.removeEventListener("keydown", tryAutoPlay);
     };
-  }, [playMusic]);
+  }, [isEventPage, playMusic]);
 
   return (
     <>

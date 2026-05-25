@@ -506,7 +506,11 @@ function bootBackgroundMusic() {
   window.addEventListener("pagehide", persistMusicBeforeLeave);
 
   document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/nikah"], a.event-button[href="/walima"]').forEach((link) => {
-    link.addEventListener("click", persistMusicBeforeLeave);
+    link.addEventListener("click", () => {
+      if (musicState) {
+        musicState.markMusicForEventPage(bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime());
+      }
+    });
   });
 
   document.querySelectorAll('a[href="/index.html"], a[href="index.html"]').forEach((link) => {
