@@ -12,7 +12,7 @@ export const HALDI_EVENT = {
   venueFull: "Meerani's residence, Noorunisa Enclave Madanapalle",
   venueTitle: "VENUE & LOCATION",
   venueSubtext: "Scan to open directions on Google Maps",
-  qrImage: "/haldi-venue-qr.jpg",
+  qrImage: "/haldi-venue-qr.png",
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery: "Noorunisa Enclave Madanapalle Meerani residence",
 } as const;

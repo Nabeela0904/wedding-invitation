@@ -15,8 +15,9 @@ export const WALIMA_EVENT = {
   dinnerVenue: "Venue: R convention centre, Madanapalle",
   venueTitle: "VENUE & LOCATION",
   countdownIso: "2026-07-11T18:00:00+05:30",
-  mapsUrl: "https://maps.google.com/?q=R+Convention+Centre+Madanapalle",
-  qrImage: "/walima-qr.jpg",
+  mapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=R+Convention+Centre+Madanapalle",
+  qrImage: "/walima-venue-qr.png",
 } as const;
 
 export type WalimaEvent = typeof WALIMA_EVENT;

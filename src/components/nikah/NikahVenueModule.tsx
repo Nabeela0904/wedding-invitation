@@ -44,7 +44,13 @@ export default function NikahVenueModule() {
                 {venue.subtext}
               </p>
 
-              <div className="relative mx-auto mt-6 inline-block overflow-hidden rounded-2xl border-2 border-emerald/30 bg-white/75 p-3 shadow-nikah-gold">
+              <a
+                href={venue.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Scan or tap to open ${venue.label} in Google Maps`}
+                className="relative mx-auto mt-6 inline-block overflow-hidden rounded-2xl border-2 border-emerald/30 bg-white/75 p-3 shadow-nikah-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.02] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50"
+              >
                 <div
                   className="absolute inset-2 rounded-xl border border-metallic-gold/25"
                   aria-hidden
@@ -57,7 +63,7 @@ export default function NikahVenueModule() {
                   height={260}
                   className="relative z-10 mx-auto max-w-full rounded-lg object-contain"
                 />
-              </div>
+              </a>
 
               <a
                 href={venue.mapsUrl}

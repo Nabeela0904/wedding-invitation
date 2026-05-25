@@ -21,7 +21,8 @@ export const NIKAH_EVENT = {
     {
       label: "Nikah Ceremony",
       subtext: "Big Mosque, Melvisharam",
-      mapsUrl: "https://maps.google.com/?q=Big+Mosque+Melvisharam",
+      mapsUrl:
+        "https://www.google.com/maps/search/?api=1&query=Big+Mosque+Melvisharam",
       qrImage: "/nikah-ceremony-qr.png",
       qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
     },
@@ -29,7 +30,7 @@ export const NIKAH_EVENT = {
       label: "Dinner Reception",
       subtext: "VJR Mahal, Chennai to Bangalore Bypass road, Arcot",
       mapsUrl:
-        "https://maps.google.com/?q=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
+        "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
       qrImage: "/nikah-dinner-qr.png",
       qrAlt: "QR code for Nikah dinner at VJR Mahal, Arcot",
     },
