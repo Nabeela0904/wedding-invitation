@@ -8,31 +8,40 @@ const layers = {
 const envelopeOverlay = document.getElementById("envelope-overlay");
 const envelopeOpenBtn = document.getElementById("envelope-open");
 const envelopeStage = document.querySelector(".envelope-stage");
-const ENVELOPE_OPEN_MS = 3000;
-const ENVELOPE_EXIT_MS = 1100;
-const ENVELOPE_REVEAL_DELAY_MS = 480;
+const ENVELOPE_FLAP_OPEN_MS = 320;
+const ENVELOPE_REVEAL_START_MS = 2900;
+const ENVELOPE_CONTENT_REVEAL_MS = 3150;
+const ENVELOPE_REMOVE_MS = 4700;
 let envelopeOpening = false;
 
 function revealInvitationContent() {
   document.body.classList.remove("invite-entrance-locked");
   document.body.classList.add("invite-revealed");
 
+  const hero = document.querySelector(".hero.reveal");
+  if (hero) {
+    window.setTimeout(() => hero.classList.add("visible"), 80);
+  }
+
   revealItems.forEach((item, index) => {
-    window.setTimeout(() => item.classList.add("visible"), index * 90);
+    if (item.classList.contains("hero")) return;
+    window.setTimeout(() => item.classList.add("visible"), 220 + index * 120);
   });
 }
 
 function finishEnvelopeEntrance() {
   if (!envelopeOverlay) return;
 
-  envelopeOverlay.classList.add("is-hidden");
+  envelopeOverlay.classList.add("is-revealing", "is-hidden");
   envelopeOverlay.setAttribute("aria-hidden", "true");
 
-  window.setTimeout(revealInvitationContent, ENVELOPE_REVEAL_DELAY_MS);
+  window.setTimeout(revealInvitationContent, ENVELOPE_CONTENT_REVEAL_MS - ENVELOPE_REVEAL_START_MS);
+
   window.setTimeout(() => {
     envelopeOverlay.remove();
+    document.body.classList.remove("envelope-animating");
     envelopeOpening = false;
-  }, ENVELOPE_EXIT_MS);
+  }, ENVELOPE_REMOVE_MS - ENVELOPE_REVEAL_START_MS);
 }
 
 function openEnvelope() {
@@ -41,6 +50,7 @@ function openEnvelope() {
   }
 
   envelopeOpening = true;
+  document.body.classList.add("envelope-animating");
 
   if (envelopeOpenBtn) {
     envelopeOpenBtn.disabled = true;
@@ -55,6 +65,7 @@ function openEnvelope() {
     revealInvitationContent();
     window.setTimeout(() => {
       envelopeOverlay.remove();
+      document.body.classList.remove("envelope-animating");
       envelopeOpening = false;
     }, 120);
     return;
@@ -64,9 +75,9 @@ function openEnvelope() {
 
   window.setTimeout(() => {
     envelopeOverlay.classList.add("is-open");
-  }, 220);
+  }, ENVELOPE_FLAP_OPEN_MS);
 
-  window.setTimeout(finishEnvelopeEntrance, ENVELOPE_OPEN_MS);
+  window.setTimeout(finishEnvelopeEntrance, ENVELOPE_REVEAL_START_MS);
 }
 
 if (envelopeOverlay && envelopeOpenBtn) {
