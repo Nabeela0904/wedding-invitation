@@ -552,7 +552,7 @@ function bootBackgroundMusic() {
     });
   });
 
-  document.querySelectorAll('a[href="/index.html"], a[href="index.html"]').forEach((link) => {
+  document.querySelectorAll('a[href="/"], a[href="/index.html"], a[href="index.html"]').forEach((link) => {
     link.addEventListener("click", persistMusicBeforeLeave);
   });
 

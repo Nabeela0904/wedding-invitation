@@ -38,7 +38,7 @@ export default function HaldiPage() {
       <HaldiClosingFooter />
 
       <a
-        href="/index.html"
+        href="/"
         className="fixed left-4 top-4 z-50 rounded-full border border-marigold/30 bg-white/50 px-4 py-2 font-sans text-xs font-medium text-gold backdrop-blur-sm transition-colors hover:bg-white/70 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation

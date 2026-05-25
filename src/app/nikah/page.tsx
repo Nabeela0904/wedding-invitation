@@ -31,7 +31,7 @@ export default function NikahPage() {
       <NikahClosingFooter />
 
       <a
-        href="/index.html"
+        href="/"
         className="fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation
