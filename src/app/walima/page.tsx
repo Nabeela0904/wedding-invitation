@@ -6,9 +6,7 @@ import WalimaTimelineSection from "@/components/walima/WalimaTimelineSection";
 import WalimaVenueModule from "@/components/walima/WalimaVenueModule";
 import { SITE_FOOTER } from "@/lib/site-copy";
 
-const WalimaPetals = dynamic(() => import("@/components/walima/WalimaPetals"), {
-  ssr: false,
-});
+const WalimaPetals = dynamic(() => import("@/components/walima/WalimaPetals"));
 
 export const metadata: Metadata = {
   title: "Walima Ceremony | Shoaib & Zeenath",
