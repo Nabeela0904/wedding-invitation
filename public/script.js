@@ -7,20 +7,40 @@ const layers = {
 
 const envelopeOverlay = document.getElementById("envelope-overlay");
 const envelopeOpenBtn = document.getElementById("envelope-open");
-const ENVELOPE_OPEN_MS = 3200;
+const envelopeStage = document.querySelector(".envelope-stage");
+const ENVELOPE_OPEN_MS = 3000;
+const ENVELOPE_EXIT_MS = 1100;
+const ENVELOPE_REVEAL_DELAY_MS = 480;
+let envelopeOpening = false;
+
+function revealInvitationContent() {
+  document.body.classList.remove("invite-entrance-locked");
+  document.body.classList.add("invite-revealed");
+
+  revealItems.forEach((item, index) => {
+    window.setTimeout(() => item.classList.add("visible"), index * 90);
+  });
+}
 
 function finishEnvelopeEntrance() {
-  document.body.classList.remove("invite-entrance-locked");
   if (!envelopeOverlay) return;
+
   envelopeOverlay.classList.add("is-hidden");
   envelopeOverlay.setAttribute("aria-hidden", "true");
-  window.setTimeout(() => envelopeOverlay.remove(), 900);
+
+  window.setTimeout(revealInvitationContent, ENVELOPE_REVEAL_DELAY_MS);
+  window.setTimeout(() => {
+    envelopeOverlay.remove();
+    envelopeOpening = false;
+  }, ENVELOPE_EXIT_MS);
 }
 
 function openEnvelope() {
-  if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open")) {
+  if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open") || envelopeOpening) {
     return;
   }
+
+  envelopeOpening = true;
 
   if (envelopeOpenBtn) {
     envelopeOpenBtn.disabled = true;
@@ -31,22 +51,30 @@ function openEnvelope() {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (prefersReducedMotion) {
-    finishEnvelopeEntrance();
+    envelopeOverlay.classList.add("is-hidden");
+    revealInvitationContent();
+    window.setTimeout(() => {
+      envelopeOverlay.remove();
+      envelopeOpening = false;
+    }, 120);
     return;
   }
 
   envelopeOverlay.classList.add("is-opening");
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      envelopeOverlay.classList.add("is-open");
-    });
-  });
+
+  window.setTimeout(() => {
+    envelopeOverlay.classList.add("is-open");
+  }, 220);
 
   window.setTimeout(finishEnvelopeEntrance, ENVELOPE_OPEN_MS);
 }
 
 if (envelopeOverlay && envelopeOpenBtn) {
   envelopeOpenBtn.addEventListener("click", openEnvelope);
+}
+
+if (envelopeStage) {
+  envelopeStage.addEventListener("click", openEnvelope);
 }
 
 const revealItems = document.querySelectorAll(".reveal");
