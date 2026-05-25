@@ -1,3 +1,5 @@
+import { assetPath } from "./site-base-path";
+
 export const HALDI_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   heroTitle: "Rasm-e-Haldi",
@@ -12,7 +14,7 @@ export const HALDI_EVENT = {
   venueFull: "Meerani's residence",
   venueTitle: "VENUE & LOCATION",
   venueSubtext: "Scan to open directions on Google Maps",
-  qrImage: "/haldi-venue-qr.png",
+  qrImage: assetPath("/haldi-venue-qr.png"),
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery:
     "Noorunisa Enclave, 17/2-5-2-5, Gandhi Rd, Madanapalle, Andhra Pradesh 517325",

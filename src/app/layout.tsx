@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Amiri, Inter, Playfair_Display } from "next/font/google";
+import { siteBaseWithSlash, sitePath } from "@/lib/site-base-path";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -38,7 +39,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} ${amiri.variable}`}
     >
       <head>
-        <meta name="wedding-base-path" content="/" />
+        <meta name="wedding-base-path" content={siteBaseWithSlash()} />
       </head>
       <body>
         <audio id="bg-music" loop preload="auto" playsInline aria-hidden="true" />
@@ -55,8 +56,8 @@ export default function RootLayout({
           </span>
           <span className="music-toggle-label">Play music</span>
         </button>
-        <Script src="/wedding-assets.js" strategy="beforeInteractive" />
-        <Script src="/wedding-music-boot.js" strategy="afterInteractive" />
+        <Script src={`${sitePath("/wedding-assets.js")}`} strategy="beforeInteractive" />
+        <Script src={`${sitePath("/wedding-music-boot.js")}`} strategy="afterInteractive" />
         {children}
       </body>
     </html>

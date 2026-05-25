@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { assetPath } from "@/lib/site-base-path";
 
 function EmeraldDrape({ side }: { side: "left" | "right" }) {
   const isLeft = side === "left";
@@ -71,9 +72,9 @@ export default function CinematicNikahScene() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       >
         <picture className="block h-full w-full">
-          <source srcSet="/nikah-cinematic-bg.webp" type="image/webp" />
+          <source srcSet={assetPath("/nikah-cinematic-bg.webp")} type="image/webp" />
           <img
-            src="/nikah-cinematic-bg.png"
+            src={assetPath("/nikah-cinematic-bg.png")}
             alt=""
             fetchPriority="high"
             decoding="async"

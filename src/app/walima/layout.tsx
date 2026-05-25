@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/site-base-path";
+
 export default function WalimaLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -6,7 +8,7 @@ export default function WalimaLayout({
       <link
         rel="preload"
         as="image"
-        href="/walima-cinematic-bg.webp"
+        href={assetPath("/walima-cinematic-bg.webp")}
         type="image/webp"
       />
       {children}

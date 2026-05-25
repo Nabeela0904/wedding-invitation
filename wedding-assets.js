@@ -148,4 +148,27 @@
     persistMusicForEventNavigation: persistMusicForEventNavigation,
     applySavedMusicTime: applySavedMusicTime,
   };
+
+  window.WEDDING_DEPLOY_BASE = getDeployBase();
+
+  function patchSiteLinks() {
+    var base = getDeployBase();
+    if (base === "/") return;
+
+    document.querySelectorAll('a.event-button[href="/haldi"]').forEach(function (el) {
+      el.setAttribute("href", base + "haldi/");
+    });
+    document.querySelectorAll('a.event-button[href="/nikah"]').forEach(function (el) {
+      el.setAttribute("href", base + "nikah/");
+    });
+    document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
+      el.setAttribute("href", base + "walima/");
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", patchSiteLinks);
+  } else {
+    patchSiteLinks();
+  }
 })();

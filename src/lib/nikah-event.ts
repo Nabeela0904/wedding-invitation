@@ -1,3 +1,5 @@
+import { assetPath } from "./site-base-path";
+
 export const NIKAH_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   inviteLine:
@@ -23,7 +25,7 @@ export const NIKAH_EVENT = {
       subtext: "Big Mosque, Melvisharam",
       mapsUrl:
         "https://www.google.com/maps/search/?api=1&query=Big+Mosque+Melvisharam",
-      qrImage: "/nikah-ceremony-qr.png",
+      qrImage: assetPath("/nikah-ceremony-qr.png"),
       qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
     },
     {
@@ -31,7 +33,7 @@ export const NIKAH_EVENT = {
       subtext: "VJR Mahal, Chennai to Bangalore Bypass road, Arcot",
       mapsUrl:
         "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
-      qrImage: "/nikah-dinner-qr.png",
+      qrImage: assetPath("/nikah-dinner-qr.png"),
       qrAlt: "QR code for Nikah dinner at VJR Mahal, Arcot",
     },
   ] as const,

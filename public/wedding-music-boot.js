@@ -268,7 +268,7 @@
       envelopeOverlay.addEventListener("click", markUserGesture);
     }
 
-    document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/nikah"], a.event-button[href="/walima"]').forEach(function (link) {
+    document.querySelectorAll('a.event-button[data-event="haldi"], a.event-button[data-event="nikah"], a.event-button[data-event="valima"]').forEach(function (link) {
       link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
       link.addEventListener("click", persistMusicForEventNavigation, { capture: true });
     });
