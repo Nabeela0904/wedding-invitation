@@ -41,8 +41,6 @@ export default function RootLayout({
         <meta name="wedding-base-path" content="/" />
       </head>
       <body>
-        <Script src="/wedding-assets.js" strategy="beforeInteractive" />
-        <Script src="/wedding-music-boot.js" strategy="afterInteractive" />
         <audio id="bg-music" loop preload="auto" playsInline aria-hidden="true" />
         <button
           type="button"
@@ -57,6 +55,8 @@ export default function RootLayout({
           </span>
           <span className="music-toggle-label">Play music</span>
         </button>
+        <Script src="/wedding-assets.js" strategy="beforeInteractive" />
+        <Script src="/wedding-music-boot.js" strategy="afterInteractive" />
         {children}
       </body>
     </html>

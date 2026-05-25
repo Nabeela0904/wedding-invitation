@@ -56,7 +56,9 @@ function openEnvelope() {
     envelopeOpenBtn.disabled = true;
   }
 
-  startMusicFromUserGesture(true);
+  if (window.WeddingMusic && window.WeddingMusic.startFromUserGesture) {
+    window.WeddingMusic.startFromUserGesture(true);
+  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

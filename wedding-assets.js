@@ -21,6 +21,12 @@
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
 
+  var earlyAudio = document.querySelector("#bg-music");
+  if (earlyAudio && !earlyAudio.getAttribute("src")) {
+    earlyAudio.src = window.WEDDING_MUSIC_SRC;
+    earlyAudio.load();
+  }
+
   var MUSIC_PLAYING_KEY = "wedding-music-playing";
   var MUSIC_TIME_KEY = "wedding-music-time";
   var MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
