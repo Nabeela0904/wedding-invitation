@@ -9,7 +9,7 @@
     "dev": "next dev -p 8080",
     "build": "next build && cp public/index.html out/index.html",
     "build:pages": "GITHUB_PAGES=true next build && node scripts/prepare-gh-pages.js",
-    "deploy:cloudflare": "npm run build && wrangler deploy",
+    "deploy:cloudflare": "wrangler versions upload --assets=./out",
     "start": "next start",
     "lint": "next lint"
   },
