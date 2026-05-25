@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Amiri, Inter, Playfair_Display } from "next/font/google";
-import BackgroundMusic from "@/components/BackgroundMusic";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -41,7 +41,22 @@ export default function RootLayout({
         <meta name="wedding-base-path" content="/" />
       </head>
       <body>
-        <BackgroundMusic />
+        <Script src="/wedding-assets.js" strategy="beforeInteractive" />
+        <Script src="/wedding-music-boot.js" strategy="afterInteractive" />
+        <audio id="bg-music" loop preload="auto" playsInline aria-hidden="true" />
+        <button
+          type="button"
+          id="music-toggle"
+          className="music-toggle"
+          aria-label="Play background music"
+          aria-pressed="false"
+          title="Wedding background music"
+        >
+          <span className="music-toggle-icon" aria-hidden="true">
+            ♪
+          </span>
+          <span className="music-toggle-label">Play music</span>
+        </button>
         {children}
       </body>
     </html>

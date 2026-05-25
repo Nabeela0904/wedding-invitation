@@ -19,28 +19,26 @@ export const metadata: Metadata = {
 export default function WalimaPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-cream text-wine">
-        <WalimaPetals />
+      <WalimaPetals />
 
-        <section className="relative min-h-[100svh]">
-          <CinematicWalimaScene />
-          <WalimaHeroSlide />
-        </section>
+      <section className="relative min-h-[100svh]">
+        <CinematicWalimaScene />
+        <WalimaHeroSlide />
+      </section>
 
-        <WalimaTimelineSection />
-        <WalimaVenueModule />
+      <WalimaTimelineSection />
+      <WalimaVenueModule />
 
-        <footer className="border-t border-wine/10 bg-wine-deep py-10 text-center">
-          <p className="font-sans text-xs text-cream/45">
-            {SITE_FOOTER}
-          </p>
-        </footer>
+      <footer className="border-t border-wine/10 bg-wine-deep py-10 text-center">
+        <p className="font-sans text-xs text-cream/45">{SITE_FOOTER}</p>
+      </footer>
 
-        <a
-          href="/index.html"
-          className="fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
-        >
-          ← Main Invitation
-        </a>
+      <a
+        href="/index.html"
+        className="fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
+      >
+        ← Main Invitation
+      </a>
     </main>
   );
 }
