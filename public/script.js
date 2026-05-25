@@ -331,10 +331,34 @@ if (mainRsvpForm && mainRsvpSuccess) {
 
 const bgMusic = document.querySelector("#bg-music");
 const musicToggle = document.querySelector("#music-toggle");
-const MUSIC_STORAGE_KEY = "wedding-music-playing";
+const musicState = window.WeddingMusicState || null;
+const MUSIC_STORAGE_KEY = musicState?.MUSIC_PLAYING_KEY || "wedding-music-playing";
+let lastSavedMusicAt = 0;
 
 function shouldAutoPlayMusic() {
+  if (musicState) return musicState.shouldAutoPlayMusic();
   return sessionStorage.getItem(MUSIC_STORAGE_KEY) !== "0";
+}
+
+function applySavedMusicTime() {
+  if (musicState && bgMusic) {
+    musicState.applySavedMusicTime(bgMusic);
+  }
+}
+
+function persistMusicState(playing, userPaused) {
+  if (!bgMusic || !musicState) return;
+
+  musicState.saveMusicState({
+    playing: playing,
+    currentTime: bgMusic.currentTime,
+    userPaused: typeof userPaused === "boolean" ? userPaused : sessionStorage.getItem(MUSIC_STORAGE_KEY) === "0",
+  });
+}
+
+function persistMusicBeforeLeave() {
+  if (!bgMusic) return;
+  persistMusicState(!bgMusic.paused && !bgMusic.ended);
 }
 
 function getMusicSrc() {
@@ -380,11 +404,12 @@ async function playBackgroundMusic(force = false) {
   if (!force && !shouldAutoPlayMusic()) return false;
 
   ensureMusicSource();
+  applySavedMusicTime();
   bgMusic.volume = 0.35;
 
   try {
     await bgMusic.play();
-    sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+    persistMusicState(true, false);
     setMusicUi(true);
     return true;
   } catch {
@@ -398,6 +423,7 @@ function startMusicFromUserGesture(force = false) {
   if (!force && !shouldAutoPlayMusic()) return;
 
   ensureMusicSource();
+  applySavedMusicTime();
   bgMusic.volume = 0.35;
 
   const playPromise = bgMusic.play();
@@ -405,7 +431,7 @@ function startMusicFromUserGesture(force = false) {
 
   playPromise
     .then(() => {
-      sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+      persistMusicState(true, false);
       setMusicUi(true);
     })
     .catch(() => {
@@ -416,7 +442,7 @@ function startMusicFromUserGesture(force = false) {
 function pauseBackgroundMusic() {
   if (!bgMusic) return;
   bgMusic.pause();
-  sessionStorage.setItem(MUSIC_STORAGE_KEY, "0");
+  persistMusicState(false, true);
   setMusicUi(false);
 }
 
@@ -430,8 +456,10 @@ function bootBackgroundMusic() {
     setMusicUi(false);
   });
 
+  bgMusic.addEventListener("loadedmetadata", applySavedMusicTime);
+
   bgMusic.addEventListener("play", () => {
-    sessionStorage.setItem(MUSIC_STORAGE_KEY, "1");
+    persistMusicState(true, false);
     setMusicUi(true);
   });
 
@@ -440,6 +468,14 @@ function bootBackgroundMusic() {
     if (sessionStorage.getItem(MUSIC_STORAGE_KEY) === "0") {
       setMusicUi(false);
     }
+  });
+
+  bgMusic.addEventListener("timeupdate", () => {
+    if (bgMusic.paused) return;
+    const now = Date.now();
+    if (now - lastSavedMusicAt < 750) return;
+    lastSavedMusicAt = now;
+    persistMusicState(true, false);
   });
 
   musicToggle.addEventListener("click", (event) => {
@@ -461,6 +497,15 @@ function bootBackgroundMusic() {
   bgMusic.addEventListener("canplay", tryAutoPlay);
   bgMusic.addEventListener("canplaythrough", tryAutoPlay);
   window.addEventListener("load", tryAutoPlay);
+  window.addEventListener("pagehide", persistMusicBeforeLeave);
+
+  document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/nikah"], a.event-button[href="/walima"]').forEach((link) => {
+    link.addEventListener("click", persistMusicBeforeLeave);
+  });
+
+  document.querySelectorAll('a[href="/index.html"], a[href="index.html"]').forEach((link) => {
+    link.addEventListener("click", persistMusicBeforeLeave);
+  });
 
   if (envelopeOverlay) {
     envelopeOverlay.addEventListener("pointerdown", tryAutoPlay, { passive: true });

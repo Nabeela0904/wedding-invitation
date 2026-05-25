@@ -20,4 +20,76 @@
   }
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
+
+  var MUSIC_PLAYING_KEY = "wedding-music-playing";
+  var MUSIC_TIME_KEY = "wedding-music-time";
+  var MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
+
+  function shouldAutoPlayMusic() {
+    try {
+      return sessionStorage.getItem(MUSIC_PLAYING_KEY) !== "0";
+    } catch (error) {
+      return true;
+    }
+  }
+
+  function wasUserPaused() {
+    try {
+      return sessionStorage.getItem(MUSIC_USER_PAUSED_KEY) === "1";
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function getSavedMusicTime() {
+    try {
+      var value = sessionStorage.getItem(MUSIC_TIME_KEY);
+      if (!value) return 0;
+      var time = Number.parseFloat(value);
+      return Number.isFinite(time) && time >= 0 ? time : 0;
+    } catch (error) {
+      return 0;
+    }
+  }
+
+  function saveMusicState(options) {
+    try {
+      sessionStorage.setItem(MUSIC_PLAYING_KEY, options.playing ? "1" : "0");
+      sessionStorage.setItem(MUSIC_TIME_KEY, String(Math.max(0, options.currentTime || 0)));
+
+      if (typeof options.userPaused === "boolean") {
+        sessionStorage.setItem(MUSIC_USER_PAUSED_KEY, options.userPaused ? "1" : "0");
+      }
+    } catch (error) {
+      // Ignore storage errors.
+    }
+  }
+
+  function applySavedMusicTime(audio) {
+    var saved = getSavedMusicTime();
+    if (!audio || saved <= 0) return;
+
+    try {
+      var duration = audio.duration;
+      if (Number.isFinite(duration) && duration > 0) {
+        audio.currentTime = Math.min(saved, Math.max(duration - 0.05, 0));
+        return;
+      }
+
+      audio.currentTime = saved;
+    } catch (error) {
+      // Ignore seek errors until metadata is ready.
+    }
+  }
+
+  window.WeddingMusicState = {
+    MUSIC_PLAYING_KEY: MUSIC_PLAYING_KEY,
+    MUSIC_TIME_KEY: MUSIC_TIME_KEY,
+    MUSIC_USER_PAUSED_KEY: MUSIC_USER_PAUSED_KEY,
+    shouldAutoPlayMusic: shouldAutoPlayMusic,
+    wasUserPaused: wasUserPaused,
+    getSavedMusicTime: getSavedMusicTime,
+    saveMusicState: saveMusicState,
+    applySavedMusicTime: applySavedMusicTime,
+  };
 })();
