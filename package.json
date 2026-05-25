@@ -2,6 +2,9 @@
   "name": "wedding-invitation",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build && cp public/index.html out/index.html",
