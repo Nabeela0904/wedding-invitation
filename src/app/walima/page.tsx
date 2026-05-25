@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import WalimaLoader from "@/components/walima/WalimaLoader";
 import CinematicWalimaScene from "@/components/walima/CinematicWalimaScene";
 import WalimaHeroSlide from "@/components/walima/WalimaHeroSlide";
 import WalimaTimelineSection from "@/components/walima/WalimaTimelineSection";
@@ -19,8 +18,7 @@ export const metadata: Metadata = {
 
 export default function WalimaPage() {
   return (
-    <WalimaLoader>
-      <main className="relative min-h-screen overflow-x-hidden bg-cream text-wine">
+    <main className="relative min-h-screen overflow-x-hidden bg-cream text-wine">
         <WalimaPetals />
 
         <section className="relative min-h-[100svh]">
@@ -43,7 +41,6 @@ export default function WalimaPage() {
         >
           ← Main Invitation
         </a>
-      </main>
-    </WalimaLoader>
+    </main>
   );
 }

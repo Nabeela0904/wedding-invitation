@@ -26,7 +26,7 @@ export default function WalimaVenueModule() {
             variants={fadeSlideUp}
             className="mt-3 font-sans text-[10px] uppercase tracking-[0.28em] text-wine/55"
           >
-            Travel &amp; navigate with ease
+            {WALIMA_EVENT.venueSubtext}
           </motion.p>
         </ParallaxLayer>
 
