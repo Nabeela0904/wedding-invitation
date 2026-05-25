@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Event pages are exported as /haldi/, /nikah/, /walima/ folders
+[[redirects]]
+  from = "/haldi"
+  to = "/haldi/"
+  status = 301
+
+[[redirects]]
+  from = "/nikah"
+  to = "/nikah/"
+  status = 301
+
+[[redirects]]
+  from = "/walima"
+  to = "/walima/"
+  status = 301
