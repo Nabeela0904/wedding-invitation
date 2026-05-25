@@ -43,21 +43,33 @@ Site settings → **Domain management** → **Add custom domain**
 
 ---
 
-## Cloudflare Pages (static — if you prefer Cloudflare)
+## Cloudflare (Workers static assets)
 
-Do **not** use Workers / Wrangler / OpenNext for this repo.
+Your build already succeeds. The deploy failed because Wrangler did not know where the static files are.
 
-1. Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
-2. Select the repo
-3. Settings:
+This repo now includes **`wrangler.jsonc`** pointing to the **`out/`** folder.
 
-   | Setting | Value |
-   |---------|--------|
-   | Framework preset | None (or Next.js Static) |
-   | Build command | `npm run build` |
-   | Build output directory | `out` |
+### Cloudflare dashboard settings
 
-4. **Do not** set deploy command to `wrangler deploy`
+| Setting | Value |
+|---------|--------|
+| Build command | `npm run build` |
+| Deploy command | `npx wrangler deploy` |
+
+Or use only:
+
+| Deploy command | `npx wrangler versions upload` |
+
+Both work once `wrangler.jsonc` is in the repo (pushed to `main`).
+
+### Alternative: Cloudflare Pages (no Wrangler)
+
+1. **Workers & Pages** → **Create** → **Pages** → **Connect to Git**
+2. Build command: `npm run build`
+3. Build output directory: `out`
+4. Leave **Deploy command empty** (Pages publishes `out/` automatically)
+
+Do **not** use OpenNext / `opennextjs-cloudflare` for this project.
 
 ---
 

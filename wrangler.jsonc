@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "wedding-invitation",
+  "compatibility_date": "2025-05-20",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
