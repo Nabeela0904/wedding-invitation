@@ -182,11 +182,23 @@
     setMusicUi(false);
   }
 
-  function bootBackgroundMusic() {
-    if (onEventPage && musicState) {
-      musicState.markMusicForEventPage(musicState.getSavedMusicTime());
-    }
+  function persistMusicForEventNavigation() {
+    if (!musicState || musicState.wasUserPaused()) return;
 
+    var currentTime = bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime();
+    var isPlaying = !!(bgMusic && !bgMusic.paused && !bgMusic.ended);
+    musicState.persistMusicForEventNavigation(currentTime, isPlaying);
+  }
+
+  function resumeContinuedMusic() {
+    bgMusic.muted = false;
+    shouldUnmuteOnGesture = false;
+    ensureMusicSource();
+    applySavedMusicTime();
+    tryStartPlayback(true);
+  }
+
+  function bootBackgroundMusic() {
     ensureMusicSource();
     bgMusic.volume = 0.35;
 
@@ -228,10 +240,18 @@
     function tryAutoPlay() {
       if (musicState && musicState.wasUserPaused()) return;
       if (!bgMusic.paused) return;
-      tryStartPlayback(pendingPlayFromGesture || hasRecentUserGesture());
+
+      var shouldResume =
+        musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic();
+      tryStartPlayback(shouldResume || pendingPlayFromGesture || hasRecentUserGesture());
     }
 
-    tryMutedAutoplay();
+    if (musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic()) {
+      resumeContinuedMusic();
+    } else {
+      tryMutedAutoplay();
+    }
+
     bgMusic.addEventListener("loadeddata", tryAutoPlay);
     bgMusic.addEventListener("canplay", tryAutoPlay);
     bgMusic.addEventListener("canplaythrough", tryAutoPlay);
@@ -249,15 +269,16 @@
     }
 
     document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/nikah"], a.event-button[href="/walima"]').forEach(function (link) {
-      link.addEventListener("click", function () {
-        if (musicState) {
-          musicState.markMusicForEventPage(bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime());
-        }
-      });
+      link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
+      link.addEventListener("click", persistMusicForEventNavigation, { capture: true });
     });
 
     document.querySelectorAll('a[href="/"], a[href="/index.html"], a[href="index.html"]').forEach(function (link) {
-      link.addEventListener("click", persistMusicBeforeLeave);
+      link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
+      link.addEventListener("click", function () {
+        persistMusicForEventNavigation();
+        persistMusicBeforeLeave();
+      }, { capture: true });
     });
   }
 
