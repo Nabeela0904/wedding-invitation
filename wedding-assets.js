@@ -26,11 +26,7 @@
   var MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
 
   function shouldAutoPlayMusic() {
-    try {
-      return sessionStorage.getItem(MUSIC_PLAYING_KEY) !== "0";
-    } catch (error) {
-      return true;
-    }
+    return !wasUserPaused();
   }
 
   function wasUserPaused() {
@@ -54,8 +50,13 @@
 
   function saveMusicState(options) {
     try {
-      sessionStorage.setItem(MUSIC_PLAYING_KEY, options.playing ? "1" : "0");
-      sessionStorage.setItem(MUSIC_TIME_KEY, String(Math.max(0, options.currentTime || 0)));
+      if (typeof options.playing === "boolean") {
+        sessionStorage.setItem(MUSIC_PLAYING_KEY, options.playing ? "1" : "0");
+      }
+
+      if (typeof options.currentTime === "number" && Number.isFinite(options.currentTime)) {
+        sessionStorage.setItem(MUSIC_TIME_KEY, String(Math.max(0, options.currentTime)));
+      }
 
       if (typeof options.userPaused === "boolean") {
         sessionStorage.setItem(MUSIC_USER_PAUSED_KEY, options.userPaused ? "1" : "0");
@@ -63,6 +64,22 @@
     } catch (error) {
       // Ignore storage errors.
     }
+  }
+
+  function markUserPlaying(currentTime) {
+    saveMusicState({
+      playing: true,
+      currentTime: currentTime || 0,
+      userPaused: false,
+    });
+  }
+
+  function markUserPaused(currentTime) {
+    saveMusicState({
+      playing: false,
+      currentTime: currentTime || 0,
+      userPaused: true,
+    });
   }
 
   function applySavedMusicTime(audio) {
@@ -90,6 +107,8 @@
     wasUserPaused: wasUserPaused,
     getSavedMusicTime: getSavedMusicTime,
     saveMusicState: saveMusicState,
+    markUserPlaying: markUserPlaying,
+    markUserPaused: markUserPaused,
     applySavedMusicTime: applySavedMusicTime,
   };
 })();

@@ -346,19 +346,24 @@ function applySavedMusicTime() {
   }
 }
 
-function persistMusicState(playing, userPaused) {
-  if (!bgMusic || !musicState) return;
+function persistMusicState(playing, currentTime, userPaused) {
+  if (!musicState) return;
 
-  musicState.saveMusicState({
-    playing: playing,
-    currentTime: bgMusic.currentTime,
-    userPaused: typeof userPaused === "boolean" ? userPaused : sessionStorage.getItem(MUSIC_STORAGE_KEY) === "0",
-  });
+  var payload = {};
+  if (typeof playing === "boolean") payload.playing = playing;
+  if (typeof currentTime === "number") payload.currentTime = currentTime;
+  if (typeof userPaused === "boolean") payload.userPaused = userPaused;
+  musicState.saveMusicState(payload);
 }
 
 function persistMusicBeforeLeave() {
-  if (!bgMusic) return;
-  persistMusicState(!bgMusic.paused && !bgMusic.ended);
+  if (!bgMusic || !musicState) return;
+  if (musicState.wasUserPaused()) return;
+
+  musicState.saveMusicState({
+    playing: !bgMusic.paused && !bgMusic.ended && bgMusic.currentTime > 0,
+    currentTime: bgMusic.currentTime,
+  });
 }
 
 function getMusicSrc() {
@@ -384,8 +389,8 @@ function getMusicSrc() {
 function ensureMusicSource() {
   if (!bgMusic) return;
   const src = getMusicSrc();
-  if (bgMusic.getAttribute("src") !== src) {
-    bgMusic.setAttribute("src", src);
+  if (!bgMusic.src || bgMusic.src !== src) {
+    bgMusic.src = src;
     bgMusic.load();
   }
 }
@@ -409,7 +414,7 @@ async function playBackgroundMusic(force = false) {
 
   try {
     await bgMusic.play();
-    persistMusicState(true, false);
+    if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
     setMusicUi(true);
     return true;
   } catch {
@@ -431,7 +436,7 @@ function startMusicFromUserGesture(force = false) {
 
   playPromise
     .then(() => {
-      persistMusicState(true, false);
+      if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
       setMusicUi(true);
     })
     .catch(() => {
@@ -442,7 +447,7 @@ function startMusicFromUserGesture(force = false) {
 function pauseBackgroundMusic() {
   if (!bgMusic) return;
   bgMusic.pause();
-  persistMusicState(false, true);
+  if (musicState) musicState.markUserPaused(bgMusic.currentTime);
   setMusicUi(false);
 }
 
@@ -459,23 +464,23 @@ function bootBackgroundMusic() {
   bgMusic.addEventListener("loadedmetadata", applySavedMusicTime);
 
   bgMusic.addEventListener("play", () => {
-    persistMusicState(true, false);
+    if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
     setMusicUi(true);
   });
 
   bgMusic.addEventListener("pause", () => {
     if (bgMusic.ended) return;
-    if (sessionStorage.getItem(MUSIC_STORAGE_KEY) === "0") {
+    if (musicState && musicState.wasUserPaused()) {
       setMusicUi(false);
     }
   });
 
   bgMusic.addEventListener("timeupdate", () => {
-    if (bgMusic.paused) return;
+    if (bgMusic.paused || (musicState && musicState.wasUserPaused())) return;
     const now = Date.now();
     if (now - lastSavedMusicAt < 750) return;
     lastSavedMusicAt = now;
-    persistMusicState(true, false);
+    persistMusicState(true, bgMusic.currentTime);
   });
 
   musicToggle.addEventListener("click", (event) => {
@@ -488,7 +493,8 @@ function bootBackgroundMusic() {
   });
 
   const tryAutoPlay = () => {
-    if (!shouldAutoPlayMusic()) return;
+    if (musicState && musicState.wasUserPaused()) return;
+    if (!bgMusic || !bgMusic.paused) return;
     startMusicFromUserGesture(true);
   };
 

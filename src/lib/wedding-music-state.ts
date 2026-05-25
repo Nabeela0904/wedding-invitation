@@ -3,13 +3,7 @@ export const MUSIC_TIME_KEY = "wedding-music-time";
 export const MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
 
 export function shouldAutoPlayMusic(): boolean {
-  if (typeof window === "undefined") return true;
-
-  try {
-    return sessionStorage.getItem(MUSIC_PLAYING_KEY) !== "0";
-  } catch {
-    return true;
-  }
+  return !wasUserPaused();
 }
 
 export function wasUserPaused(): boolean {
@@ -19,6 +13,17 @@ export function wasUserPaused(): boolean {
     return sessionStorage.getItem(MUSIC_USER_PAUSED_KEY) === "1";
   } catch {
     return false;
+  }
+}
+
+export function shouldResumeMusic(): boolean {
+  if (wasUserPaused()) return false;
+
+  try {
+    const flag = sessionStorage.getItem(MUSIC_PLAYING_KEY);
+    return flag === null || flag === "1";
+  } catch {
+    return true;
   }
 }
 
@@ -37,15 +42,20 @@ export function getSavedMusicTime(): number {
 }
 
 export function saveMusicState(options: {
-  playing: boolean;
-  currentTime: number;
+  playing?: boolean;
+  currentTime?: number;
   userPaused?: boolean;
 }): void {
   if (typeof window === "undefined") return;
 
   try {
-    sessionStorage.setItem(MUSIC_PLAYING_KEY, options.playing ? "1" : "0");
-    sessionStorage.setItem(MUSIC_TIME_KEY, String(Math.max(0, options.currentTime)));
+    if (typeof options.playing === "boolean") {
+      sessionStorage.setItem(MUSIC_PLAYING_KEY, options.playing ? "1" : "0");
+    }
+
+    if (typeof options.currentTime === "number" && Number.isFinite(options.currentTime)) {
+      sessionStorage.setItem(MUSIC_TIME_KEY, String(Math.max(0, options.currentTime)));
+    }
 
     if (typeof options.userPaused === "boolean") {
       sessionStorage.setItem(MUSIC_USER_PAUSED_KEY, options.userPaused ? "1" : "0");
@@ -53,6 +63,22 @@ export function saveMusicState(options: {
   } catch {
     // Ignore storage errors (private mode, etc.).
   }
+}
+
+export function markUserPlaying(currentTime = 0): void {
+  saveMusicState({
+    playing: true,
+    currentTime,
+    userPaused: false,
+  });
+}
+
+export function markUserPaused(currentTime = 0): void {
+  saveMusicState({
+    playing: false,
+    currentTime,
+    userPaused: true,
+  });
 }
 
 export function applySavedMusicTime(audio: HTMLAudioElement): void {
@@ -74,5 +100,10 @@ export function applySavedMusicTime(audio: HTMLAudioElement): void {
 
 export function musicSrcMatches(audio: HTMLAudioElement, src: string): boolean {
   if (!audio.src) return false;
-  return audio.src === src || audio.src.endsWith(src.split("/").pop() ?? "");
+
+  try {
+    return new URL(audio.src).href === new URL(src, window.location.origin).href;
+  } catch {
+    return audio.src.includes("whatsapp-audio.mp3");
+  }
 }

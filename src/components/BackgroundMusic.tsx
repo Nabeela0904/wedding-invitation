@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { getWeddingMusicSrc } from "@/lib/wedding-asset-path";
 import {
   applySavedMusicTime,
+  markUserPaused,
+  markUserPlaying,
   musicSrcMatches,
   saveMusicState,
   shouldAutoPlayMusic,
@@ -17,51 +19,35 @@ export default function BackgroundMusic() {
   const userPausedRef = useRef(wasUserPaused());
   const lastSavedAtRef = useRef(0);
 
-  const persistMusicState = useCallback((playingNow: boolean, userPaused?: boolean) => {
+  const playMusic = useCallback((force = false) => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio) return false;
+    if (!force && !shouldAutoPlayMusic()) return false;
 
-    saveMusicState({
-      playing: playingNow,
-      currentTime: audio.currentTime,
-      userPaused: typeof userPaused === "boolean" ? userPaused : userPausedRef.current,
-    });
+    const src = getWeddingMusicSrc();
+    if (!musicSrcMatches(audio, src)) {
+      audio.src = src;
+      audio.load();
+    }
+
+    applySavedMusicTime(audio);
+    audio.volume = 0.35;
+
+    const playPromise = audio.play();
+    if (!playPromise) return false;
+
+    playPromise
+      .then(() => {
+        userPausedRef.current = false;
+        setPlaying(true);
+        markUserPlaying(audio.currentTime);
+      })
+      .catch(() => {
+        setPlaying(false);
+      });
+
+    return true;
   }, []);
-
-  const syncPlaying = useCallback(
-    (isPlaying: boolean) => {
-      setPlaying(isPlaying);
-      persistMusicState(isPlaying);
-    },
-    [persistMusicState],
-  );
-
-  const playMusic = useCallback(
-    (force = false) => {
-      const audio = audioRef.current;
-      if (!audio) return false;
-      if (!force && (!shouldAutoPlayMusic() || userPausedRef.current)) return false;
-
-      const src = getWeddingMusicSrc();
-      if (!musicSrcMatches(audio, src)) {
-        audio.src = src;
-        audio.load();
-      }
-
-      applySavedMusicTime(audio);
-      audio.volume = 0.35;
-
-      const playPromise = audio.play();
-      if (!playPromise) return false;
-
-      playPromise
-        .then(() => syncPlaying(true))
-        .catch(() => syncPlaying(false));
-
-      return true;
-    },
-    [syncPlaying],
-  );
 
   const pauseMusic = useCallback(() => {
     const audio = audioRef.current;
@@ -69,9 +55,9 @@ export default function BackgroundMusic() {
 
     userPausedRef.current = true;
     audio.pause();
-    syncPlaying(false);
-    persistMusicState(false, true);
-  }, [persistMusicState, syncPlaying]);
+    setPlaying(false);
+    markUserPaused(audio.currentTime);
+  }, []);
 
   const toggleMusic = useCallback(() => {
     if (playing) {
@@ -80,21 +66,18 @@ export default function BackgroundMusic() {
     }
 
     userPausedRef.current = false;
-    persistMusicState(false, false);
     playMusic(true);
-  }, [pauseMusic, playMusic, playing, persistMusicState]);
+  }, [pauseMusic, playMusic, playing]);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const src = getWeddingMusicSrc();
-    audio.src = src;
-    audio.autoplay = true;
+    audio.src = getWeddingMusicSrc();
+    audio.volume = 0.35;
     audio.load();
 
     const onCanPlay = () => {
-      audio.volume = 0.35;
       setReady(true);
       applySavedMusicTime(audio);
       playMusic(true);
@@ -104,32 +87,45 @@ export default function BackgroundMusic() {
       applySavedMusicTime(audio);
     };
 
-    const onPlay = () => syncPlaying(true);
+    const onPlay = () => {
+      userPausedRef.current = false;
+      setPlaying(true);
+      markUserPlaying(audio.currentTime);
+    };
 
     const onPause = () => {
       if (userPausedRef.current) {
-        syncPlaying(false);
+        setPlaying(false);
       }
     };
 
-    const onEnded = () => syncPlaying(false);
-    const onError = () => syncPlaying(false);
-
     const onTimeUpdate = () => {
-      if (audio.paused) return;
+      if (audio.paused || userPausedRef.current) return;
 
       const now = Date.now();
       if (now - lastSavedAtRef.current < 750) return;
 
       lastSavedAtRef.current = now;
-      persistMusicState(true);
+      saveMusicState({
+        currentTime: audio.currentTime,
+        playing: true,
+      });
     };
 
     const persistBeforeLeave = () => {
-      persistMusicState(!audio.paused && !audio.ended);
+      if (userPausedRef.current) return;
+
+      saveMusicState({
+        playing: !audio.paused && !audio.ended && audio.currentTime > 0,
+        currentTime: audio.currentTime,
+      });
     };
 
-    const tryAutoPlay = () => playMusic(true);
+    const tryAutoPlay = () => {
+      if (userPausedRef.current) return;
+      if (!audio.paused) return;
+      playMusic(true);
+    };
 
     audio.addEventListener("canplaythrough", onCanPlay);
     audio.addEventListener("loadedmetadata", onLoadedMetadata);
@@ -137,37 +133,33 @@ export default function BackgroundMusic() {
     audio.addEventListener("canplay", tryAutoPlay);
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
-    audio.addEventListener("ended", onEnded);
-    audio.addEventListener("error", onError);
     audio.addEventListener("timeupdate", onTimeUpdate);
     window.addEventListener("pagehide", persistBeforeLeave);
 
     tryAutoPlay();
-    window.addEventListener("load", tryAutoPlay);
 
     document.addEventListener("click", tryAutoPlay, { once: true });
     document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
     document.addEventListener("keydown", tryAutoPlay, { once: true });
 
     return () => {
-      persistBeforeLeave();
       audio.removeEventListener("canplaythrough", onCanPlay);
       audio.removeEventListener("loadedmetadata", onLoadedMetadata);
       audio.removeEventListener("loadeddata", tryAutoPlay);
       audio.removeEventListener("canplay", tryAutoPlay);
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
-      audio.removeEventListener("ended", onEnded);
-      audio.removeEventListener("error", onError);
       audio.removeEventListener("timeupdate", onTimeUpdate);
       window.removeEventListener("pagehide", persistBeforeLeave);
-      window.removeEventListener("load", tryAutoPlay);
+      document.removeEventListener("click", tryAutoPlay);
+      document.removeEventListener("touchstart", tryAutoPlay);
+      document.removeEventListener("keydown", tryAutoPlay);
     };
-  }, [persistMusicState, playMusic, syncPlaying]);
+  }, [playMusic]);
 
   return (
     <>
-      <audio ref={audioRef} loop preload="auto" autoPlay aria-hidden />
+      <audio ref={audioRef} loop preload="auto" autoPlay playsInline aria-hidden />
       <button
         type="button"
         className="music-toggle"
