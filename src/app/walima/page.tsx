@@ -13,7 +13,7 @@ const WalimaPetals = dynamic(() => import("@/components/walima/WalimaPetals"), {
 export const metadata: Metadata = {
   title: "Walima Ceremony | Shoaib & Zeenath",
   description:
-    "Mr & Mrs Meer Ahmed request the honour of your presence at the Walima ceremony — Sunday 11th July, 2026.",
+    "Mr & Mrs Meer Ahmed request the honour of your presence at the Walima ceremony — Saturday 11th July, 2026.",
 };
 
 export default function WalimaPage() {
