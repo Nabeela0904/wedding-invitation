@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="wedding-base-path" content="/">
+  <title>Shoaib & Zeenath | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="invite-revealed">
+  <div class="background-layer background-layer-1"></div>
+  <div class="background-layer background-layer-2"></div>
+  <div class="background-glow"></div>
+  <div class="lantern-overlay" aria-hidden="true">
+    <span class="lantern lantern-1"></span>
+    <span class="lantern lantern-2"></span>
+    <span class="lantern lantern-3"></span>
+    <span class="lantern lantern-4"></span>
+    <span class="lantern lantern-5"></span>
+    <span class="lantern lantern-6"></span>
+    <span class="lantern lantern-7"></span>
+    <span class="lantern lantern-8"></span>
+    <span class="lantern lantern-9"></span>
+    <span class="lantern lantern-10"></span>
+    <span class="lantern lantern-11"></span>
+    <span class="lantern lantern-12"></span>
+  </div>
+
+  <main class="invite-wrapper">
+    <section class="hero reveal visible">
+      <div class="corner-motif corner-motif-left" aria-hidden="true"></div>
+      <div class="corner-motif corner-motif-right" aria-hidden="true"></div>
+      <p class="arabic-calligraphy" lang="ar" dir="rtl">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْم</p>
+      <p class="bismillah">In the Name of Allah, the Most Beneficent, the Most Merciful</p>
+      <div class="hero-divider" aria-hidden="true"></div>
+
+      <div class="hero-invite-copy">
+        <p class="hero-hosts">Mr &amp; Mrs R.S. Meer Ahamed</p>
+        <p class="hero-invite-line">
+          Cordially request the honor of your presence in the wedding celebration of our beloved youngest son
+        </p>
+        <h1 class="hero-groom-name">R.S. Shoaib Faraz Ahamed</h1>
+        <p class="hero-lineage">
+          Paternal Grandson of Late Reddy Sikander,<br>
+          Maternal Grandson of Late Mohammed Jeffar
+        </p>
+        <p class="hero-with">With</p>
+        <h2 class="hero-bride-name">V. Zeenath Banu</h2>
+        <p class="hero-bride-parents">D/O Mr &amp; Mrs Vahid Khan</p>
+      </div>
+    </section>
+
+    <section class="wedding-intro reveal">
+      <p class="quran-arabic" lang="ar" dir="rtl">وَخَلَقْنَاكُمْ أَزْوَاجًا</p>
+      <p class="quran-translation">And We Created You In Pairs</p>
+      <h2 class="intro-couple-names">Shoaib <span>&amp;</span> Zeenath</h2>
+      <p class="intro-lead">
+        As we begin the beautiful new chapter of our life filled with love, faith and togetherness
+      </p>
+      <p class="intro-events-line">
+        Our families invite you to share in their joy for the following events
+      </p>
+      <div class="event-buttons" aria-label="Wedding events">
+        <a class="event-button" data-event="haldi" href="/haldi">Rasm-e-Haldi</a>
+        <a class="event-button" data-event="nikah" href="/nikah">Nikah</a>
+        <a class="event-button" data-event="valima" href="/walima">Walima</a>
+      </div>
+      <p class="intro-closing">
+        Your presence, blessings and dua will make this joyous occasion even more special for our family
+      </p>
+    </section>
+
+    <section class="nikah-sher reveal">
+      <blockquote class="nikah-verse" lang="ur" dir="rtl">
+        <p>نکاح کی محفل سجی ہے بڑے احترام سے،</p>
+        <p>دو دل بندھے ہیں دعاؤں کے اہتمام سے۔</p>
+        <p>خوشبوئے وفا سے مہکے گا یہ گلشن،</p>
+        <p>شروع ہو رہا ہے ایک شاہانہ بندھن</p>
+      </blockquote>
+      <div class="nikah-sher-roman" lang="ur-Latn">
+        <p>Nikah ki mehfil saji hai bade ehtaraam se,</p>
+        <p>Do dil bandhe hain duaon ke ehtemaam se.</p>
+        <p>Khushbu-e-wafa se mehkega yeh gulshan,</p>
+        <p>Shuru ho raha hai ek shahana bandhan.</p>
+      </div>
+    </section>
+
+    <section id="rsvp" class="rsvp-section reveal">
+      <h2>RSVP</h2>
+      <p class="rsvp-intro">We would be honoured by your presence. Please share your response below.</p>
+      <form
+        id="main-rsvp-form"
+        class="rsvp-form"
+        action="#rsvp"
+        method="post"
+        novalidate
+      >
+        <input type="text" name="_honey" class="rsvp-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="rsvp-field">
+          <label for="main-rsvp-name">Name</label>
+          <input id="main-rsvp-name" name="name" type="text" required autocomplete="name" placeholder="Your full name">
+        </div>
+        <div class="rsvp-field">
+          <label id="main-rsvp-attending-label" for="main-rsvp-attending">Attending Status</label>
+          <div class="rsvp-custom-select" data-rsvp-select>
+            <input type="hidden" id="main-rsvp-attending" name="attending" value="" required>
+            <button type="button" class="rsvp-select-trigger" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="main-rsvp-attending-label">
+              <span class="rsvp-select-value is-placeholder">Select status</span>
+            </button>
+            <ul class="rsvp-select-menu" role="listbox" aria-label="Attending status" hidden>
+              <li class="rsvp-select-option" role="option" data-value="yes" tabindex="-1">Joyfully attending</li>
+              <li class="rsvp-select-option" role="option" data-value="no" tabindex="-1">Unable to attend</li>
+            </ul>
+          </div>
+        </div>
+        <fieldset class="rsvp-field rsvp-events">
+          <legend>Ceremonies Attending</legend>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="haldi">
+            <span>Haldi — 8th July</span>
+          </label>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="nikah">
+            <span>Nikah — 9th July</span>
+          </label>
+          <label class="rsvp-checkbox">
+            <input type="checkbox" name="events" value="walima">
+            <span>Valima — 11th July</span>
+          </label>
+        </fieldset>
+        <button type="submit" class="rsvp-submit" id="main-rsvp-submit">Submit RSVP</button>
+        <p id="main-rsvp-error" class="rsvp-error is-hidden" role="alert"></p>
+      </form>
+      <div id="main-rsvp-success" class="rsvp-success is-hidden" role="status" aria-live="polite">
+        <p class="rsvp-success-title">Thank you!</p>
+        <p class="rsvp-success-text">Your RSVP has been received. We cannot wait to celebrate with you.</p>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      <p>With love &amp; gratitude — Meerani's</p>
+    </footer>
+  </main>
+
+  <audio id="bg-music" loop preload="auto" playsinline aria-hidden="true"></audio>
+  <button type="button" id="music-toggle" class="music-toggle" aria-label="Play background music" aria-pressed="false" title="Wedding background music">
+    <span class="music-toggle-icon" aria-hidden="true">♪</span>
+    <span class="music-toggle-label">Play music</span>
+  </button>
+
+  <script src="wedding-assets.js"></script>
+  <script src="wedding-music-boot.js"></script>
+  <script src="rsvp-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -5,113 +5,7 @@ const layers = {
   lanternOverlay: document.querySelector(".lantern-overlay"),
 };
 
-const envelopeOverlay = document.getElementById("envelope-overlay");
-const envelopeOpenBtn = document.getElementById("envelope-open");
-const envelopeStage = document.querySelector(".envelope-stage");
-const ENVELOPE_FLAP_OPEN_MS = 320;
-const ENVELOPE_REVEAL_START_MS = 2900;
-const ENVELOPE_CONTENT_REVEAL_MS = 3150;
-const ENVELOPE_REMOVE_MS = 4700;
-let envelopeOpening = false;
-
-function revealInvitationContent() {
-  document.body.classList.remove("invite-entrance-locked");
-  document.body.classList.add("invite-revealed");
-
-  const hero = document.querySelector(".hero.reveal");
-  if (hero) {
-    window.setTimeout(() => hero.classList.add("visible"), 80);
-  }
-
-  revealItems.forEach((item, index) => {
-    if (item.classList.contains("hero")) return;
-    window.setTimeout(() => item.classList.add("visible"), 220 + index * 120);
-  });
-}
-
-function finishEnvelopeEntrance() {
-  if (!envelopeOverlay) return;
-
-  envelopeOverlay.classList.add("is-revealing", "is-hidden");
-  envelopeOverlay.setAttribute("aria-hidden", "true");
-
-  window.setTimeout(revealInvitationContent, ENVELOPE_CONTENT_REVEAL_MS - ENVELOPE_REVEAL_START_MS);
-
-  window.setTimeout(() => {
-    envelopeOverlay.remove();
-    document.body.classList.remove("envelope-animating");
-    envelopeOpening = false;
-  }, ENVELOPE_REMOVE_MS - ENVELOPE_REVEAL_START_MS);
-}
-
-function openEnvelope() {
-  if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open") || envelopeOpening) {
-    return;
-  }
-
-  envelopeOpening = true;
-  document.body.classList.add("envelope-animating");
-
-  if (envelopeOpenBtn) {
-    envelopeOpenBtn.disabled = true;
-  }
-
-  if (window.WeddingMusic && window.WeddingMusic.startFromUserGesture) {
-    window.WeddingMusic.startFromUserGesture(true);
-  }
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersReducedMotion) {
-    envelopeOverlay.classList.add("is-hidden");
-    revealInvitationContent();
-    window.setTimeout(() => {
-      envelopeOverlay.remove();
-      document.body.classList.remove("envelope-animating");
-      envelopeOpening = false;
-    }, 120);
-    return;
-  }
-
-  envelopeOverlay.classList.add("is-opening");
-
-  window.setTimeout(() => {
-    envelopeOverlay.classList.add("is-open");
-  }, ENVELOPE_FLAP_OPEN_MS);
-
-  window.setTimeout(finishEnvelopeEntrance, ENVELOPE_REVEAL_START_MS);
-}
-
-if (envelopeOverlay && envelopeOpenBtn) {
-  envelopeOpenBtn.addEventListener("click", openEnvelope);
-}
-
-if (envelopeStage) {
-  envelopeStage.addEventListener("click", openEnvelope);
-}
-
 const revealItems = document.querySelectorAll(".reveal");
-
-function shouldOpenInvitationDirectly() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("view") === "invitation" || window.location.hash === "#invitation";
-}
-
-function skipEnvelopeEntrance() {
-  if (envelopeOverlay) {
-    envelopeOverlay.remove();
-  }
-
-  document.body.classList.remove("envelope-animating");
-  envelopeOpening = false;
-  revealInvitationContent();
-  revealItems.forEach((item) => item.classList.add("visible"));
-}
-
-if (shouldOpenInvitationDirectly()) {
-  skipEnvelopeEntrance();
-}
-
 const eventButtons = document.querySelectorAll(".event-button");
 let targetMouseX = 0;
 let targetMouseY = 0;
@@ -132,7 +26,6 @@ window.addEventListener("scroll", () => {
 });
 
 function animateBackground() {
-  // Interpolate values for smoother motion, especially on touchpads.
   smoothMouseX += (targetMouseX - smoothMouseX) * 0.06;
   smoothMouseY += (targetMouseY - smoothMouseY) * 0.06;
   smoothScrollY += (targetScrollY - smoothScrollY) * 0.08;

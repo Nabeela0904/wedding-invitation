@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev -p 8080",
-    "build": "next build && cp public/index.html out/index.html",
+    "build": "next build && cp public/index.html out/index.html && cp public/invitation.html out/invitation.html",
     "build:pages": "GITHUB_PAGES=true next build && node scripts/prepare-gh-pages.js",
     "deploy:cloudflare": "wrangler versions upload --assets=./out",
     "start": "next start",

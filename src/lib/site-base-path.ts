@@ -14,7 +14,12 @@ export function siteBaseWithSlash(): string {
   return siteBasePath.endsWith("/") ? siteBasePath : `${siteBasePath}/`;
 }
 
-/** Main invitation content (event buttons), skipping the envelope entrance. */
+/** Envelope entry page (site root). */
+export function envelopePagePath(): string {
+  return sitePath("/index.html");
+}
+
+/** Full invitation with event buttons (after envelope is opened). */
 export function mainInvitationPath(): string {
-  return sitePath("/index.html?view=invitation");
+  return sitePath("/invitation.html");
 }

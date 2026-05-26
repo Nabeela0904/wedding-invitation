@@ -150,6 +150,8 @@
   };
 
   window.WEDDING_DEPLOY_BASE = getDeployBase();
+  window.WEDDING_INVITATION_PAGE = weddingAssetPath("invitation.html");
+  window.WEDDING_ENVELOPE_PAGE = weddingAssetPath("index.html");
 
   function patchSiteLinks() {
     var base = getDeployBase();
@@ -168,8 +170,8 @@
       document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
         el.setAttribute("href", withBase("walima/"));
       });
-      document.querySelectorAll("a.main-invitation-link, a[href='/'], a[href='/index.html'], a[href*='index.html?view=invitation']").forEach(function (el) {
-        el.setAttribute("href", withBase("index.html?view=invitation"));
+      document.querySelectorAll("a.main-invitation-link, a[href='/invitation.html']").forEach(function (el) {
+        el.setAttribute("href", withBase("invitation.html"));
       });
     }
   }
