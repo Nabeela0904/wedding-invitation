@@ -11,7 +11,7 @@ export const WALIMA_EVENT = {
     name: "ZEENATH BANU",
   },
   blessedPhrase: "In Sha Allah On",
-  dateLabel: "Sunday 11th July, 2026",
+  dateLabel: "Saturday 11th July, 2026",
   timeVenueLabel: "6:00PM, At R convention centre, Madanapalle",
   dinnerLabel: "Dinner: 8.00pm onwards",
   dinnerVenue: "Venue: R convention centre, Madanapalle",
