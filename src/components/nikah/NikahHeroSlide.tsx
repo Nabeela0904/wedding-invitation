@@ -47,8 +47,8 @@ export default function NikahHeroSlide() {
         {NIKAH_EVENT.inviteLine}
       </motion.p>
 
-      <div className="relative mt-12 flex flex-col items-center gap-1 lg:flex-row lg:items-center lg:justify-center lg:gap-x-1">
-        <div className="flex flex-col items-center gap-1 lg:flex-row lg:items-center lg:gap-x-0">
+      <div className="relative mt-12 flex flex-col items-center gap-0 lg:flex-row lg:items-center lg:justify-center lg:gap-x-1">
+        <div className="flex flex-col items-center gap-0 lg:flex-row lg:items-center lg:gap-x-0">
           <motion.div variants={fadeSlideUp}>
             <h1
               className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#047857] ${heroTextShadow}`}
@@ -57,7 +57,7 @@ export default function NikahHeroSlide() {
             </h1>
           </motion.div>
 
-          <motion.div variants={fadeSlideUp} className="-mt-0.5 lg:mt-0">
+          <motion.div variants={fadeSlideUp} className="-mt-1 lg:-mt-0.5">
             <GeometricAccent />
           </motion.div>
         </div>

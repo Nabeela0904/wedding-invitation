@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function GeometricAccent() {
   return (
-    <div className="relative flex flex-col items-center justify-center gap-0.5 py-2 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
+    <div className="relative flex flex-col items-center justify-center gap-0 py-0.5 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
       <motion.div
         className="h-9 w-px bg-gradient-to-b from-transparent via-emerald-deep/90 to-transparent sm:h-10 lg:hidden"
         animate={{ scaleY: [0.85, 1, 0.9, 1, 0.85], opacity: [0.8, 1, 0.85, 1, 0.8] }}
@@ -42,7 +42,7 @@ export default function GeometricAccent() {
           <circle cx="60" cy="60" r="7" fill="#043028" opacity="0.92" />
         </svg>
       </motion.div>
-      <span className="font-display text-xl font-bold text-emerald-deep drop-shadow-[0_0_10px_rgba(4,48,40,0.35)] sm:text-2xl lg:px-0.5 lg:text-[1.7rem]">
+      <span className="font-display text-xl font-bold text-[#022018] sm:text-2xl lg:px-0.5 lg:text-[1.7rem]">
         &amp;
       </span>
     </div>
