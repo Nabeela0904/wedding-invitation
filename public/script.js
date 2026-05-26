@@ -91,6 +91,26 @@ if (envelopeStage) {
 }
 
 const revealItems = document.querySelectorAll(".reveal");
+
+function shouldOpenInvitationDirectly() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("view") === "invitation" || window.location.hash === "#invitation";
+}
+
+function skipEnvelopeEntrance() {
+  if (envelopeOverlay) {
+    envelopeOverlay.remove();
+  }
+
+  document.body.classList.remove("envelope-animating");
+  envelopeOpening = false;
+  revealInvitationContent();
+  revealItems.forEach((item) => item.classList.add("visible"));
+}
+
+if (shouldOpenInvitationDirectly()) {
+  skipEnvelopeEntrance();
+}
 const eventButtons = document.querySelectorAll(".event-button");
 let targetMouseX = 0;
 let targetMouseY = 0;

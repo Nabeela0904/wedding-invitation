@@ -168,8 +168,8 @@
       document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
         el.setAttribute("href", withBase("walima/"));
       });
-      document.querySelectorAll("a.main-invitation-link, a[href='/'], a[href='/index.html']").forEach(function (el) {
-        el.setAttribute("href", withBase("index.html"));
+      document.querySelectorAll("a.main-invitation-link, a[href='/'], a[href='/index.html'], a[href*='index.html?view=invitation']").forEach(function (el) {
+        el.setAttribute("href", withBase("index.html?view=invitation"));
       });
     }
   }
