@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { sitePath } from "@/lib/site-base-path";
+import { mainInvitationPath } from "@/lib/site-base-path";
 import CinematicWalimaScene from "@/components/walima/CinematicWalimaScene";
 import WalimaHeroSlide from "@/components/walima/WalimaHeroSlide";
 import WalimaTimelineSection from "@/components/walima/WalimaTimelineSection";
@@ -35,8 +35,8 @@ export default function WalimaPage() {
       </footer>
 
       <a
-        href={sitePath("/")}
-        className="fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
+        href={mainInvitationPath()}
+        className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation
       </a>

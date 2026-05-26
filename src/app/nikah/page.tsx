@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { sitePath } from "@/lib/site-base-path";
+import { mainInvitationPath } from "@/lib/site-base-path";
 import CinematicNikahScene from "@/components/nikah/CinematicNikahScene";
 import NikahHeroSlide from "@/components/nikah/NikahHeroSlide";
 import NikahTimelineSection from "@/components/nikah/NikahTimelineSection";
@@ -32,8 +32,8 @@ export default function NikahPage() {
       <NikahClosingFooter />
 
       <a
-        href={sitePath("/")}
-        className="fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
+        href={mainInvitationPath()}
+        className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation
       </a>
