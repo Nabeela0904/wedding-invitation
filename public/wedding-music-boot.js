@@ -273,7 +273,7 @@
       link.addEventListener("click", persistMusicForEventNavigation, { capture: true });
     });
 
-    document.querySelectorAll('a[href="/"], a[href="/index.html"], a[href="index.html"]').forEach(function (link) {
+    document.querySelectorAll('a.main-invitation-link, a[href="/"], a[href="/index.html"], a[href="index.html"]').forEach(function (link) {
       link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
       link.addEventListener("click", function () {
         persistMusicForEventNavigation();

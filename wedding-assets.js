@@ -153,17 +153,25 @@
 
   function patchSiteLinks() {
     var base = getDeployBase();
-    if (base === "/") return;
 
-    document.querySelectorAll('a.event-button[href="/haldi"]').forEach(function (el) {
-      el.setAttribute("href", base + "haldi/");
-    });
-    document.querySelectorAll('a.event-button[href="/nikah"]').forEach(function (el) {
-      el.setAttribute("href", base + "nikah/");
-    });
-    document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
-      el.setAttribute("href", base + "walima/");
-    });
+    function withBase(relativePath) {
+      return base + String(relativePath).replace(/^\/+/, "");
+    }
+
+    if (base !== "/") {
+      document.querySelectorAll('a.event-button[href="/haldi"]').forEach(function (el) {
+        el.setAttribute("href", withBase("haldi/"));
+      });
+      document.querySelectorAll('a.event-button[href="/nikah"]').forEach(function (el) {
+        el.setAttribute("href", withBase("nikah/"));
+      });
+      document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
+        el.setAttribute("href", withBase("walima/"));
+      });
+      document.querySelectorAll("a.main-invitation-link, a[href='/'], a[href='/index.html']").forEach(function (el) {
+        el.setAttribute("href", withBase("index.html"));
+      });
+    }
   }
 
   if (document.readyState === "loading") {

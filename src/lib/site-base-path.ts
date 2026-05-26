@@ -13,3 +13,8 @@ export function siteBaseWithSlash(): string {
   if (!siteBasePath) return "/";
   return siteBasePath.endsWith("/") ? siteBasePath : `${siteBasePath}/`;
 }
+
+/** Static envelope + main invitation page (not the Next.js app root). */
+export function mainInvitationPath(): string {
+  return sitePath("/index.html");
+}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { sitePath } from "@/lib/site-base-path";
+import { mainInvitationPath } from "@/lib/site-base-path";
 import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
 import HaldiHero from "@/components/haldi/HaldiHero";
 import HaldiClosingFooter from "@/components/haldi/HaldiClosingFooter";
@@ -39,8 +39,8 @@ export default function HaldiPage() {
       <HaldiClosingFooter />
 
       <a
-        href={sitePath("/")}
-        className="fixed left-4 top-4 z-50 rounded-full border border-marigold/30 bg-white/50 px-4 py-2 font-sans text-xs font-medium text-gold backdrop-blur-sm transition-colors hover:bg-white/70 sm:left-6 sm:top-6 sm:text-sm"
+        href={mainInvitationPath()}
+        className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-marigold/30 bg-white/50 px-4 py-2 font-sans text-xs font-medium text-gold backdrop-blur-sm transition-colors hover:bg-white/70 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation
       </a>
