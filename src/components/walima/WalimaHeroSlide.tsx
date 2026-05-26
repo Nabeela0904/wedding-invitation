@@ -47,7 +47,7 @@ export default function WalimaHeroSlide() {
         {WALIMA_EVENT.inviteLine}
       </motion.p>
 
-      <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
+      <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center justify-items-center gap-4 lg:grid-cols-[auto_auto_auto] lg:justify-center lg:gap-x-3">
         <motion.div variants={fadeSlideUp} className="lg:text-right">
           <h1
             className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#9F1239] ${heroTextShadow}`}
