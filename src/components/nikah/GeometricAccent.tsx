@@ -4,32 +4,45 @@ import { motion } from "framer-motion";
 
 export default function GeometricAccent() {
   return (
-    <div className="relative flex items-center justify-center py-6 lg:py-0">
+    <div className="relative flex flex-col items-center justify-center gap-0.5 py-2 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
       <motion.div
-        className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28"
+        className="h-9 w-px bg-gradient-to-b from-transparent via-emerald-deep/90 to-transparent sm:h-10 lg:hidden"
+        animate={{ scaleY: [0.85, 1, 0.9, 1, 0.85], opacity: [0.8, 1, 0.85, 1, 0.8] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        aria-hidden
+      />
+      <motion.div
+        className="relative flex h-9 w-9 shrink-0 items-center justify-center sm:h-10 sm:w-10 lg:h-8 lg:w-8"
         animate={{ rotate: 360 }}
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         aria-hidden
       >
-        <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full">
+        <div
+          className="absolute inset-[-2px] rounded-full bg-emerald-deep/25 blur-md"
+          aria-hidden
+        />
+        <svg
+          viewBox="0 0 120 120"
+          className="relative h-full w-full drop-shadow-[0_0_10px_rgba(4,48,40,0.45)]"
+        >
           <polygon
             points="60,8 112,60 60,112 8,60"
             fill="none"
-            stroke="#064E3B"
-            strokeWidth="0.75"
-            opacity="0.45"
+            stroke="#043028"
+            strokeWidth="1.1"
+            opacity="0.95"
           />
           <polygon
             points="60,22 98,60 60,98 22,60"
             fill="none"
-            stroke="#D4AF37"
-            strokeWidth="0.5"
-            opacity="0.55"
+            stroke="#064E3B"
+            strokeWidth="0.95"
+            opacity="0.9"
           />
-          <circle cx="60" cy="60" r="6" fill="#D4AF37" opacity="0.75" />
+          <circle cx="60" cy="60" r="7" fill="#043028" opacity="0.92" />
         </svg>
       </motion.div>
-      <span className="relative z-10 font-display text-3xl font-light text-metallic-gold sm:text-4xl">
+      <span className="font-display text-xl font-bold text-emerald-deep drop-shadow-[0_0_10px_rgba(4,48,40,0.35)] sm:text-2xl lg:px-0.5 lg:text-[1.7rem]">
         &amp;
       </span>
     </div>
