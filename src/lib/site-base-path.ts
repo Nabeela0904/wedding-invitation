@@ -14,7 +14,7 @@ export function siteBaseWithSlash(): string {
   return siteBasePath.endsWith("/") ? siteBasePath : `${siteBasePath}/`;
 }
 
-/** Main invitation content (event buttons), skipping the envelope entrance. */
+/** Static envelope + main invitation page (not the Next.js app root). */
 export function mainInvitationPath(): string {
-  return sitePath("/index.html?view=invitation");
+  return sitePath("/index.html");
 }
