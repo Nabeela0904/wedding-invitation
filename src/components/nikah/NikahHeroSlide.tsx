@@ -29,20 +29,20 @@ export default function NikahHeroSlide() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#D97706] ${heroTextShadow}`}
+        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#F59E0B] ${heroTextShadow}`}
       >
         {NIKAH_EVENT.bismillah}
       </motion.p>
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#D97706]/80 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#F59E0B]/85 to-transparent"
         aria-hidden
       />
 
       <motion.p
         variants={fadeSlideUp}
-        className={`relative mx-auto mt-8 max-w-2xl font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-[#059669] sm:text-[11px] ${heroTextShadow}`}
+        className={`relative mx-auto mt-8 max-w-2xl font-sans text-[10px] font-bold uppercase tracking-[0.24em] text-[#10B981] sm:text-[11px] ${heroTextShadow}`}
       >
         {NIKAH_EVENT.inviteLine}
       </motion.p>
@@ -50,7 +50,7 @@ export default function NikahHeroSlide() {
       <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
         <motion.div variants={fadeSlideUp} className="lg:text-right">
           <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#047857] ${heroTextShadow}`}
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#059669] ${heroTextShadow}`}
           >
             {NIKAH_EVENT.groom.name}
           </h1>
@@ -62,7 +62,7 @@ export default function NikahHeroSlide() {
 
         <motion.div variants={fadeSlideUp} className="lg:text-left">
           <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#047857] ${heroTextShadow}`}
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#059669] ${heroTextShadow}`}
           >
             {NIKAH_EVENT.bride.name}
           </h1>
