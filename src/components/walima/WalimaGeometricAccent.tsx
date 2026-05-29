@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function WalimaGeometricAccent() {
   return (
-    <div className="relative flex flex-col items-center justify-center gap-1 py-2 lg:flex-row lg:gap-0 lg:px-1 lg:py-0">
+    <div className="relative flex flex-col items-center justify-center gap-0.5 py-0.5 lg:flex-row lg:items-center lg:gap-0 lg:py-0">
       <motion.div
         className="h-12 w-px bg-gradient-to-b from-transparent via-[#4A1520]/85 to-transparent sm:h-14 lg:hidden"
         animate={{ scaleY: [0.85, 1, 0.9, 1, 0.85], opacity: [0.65, 0.95, 0.75, 0.9, 0.65] }}

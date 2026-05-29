@@ -47,18 +47,20 @@ export default function WalimaHeroSlide() {
         {WALIMA_EVENT.inviteLine}
       </motion.p>
 
-      <div className="relative mt-12 grid w-full max-w-4xl grid-cols-1 items-center gap-3 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-1 lg:gap-y-0">
-        <motion.div variants={fadeSlideUp} className="lg:text-right">
-          <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
-          >
-            {WALIMA_EVENT.groom.name}
-          </h1>
-        </motion.div>
+      <div className="relative mt-12 flex flex-col items-center gap-2 lg:flex-row lg:items-center lg:justify-center lg:gap-x-1">
+        <div className="flex flex-col items-center gap-1 lg:flex-row lg:items-center lg:gap-x-0">
+          <motion.div variants={fadeSlideUp} className="lg:text-right">
+            <h1
+              className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
+            >
+              {WALIMA_EVENT.groom.name}
+            </h1>
+          </motion.div>
 
-        <motion.div variants={fadeSlideUp}>
-          <WalimaGeometricAccent />
-        </motion.div>
+          <motion.div variants={fadeSlideUp} className="-mt-1 lg:-ml-1 lg:mt-0">
+            <WalimaGeometricAccent />
+          </motion.div>
+        </div>
 
         <motion.div variants={fadeSlideUp} className="lg:text-left">
           <h1
