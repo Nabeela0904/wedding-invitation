@@ -2022,7 +2022,14 @@ body.haldi-page {
 body.envelope-page {
   overflow: hidden;
   min-height: 100svh;
-  background: #0f1410;
+  background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary) 55%, var(--bg-tertiary));
+}
+
+body.envelope-page .background-layer-1,
+body.envelope-page .background-layer-2,
+body.envelope-page .background-glow,
+body.envelope-page .lantern-overlay {
+  filter: saturate(1) brightness(1);
 }
 
 body.invite-entrance-locked {
@@ -2108,8 +2115,8 @@ body.invite-revealed .invite-wrapper {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 42%, rgba(255, 236, 190, 0.12) 0%, transparent 42%),
-    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.18) 0%, transparent 68%);
+    radial-gradient(circle at 50% 42%, rgba(255, 236, 190, 0.1) 0%, transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.08) 0%, transparent 68%);
   opacity: 1;
   pointer-events: none;
   transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1);
