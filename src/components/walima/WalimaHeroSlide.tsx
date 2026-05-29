@@ -29,20 +29,20 @@ export default function WalimaHeroSlide() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#F59E0B] ${heroTextShadow}`}
+        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#B45309] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.bismillah}
       </motion.p>
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#E11D48]/75 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#881337]/85 to-transparent"
         aria-hidden
       />
 
       <motion.p
         variants={fadeSlideUp}
-        className={`relative mx-auto mt-8 max-w-2xl font-display text-[clamp(1rem,3vw,1.35rem)] font-semibold normal-case leading-relaxed tracking-wide text-[#BE123C] sm:text-[1.15rem] ${heroTextShadow}`}
+        className={`relative mx-auto mt-8 max-w-2xl font-display text-[clamp(1rem,3vw,1.35rem)] font-semibold normal-case leading-relaxed tracking-wide text-[#881337] sm:text-[1.15rem] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.inviteLine}
       </motion.p>
@@ -50,7 +50,7 @@ export default function WalimaHeroSlide() {
       <div className="relative mt-12 grid w-full max-w-5xl grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
         <motion.div variants={fadeSlideUp} className="lg:text-right">
           <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#BE123C] ${heroTextShadow}`}
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
           >
             {WALIMA_EVENT.groom.name}
           </h1>
@@ -62,7 +62,7 @@ export default function WalimaHeroSlide() {
 
         <motion.div variants={fadeSlideUp} className="lg:text-left">
           <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#BE123C] ${heroTextShadow}`}
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
           >
             {WALIMA_EVENT.bride.name}
           </h1>
