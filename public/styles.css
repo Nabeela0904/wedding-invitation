@@ -2019,6 +2019,12 @@ body.haldi-page {
 }
 
 /* Premium envelope entrance overlay */
+body.envelope-page {
+  overflow: hidden;
+  min-height: 100svh;
+  background: #0f1410;
+}
+
 body.invite-entrance-locked {
   overflow: hidden;
 }

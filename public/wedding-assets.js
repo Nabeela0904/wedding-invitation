@@ -120,4 +120,37 @@
     markMusicForEventPage: markMusicForEventPage,
     applySavedMusicTime: applySavedMusicTime,
   };
+
+  window.WEDDING_DEPLOY_BASE = getDeployBase();
+  window.WEDDING_INVITATION_PAGE = weddingAssetPath("invitation.html");
+  window.WEDDING_ENVELOPE_PAGE = weddingAssetPath("index.html");
+
+  function patchSiteLinks() {
+    var base = getDeployBase();
+
+    function withBase(relativePath) {
+      return base + String(relativePath).replace(/^\/+/, "");
+    }
+
+    if (base !== "/") {
+      document.querySelectorAll('a.event-button[href="/haldi"]').forEach(function (el) {
+        el.setAttribute("href", withBase("haldi/"));
+      });
+      document.querySelectorAll('a.event-button[href="/nikah"]').forEach(function (el) {
+        el.setAttribute("href", withBase("nikah/"));
+      });
+      document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
+        el.setAttribute("href", withBase("walima/"));
+      });
+      document.querySelectorAll("a.main-invitation-link, a[href='/invitation.html']").forEach(function (el) {
+        el.setAttribute("href", withBase("invitation.html"));
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", patchSiteLinks);
+  } else {
+    patchSiteLinks();
+  }
 })();
