@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 export default function GeometricAccent() {
   return (
-    <div className="relative flex items-center justify-center py-6 lg:py-0">
+    <div className="relative flex items-center justify-center py-2 lg:px-1 lg:py-0">
       <motion.div
-        className="relative flex h-24 w-24 items-center justify-center sm:h-28 sm:w-28"
+        className="relative flex h-20 w-20 items-center justify-center sm:h-24 sm:w-24 lg:h-16 lg:w-16"
         animate={{ rotate: 360 }}
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         aria-hidden
@@ -29,7 +29,7 @@ export default function GeometricAccent() {
           <circle cx="60" cy="60" r="6" fill="#043028" opacity="0.9" />
         </svg>
       </motion.div>
-      <span className="relative z-10 font-display text-3xl font-bold text-[#043028] sm:text-4xl">
+      <span className="relative z-10 font-display text-2xl font-bold text-[#043028] sm:text-3xl lg:text-[1.7rem]">
         &amp;
       </span>
     </div>
