@@ -41,6 +41,16 @@ export default function HaldiVenueModule() {
           />
         </motion.a>
 
+        <motion.a
+          variants={fadeSlideUp}
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97]"
+        >
+          Open Location in Google Maps
+        </motion.a>
+
         <motion.p
           variants={fadeSlideUp}
           className="mt-6 font-sans text-[10px] uppercase tracking-[0.28em] text-gold/55"

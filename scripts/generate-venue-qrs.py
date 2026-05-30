@@ -11,7 +11,7 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-HALDI_MAPS_URL = "https://maps.app.goo.gl/AocXatWp8qbQZGMF8"
+HALDI_MAPS_URL = "https://maps.app.goo.gl/MCp5jSGUAHCjzPji7?g_st=ac"
 
 VENUES = [
     {
