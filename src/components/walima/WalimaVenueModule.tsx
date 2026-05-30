@@ -48,6 +48,16 @@ export default function WalimaVenueModule() {
             className="relative z-10 mx-auto max-w-full rounded-lg object-contain"
           />
         </motion.a>
+
+        <motion.a
+          variants={fadeSlideUp}
+          href={WALIMA_EVENT.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-wine to-wine-deep px-10 py-3.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-wine-glow transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
+        >
+          Open Location in Google Maps
+        </motion.a>
       </motion.div>
     </section>
   );
