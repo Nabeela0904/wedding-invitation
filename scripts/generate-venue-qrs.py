@@ -25,11 +25,11 @@ VENUES = [
     },
     {
         "filename": "nikah-ceremony-qr.png",
-        "url": "https://maps.app.goo.gl/uX3LhR2vL9pW8z7A9",
+        "url": "https://maps.app.goo.gl/CVvptjqpU5t8myg36?g_st=ac",
     },
     {
         "filename": "nikah-dinner-qr.png",
-        "url": "https://maps.app.goo.gl/uXvE7x98G8mFpZ7E9",
+        "url": "https://maps.app.goo.gl/Krx8L5HpcVZNox5j7",
     },
     {
         "filename": "walima-venue-qr.png",

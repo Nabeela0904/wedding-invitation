@@ -12,8 +12,8 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-CEREMONY_URL = "https://maps.app.goo.gl/uX3LhR2vL9pW8z7A9"
-DINNER_URL = "https://maps.app.goo.gl/uXvE7x98G8mFpZ7E9"
+CEREMONY_URL = "https://maps.app.goo.gl/CVvptjqpU5t8myg36?g_st=ac"
+DINNER_URL = "https://maps.app.goo.gl/Krx8L5HpcVZNox5j7"
 
 
 def load_venue_generator():
