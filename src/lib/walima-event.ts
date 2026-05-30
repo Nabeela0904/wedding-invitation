@@ -16,8 +16,7 @@ export const WALIMA_EVENT = {
   venueTitle: "VENUE & LOCATION",
   venueSubtext: "R convention centre, Madanapalle",
   countdownIso: "2026-07-11T18:00:00+05:30",
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=R+Convention+Centre+Madanapalle",
+  mapsUrl: "https://maps.app.goo.gl/LjakV6TfwYmR3PAw6",
   qrImage: "/walima-venue-qr.png",
 } as const;
 

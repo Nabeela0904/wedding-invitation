@@ -33,7 +33,7 @@ VENUES = [
     },
     {
         "filename": "walima-venue-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=R+Convention+Centre+Madanapalle",
+        "url": "https://maps.app.goo.gl/LjakV6TfwYmR3PAw6",
     },
 ]
 
