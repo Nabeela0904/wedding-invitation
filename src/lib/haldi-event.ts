@@ -16,7 +16,7 @@ export const HALDI_EVENT = {
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery:
     "Noorunisa Enclave, 17/2-5-2-5, Gandhi Rd, Madanapalle, Andhra Pradesh 517325",
-  mapsUrl: "https://maps.app.goo.gl/MCp5jSGUAHCjzPji7?g_st=ac",
+  mapsUrl: "https://maps.app.goo.gl/GwSeX3UYCYUdAh2dA?g_st=awb",
 } as const;
 
 export type HaldiEvent = typeof HALDI_EVENT;
