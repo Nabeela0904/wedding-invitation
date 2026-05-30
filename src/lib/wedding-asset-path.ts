@@ -30,20 +30,7 @@ export function weddingAssetPath(relativePath: string): string {
 }
 
 export const WEDDING_MUSIC_FILE = "music/whatsapp-audio.mp3";
-export const NIKAH_MUSIC_FILE = "music/nikah.mpeg";
 
 export function getWeddingMusicSrc(): string {
   return weddingAssetPath(WEDDING_MUSIC_FILE);
-}
-
-export function getNikahMusicSrc(): string {
-  return weddingAssetPath(NIKAH_MUSIC_FILE);
-}
-
-export function getMusicSrcForPathname(pathname: string): string {
-  if (/\/nikah(?:\.html)?\/?$/i.test(pathname)) {
-    return getNikahMusicSrc();
-  }
-
-  return getWeddingMusicSrc();
 }

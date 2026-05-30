@@ -37,18 +37,10 @@
   }
 
   function getMusicSrc() {
-    if (/\/nikah(?:\.html)?\/?$/i.test(window.location.pathname)) {
-      return resolveMusicPath("music/nikah.mpeg");
-    }
-
     if (window.WEDDING_MUSIC_SRC) {
       return window.WEDDING_MUSIC_SRC;
     }
 
-    return resolveMusicPath("music/whatsapp-audio.mp3");
-  }
-
-  function resolveMusicPath(relativePath) {
     var meta = document.querySelector('meta[name="wedding-base-path"]');
     var base = "/";
     if (meta && meta.getAttribute("content")) {
@@ -61,16 +53,13 @@
       }
     }
 
-    return new URL(relativePath, window.location.origin + base).href;
+    return new URL("music/whatsapp-audio.mp3", window.location.origin + base).href;
   }
 
   function ensureMusicSource() {
     var src = getMusicSrc();
     if (!bgMusic.src || bgMusic.src !== src) {
       bgMusic.src = src;
-      if (/\/nikah(?:\.html)?\/?$/i.test(window.location.pathname)) {
-        bgMusic.currentTime = 0;
-      }
       bgMusic.load();
     }
   }

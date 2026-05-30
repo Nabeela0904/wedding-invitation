@@ -10,10 +10,6 @@ const NikahPetals = dynamic(() => import("@/components/nikah/NikahPetals"), {
   ssr: false,
 });
 
-const NikahPageMusic = dynamic(() => import("@/components/nikah/NikahPageMusic"), {
-  ssr: false,
-});
-
 export const metadata: Metadata = {
   title: "Nikah Ceremony | Shoaib & Zeenath",
   description:
@@ -23,7 +19,6 @@ export const metadata: Metadata = {
 export default function NikahPage() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-ivory text-emerald">
-      <NikahPageMusic />
       <NikahPetals />
 
       <section className="relative min-h-[100svh]">
