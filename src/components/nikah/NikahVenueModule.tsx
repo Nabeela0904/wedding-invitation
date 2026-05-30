@@ -64,6 +64,17 @@ export default function NikahVenueModule() {
                   className="relative z-10 mx-auto max-w-full rounded-lg object-contain"
                 />
               </a>
+
+              {venue.label === "Nikah Ceremony" && (
+                <a
+                  href={venue.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-emerald to-emerald-deep px-8 py-3 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97] sm:px-10 sm:py-3.5 sm:text-[11px]"
+                >
+                  Open Location in Google Maps
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
