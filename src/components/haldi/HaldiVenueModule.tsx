@@ -22,34 +22,24 @@ export default function HaldiVenueModule() {
         >
           {HALDI_EVENT.venueTitle}
         </motion.h2>
-        <motion.div variants={fadeSlideUp} className="relative mx-auto mt-8 max-w-[304px]">
-          <motion.a
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Scan or tap to open Haldi venue in Google Maps"
-            className="relative inline-block overflow-hidden rounded-2xl border-2 border-marigold/35 bg-white/75 p-3 shadow-gold transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50"
-          >
-            <div className="absolute inset-2 rounded-xl border border-marigold/20" aria-hidden />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={HALDI_EVENT.qrImage}
-              alt="QR code for Haldi venue location on Google Maps"
-              width={280}
-              height={280}
-              className="relative z-10 mx-auto max-w-full rounded-lg object-contain"
-            />
-          </motion.a>
-
-          <div className="mt-4 flex justify-end">
-            <a
-              href="/nikah"
-              className="inline-flex items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97]"
-            >
-              Nikah
-            </a>
-          </div>
-        </motion.div>
+        <motion.a
+          variants={fadeSlideUp}
+          href={mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Scan or tap to open Haldi venue in Google Maps"
+          className="relative mx-auto mt-8 inline-block overflow-hidden rounded-2xl border-2 border-marigold/35 bg-white/75 p-3 shadow-gold transition-transform duration-300 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50"
+        >
+          <div className="absolute inset-2 rounded-xl border border-marigold/20" aria-hidden />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={HALDI_EVENT.qrImage}
+            alt="QR code for Haldi venue location on Google Maps"
+            width={280}
+            height={280}
+            className="relative z-10 mx-auto max-w-full rounded-lg object-contain"
+          />
+        </motion.a>
 
         <motion.p
           variants={fadeSlideUp}
