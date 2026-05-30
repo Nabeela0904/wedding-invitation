@@ -15,7 +15,7 @@ export const NIKAH_EVENT = {
     "At Big Mosque, Melvisharam",
   ] as const,
   dinnerLabel: "Dinner: 7.00pm onwards",
-  dinnerVenue: "Venue: Bengaluru Bypass road, Arcot",
+  dinnerVenue: "Venue: VJR Mahal Chennai to Bengaluru Bypass road, Arcot",
   venueTitle: "VENUE & LOCATION",
   venues: [
     {
@@ -28,11 +28,11 @@ export const NIKAH_EVENT = {
     },
     {
       label: "Dinner Reception",
-      subtext: "Bengaluru Bypass road, Arcot",
+      subtext: "VJR Mahal Chennai to Bengaluru Bypass road, Arcot",
       mapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=Bengaluru+Bypass+road+Arcot",
+        "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bengaluru+Bypass+road+Arcot",
       qrImage: "/nikah-dinner-qr.png",
-      qrAlt: "QR code for Nikah dinner at Bengaluru Bypass road, Arcot",
+      qrAlt: "QR code for Nikah dinner at VJR Mahal, Bengaluru Bypass road, Arcot",
     },
   ] as const,
   closingLine:
