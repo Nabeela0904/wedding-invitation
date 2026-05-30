@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 from pathlib import Path
 
 import qrcode
@@ -11,10 +12,18 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-CEREMONY_URL = "https://maps.google.com/?q=Big+Mosque+Melvisharam"
-DINNER_URL = (
-    "https://maps.google.com/?q=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot"
-)
+CEREMONY_URL = "https://maps.app.goo.gl/9e67Dq7Y2G1Z2X2S8"
+DINNER_URL = "https://maps.app.goo.gl/uXvE7x98G8mFpZ7E9"
+
+
+def load_venue_generator():
+    spec = importlib.util.spec_from_file_location(
+        "venue_qrs",
+        ROOT / "scripts" / "generate-venue-qrs.py",
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def draw_maps_pin(size: int) -> Image.Image:
@@ -105,21 +114,24 @@ def make_qr(
 
 def save(path: Path, image: Image.Image) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    image.save(path, format="PNG", optimize=True)
+    image.save(path, format="PNG")
     print(f"Wrote {path} ({path.stat().st_size // 1024} KB)")
 
 
 def main() -> None:
+    venue = load_venue_generator()
     ceremony = make_qr(CEREMONY_URL, fill="#111111")
-    dinner = make_qr(
+    dinner = venue.make_qr(
         DINNER_URL,
+        styled=True,
         fill="#4A1F3D",
         finder="#0F766E",
+        box_size=16,
+        border=4,
     )
 
     save(PUBLIC / "nikah-ceremony-qr.png", ceremony)
     save(PUBLIC / "nikah-dinner-qr.png", dinner)
-    save(PUBLIC / "nikah-venue-qr.png", ceremony)
 
 
 if __name__ == "__main__":

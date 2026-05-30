@@ -25,11 +25,11 @@ VENUES = [
     },
     {
         "filename": "nikah-ceremony-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=Big+Mosque+Melvisharam",
+        "url": "https://maps.app.goo.gl/9e67Dq7Y2G1Z2X2S8",
     },
     {
         "filename": "nikah-dinner-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
+        "url": "https://maps.app.goo.gl/uXvE7x98G8mFpZ7E9",
     },
     {
         "filename": "walima-venue-qr.png",
@@ -200,11 +200,6 @@ def main() -> None:
         )
         image.save(path, format="PNG", optimize=True)
         print(f"Wrote {path} ({path.stat().st_size // 1024} KB) -> {venue['url']}")
-
-    ceremony = PUBLIC / "nikah-ceremony-qr.png"
-    alias = PUBLIC / "nikah-venue-qr.png"
-    alias.write_bytes(ceremony.read_bytes())
-    print(f"Wrote {alias} (alias)")
 
 
 if __name__ == "__main__":
