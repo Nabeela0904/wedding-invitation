@@ -23,7 +23,7 @@ export const NIKAH_EVENT = {
       qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
     },
     {
-      label: "Dinner Reception",
+      label: "Dinner",
       subtext: "VJR Mahal Chennai to Bengaluru Bypass road, Arcot",
       mapsUrl: "https://maps.app.goo.gl/Krx8L5HpcVZNox5j7",
       qrImage: "/nikah-dinner-qr.png",
