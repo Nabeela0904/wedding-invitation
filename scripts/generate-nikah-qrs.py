@@ -12,7 +12,7 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-CEREMONY_URL = "https://maps.app.goo.gl/9e67Dq7Y2G1Z2X2S8"
+CEREMONY_URL = "https://maps.app.goo.gl/uX3LhR2vL9pW8z7A9"
 DINNER_URL = "https://maps.app.goo.gl/uXvE7x98G8mFpZ7E9"
 
 

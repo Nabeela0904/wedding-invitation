@@ -18,7 +18,7 @@ export const NIKAH_EVENT = {
     {
       label: "Nikah Ceremony",
       subtext: "Big Mosque, Melvisharam",
-      mapsUrl: "https://maps.app.goo.gl/9e67Dq7Y2G1Z2X2S8",
+      mapsUrl: "https://maps.app.goo.gl/uX3LhR2vL9pW8z7A9",
       qrImage: "/nikah-ceremony-qr.png",
       qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
     },

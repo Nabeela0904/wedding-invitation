@@ -25,7 +25,7 @@ VENUES = [
     },
     {
         "filename": "nikah-ceremony-qr.png",
-        "url": "https://maps.app.goo.gl/9e67Dq7Y2G1Z2X2S8",
+        "url": "https://maps.app.goo.gl/uX3LhR2vL9pW8z7A9",
     },
     {
         "filename": "nikah-dinner-qr.png",
