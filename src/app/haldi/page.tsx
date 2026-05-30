@@ -35,15 +35,6 @@ export default function HaldiPage() {
       <DetailsCard />
       <HaldiVenueModule />
 
-      <div className="relative z-10 mx-auto flex max-w-lg justify-end bg-cream px-5 pb-10 pt-2 sm:px-8">
-        <a
-          href="/nikah"
-          className="inline-flex items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97]"
-        >
-          Nikah
-        </a>
-      </div>
-
       <HaldiClosingFooter />
 
       <a
