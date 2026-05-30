@@ -40,6 +40,15 @@ export default function HaldiVenueModule() {
           />
         </motion.a>
 
+        <motion.div variants={fadeSlideUp} className="mt-4 flex justify-end">
+          <a
+            href="/nikah"
+            className="inline-flex items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97]"
+          >
+            Nikah
+          </a>
+        </motion.div>
+
         <motion.p
           variants={fadeSlideUp}
           className="mt-6 font-sans text-[10px] uppercase tracking-[0.28em] text-gold/55"
