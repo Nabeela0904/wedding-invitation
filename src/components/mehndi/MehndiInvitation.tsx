@@ -1,15 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MEHNDI_EVENT, getGoogleMapsUrl } from "@/lib/mehndi-event";
+import { MEHNDI_EVENT } from "@/lib/mehndi-event";
 import { fadeSlideUp, staggerContainer } from "@/lib/motion";
 import MehndiArchFrame from "./MehndiArchFrame";
 import EventCountdown from "./EventCountdown";
 import RsvpForm from "@/components/haldi/RsvpForm";
 
 export default function MehndiInvitation() {
-  const mapsUrl = getGoogleMapsUrl(MEHNDI_EVENT.mapsQuery);
-
   return (
     <div className="relative z-10 pb-16 pt-14 sm:pt-20">
       <MehndiArchFrame>
@@ -56,19 +54,6 @@ export default function MehndiInvitation() {
             <DetailRow label="Location" value={MEHNDI_EVENT.venueLabel} />
           </motion.div>
 
-          <motion.a
-            variants={fadeSlideUp}
-            href={mapsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-marigold/35 bg-white/30 px-4 py-3 font-sans text-sm font-medium text-gold"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <MapPinIcon />
-            View on Google Maps
-          </motion.a>
-
           <motion.div variants={fadeSlideUp} className="mt-8">
             <h3 className="font-display text-lg text-gold">Countdown</h3>
             <div className="mt-4">
@@ -103,24 +88,5 @@ function DetailRow({ label, value }: { label: string; value: string }) {
       </span>
       <span className="font-sans text-sm text-gold/90">{value}</span>
     </div>
-  );
-}
-
-function MapPinIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
   );
 }
