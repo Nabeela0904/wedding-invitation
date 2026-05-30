@@ -3,7 +3,7 @@ export const NIKAH_EVENT = {
   inviteLine:
     "WITH THE BLESSINGS OF ALLAH, WE GRACIOUSLY INVITE YOU TO THE NIKAH CEREMONY OF",
   groom: {
-    name: "SHOAIB FARAZ AHMED",
+    name: "SHOAIB FARAZ AHAMED",
   },
   bride: {
     name: "ZEENATH BANU",

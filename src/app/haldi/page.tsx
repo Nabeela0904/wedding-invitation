@@ -17,9 +17,9 @@ const HaldiVenueModule = dynamic(() => import("@/components/haldi/HaldiVenueModu
 });
 
 export const metadata: Metadata = {
-  title: "Rasm-e-Haldi | Shoaib Faraz Ahmed",
+  title: "Rasm-e-Haldi | Shoaib Faraz Ahamed",
   description:
-    "You are cordially invited to Rasm-e-Haldi of Shoaib Faraz Ahmed — 8th July, 2026.",
+    "You are cordially invited to Rasm-e-Haldi of Shoaib Faraz Ahamed — 8th July, 2026.",
 };
 
 export default function HaldiPage() {

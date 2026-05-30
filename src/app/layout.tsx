@@ -23,8 +23,8 @@ const amiri = Amiri({
 });
 
 export const metadata: Metadata = {
-  title: "Wedding Invitation | Shoaib Faraz Ahmed",
-  description: "Wedding celebrations for Shoaib Faraz Ahmed.",
+  title: "Wedding Invitation | Shoaib Faraz Ahamed",
+  description: "Wedding celebrations for Shoaib Faraz Ahamed.",
 };
 
 export default function RootLayout({

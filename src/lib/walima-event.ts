@@ -3,7 +3,7 @@ export const WALIMA_EVENT = {
   inviteLine:
     "Join us in the evening for celebrating togetherness! Love at the Walima ceremony of",
   groom: {
-    name: "SHOAIB FARAZ AHMED",
+    name: "SHOAIB FARAZ AHAMED",
   },
   bride: {
     name: "ZEENATH BANU",
