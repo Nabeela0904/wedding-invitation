@@ -9,13 +9,13 @@ export const NIKAH_EVENT = {
     name: "ZEENATH BANU",
   },
   ceremonyDetails: [
-    "Insh Allah,",
-    "On Thursday the 09th of July 2026",
-    "5:00 PM, After Nawias- e - Asar",
+    "In Sha Allah,",
+    "On Thursday the 9th July, 2026",
+    "5:00 PM, After Namaz-e-Asar",
     "At Big Mosque, Melvisharam",
   ] as const,
   dinnerLabel: "Dinner: 7.00pm onwards",
-  dinnerVenue: "Venue: VJR Mahal chennai to Bnglr Bypass road Arcot.",
+  dinnerVenue: "Venue: Bengaluru Bypass road, Arcot",
   venueTitle: "VENUE & LOCATION",
   venues: [
     {
@@ -28,11 +28,11 @@ export const NIKAH_EVENT = {
     },
     {
       label: "Dinner Reception",
-      subtext: "VJR Mahal, Chennai to Bangalore Bypass road, Arcot",
+      subtext: "Bengaluru Bypass road, Arcot",
       mapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
+        "https://www.google.com/maps/search/?api=1&query=Bengaluru+Bypass+road+Arcot",
       qrImage: "/nikah-dinner-qr.png",
-      qrAlt: "QR code for Nikah dinner at VJR Mahal, Arcot",
+      qrAlt: "QR code for Nikah dinner at Bengaluru Bypass road, Arcot",
     },
   ] as const,
   closingLine:
