@@ -8,12 +8,9 @@ export const NIKAH_EVENT = {
   bride: {
     name: "ZEENATH BANU",
   },
-  ceremonyDetails: [
-    "In Sha Allah,",
-    "On Thursday the 9th July, 2026",
-    "5:00 PM, After Namaz-e-Asar",
-    "At Big Mosque, Melvisharam",
-  ] as const,
+  blessedPhrase: "In Sha Allah On",
+  dateLabel: "Thursday the 9th July, 2026",
+  timeVenueLabel: "5:00 PM, After Namaz-e-Asar At Big Mosque, Melvisharam",
   dinnerLabel: "Dinner: 7.00pm onwards",
   dinnerVenue: "Venue: VJR Mahal Chennai to Bengaluru Bypass road, Arcot",
   venueTitle: "VENUE & LOCATION",
