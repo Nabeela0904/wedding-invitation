@@ -9,7 +9,7 @@ export const MEHNDI_EVENT = {
   venueLabel: "Noorunisa Enclave at Meerani's residence",
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery: "Noorunisa Enclave Meerani residence",
-  mapsUrl: "https://www.google.com/maps/search/?api=1&query=13.5600533,78.4985989",
+  mapsUrl: "https://maps.app.goo.gl/AocXatWp8qbQZGMF8",
 } as const;
 
 export function getGoogleMapsUrl(query: string): string {

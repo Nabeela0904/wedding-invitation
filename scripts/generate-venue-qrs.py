@@ -11,8 +11,7 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-# Exact dropped pin for Meerani's residence / Noorunisa Enclave (HF6X+2CH Madanapalle)
-HALDI_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=13.5600533,78.4985989"
+HALDI_MAPS_URL = "https://maps.app.goo.gl/AocXatWp8qbQZGMF8"
 
 VENUES = [
     {
