@@ -490,11 +490,21 @@ function pauseBackgroundMusic() {
   setMusicUi(false);
 }
 
+function restorePausedState() {
+  applySavedMusicTime();
+  if (!musicState || !musicState.wasUserPaused()) return false;
+
+  bgMusic.pause();
+  setMusicUi(false);
+  return true;
+}
+
 function bootBackgroundMusic() {
   if (!bgMusic || !musicToggle) return;
 
   ensureMusicSource();
   bgMusic.volume = 0.35;
+  restorePausedState();
 
   bgMusic.addEventListener("error", () => {
     setMusicUi(false);
@@ -503,6 +513,11 @@ function bootBackgroundMusic() {
   bgMusic.addEventListener("loadedmetadata", applySavedMusicTime);
 
   bgMusic.addEventListener("play", () => {
+    if (musicState && musicState.wasUserPaused()) {
+      bgMusic.pause();
+      setMusicUi(false);
+      return;
+    }
     if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
     setMusicUi(true);
   });

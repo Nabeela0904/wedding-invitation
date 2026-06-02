@@ -83,10 +83,10 @@
   }
 
   function markMusicForEventPage(currentTime) {
+    var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
     saveMusicState({
-      playing: true,
-      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
-      userPaused: false,
+      playing: !wasUserPaused(),
+      currentTime: time,
     });
   }
 

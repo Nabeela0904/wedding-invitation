@@ -98,6 +98,15 @@
     setMusicUi(false);
   }
 
+  function restorePausedState() {
+    applySavedMusicTime();
+    if (!musicState || !musicState.wasUserPaused()) return false;
+
+    bgMusic.pause();
+    setMusicUi(false);
+    return true;
+  }
+
   function bootBackgroundMusic() {
     if (onEventPage && musicState) {
       musicState.markMusicForEventPage(musicState.getSavedMusicTime());
@@ -105,6 +114,7 @@
 
     ensureMusicSource();
     bgMusic.volume = 0.35;
+    restorePausedState();
 
     bgMusic.addEventListener("error", function () {
       setMusicUi(false);
@@ -113,6 +123,11 @@
     bgMusic.addEventListener("loadedmetadata", applySavedMusicTime);
 
     bgMusic.addEventListener("play", function () {
+      if (musicState && musicState.wasUserPaused()) {
+        bgMusic.pause();
+        setMusicUi(false);
+        return;
+      }
       if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
       setMusicUi(true);
     });

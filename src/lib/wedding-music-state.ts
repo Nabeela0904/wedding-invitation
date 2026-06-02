@@ -91,9 +91,8 @@ export function markUserPaused(currentTime = 0): void {
 
 export function markMusicForEventPage(currentTime = getSavedMusicTime()): void {
   saveMusicState({
-    playing: true,
+    playing: !wasUserPaused(),
     currentTime,
-    userPaused: false,
   });
 }
 
