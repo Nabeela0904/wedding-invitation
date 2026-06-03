@@ -23,7 +23,6 @@ export default function WalimaGeometricAccent() {
           <circle cx="40" cy="40" r="5" fill="#4A1520" opacity="0.88" />
         </svg>
       </motion.div>
-      <span className="font-display text-xl font-bold text-[#4A1520] sm:text-2xl lg:text-[1.65rem]">&amp;</span>
     </div>
   );
 }

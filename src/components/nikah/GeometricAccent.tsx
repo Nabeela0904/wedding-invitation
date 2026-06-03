@@ -29,9 +29,6 @@ export default function GeometricAccent() {
           <circle cx="60" cy="60" r="6" fill="#043028" opacity="0.9" />
         </svg>
       </motion.div>
-      <span className="relative z-10 font-display text-2xl font-bold text-[#043028] sm:text-3xl lg:text-[1.7rem]">
-        &amp;
-      </span>
     </div>
   );
 }
