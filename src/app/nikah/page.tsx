@@ -6,9 +6,7 @@ import NikahTimelineSection from "@/components/nikah/NikahTimelineSection";
 import NikahVenueModule from "@/components/nikah/NikahVenueModule";
 import NikahClosingFooter from "@/components/nikah/NikahClosingFooter";
 
-const NikahPetals = dynamic(() => import("@/components/nikah/NikahPetals"), {
-  ssr: false,
-});
+const NikahPetals = dynamic(() => import("@/components/nikah/NikahPetals"));
 
 export const metadata: Metadata = {
   title: "Nikah Ceremony | Shoaib & Zeenath",

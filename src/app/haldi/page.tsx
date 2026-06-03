@@ -4,9 +4,7 @@ import CinematicHaldiScene from "@/components/haldi/CinematicHaldiScene";
 import HaldiHero from "@/components/haldi/HaldiHero";
 import HaldiClosingFooter from "@/components/haldi/HaldiClosingFooter";
 
-const MarigoldPetals = dynamic(() => import("@/components/haldi/MarigoldPetals"), {
-  ssr: false,
-});
+const MarigoldPetals = dynamic(() => import("@/components/haldi/MarigoldPetals"));
 
 const DetailsCard = dynamic(() => import("@/components/haldi/DetailsCard"), {
   loading: () => <div className="relative z-10 mx-auto h-40 max-w-lg" aria-hidden />,
