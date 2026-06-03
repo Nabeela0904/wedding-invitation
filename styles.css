@@ -189,13 +189,33 @@ footer {
 }
 
 .hero-hosts {
-  margin: 0 0 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  width: 100%;
+  margin: 0 auto 0.85rem;
+  text-align: center;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(1.75rem, 3.8vw, 2.45rem);
   font-weight: 700;
   letter-spacing: 0.04em;
   color: #ffedb8;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 18px rgba(255, 210, 120, 0.48);
+}
+
+.hero-hosts-name {
+  display: block;
+  line-height: 1.15;
+}
+
+.hero-hosts-amp {
+  display: block;
+  font-size: 0.72em;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  margin: 0.05rem 0;
 }
 
 .hero-invite-line {
