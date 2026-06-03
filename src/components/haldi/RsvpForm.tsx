@@ -52,7 +52,9 @@ export default function RsvpForm({ eventName = "Wedding Event" }: RsvpFormProps)
 
     const attendingLabel = ATTENDING_LABELS[form.attending];
     const foodLabel = FOOD_LABELS[form.food];
-    const { serviceId, templateId, publicKey } = getEmailJsConfig();
+    const serviceId = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID?.trim() ?? "";
+    const templateId = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID?.trim() ?? "";
+    const publicKey = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY?.trim() ?? "";
 
     setIsSubmitting(true);
     setError("");
@@ -62,14 +64,10 @@ export default function RsvpForm({ eventName = "Wedding Event" }: RsvpFormProps)
         serviceId,
         templateId,
         {
-          from_name: form.name.trim(),
           guest_name: form.name.trim(),
-          name: form.name.trim(),
           attending: attendingLabel,
-          food: foodLabel,
-          food_preference: foodLabel,
           event_name: eventName,
-          event: eventName,
+          food_preference: foodLabel,
           message: [
             `Event: ${eventName}`,
             `Name: ${form.name.trim()}`,
