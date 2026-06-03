@@ -23,6 +23,7 @@ yarn-error.log*
 
 # env
 .env*.local
+.env.local
 
 # IDE
 .idea

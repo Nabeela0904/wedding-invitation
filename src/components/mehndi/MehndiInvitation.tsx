@@ -72,7 +72,7 @@ export default function MehndiInvitation() {
             <p className="mt-1 mb-5 font-sans text-xs text-gold/60">
               Please confirm your presence
             </p>
-            <RsvpForm />
+            <RsvpForm eventName="Rasm-e-Mehndi" />
           </motion.div>
         </motion.div>
       </MehndiArchFrame>
