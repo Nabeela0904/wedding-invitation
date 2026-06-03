@@ -1,7 +1,7 @@
 export const WALIMA_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   inviteLine:
-    "Join us in the evening for celebrating togetherness! Love at the Walima ceremony of",
+    "Join us in the evening for celebrating togetherness & love at the Walima ceremony of",
   groom: {
     name: "SHOAIB FARAZ AHAMED",
   },
