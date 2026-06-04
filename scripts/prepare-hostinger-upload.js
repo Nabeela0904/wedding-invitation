@@ -4,9 +4,10 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { getOutDir, getProjectRoot } = require("./lib/project-paths");
 
-const OUT = path.join(process.cwd(), "out");
-const DEST = path.join(process.cwd(), "hostinger-upload");
+const OUT = getOutDir();
+const DEST = path.join(getProjectRoot(), "hostinger-upload");
 
 function copyRecursive(src, dest) {
   const stat = fs.statSync(src);
@@ -21,6 +22,7 @@ function copyRecursive(src, dest) {
 }
 
 if (!fs.existsSync(OUT)) {
+  console.error(`out/ not found at ${OUT}`);
   console.error("Run: npm run build:hostinger");
   process.exit(1);
 }

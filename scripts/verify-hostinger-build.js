@@ -1,22 +1,20 @@
 #!/usr/bin/env node
 /**
- * Verifies the static export in /out is ready to upload to Hostinger public_html.
+ * Verifies the static export in out/ is ready to upload to Hostinger public_html.
  */
 const fs = require("fs");
 const path = require("path");
+const { getOutDir, getProjectRoot } = require("./lib/project-paths");
 
-const OUT = path.join(process.cwd(), "out");
+const OUT = getOutDir();
 
 const required = [
   "index.html",
   ".htaccess",
   "invitation.html",
   "haldi/index.html",
-  "haldi.html",
   "nikah/index.html",
-  "nikah.html",
   "walima/index.html",
-  "walima.html",
   "404.html",
   "404/index.html",
   "_next",
@@ -25,7 +23,9 @@ const required = [
 let failed = false;
 
 if (!fs.existsSync(OUT)) {
-  console.error("FAIL: out/ folder not found. Run: npm run build");
+  console.error(`FAIL: out/ not found at ${OUT}`);
+  console.error(`Project root: ${getProjectRoot()}`);
+  console.error("Ensure next.config.js has output: \"export\", then run: npm run build");
   process.exit(1);
 }
 
@@ -40,8 +40,8 @@ for (const rel of required) {
 }
 
 const htaccess = fs.readFileSync(path.join(OUT, ".htaccess"), "utf8");
-if (!htaccess.includes("RewriteRule ^$ index.html")) {
-  console.error("FAIL: .htaccess missing home page rewrite");
+if (!htaccess.includes("RewriteRule ^(haldi|nikah|walima|mehndi)/$")) {
+  console.error("FAIL: .htaccess missing trailingSlash route rewrites");
   failed = true;
 }
 
@@ -49,6 +49,5 @@ if (failed) {
   process.exit(1);
 }
 
-console.log("\nHostinger deploy: upload ALL files inside out/ to public_html.");
-console.log("Enable “Show hidden files” so .htaccess is uploaded.");
-console.log("Set .env.local before build if you use EmailJS on Mehndi RSVP.\n");
+console.log(`\nDeploy: upload ALL files inside ${OUT} to public_html.`);
+console.log("Enable “Show hidden files” so .htaccess is uploaded.\n");
