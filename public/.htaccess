@@ -1,24 +1,28 @@
-# Hostinger / Apache — Next.js static export (trailingSlash: true)
-# Upload ALL contents of /out (or /hostinger-upload) into public_html.
-DirectoryIndex index.html
+# Next.js static export (output: "export", trailingSlash: true)
+# Routes export as folders: /haldi/index.html, /nikah/index.html, /walima/index.html
 Options -Indexes +FollowSymLinks
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Serve real files as-is (_next/*, images, .css, .js, .html files, etc.)
+  # Serve existing files as-is (_next/, images, styles.css, etc.)
   RewriteCond %{REQUEST_FILENAME} -f
   RewriteRule ^ - [L]
 
-  # Explicit routes (do not rely on directory listing — fixes Hostinger 404 on refresh)
+  # Add trailing slash for app route directories
+  RewriteRule ^(haldi|nikah|walima|mehndi)$ $1/ [R=301,L]
+
+  # Home (envelope) and static invitation
   RewriteRule ^$ index.html [L]
-  RewriteRule ^haldi/?$ haldi/index.html [L]
-  RewriteRule ^nikah/?$ nikah/index.html [L]
-  RewriteRule ^walima/?$ walima/index.html [L]
-  RewriteRule ^mehndi/?$ mehndi/index.html [L]
   RewriteRule ^invitation/?$ invitation.html [L]
-  RewriteRule ^404/?$ 404/index.html [L]
+
+  # App routes → each folder's index.html
+  RewriteRule ^(haldi|nikah|walima|mehndi)/$ $1/index.html [L]
+
+  # Next.js 404 page
+  RewriteRule ^404/$ 404/index.html [L]
 
   ErrorDocument 404 /404.html
 </IfModule>
