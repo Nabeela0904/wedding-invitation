@@ -25,6 +25,9 @@ yarn-error.log*
 .env*.local
 .env.local
 
+# Hostinger deploy bundle (generated locally)
+/hostinger-upload/
+
 # IDE
 .idea
 .vscode

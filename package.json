@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "build:hostinger": "next build && node scripts/verify-hostinger-build.js",
+    "postbuild": "node scripts/postbuild-hostinger.js",
+    "build:hostinger": "npm run build && node scripts/verify-hostinger-build.js && node scripts/prepare-hostinger-upload.js",
     "start": "next start",
     "lint": "next lint"
   },

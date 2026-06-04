@@ -12,8 +12,12 @@ const required = [
   ".htaccess",
   "invitation.html",
   "haldi/index.html",
+  "haldi.html",
   "nikah/index.html",
+  "nikah.html",
   "walima/index.html",
+  "walima.html",
+  "404.html",
   "404/index.html",
   "_next",
 ];
@@ -36,8 +40,8 @@ for (const rel of required) {
 }
 
 const htaccess = fs.readFileSync(path.join(OUT, ".htaccess"), "utf8");
-if (!htaccess.includes("DirectoryIndex index.html")) {
-  console.error("FAIL: .htaccess missing DirectoryIndex index.html");
+if (!htaccess.includes("RewriteRule ^$ index.html")) {
+  console.error("FAIL: .htaccess missing home page rewrite");
   failed = true;
 }
 
