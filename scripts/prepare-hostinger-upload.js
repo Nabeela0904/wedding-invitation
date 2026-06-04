@@ -33,6 +33,12 @@ if (fs.existsSync(DEST)) {
 
 copyRecursive(OUT, DEST);
 
+const indexHtml = path.join(DEST, "index.html");
+if (fs.existsSync(indexHtml)) {
+  fs.copyFileSync(indexHtml, path.join(DEST, "default.html"));
+  console.log("Added default.html (home page fallback for Hostinger)");
+}
+
 const checklist = [
   "UPLOAD INSTRUCTIONS",
   "===================",
@@ -43,11 +49,9 @@ const checklist = [
   "5. Do NOT upload the hostinger-upload folder itself — only its contents",
   "",
   "Test URLs:",
-  "  /              → envelope",
-  "  /invitation.html",
-  "  /haldi/",
-  "  /nikah/",
-  "  /walima/",
+  "  https://shoaibandzeenathziyafatnama.xyz/",
+  "  https://shoaibandzeenathziyafatnama.xyz/invitation.html",
+  "  https://shoaibandzeenathziyafatnama.xyz/haldi/",
   "",
 ].join("\n");
 
