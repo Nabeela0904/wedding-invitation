@@ -1,19 +1,32 @@
-RewriteEngine On
-RewriteBase /
+# Hostinger / Apache — static Next.js export (wedding invitation)
+Options -MultiViews
+DirectoryIndex index.html
 
-# Serve existing files and folders as-is
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
 
-# Event pages (Next.js static export)
-RewriteRule ^haldi/?$ haldi.html [L]
-RewriteRule ^nikah/?$ nikah.html [L]
-RewriteRule ^walima/?$ walima.html [L]
-RewriteRule ^mehndi/?$ mehndi.html [L]
+  # Let real files and directories through (_next, images, .html, .css, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
 
-# Main invitation page
-RewriteRule ^invitation/?$ invitation.html [L]
+  # Root → envelope landing page
+  RewriteRule ^$ index.html [L]
 
-# Envelope landing page
-RewriteRule ^$ index.html [L]
+  # Event pages (with or without trailing slash)
+  RewriteRule ^haldi/?$ haldi/index.html [L]
+  RewriteRule ^nikah/?$ nikah/index.html [L]
+  RewriteRule ^walima/?$ walima/index.html [L]
+  RewriteRule ^mehndi/?$ mehndi/index.html [L]
+
+  # Main invitation (static HTML)
+  RewriteRule ^invitation/?$ invitation.html [L]
+
+  # Fallback: try matching .html file (e.g. /haldi → haldi.html on flat exports)
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+  # Custom 404 page from Next export
+  ErrorDocument 404 /404.html
+</IfModule>
