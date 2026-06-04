@@ -559,7 +559,7 @@ function bootBackgroundMusic() {
   window.addEventListener("load", tryAutoPlay);
   window.addEventListener("pagehide", persistMusicBeforeLeave);
 
-  document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/nikah"], a.event-button[href="/walima"]').forEach((link) => {
+  document.querySelectorAll('a.event-button[href="/haldi"], a.event-button[href="/haldi/"], a.event-button[href="/nikah"], a.event-button[href="/nikah/"], a.event-button[href="/walima"], a.event-button[href="/walima/"]').forEach((link) => {
     link.addEventListener("click", () => {
       if (musicState) {
         musicState.markMusicForEventPage(bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime());
