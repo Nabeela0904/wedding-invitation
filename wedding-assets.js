@@ -21,6 +21,19 @@
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
 
+  (function preloadMusicFile() {
+    var href = window.WEDDING_MUSIC_SRC;
+    if (document.querySelector('link[data-wedding-music-preload]')) return;
+
+    var link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "audio";
+    link.type = "audio/mpeg";
+    link.href = href;
+    link.setAttribute("data-wedding-music-preload", "true");
+    document.head.appendChild(link);
+  })();
+
   var earlyAudio = document.querySelector("#bg-music");
   if (earlyAudio && !earlyAudio.getAttribute("src")) {
     earlyAudio.src = window.WEDDING_MUSIC_SRC;

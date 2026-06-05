@@ -58,7 +58,18 @@ function invitationPageUrl() {
   return new URL("invitation.html", window.location.origin + base).href;
 }
 
+function persistMusicBeforeNavigation() {
+  const musicState = window.WeddingMusicState;
+  if (!musicState || musicState.wasUserPaused()) return;
+
+  const bgMusic = document.getElementById("bg-music");
+  const currentTime = bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime();
+  const isPlaying = !!(bgMusic && !bgMusic.paused && !bgMusic.ended);
+  musicState.persistMusicForEventNavigation(currentTime, isPlaying);
+}
+
 function goToInvitation() {
+  persistMusicBeforeNavigation();
   window.location.assign(invitationPageUrl());
 }
 

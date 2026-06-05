@@ -123,25 +123,9 @@
     if (!canAttempt) return;
 
     ensureMusicSource();
-    applySavedMusicTime();
+    seekToSavedTime();
     bgMusic.volume = 0.35;
-
-    var playPromise = bgMusic.play();
-    if (!playPromise) return;
-
-    playPromise
-      .then(function () {
-        bgMusic.muted = false;
-        shouldUnmuteOnGesture = false;
-        pendingPlayFromGesture = false;
-        if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
-        setMusicUi(true);
-      })
-      .catch(function () {
-        if (!hasRecentUserGesture() && !pendingPlayFromGesture) {
-          setMusicUi(false);
-        }
-      });
+    return playUnmuted();
   }
 
   function startMusicFromUserGesture(force) {
@@ -199,12 +183,51 @@
     musicState.persistMusicForEventNavigation(currentTime, isPlaying);
   }
 
-  function resumeContinuedMusic() {
+  function seekToSavedTime() {
+    applySavedMusicTime(bgMusic);
+  }
+
+  function playUnmuted() {
     bgMusic.muted = false;
     shouldUnmuteOnGesture = false;
+    bgMusic.volume = 0.35;
+
+    var playPromise = bgMusic.play();
+    if (!playPromise) return playPromise;
+
+    return playPromise
+      .then(function () {
+        pendingPlayFromGesture = false;
+        if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
+        setMusicUi(true);
+      })
+      .catch(function () {
+        if (!hasRecentUserGesture() && !pendingPlayFromGesture) {
+          setMusicUi(false);
+        }
+      });
+  }
+
+  function resumeSavedMusic() {
+    if (musicState && musicState.wasUserPaused()) return;
+    if (!musicState || !musicState.shouldResumeMusic()) return;
+
     ensureMusicSource();
-    applySavedMusicTime();
-    tryStartPlayback(true);
+    bgMusic.muted = false;
+    shouldUnmuteOnGesture = false;
+    bgMusic.volume = 0.35;
+
+    function seekAndPlay() {
+      seekToSavedTime();
+      playUnmuted();
+    }
+
+    if (bgMusic.readyState >= 1) {
+      seekAndPlay();
+      return;
+    }
+
+    bgMusic.addEventListener("loadedmetadata", seekAndPlay, { once: true });
   }
 
   function bootBackgroundMusic() {
@@ -260,21 +283,28 @@
       if (musicState && musicState.wasUserPaused()) return;
       if (!bgMusic.paused) return;
 
-      var shouldResume =
-        musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic();
-      tryStartPlayback(shouldResume || pendingPlayFromGesture || hasRecentUserGesture());
+      if (musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic()) {
+        resumeSavedMusic();
+        return;
+      }
+
+      tryStartPlayback(pendingPlayFromGesture || hasRecentUserGesture());
     }
 
     if (musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic()) {
-      resumeContinuedMusic();
+      resumeSavedMusic();
     } else {
       tryMutedAutoplay();
     }
 
     bgMusic.addEventListener("loadeddata", tryAutoPlay);
     bgMusic.addEventListener("canplay", tryAutoPlay);
-    bgMusic.addEventListener("canplaythrough", tryAutoPlay);
     window.addEventListener("load", tryAutoPlay);
+    window.addEventListener("pageshow", function (event) {
+      if (event.persisted) {
+        tryAutoPlay();
+      }
+    });
     window.addEventListener("pagehide", persistMusicBeforeLeave);
 
     document.addEventListener("pointerdown", markUserGesture, { passive: true, capture: true });
