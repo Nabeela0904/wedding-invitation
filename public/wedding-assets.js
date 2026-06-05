@@ -35,7 +35,7 @@
   })();
 
   var earlyAudio = document.querySelector("#bg-music");
-  if (earlyAudio && !earlyAudio.getAttribute("src")) {
+  if (earlyAudio && !earlyAudio.getAttribute("src") && !earlyAudio.src) {
     earlyAudio.src = window.WEDDING_MUSIC_SRC;
     earlyAudio.load();
   }
@@ -186,6 +186,8 @@
       el.setAttribute("href", withBase("invitation.html"));
     });
   }
+
+  window.patchWeddingSiteLinks = patchSiteLinks;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", patchSiteLinks);
