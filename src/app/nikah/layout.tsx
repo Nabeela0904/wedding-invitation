@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/site-base-path";
+
 export default function NikahLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -6,7 +8,7 @@ export default function NikahLayout({
       <link
         rel="preload"
         as="image"
-        href="/nikah-cinematic-bg.webp"
+        href={assetPath("/nikah-cinematic-bg.webp")}
         type="image/webp"
       />
       {children}

@@ -62,24 +62,6 @@ function goToInvitation() {
   window.location.assign(invitationPageUrl());
 }
 
-function startMusicFromUserGesture() {
-  const bgMusic = document.getElementById("bg-music");
-  const musicState = window.WeddingMusicState;
-  if (!bgMusic || (musicState && musicState.wasUserPaused())) return;
-
-  if (window.WEDDING_MUSIC_SRC && !bgMusic.src) {
-    bgMusic.src = window.WEDDING_MUSIC_SRC;
-    bgMusic.load();
-  }
-
-  if (musicState) {
-    musicState.applySavedMusicTime(bgMusic);
-  }
-
-  bgMusic.volume = 0.35;
-  bgMusic.play().catch(() => {});
-}
-
 function openEnvelope() {
   if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open") || envelopeOpening) {
     return;
@@ -92,7 +74,9 @@ function openEnvelope() {
     envelopeOpenBtn.disabled = true;
   }
 
-  startMusicFromUserGesture();
+  if (window.WeddingMusic && window.WeddingMusic.startFromUserGesture) {
+    window.WeddingMusic.startFromUserGesture(true);
+  }
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

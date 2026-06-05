@@ -21,12 +21,28 @@
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
 
+  var earlyAudio = document.querySelector("#bg-music");
+  if (earlyAudio && !earlyAudio.getAttribute("src")) {
+    earlyAudio.src = window.WEDDING_MUSIC_SRC;
+    earlyAudio.load();
+  }
+
   var MUSIC_PLAYING_KEY = "wedding-music-playing";
   var MUSIC_TIME_KEY = "wedding-music-time";
   var MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
 
   function shouldAutoPlayMusic() {
     return !wasUserPaused();
+  }
+
+  function shouldResumeMusic() {
+    if (wasUserPaused()) return false;
+
+    try {
+      return sessionStorage.getItem(MUSIC_PLAYING_KEY) === "1";
+    } catch (error) {
+      return false;
+    }
   }
 
   function wasUserPaused() {
@@ -90,6 +106,16 @@
     });
   }
 
+  function persistMusicForEventNavigation(currentTime, isPlaying) {
+    if (wasUserPaused()) return;
+
+    saveMusicState({
+      playing: !!isPlaying,
+      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
+      userPaused: false,
+    });
+  }
+
   function applySavedMusicTime(audio) {
     var saved = getSavedMusicTime();
     if (!audio || saved <= 0) return;
@@ -112,12 +138,14 @@
     MUSIC_TIME_KEY: MUSIC_TIME_KEY,
     MUSIC_USER_PAUSED_KEY: MUSIC_USER_PAUSED_KEY,
     shouldAutoPlayMusic: shouldAutoPlayMusic,
+    shouldResumeMusic: shouldResumeMusic,
     wasUserPaused: wasUserPaused,
     getSavedMusicTime: getSavedMusicTime,
     saveMusicState: saveMusicState,
     markUserPlaying: markUserPlaying,
     markUserPaused: markUserPaused,
     markMusicForEventPage: markMusicForEventPage,
+    persistMusicForEventNavigation: persistMusicForEventNavigation,
     applySavedMusicTime: applySavedMusicTime,
   };
 

@@ -3,11 +3,15 @@
     return /\/(haldi|nikah|walima)(?:\.html)?\/?$/i.test(window.location.pathname);
   }
 
+  var GESTURE_WINDOW_MS = 4000;
   var bgMusic = document.querySelector("#bg-music");
   var musicToggle = document.querySelector("#music-toggle");
   var musicState = window.WeddingMusicState || null;
   var onEventPage = isEventPage();
   var lastSavedMusicAt = 0;
+  var lastUserGestureAt = 0;
+  var pendingPlayFromGesture = false;
+  var shouldUnmuteOnGesture = false;
 
   if (!bgMusic || !musicToggle) return;
 
@@ -56,12 +60,43 @@
     return new URL("music/whatsapp-audio.mp3", window.location.origin + base).href;
   }
 
+  function musicSrcMatches(src) {
+    if (!bgMusic.src) return false;
+
+    try {
+      return new URL(bgMusic.src).href === new URL(src, window.location.origin).href;
+    } catch (error) {
+      return bgMusic.src.indexOf("whatsapp-audio.mp3") !== -1;
+    }
+  }
+
   function ensureMusicSource() {
     var src = getMusicSrc();
-    if (!bgMusic.src || bgMusic.src !== src) {
+    if (!musicSrcMatches(src)) {
       bgMusic.src = src;
       bgMusic.load();
     }
+  }
+
+  function hasRecentUserGesture() {
+    return Date.now() - lastUserGestureAt < GESTURE_WINDOW_MS;
+  }
+
+  function markUserGesture(event) {
+    if (event && event.target && event.target.closest && event.target.closest("#music-toggle")) {
+      return;
+    }
+
+    lastUserGestureAt = Date.now();
+    pendingPlayFromGesture = true;
+
+    if (shouldUnmuteOnGesture) {
+      bgMusic.muted = false;
+      shouldUnmuteOnGesture = false;
+      bgMusic.volume = 0.35;
+    }
+
+    tryStartPlayback(true);
   }
 
   function setMusicUi(isPlaying) {
@@ -72,8 +107,20 @@
     musicToggle.querySelector(".music-toggle-label").textContent = isPlaying ? "Pause music" : "Play music";
   }
 
-  function startMusicFromUserGesture(force) {
-    if (!force && musicState && musicState.wasUserPaused()) return;
+  function tryStartPlayback(force) {
+    if (!force && musicState && musicState.wasUserPaused()) {
+      pendingPlayFromGesture = false;
+      return;
+    }
+
+    if (!bgMusic.paused && !bgMusic.ended) {
+      pendingPlayFromGesture = false;
+      setMusicUi(true);
+      return;
+    }
+
+    var canAttempt = force || pendingPlayFromGesture || hasRecentUserGesture();
+    if (!canAttempt) return;
 
     ensureMusicSource();
     applySavedMusicTime();
@@ -84,16 +131,53 @@
 
     playPromise
       .then(function () {
+        bgMusic.muted = false;
+        shouldUnmuteOnGesture = false;
+        pendingPlayFromGesture = false;
         if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
         setMusicUi(true);
       })
       .catch(function () {
+        if (!hasRecentUserGesture() && !pendingPlayFromGesture) {
+          setMusicUi(false);
+        }
+      });
+  }
+
+  function startMusicFromUserGesture(force) {
+    markUserGesture();
+    tryStartPlayback(force !== false);
+  }
+
+  function tryMutedAutoplay() {
+    if (musicState && musicState.wasUserPaused()) return;
+
+    ensureMusicSource();
+    applySavedMusicTime();
+    bgMusic.volume = 0.35;
+    bgMusic.muted = true;
+    shouldUnmuteOnGesture = true;
+
+    var playPromise = bgMusic.play();
+    if (!playPromise) return;
+
+    playPromise
+      .then(function () {
+        if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
+        setMusicUi(true);
+      })
+      .catch(function () {
+        bgMusic.muted = false;
+        shouldUnmuteOnGesture = false;
         setMusicUi(false);
       });
   }
 
   function pauseBackgroundMusic() {
     bgMusic.pause();
+    bgMusic.muted = false;
+    shouldUnmuteOnGesture = false;
+    pendingPlayFromGesture = false;
     if (musicState) musicState.markUserPaused(bgMusic.currentTime);
     setMusicUi(false);
   }
@@ -105,6 +189,22 @@
     bgMusic.pause();
     setMusicUi(false);
     return true;
+  }
+
+  function persistMusicForEventNavigation() {
+    if (!musicState || musicState.wasUserPaused()) return;
+
+    var currentTime = bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime();
+    var isPlaying = !!(bgMusic && !bgMusic.paused && !bgMusic.ended);
+    musicState.persistMusicForEventNavigation(currentTime, isPlaying);
+  }
+
+  function resumeContinuedMusic() {
+    bgMusic.muted = false;
+    shouldUnmuteOnGesture = false;
+    ensureMusicSource();
+    applySavedMusicTime();
+    tryStartPlayback(true);
   }
 
   function bootBackgroundMusic() {
@@ -159,26 +259,53 @@
     function tryAutoPlay() {
       if (musicState && musicState.wasUserPaused()) return;
       if (!bgMusic.paused) return;
-      startMusicFromUserGesture(true);
+
+      var shouldResume =
+        musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic();
+      tryStartPlayback(shouldResume || pendingPlayFromGesture || hasRecentUserGesture());
     }
 
-    tryAutoPlay();
+    if (musicState && musicState.shouldResumeMusic && musicState.shouldResumeMusic()) {
+      resumeContinuedMusic();
+    } else {
+      tryMutedAutoplay();
+    }
+
     bgMusic.addEventListener("loadeddata", tryAutoPlay);
     bgMusic.addEventListener("canplay", tryAutoPlay);
     bgMusic.addEventListener("canplaythrough", tryAutoPlay);
     window.addEventListener("load", tryAutoPlay);
     window.addEventListener("pagehide", persistMusicBeforeLeave);
 
-    if (onEventPage) {
-      document.addEventListener("click", tryAutoPlay);
-      document.addEventListener("touchstart", tryAutoPlay, { passive: true });
-      document.addEventListener("keydown", tryAutoPlay);
-    } else {
-      document.addEventListener("click", tryAutoPlay, { once: true });
-      document.addEventListener("touchstart", tryAutoPlay, { once: true, passive: true });
-      document.addEventListener("keydown", tryAutoPlay, { once: true });
+    document.addEventListener("pointerdown", markUserGesture, { passive: true, capture: true });
+    document.addEventListener("touchstart", markUserGesture, { passive: true, capture: true });
+    document.addEventListener("keydown", markUserGesture, { capture: true });
+
+    var envelopeOverlay = document.getElementById("envelope-overlay");
+    if (envelopeOverlay) {
+      envelopeOverlay.addEventListener("pointerdown", markUserGesture, { passive: true });
+      envelopeOverlay.addEventListener("click", markUserGesture);
     }
+
+    document.querySelectorAll('a.event-button[data-event="haldi"], a.event-button[data-event="nikah"], a.event-button[data-event="valima"]').forEach(function (link) {
+      link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
+      link.addEventListener("click", persistMusicForEventNavigation, { capture: true });
+    });
+
+    document.querySelectorAll('a.main-invitation-link, a[href="/invitation.html"], a[href="invitation.html"]').forEach(function (link) {
+      link.addEventListener("pointerdown", persistMusicForEventNavigation, { capture: true });
+      link.addEventListener("click", function () {
+        persistMusicForEventNavigation();
+        persistMusicBeforeLeave();
+      }, { capture: true });
+    });
   }
+
+  window.WeddingMusic = {
+    startFromUserGesture: startMusicFromUserGesture,
+    markUserGesture: markUserGesture,
+    tryStartPlayback: tryStartPlayback,
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bootBackgroundMusic);

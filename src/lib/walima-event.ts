@@ -1,3 +1,5 @@
+import { assetPath } from "./site-base-path";
+
 export const WALIMA_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   inviteLine:
@@ -17,7 +19,7 @@ export const WALIMA_EVENT = {
   venueSubtext: "R convention centre, Madanapalle",
   countdownIso: "2026-07-11T18:00:00+05:30",
   mapsUrl: "https://maps.app.goo.gl/LjakV6TfwYmR3PAw6",
-  qrImage: "/walima-venue-qr.png",
+  qrImage: assetPath("/walima-venue-qr.png"),
 } as const;
 
 export type WalimaEvent = typeof WALIMA_EVENT;

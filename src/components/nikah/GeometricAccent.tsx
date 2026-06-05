@@ -11,7 +11,14 @@ export default function GeometricAccent() {
         transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
         aria-hidden
       >
-        <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full">
+        <div
+          className="absolute inset-[-2px] rounded-full bg-emerald-deep/25 blur-md"
+          aria-hidden
+        />
+        <svg
+          viewBox="0 0 120 120"
+          className="relative h-full w-full drop-shadow-[0_0_10px_rgba(4,48,40,0.45)]"
+        >
           <polygon
             points="60,8 112,60 60,112 8,60"
             fill="none"

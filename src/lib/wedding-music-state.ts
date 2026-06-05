@@ -28,10 +28,9 @@ export function shouldResumeMusic(): boolean {
   if (wasUserPaused()) return false;
 
   try {
-    const flag = sessionStorage.getItem(MUSIC_PLAYING_KEY);
-    return flag === null || flag === "1";
+    return sessionStorage.getItem(MUSIC_PLAYING_KEY) === "1";
   } catch {
-    return true;
+    return false;
   }
 }
 
