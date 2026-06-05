@@ -39,6 +39,15 @@ for (const rel of required) {
   }
 }
 
+const indexHtml = path.join(OUT, "index.html");
+if (fs.existsSync(indexHtml)) {
+  const indexContent = fs.readFileSync(indexHtml, "utf8");
+  if (!indexContent.includes("envelope-page")) {
+    console.error("FAIL: out/index.html is not the envelope page (run copy-static-entry-pages.js after build)");
+    failed = true;
+  }
+}
+
 const htaccess = fs.readFileSync(path.join(OUT, ".htaccess"), "utf8");
 if (!htaccess.includes("RewriteRule ^(haldi|nikah|walima|mehndi)/$")) {
   console.error("FAIL: .htaccess missing trailingSlash route rewrites");

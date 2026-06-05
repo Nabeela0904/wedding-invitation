@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "build:hostinger": "npm run build && node scripts/verify-hostinger-build.js && node scripts/prepare-hostinger-upload.js",
+    "build:hostinger": "npm run build && node scripts/copy-static-entry-pages.js && node scripts/verify-hostinger-build.js && node scripts/prepare-hostinger-upload.js",
     "build:pages": "GITHUB_PAGES=true next build && node scripts/prepare-gh-pages.js",
     "deploy:cloudflare": "wrangler versions upload --assets=./out",
     "start": "next start",
