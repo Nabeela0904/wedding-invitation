@@ -35,7 +35,7 @@ export default function WalimaPage() {
       </footer>
 
       <a
-        href={mainInvitationPath()}
+        href="/invitation.html"
         className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation

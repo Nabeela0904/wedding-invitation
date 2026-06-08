@@ -19,7 +19,7 @@
     return new URL(clean, window.location.origin + getDeployBase()).href;
   }
 
-  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
+  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/new-audio.mp3");
 
   (function preloadMusicFile() {
     var href = window.WEDDING_MUSIC_SRC;
