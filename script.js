@@ -5,97 +5,13 @@ const layers = {
   lanternOverlay: document.querySelector(".lantern-overlay"),
 };
 
-const envelopeOverlay = document.getElementById("envelope-overlay");
-const envelopeOpenBtn = document.getElementById("envelope-open");
-const envelopeStage = document.querySelector(".envelope-stage");
-const ENVELOPE_FLAP_OPEN_MS = 320;
-const ENVELOPE_REVEAL_START_MS = 2900;
-const ENVELOPE_CONTENT_REVEAL_MS = 3150;
-const ENVELOPE_REMOVE_MS = 4700;
-let envelopeOpening = false;
-
-function revealInvitationContent() {
-  document.body.classList.remove("invite-entrance-locked");
-  document.body.classList.add("invite-revealed");
-
-  const hero = document.querySelector(".hero.reveal");
-  if (hero) {
-    window.setTimeout(() => hero.classList.add("visible"), 80);
-  }
-
-  revealItems.forEach((item, index) => {
-    if (item.classList.contains("hero")) return;
-    window.setTimeout(() => item.classList.add("visible"), 220 + index * 120);
-  });
-}
-
-function finishEnvelopeEntrance() {
-  if (!envelopeOverlay) return;
-
-  envelopeOverlay.classList.add("is-revealing", "is-hidden");
-  envelopeOverlay.setAttribute("aria-hidden", "true");
-
-  window.setTimeout(revealInvitationContent, ENVELOPE_CONTENT_REVEAL_MS - ENVELOPE_REVEAL_START_MS);
-
-  window.setTimeout(() => {
-    envelopeOverlay.remove();
-    document.body.classList.remove("envelope-animating");
-    envelopeOpening = false;
-  }, ENVELOPE_REMOVE_MS - ENVELOPE_REVEAL_START_MS);
-}
-
-function openEnvelope() {
-  if (!envelopeOverlay || envelopeOverlay.classList.contains("is-open") || envelopeOpening) {
-    return;
-  }
-
-  envelopeOpening = true;
-  document.body.classList.add("envelope-animating");
-
-  if (envelopeOpenBtn) {
-    envelopeOpenBtn.disabled = true;
-  }
-
-  startMusicFromUserGesture(true);
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (prefersReducedMotion) {
-    envelopeOverlay.classList.add("is-hidden");
-    revealInvitationContent();
-    window.setTimeout(() => {
-      envelopeOverlay.remove();
-      document.body.classList.remove("envelope-animating");
-      envelopeOpening = false;
-    }, 120);
-    return;
-  }
-
-  envelopeOverlay.classList.add("is-opening");
-
-  window.setTimeout(() => {
-    envelopeOverlay.classList.add("is-open");
-  }, ENVELOPE_FLAP_OPEN_MS);
-
-  window.setTimeout(finishEnvelopeEntrance, ENVELOPE_REVEAL_START_MS);
-}
-
-if (envelopeOverlay && envelopeOpenBtn) {
-  envelopeOpenBtn.addEventListener("click", openEnvelope);
-}
-
-if (envelopeStage) {
-  envelopeStage.addEventListener("click", openEnvelope);
-}
-
-const revealItems = document.querySelectorAll(".reveal");
-const eventButtons = document.querySelectorAll(".event-button");
 let targetMouseX = 0;
 let targetMouseY = 0;
 let targetScrollY = 0;
 let smoothMouseX = 0;
 let smoothMouseY = 0;
 let smoothScrollY = 0;
+let backgroundAnimationStarted = false;
 
 window.addEventListener("mousemove", (event) => {
   const cx = window.innerWidth / 2;
@@ -145,18 +61,55 @@ const observer = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.2,
+    threshold: 0.08,
+    rootMargin: "0px 0px -5% 0px",
   }
 );
 
-revealItems.forEach((item) => observer.observe(item));
-
-eventButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    eventButtons.forEach((btn) => btn.classList.remove("is-active"));
-    button.classList.add("is-active");
+function revealInvitationSections(staggerMs = 110) {
+  const items = document.querySelectorAll(".invite-wrapper .reveal");
+  items.forEach((item, index) => {
+    window.setTimeout(() => item.classList.add("visible"), 280 + index * staggerMs);
   });
-});
+}
+
+function setupEventButtons() {
+  document.querySelectorAll(".event-button").forEach((button) => {
+    if (button.dataset.boundClick === "1") return;
+    button.dataset.boundClick = "1";
+    button.addEventListener("click", () => {
+      document.querySelectorAll(".event-button").forEach((btn) => btn.classList.remove("is-active"));
+      button.classList.add("is-active");
+    });
+  });
+}
+
+function setupRevealObserver() {
+  document.querySelectorAll(".invite-wrapper .reveal").forEach((item) => {
+    if (item.dataset.revealObserved === "1") return;
+    item.dataset.revealObserved = "1";
+    observer.observe(item);
+  });
+}
+
+function startBackgroundAnimation() {
+  if (backgroundAnimationStarted) return;
+  backgroundAnimationStarted = true;
+  animateBackground();
+}
+
+function initInvitationPage(options = {}) {
+  setupRevealObserver();
+  setupEventButtons();
+  startBackgroundAnimation();
+
+  if (options.revealAll) {
+    revealInvitationSections();
+  }
+}
+
+window.initInvitationPage = initInvitationPage;
+window.revealInvitationSections = revealInvitationSections;
 
 const RSVP_CONFIG = window.WEDDING_RSVP_CONFIG || {};
 const RSVP_EMAIL = RSVP_CONFIG.fallbackEmail || "meeranisare8@gmail.com";
@@ -571,9 +524,10 @@ function bootBackgroundMusic() {
     link.addEventListener("click", persistMusicBeforeLeave);
   });
 
-  if (envelopeOverlay) {
-    envelopeOverlay.addEventListener("pointerdown", tryAutoPlay, { passive: true });
-    envelopeOverlay.addEventListener("click", tryAutoPlay);
+  const envelopeOverlayEl = document.getElementById("envelope-overlay");
+  if (envelopeOverlayEl) {
+    envelopeOverlayEl.addEventListener("pointerdown", tryAutoPlay, { passive: true });
+    envelopeOverlayEl.addEventListener("click", tryAutoPlay);
   }
 
   document.addEventListener("click", tryAutoPlay, { once: true });
@@ -581,8 +535,16 @@ function bootBackgroundMusic() {
   document.addEventListener("keydown", tryAutoPlay, { once: true });
 }
 
-if (bgMusic && musicToggle) {
+const usesExternalMusicBoot = document.querySelector('script[src*="wedding-music-boot"]');
+
+if (bgMusic && musicToggle && !usesExternalMusicBoot) {
   bootBackgroundMusic();
 }
 
-animateBackground();
+if (document.querySelector(".invite-wrapper")) {
+  initInvitationPage({
+    revealAll: document.body.classList.contains("invite-revealed"),
+  });
+} else {
+  startBackgroundAnimation();
+}

@@ -190,6 +190,12 @@ async function revealInvitationSmoothly() {
 
     await loadScriptOnce("rsvp-config.js");
     await loadScriptOnce("script.js");
+
+    if (window.initInvitationPage) {
+      window.initInvitationPage({ revealAll: true });
+    } else if (window.revealInvitationSections) {
+      window.revealInvitationSections();
+    }
   } catch (error) {
     console.warn("Smooth invitation reveal failed, falling back to navigation:", error);
     window.location.assign(invitationPageUrl());
