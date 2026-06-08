@@ -53,7 +53,7 @@
       }
     }
 
-    return new URL("music/whatsapp-audio.mp3", window.location.origin + base).href;
+    return new URL("music/new-audio.mp3", window.location.origin + base).href;
   }
 
   function ensureMusicSource() {
