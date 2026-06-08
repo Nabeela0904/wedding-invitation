@@ -2,8 +2,9 @@ const envelopeOverlay = document.getElementById("envelope-overlay");
 const envelopeOpenBtn = document.getElementById("envelope-open");
 const envelopeStage = document.querySelector(".envelope-stage");
 const ENVELOPE_FLAP_OPEN_MS = 320;
-const ENVELOPE_REVEAL_START_MS = 2900;
-const REVEAL_FADE_MS = 1350;
+const ENVELOPE_CARD_EMERGE_MS = 2200;
+const ENVELOPE_REVEAL_START_MS = 3000;
+const REVEAL_FADE_MS = 1600;
 let envelopeOpening = false;
 let invitationRevealStarted = false;
 
@@ -153,20 +154,32 @@ async function revealInvitationSmoothly() {
       document.body.classList.remove("envelope-page", "invite-entrance-locked", "envelope-animating");
       document.body.classList.add("invite-revealed");
       if (envelopeOverlay) envelopeOverlay.remove();
-    } else if (envelopeOverlay) {
-      envelopeOverlay.classList.add("is-revealing");
+    } else {
+      const bloom = document.getElementById("invite-reveal-bloom");
+      if (bloom) {
+        bloom.classList.remove("is-active");
+        void bloom.offsetWidth;
+        bloom.classList.add("is-active");
+      }
+
+      document.body.classList.add("invite-reveal-active");
       document.body.classList.remove("envelope-page", "invite-entrance-locked", "envelope-animating");
       document.body.classList.add("invite-revealed");
 
-      window.setTimeout(() => {
-        envelopeOverlay.classList.add("is-hidden");
+      if (envelopeOverlay) {
+        envelopeOverlay.classList.add("is-revealing");
         window.setTimeout(() => {
-          envelopeOverlay.remove();
+          envelopeOverlay.classList.add("is-hidden");
+          window.setTimeout(() => {
+            envelopeOverlay.remove();
+            document.body.classList.remove("invite-reveal-active");
+          }, REVEAL_FADE_MS);
+        }, 120);
+      } else {
+        window.setTimeout(() => {
+          document.body.classList.remove("invite-reveal-active");
         }, REVEAL_FADE_MS);
-      }, 80);
-    } else {
-      document.body.classList.remove("envelope-page", "invite-entrance-locked", "envelope-animating");
-      document.body.classList.add("invite-revealed");
+      }
     }
 
     history.replaceState({ invitationRevealed: true }, "", invitationHistoryPath());
@@ -215,6 +228,10 @@ function openEnvelope() {
   window.setTimeout(() => {
     envelopeOverlay.classList.add("is-open");
   }, ENVELOPE_FLAP_OPEN_MS);
+
+  window.setTimeout(() => {
+    envelopeOverlay.classList.add("is-card-emerging");
+  }, ENVELOPE_CARD_EMERGE_MS);
 
   window.setTimeout(goToInvitation, ENVELOPE_REVEAL_START_MS);
 }
