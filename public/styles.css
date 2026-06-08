@@ -2070,6 +2070,11 @@ body.invite-entrance-locked .lantern-overlay {
   filter: saturate(0.92) brightness(0.94);
 }
 
+body.invite-revealed {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 body.invite-revealed .background-layer-1,
 body.invite-revealed .background-layer-2,
 body.invite-revealed .background-glow,

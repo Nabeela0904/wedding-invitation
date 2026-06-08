@@ -146,6 +146,8 @@
     });
   }
 
+  window.patchWeddingSiteLinks = patchSiteLinks;
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", patchSiteLinks);
   } else {
