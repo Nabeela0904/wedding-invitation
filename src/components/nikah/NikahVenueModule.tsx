@@ -7,7 +7,7 @@ import ParallaxLayer from "./ParallaxLayer";
 
 export default function NikahVenueModule() {
   return (
-    <section className="relative bg-cream px-5 py-24 sm:px-8 sm:py-32">
+    <section className="relative bg-cream px-5 pb-6 pt-24 sm:px-8 sm:pt-32">
       <motion.div
         className="nikah-glass mx-auto max-w-4xl p-6 text-center sm:p-8"
         variants={cardReveal}
@@ -69,14 +69,23 @@ export default function NikahVenueModule() {
                 href={venue.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-emerald to-emerald-deep px-8 py-3 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97] sm:px-9 sm:text-[11px]"
+                className="mt-6 inline-flex items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-emerald to-emerald-deep px-8 py-3 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 will-change-transform hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97] sm:px-10 sm:py-3.5 sm:text-[11px]"
               >
-                Open in Google Maps
+                Open Location in Google Maps
               </a>
             </motion.div>
           ))}
         </div>
       </motion.div>
+
+      <div className="mx-auto mt-6 flex max-w-4xl justify-end py-4 pl-3 pr-0 sm:py-5 sm:pl-6 sm:pr-0">
+        <a
+          href="/walima/"
+          className="inline-flex translate-x-[4cm] items-center justify-center rounded-full border border-metallic-gold/45 bg-gradient-to-r from-emerald to-emerald-deep px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-ivory shadow-nikah-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-raabta-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-metallic-gold/50 active:scale-[0.97]"
+        >
+          Walima
+        </a>
+      </div>
     </section>
   );
 }

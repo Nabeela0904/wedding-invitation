@@ -1,7 +1,9 @@
 "use client";
 
+import emailjs from "@emailjs/browser";
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
+import { getEmailJsConfig, isEmailJsConfigured } from "@/lib/emailjs-config";
 import { heroSpring } from "@/lib/motion";
 
 type AttendingStatus = "yes" | "no" | "maybe";
@@ -15,14 +17,74 @@ type FormState = {
 
 const INITIAL: FormState = { name: "", attending: "", food: "" };
 
-export default function RsvpForm() {
+const ATTENDING_LABELS: Record<AttendingStatus, string> = {
+  yes: "Joyfully attending",
+  maybe: "Will try my best",
+  no: "Unable to attend",
+};
+
+const FOOD_LABELS: Record<FoodPreference, string> = {
+  vegetarian: "Vegetarian",
+  "non-vegetarian": "Non-vegetarian",
+  "no-preference": "No preference",
+};
+
+type RsvpFormProps = {
+  eventName?: string;
+};
+
+export default function RsvpForm({ eventName = "Wedding Event" }: RsvpFormProps) {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!form.name.trim() || !form.attending || !form.food) return;
-    setSubmitted(true);
+    if (!form.name.trim() || !form.attending || !form.food || isSubmitting) return;
+
+    if (!isEmailJsConfigured()) {
+      setError(
+        "RSVP is not configured yet. Please add your EmailJS keys to .env.local and restart the dev server.",
+      );
+      return;
+    }
+
+    const attendingLabel = ATTENDING_LABELS[form.attending];
+    const foodLabel = FOOD_LABELS[form.food];
+    const serviceId = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID?.trim() ?? "";
+    const templateId = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID?.trim() ?? "";
+    const publicKey = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY?.trim() ?? "";
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          guest_name: form.name.trim(),
+          attending: attendingLabel,
+          event_name: eventName,
+          food_preference: foodLabel,
+          message: [
+            `Event: ${eventName}`,
+            `Name: ${form.name.trim()}`,
+            `Attending: ${attendingLabel}`,
+            `Food preference: ${foodLabel}`,
+          ].join("\n"),
+        },
+        { publicKey },
+      );
+
+      setSubmitted(true);
+    } catch (submitError) {
+      console.error("EmailJS RSVP failed:", submitError);
+      setError("We could not send your RSVP right now. Please try again in a moment.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -56,6 +118,7 @@ export default function RsvpForm() {
           onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
           placeholder="Your full name"
           className="haldi-input"
+          disabled={isSubmitting}
         />
       </div>
       <div>
@@ -68,6 +131,7 @@ export default function RsvpForm() {
           value={form.attending}
           onChange={(e) => setForm((p) => ({ ...p, attending: e.target.value as AttendingStatus }))}
           className="haldi-input"
+          disabled={isSubmitting}
         >
           <option value="" disabled>Select status</option>
           <option value="yes">Joyfully attending</option>
@@ -85,6 +149,7 @@ export default function RsvpForm() {
           value={form.food}
           onChange={(e) => setForm((p) => ({ ...p, food: e.target.value as FoodPreference }))}
           className="haldi-input"
+          disabled={isSubmitting}
         >
           <option value="" disabled>Select preference</option>
           <option value="vegetarian">Vegetarian</option>
@@ -92,17 +157,34 @@ export default function RsvpForm() {
           <option value="no-preference">No preference</option>
         </select>
       </div>
+
+      {error ? (
+        <motion.p
+          className="rounded-lg border border-red-300/40 bg-red-50/80 px-3 py-2 font-sans text-sm text-red-800"
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          role="alert"
+        >
+          {error}
+        </motion.p>
+      ) : null}
+
       <motion.button
         type="submit"
-        className="w-full rounded-xl border border-marigold/40 bg-gradient-to-r from-marigold to-saffron px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-widest text-cream will-change-transform"
-        whileHover={{
-          scale: 1.02,
-          boxShadow: "0 0 28px rgba(245, 158, 11, 0.45), 0 8px 24px rgba(217, 119, 6, 0.25)",
-        }}
-        whileTap={{ scale: 0.96 }}
+        disabled={isSubmitting}
+        className="w-full rounded-xl border border-marigold/40 bg-gradient-to-r from-marigold to-saffron px-6 py-3.5 font-sans text-sm font-semibold uppercase tracking-widest text-cream will-change-transform disabled:cursor-not-allowed disabled:opacity-70"
+        whileHover={
+          isSubmitting
+            ? undefined
+            : {
+                scale: 1.02,
+                boxShadow: "0 0 28px rgba(245, 158, 11, 0.45), 0 8px 24px rgba(217, 119, 6, 0.25)",
+              }
+        }
+        whileTap={isSubmitting ? undefined : { scale: 0.96 }}
         transition={{ type: "spring", stiffness: 400, damping: 20 }}
       >
-        Submit RSVP
+        {isSubmitting ? "Sending..." : "Submit RSVP"}
       </motion.button>
     </form>
   );

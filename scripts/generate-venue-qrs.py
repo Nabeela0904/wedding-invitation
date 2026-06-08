@@ -11,10 +11,7 @@ from PIL import Image, ImageColor, ImageDraw
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 
-HALDI_MAPS_URL = (
-    "https://www.google.com/maps/search/?api=1&query="
-    "Noorunisa+Enclave,+17%2F2-5-2-5,+Gandhi+Rd,+Madanapalle,+Andhra+Pradesh+517325"
-)
+HALDI_MAPS_URL = "https://maps.app.goo.gl/GwSeX3UYCYUdAh2dA?g_st=awb"
 
 VENUES = [
     {
@@ -28,15 +25,15 @@ VENUES = [
     },
     {
         "filename": "nikah-ceremony-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=Big+Mosque+Melvisharam",
+        "url": "https://maps.app.goo.gl/CVvptjqpU5t8myg36?g_st=ac",
     },
     {
         "filename": "nikah-dinner-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
+        "url": "https://maps.app.goo.gl/Krx8L5HpcVZNox5j7",
     },
     {
         "filename": "walima-venue-qr.png",
-        "url": "https://www.google.com/maps/search/?api=1&query=R+Convention+Centre+Madanapalle",
+        "url": "https://maps.app.goo.gl/LjakV6TfwYmR3PAw6",
     },
 ]
 
@@ -203,11 +200,6 @@ def main() -> None:
         )
         image.save(path, format="PNG", optimize=True)
         print(f"Wrote {path} ({path.stat().st_size // 1024} KB) -> {venue['url']}")
-
-    ceremony = PUBLIC / "nikah-ceremony-qr.png"
-    alias = PUBLIC / "nikah-venue-qr.png"
-    alias.write_bytes(ceremony.read_bytes())
-    print(f"Wrote {alias} (alias)")
 
 
 if __name__ == "__main__":

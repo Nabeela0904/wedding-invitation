@@ -14,7 +14,7 @@ const WalimaPetals = dynamic(() => import("@/components/walima/WalimaPetals"), {
 export const metadata: Metadata = {
   title: "Walima Ceremony | Shoaib & Zeenath",
   description:
-    "Mr & Mrs Meer Ahmed request the honour of your presence at the Walima ceremony — Saturday 11th July, 2026.",
+    "Mr & Mrs Meer Ahmed request the honour of your presence at the Walima ceremony — Saturday 11th of July, 2026.",
 };
 
 export default function WalimaPage() {
@@ -35,7 +35,7 @@ export default function WalimaPage() {
       </footer>
 
       <a
-        href={mainInvitationPath()}
+        href="/invitation.html"
         className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-wine/25 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-wine backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation

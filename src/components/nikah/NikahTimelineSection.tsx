@@ -19,7 +19,7 @@ export default function NikahTimelineSection() {
   return (
     <section className="relative bg-emerald px-5 py-24 text-ivory sm:px-8 sm:py-32">
       <motion.div
-        className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16"
+        className="mx-auto grid max-w-5xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16"
         variants={cardReveal}
         initial="hidden"
         whileInView="visible"
@@ -27,21 +27,24 @@ export default function NikahTimelineSection() {
       >
         <ParallaxLayer offset={28}>
           <div className="border-l border-metallic-gold/40 pl-8 sm:pl-10">
-            <div className="space-y-3">
-              {NIKAH_EVENT.ceremonyDetails.map((line, index) => (
-                <motion.p
-                  key={line}
-                  variants={fadeSlideUp}
-                  className={`font-display leading-snug tracking-wide text-ivory ${
-                    index === 0
-                      ? "text-[clamp(1.1rem,2.8vw,1.35rem)] italic text-metallic-gold"
-                      : "text-[clamp(1.15rem,3vw,1.65rem)]"
-                  }`}
-                >
-                  {line}
-                </motion.p>
-              ))}
-            </div>
+            <motion.p
+              variants={fadeSlideUp}
+              className="font-sans text-[10px] uppercase tracking-[0.35em] text-metallic-gold"
+            >
+              {NIKAH_EVENT.blessedPhrase}
+            </motion.p>
+            <motion.p
+              variants={fadeSlideUp}
+              className="mt-6 font-display text-[clamp(1.5rem,4vw,2.25rem)] leading-snug tracking-wide text-ivory"
+            >
+              {NIKAH_EVENT.dateLabel}
+            </motion.p>
+            <motion.p
+              variants={fadeSlideUp}
+              className="mt-4 font-display text-[clamp(1.05rem,2.8vw,1.45rem)] leading-relaxed tracking-wide text-ivory/95"
+            >
+              {NIKAH_EVENT.timeVenueLabel}
+            </motion.p>
             <motion.div
               variants={fadeSlideUp}
               className="mt-10 inline-block border border-metallic-gold/30 px-6 py-4"

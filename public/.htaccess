@@ -1,0 +1,31 @@
+# Hostinger — shoaibandzeenathziyafatnama.xyz (Next.js static export, trailingSlash: true)
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.html default.html index.htm
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Real files (_next/*, images, .css, .js, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # Home page (fixes 404 on / when DirectoryIndex alone fails on Hostinger/LiteSpeed)
+  RewriteRule ^$ index.html [L]
+  RewriteCond %{REQUEST_URI} ^/?$
+  RewriteRule ^ index.html [L]
+
+  # Trailing slash for app route directories
+  RewriteRule ^(haldi|nikah|walima|mehndi)$ $1/ [R=301,L]
+
+  # Static invitation
+  RewriteRule ^invitation/?$ invitation.html [L]
+
+  # App routes → folder index.html
+  RewriteRule ^(haldi|nikah|walima|mehndi)/$ $1/index.html [L]
+
+  # Next.js 404
+  RewriteRule ^404/$ 404/index.html [L]
+
+  ErrorDocument 404 /404.html
+</IfModule>

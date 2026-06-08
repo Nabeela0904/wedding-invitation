@@ -57,7 +57,7 @@
       }
     }
 
-    return new URL("music/whatsapp-audio.mp3", window.location.origin + base).href;
+    return new URL("music/new-audio.mp3", window.location.origin + base).href;
   }
 
   function musicSrcMatches(src) {
@@ -182,8 +182,19 @@
     setMusicUi(false);
   }
 
-  function persistMusicForEventNavigation() {
-    if (!musicState || musicState.wasUserPaused()) return;
+  function restorePausedState() {
+    applySavedMusicTime();
+    if (!musicState || !musicState.wasUserPaused()) return false;
+
+    bgMusic.pause();
+    setMusicUi(false);
+    return true;
+  }
+
+  function bootBackgroundMusic() {
+    if (onEventPage && musicState) {
+      musicState.markMusicForEventPage(musicState.getSavedMusicTime());
+    }
 
     var currentTime = bgMusic ? bgMusic.currentTime : musicState.getSavedMusicTime();
     var isPlaying = !!(bgMusic && !bgMusic.paused && !bgMusic.ended);
@@ -201,6 +212,7 @@
   function bootBackgroundMusic() {
     ensureMusicSource();
     bgMusic.volume = 0.35;
+    restorePausedState();
 
     bgMusic.addEventListener("error", function () {
       setMusicUi(false);
@@ -209,6 +221,11 @@
     bgMusic.addEventListener("loadedmetadata", applySavedMusicTime);
 
     bgMusic.addEventListener("play", function () {
+      if (musicState && musicState.wasUserPaused()) {
+        bgMusic.pause();
+        setMusicUi(false);
+        return;
+      }
       if (musicState) musicState.markUserPlaying(bgMusic.currentTime);
       setMusicUi(true);
     });

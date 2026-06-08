@@ -14,7 +14,7 @@ const NikahPetals = dynamic(() => import("@/components/nikah/NikahPetals"), {
 export const metadata: Metadata = {
   title: "Nikah Ceremony | Shoaib & Zeenath",
   description:
-    "With the blessings of Allah, you are invited to the Nikah ceremony of Shoaib Faraz Ahmed & Zeenath Banu — 09 July, 2026.",
+    "With the blessings of Allah, you are invited to the Nikah ceremony of Shoaib Faraz Ahamed & Zeenath Banu — 09 July, 2026.",
 };
 
 export default function NikahPage() {
@@ -32,7 +32,7 @@ export default function NikahPage() {
       <NikahClosingFooter />
 
       <a
-        href={mainInvitationPath()}
+        href="/invitation.html"
         className="main-invitation-link fixed left-4 top-4 z-50 rounded-full border border-metallic-gold/35 bg-white/55 px-4 py-2 font-sans text-xs font-medium text-emerald backdrop-blur-sm transition-colors hover:bg-white/75 sm:left-6 sm:top-6 sm:text-sm"
       >
         ← Main Invitation

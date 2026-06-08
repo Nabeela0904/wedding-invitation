@@ -19,7 +19,7 @@
     return new URL(clean, window.location.origin + getDeployBase()).href;
   }
 
-  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/whatsapp-audio.mp3");
+  window.WEDDING_MUSIC_SRC = weddingAssetPath("music/new-audio.mp3");
 
   var earlyAudio = document.querySelector("#bg-music");
   if (earlyAudio && !earlyAudio.getAttribute("src")) {
@@ -99,10 +99,10 @@
   }
 
   function markMusicForEventPage(currentTime) {
+    var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
     saveMusicState({
-      playing: true,
-      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
-      userPaused: false,
+      playing: !wasUserPaused(),
+      currentTime: time,
     });
   }
 
@@ -160,20 +160,18 @@
       return base + String(relativePath).replace(/^\/+/, "");
     }
 
-    if (base !== "/") {
-      document.querySelectorAll('a.event-button[href="/haldi"]').forEach(function (el) {
-        el.setAttribute("href", withBase("haldi/"));
-      });
-      document.querySelectorAll('a.event-button[href="/nikah"]').forEach(function (el) {
-        el.setAttribute("href", withBase("nikah/"));
-      });
-      document.querySelectorAll('a.event-button[href="/walima"]').forEach(function (el) {
-        el.setAttribute("href", withBase("walima/"));
-      });
-      document.querySelectorAll("a.main-invitation-link, a[href='/invitation.html']").forEach(function (el) {
-        el.setAttribute("href", withBase("invitation.html"));
+    function setEventHref(selector, path) {
+      document.querySelectorAll(selector).forEach(function (el) {
+        el.setAttribute("href", withBase(path));
       });
     }
+
+    setEventHref('a.event-button[href="/haldi"], a.event-button[href="/haldi/"]', "haldi/");
+    setEventHref('a.event-button[href="/nikah"], a.event-button[href="/nikah/"]', "nikah/");
+    setEventHref('a.event-button[href="/walima"], a.event-button[href="/walima/"]', "walima/");
+    document.querySelectorAll("a.main-invitation-link, a[href='/invitation.html'], a[href='invitation.html']").forEach(function (el) {
+      el.setAttribute("href", withBase("invitation.html"));
+    });
   }
 
   if (document.readyState === "loading") {

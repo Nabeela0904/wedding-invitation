@@ -29,42 +29,42 @@ export default function WalimaHeroSlide() {
         variants={fadeSlideUp}
         lang="ar"
         dir="rtl"
-        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#D97706] ${heroTextShadow}`}
+        className={`relative font-amiri text-[clamp(1.75rem,6vw,2.85rem)] font-bold leading-relaxed text-[#B45309] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.bismillah}
       </motion.p>
 
       <motion.div
         variants={fadeSlideUp}
-        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#BE123C]/70 to-transparent"
+        className="relative mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-[#881337]/85 to-transparent"
         aria-hidden
       />
 
       <motion.p
         variants={fadeSlideUp}
-        className={`relative mx-auto mt-8 max-w-2xl font-display text-[clamp(1rem,3vw,1.35rem)] font-semibold normal-case leading-relaxed tracking-wide text-[#9F1239] sm:text-[1.15rem] ${heroTextShadow}`}
+        className={`relative mx-auto mt-8 max-w-2xl font-display text-[clamp(1rem,3vw,1.35rem)] font-semibold normal-case leading-relaxed tracking-wide text-[#881337] sm:text-[1.15rem] ${heroTextShadow}`}
       >
         {WALIMA_EVENT.inviteLine}
       </motion.p>
 
-      <div className="relative mt-12 flex flex-col items-center gap-1 lg:flex-row lg:items-center lg:justify-center lg:gap-x-1">
+      <div className="relative mt-12 flex flex-col items-center gap-2 lg:flex-row lg:items-center lg:justify-center lg:gap-x-1">
         <div className="flex flex-col items-center gap-1 lg:flex-row lg:items-center lg:gap-x-0">
-          <motion.div variants={fadeSlideUp}>
+          <motion.div variants={fadeSlideUp} className="lg:text-right">
             <h1
-              className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#9F1239] ${heroTextShadow}`}
+              className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
             >
               {WALIMA_EVENT.groom.name}
             </h1>
           </motion.div>
 
-          <motion.div variants={fadeSlideUp} className="-mt-0.5 lg:mt-0">
+          <motion.div variants={fadeSlideUp} className="-mt-1 lg:-ml-1 lg:mt-0">
             <WalimaGeometricAccent />
           </motion.div>
         </div>
 
-        <motion.div variants={fadeSlideUp}>
+        <motion.div variants={fadeSlideUp} className="lg:text-left">
           <h1
-            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#9F1239] ${heroTextShadow}`}
+            className={`font-display text-[clamp(1.25rem,3.8vw,1.85rem)] font-bold uppercase leading-tight tracking-[0.1em] text-[#881337] ${heroTextShadow}`}
           >
             {WALIMA_EVENT.bride.name}
           </h1>

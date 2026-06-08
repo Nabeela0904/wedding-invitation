@@ -4,7 +4,7 @@ export const HALDI_EVENT = {
   bismillah: "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ",
   heroTitle: "Rasm-e-Haldi",
   heroConnector: "of",
-  heroName: "Shoaib Faraz Ahmed",
+  heroName: "Shoaib Faraz Ahamed",
   tagline:
     "Join us for an evening filled with colours of joy, the rhythm of dhol, and the warmth of love and laughter.",
   dateLabel: "8th July, 2026",
@@ -18,8 +18,7 @@ export const HALDI_EVENT = {
   countdownIso: "2026-07-08T17:00:00+05:30",
   mapsQuery:
     "Noorunisa Enclave, 17/2-5-2-5, Gandhi Rd, Madanapalle, Andhra Pradesh 517325",
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=Noorunisa+Enclave,+17%2F2-5-2-5,+Gandhi+Rd,+Madanapalle,+Andhra+Pradesh+517325",
+  mapsUrl: "https://maps.app.goo.gl/GwSeX3UYCYUdAh2dA?g_st=awb",
 } as const;
 
 export type HaldiEvent = typeof HALDI_EVENT;

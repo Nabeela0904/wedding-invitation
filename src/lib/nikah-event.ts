@@ -5,36 +5,31 @@ export const NIKAH_EVENT = {
   inviteLine:
     "WITH THE BLESSINGS OF ALLAH, WE GRACIOUSLY INVITE YOU TO THE NIKAH CEREMONY OF",
   groom: {
-    name: "SHOAIB FARAZ AHMED",
+    name: "SHOAIB FARAZ AHAMED",
   },
   bride: {
     name: "ZEENATH BANU",
   },
-  ceremonyDetails: [
-    "Insh Allah,",
-    "On Thursday the 09th of July 2026",
-    "5:00 PM, After Nawias- e - Asar",
-    "At Big Mosque, Melvisharam",
-  ] as const,
+  blessedPhrase: "In Sha Allah On",
+  dateLabel: "Thursday the 9th of July, 2026",
+  timeVenueLabel: "5:00 PM, After Namaz-e-Asar At Big Mosque, Melvisharam",
   dinnerLabel: "Dinner: 7.00pm onwards",
-  dinnerVenue: "Venue: VJR Mahal chennai to Bnglr Bypass road Arcot.",
+  dinnerVenue: "Venue: VJR Mahal, Chennai to Bengaluru Bypass road, Arcot",
   venueTitle: "VENUE & LOCATION",
   venues: [
     {
       label: "Nikah Ceremony",
       subtext: "Big Mosque, Melvisharam",
-      mapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=Big+Mosque+Melvisharam",
-      qrImage: assetPath("/nikah-ceremony-qr.png"),
+      mapsUrl: "https://maps.app.goo.gl/CVvptjqpU5t8myg36?g_st=ac",
+      qrImage: "/nikah-ceremony-qr.png",
       qrAlt: "QR code for Nikah ceremony at Big Mosque, Melvisharam",
     },
     {
-      label: "Dinner Reception",
-      subtext: "VJR Mahal, Chennai to Bangalore Bypass road, Arcot",
-      mapsUrl:
-        "https://www.google.com/maps/search/?api=1&query=VJR+Mahal+Chennai+to+Bangalore+Bypass+road+Arcot",
-      qrImage: assetPath("/nikah-dinner-qr.png"),
-      qrAlt: "QR code for Nikah dinner at VJR Mahal, Arcot",
+      label: "Dinner",
+      subtext: "VJR Mahal, Chennai to Bengaluru Bypass road, Arcot",
+      mapsUrl: "https://maps.app.goo.gl/Krx8L5HpcVZNox5j7",
+      qrImage: "/nikah-dinner-qr.png",
+      qrAlt: "QR code for Nikah dinner at VJR Mahal, Chennai to Bengaluru Bypass road, Arcot",
     },
   ] as const,
   closingLine:

@@ -90,9 +90,8 @@ export function markUserPaused(currentTime = 0): void {
 
 export function markMusicForEventPage(currentTime = getSavedMusicTime()): void {
   saveMusicState({
-    playing: true,
+    playing: !wasUserPaused(),
     currentTime,
-    userPaused: false,
   });
 }
 
@@ -119,6 +118,6 @@ export function musicSrcMatches(audio: HTMLAudioElement, src: string): boolean {
   try {
     return new URL(audio.src).href === new URL(src, window.location.origin).href;
   } catch {
-    return audio.src.includes("whatsapp-audio.mp3");
+    return audio.src.includes("new-audio.mp3");
   }
 }
