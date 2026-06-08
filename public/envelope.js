@@ -8,49 +8,49 @@ const REVEAL_FADE_MS = 1600;
 let envelopeOpening = false;
 let invitationRevealStarted = false;
 
-const layers = {
+const envelopeLayers = {
   layer1: document.querySelector(".background-layer-1"),
   layer2: document.querySelector(".background-layer-2"),
   glow: document.querySelector(".background-glow"),
   lanternOverlay: document.querySelector(".lantern-overlay"),
 };
 
-let targetMouseX = 0;
-let targetMouseY = 0;
-let smoothMouseX = 0;
-let smoothMouseY = 0;
+let envelopeTargetMouseX = 0;
+let envelopeTargetMouseY = 0;
+let envelopeSmoothMouseX = 0;
+let envelopeSmoothMouseY = 0;
 
 window.addEventListener("mousemove", (event) => {
   const cx = window.innerWidth / 2;
   const cy = window.innerHeight / 2;
-  targetMouseX = (event.clientX - cx) / cx;
-  targetMouseY = (event.clientY - cy) / cy;
+  envelopeTargetMouseX = (event.clientX - cx) / cx;
+  envelopeTargetMouseY = (event.clientY - cy) / cy;
 });
 
-function animateBackground() {
-  smoothMouseX += (targetMouseX - smoothMouseX) * 0.06;
-  smoothMouseY += (targetMouseY - smoothMouseY) * 0.06;
+function animateEnvelopeBackground() {
+  envelopeSmoothMouseX += (envelopeTargetMouseX - envelopeSmoothMouseX) * 0.06;
+  envelopeSmoothMouseY += (envelopeTargetMouseY - envelopeSmoothMouseY) * 0.06;
 
-  if (layers.layer1) {
-    layers.layer1.style.transform = `translate3d(${smoothMouseX * 12}px, ${smoothMouseY * 10}px, 0) scale(1.2)`;
+  if (envelopeLayers.layer1) {
+    envelopeLayers.layer1.style.transform = `translate3d(${envelopeSmoothMouseX * 12}px, ${envelopeSmoothMouseY * 10}px, 0) scale(1.2)`;
   }
 
-  if (layers.layer2) {
-    layers.layer2.style.transform = `translate3d(${smoothMouseX * -17}px, ${smoothMouseY * -14}px, 0) scale(1.15)`;
+  if (envelopeLayers.layer2) {
+    envelopeLayers.layer2.style.transform = `translate3d(${envelopeSmoothMouseX * -17}px, ${envelopeSmoothMouseY * -14}px, 0) scale(1.15)`;
   }
 
-  if (layers.glow) {
-    layers.glow.style.transform = `translate3d(${smoothMouseX * 14}px, ${smoothMouseY * 14}px, 0)`;
+  if (envelopeLayers.glow) {
+    envelopeLayers.glow.style.transform = `translate3d(${envelopeSmoothMouseX * 14}px, ${envelopeSmoothMouseY * 14}px, 0)`;
   }
 
-  if (layers.lanternOverlay) {
-    layers.lanternOverlay.style.transform = `translate3d(${smoothMouseX * 8}px, 0px, 0)`;
+  if (envelopeLayers.lanternOverlay) {
+    envelopeLayers.lanternOverlay.style.transform = `translate3d(${envelopeSmoothMouseX * 8}px, 0px, 0)`;
   }
 
-  requestAnimationFrame(animateBackground);
+  requestAnimationFrame(animateEnvelopeBackground);
 }
 
-animateBackground();
+animateEnvelopeBackground();
 
 function invitationPageUrl() {
   if (window.WEDDING_INVITATION_PAGE) {
