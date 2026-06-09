@@ -68,7 +68,7 @@ export default function HaldiVenueModule() {
       <div className="mx-auto mt-6 flex max-w-lg justify-end px-3 py-4 sm:px-6 sm:py-5">
         <a
           href="/nikah/"
-          className="inline-flex items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97] sm:mr-4 lg:mr-10"
+          className="inline-flex translate-x-0 items-center justify-center rounded-full border border-marigold/45 bg-gradient-to-r from-marigold to-saffron px-8 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-cream shadow-gold transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-gold-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marigold/50 active:scale-[0.97] lg:translate-x-[4cm]"
         >
           Nikah
         </a>
