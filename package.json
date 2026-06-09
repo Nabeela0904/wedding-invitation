@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev -p 8080",
     "build": "next build",
-    "build:hostinger": "npm run build && node scripts/verify-hostinger-build.js && node scripts/prepare-hostinger-upload.js",
+    "build:hostinger": "npm run build && node scripts/copy-static-entry-pages.js && node scripts/verify-hostinger-build.js && node scripts/prepare-hostinger-upload.js",
     "start": "next start",
     "lint": "next lint"
   },

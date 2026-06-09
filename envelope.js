@@ -136,6 +136,11 @@ function continueMusicFromEnvelopeOpen() {
     musicState.applySavedMusicTime(bgMusic);
   }
 
+  if (window.WeddingMusic && window.WeddingMusic.startFromUserGesture) {
+    window.WeddingMusic.startFromUserGesture(true);
+    return;
+  }
+
   bgMusic.volume = 0.35;
   bgMusic.muted = false;
   bgMusic.play().catch(() => {});

@@ -21,8 +21,21 @@
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/new-audio.mp3");
 
+  (function preloadMusicFile() {
+    var href = window.WEDDING_MUSIC_SRC;
+    if (document.querySelector('link[data-wedding-music-preload]')) return;
+
+    var link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "audio";
+    link.type = "audio/mpeg";
+    link.href = href;
+    link.setAttribute("data-wedding-music-preload", "true");
+    document.head.appendChild(link);
+  })();
+
   var earlyAudio = document.querySelector("#bg-music");
-  if (earlyAudio && !earlyAudio.getAttribute("src")) {
+  if (earlyAudio && !earlyAudio.getAttribute("src") && !earlyAudio.src) {
     earlyAudio.src = window.WEDDING_MUSIC_SRC;
     earlyAudio.load();
   }
@@ -100,9 +113,16 @@
 
   function markMusicForEventPage(currentTime) {
     var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
+    saveMusicState({ currentTime: time });
+  }
+
+  function persistMusicForEventNavigation(currentTime, isPlaying) {
+    if (wasUserPaused()) return;
+
     saveMusicState({
-      playing: !wasUserPaused(),
-      currentTime: time,
+      playing: !!isPlaying,
+      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
+      userPaused: false,
     });
   }
 
