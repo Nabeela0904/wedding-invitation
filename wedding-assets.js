@@ -35,7 +35,7 @@
   })();
 
   var earlyAudio = document.querySelector("#bg-music");
-  if (earlyAudio && !earlyAudio.getAttribute("src")) {
+  if (earlyAudio && !earlyAudio.getAttribute("src") && !earlyAudio.src) {
     earlyAudio.src = window.WEDDING_MUSIC_SRC;
     earlyAudio.load();
   }
@@ -113,10 +113,7 @@
 
   function markMusicForEventPage(currentTime) {
     var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
-    saveMusicState({
-      playing: !wasUserPaused(),
-      currentTime: time,
-    });
+    saveMusicState({ currentTime: time });
   }
 
   function persistMusicForEventNavigation(currentTime, isPlaying) {
@@ -186,6 +183,8 @@
       el.setAttribute("href", withBase("invitation.html"));
     });
   }
+
+  window.patchWeddingSiteLinks = patchSiteLinks;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", patchSiteLinks);

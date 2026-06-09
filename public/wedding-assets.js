@@ -113,9 +113,16 @@
 
   function markMusicForEventPage(currentTime) {
     var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
+    saveMusicState({ currentTime: time });
+  }
+
+  function persistMusicForEventNavigation(currentTime, isPlaying) {
+    if (wasUserPaused()) return;
+
     saveMusicState({
-      playing: !wasUserPaused(),
-      currentTime: time,
+      playing: !!isPlaying,
+      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
+      userPaused: false,
     });
   }
 
