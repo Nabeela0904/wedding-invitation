@@ -90,10 +90,7 @@ export function markUserPaused(currentTime = 0): void {
 }
 
 export function markMusicForEventPage(currentTime = getSavedMusicTime()): void {
-  saveMusicState({
-    playing: !wasUserPaused(),
-    currentTime,
-  });
+  saveMusicState({ currentTime });
 }
 
 export function applySavedMusicTime(audio: HTMLAudioElement): void {

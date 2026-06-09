@@ -136,6 +136,11 @@ function continueMusicFromEnvelopeOpen() {
     musicState.applySavedMusicTime(bgMusic);
   }
 
+  if (window.WeddingMusic && window.WeddingMusic.startFromUserGesture) {
+    window.WeddingMusic.startFromUserGesture(true);
+    return;
+  }
+
   bgMusic.volume = 0.35;
   bgMusic.muted = false;
   bgMusic.play().catch(() => {});
@@ -195,6 +200,10 @@ async function revealInvitationSmoothly() {
       window.initInvitationPage({ revealAll: true });
     } else if (window.revealInvitationSections) {
       window.revealInvitationSections();
+    }
+
+    if (window.WeddingMusic && window.WeddingMusic.attachEventNavigationHandlers) {
+      window.WeddingMusic.attachEventNavigationHandlers(document);
     }
   } catch (error) {
     console.warn("Smooth invitation reveal failed, falling back to navigation:", error);

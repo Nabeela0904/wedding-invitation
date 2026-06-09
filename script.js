@@ -103,6 +103,10 @@ function initInvitationPage(options = {}) {
   setupEventButtons();
   startBackgroundAnimation();
 
+  if (window.WeddingMusic && window.WeddingMusic.attachEventNavigationHandlers) {
+    window.WeddingMusic.attachEventNavigationHandlers(document);
+  }
+
   if (options.revealAll) {
     revealInvitationSections();
   }

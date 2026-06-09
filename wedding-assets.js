@@ -21,12 +21,41 @@
 
   window.WEDDING_MUSIC_SRC = weddingAssetPath("music/new-audio.mp3");
 
+  (function preloadMusicFile() {
+    var href = window.WEDDING_MUSIC_SRC;
+    if (document.querySelector('link[data-wedding-music-preload]')) return;
+
+    var link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "audio";
+    link.type = "audio/mpeg";
+    link.href = href;
+    link.setAttribute("data-wedding-music-preload", "true");
+    document.head.appendChild(link);
+  })();
+
+  var earlyAudio = document.querySelector("#bg-music");
+  if (earlyAudio && !earlyAudio.getAttribute("src") && !earlyAudio.src) {
+    earlyAudio.src = window.WEDDING_MUSIC_SRC;
+    earlyAudio.load();
+  }
+
   var MUSIC_PLAYING_KEY = "wedding-music-playing";
   var MUSIC_TIME_KEY = "wedding-music-time";
   var MUSIC_USER_PAUSED_KEY = "wedding-music-user-paused";
 
   function shouldAutoPlayMusic() {
     return !wasUserPaused();
+  }
+
+  function shouldResumeMusic() {
+    if (wasUserPaused()) return false;
+
+    try {
+      return sessionStorage.getItem(MUSIC_PLAYING_KEY) === "1";
+    } catch (error) {
+      return false;
+    }
   }
 
   function wasUserPaused() {
@@ -84,9 +113,16 @@
 
   function markMusicForEventPage(currentTime) {
     var time = typeof currentTime === "number" ? currentTime : getSavedMusicTime();
+    saveMusicState({ currentTime: time });
+  }
+
+  function persistMusicForEventNavigation(currentTime, isPlaying) {
+    if (wasUserPaused()) return;
+
     saveMusicState({
-      playing: !wasUserPaused(),
-      currentTime: time,
+      playing: !!isPlaying,
+      currentTime: typeof currentTime === "number" ? currentTime : getSavedMusicTime(),
+      userPaused: false,
     });
   }
 
@@ -112,12 +148,14 @@
     MUSIC_TIME_KEY: MUSIC_TIME_KEY,
     MUSIC_USER_PAUSED_KEY: MUSIC_USER_PAUSED_KEY,
     shouldAutoPlayMusic: shouldAutoPlayMusic,
+    shouldResumeMusic: shouldResumeMusic,
     wasUserPaused: wasUserPaused,
     getSavedMusicTime: getSavedMusicTime,
     saveMusicState: saveMusicState,
     markUserPlaying: markUserPlaying,
     markUserPaused: markUserPaused,
     markMusicForEventPage: markMusicForEventPage,
+    persistMusicForEventNavigation: persistMusicForEventNavigation,
     applySavedMusicTime: applySavedMusicTime,
   };
 
@@ -145,6 +183,8 @@
       el.setAttribute("href", withBase("invitation.html"));
     });
   }
+
+  window.patchWeddingSiteLinks = patchSiteLinks;
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", patchSiteLinks);
