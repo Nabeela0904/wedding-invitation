@@ -445,12 +445,37 @@ footer {
 }
 
 .intro-events-line {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
   color: #ead7bb;
 }
 
+.intro-click-here {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 0 1.1rem;
+}
+
+.intro-click-here-line {
+  width: clamp(2.25rem, 10vw, 4rem);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(223, 176, 111, 0.72), transparent);
+}
+
+.intro-click-here-text {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(0.92rem, 2.1vw, 1.05rem);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 1px 12px rgba(223, 176, 111, 0.22);
+}
+
 .wedding-intro .event-buttons {
-  margin: 0.25rem 0 1.25rem;
+  margin: 0.15rem 0 1.25rem;
 }
 
 .intro-closing {
